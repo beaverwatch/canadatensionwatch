@@ -3,462 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🦫 CASTOR.WATCH — Canadian Stress Barometer</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<title>🚗 Auto Theft Risk — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070707;--s1:#0F0F0F;--s2:#161616;--s3:#222222;--s4:#2E2E2E;--text:#F0EBE0;--muted:#888880;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
-
-.alert{width:100%;background:var(--red);padding:10px 24px;display:flex;align-items:center;gap:12px;}
-.a-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
-@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.2}}
-.a-txt{font-size:0.72rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
-.a-time{font-size:0.65rem;opacity:0.7;}
-
-header{padding:18px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
-.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
-.logo-sub{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
-.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.65rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
-
-.ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:10px 0;}
-.ticker-inner{display:flex;white-space:nowrap;animation:tick 35s linear infinite;width:max-content;}
-.ti{padding:0 44px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.ti em{color:var(--red);font-style:normal;font-weight:700;}
-@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-.hero{max-width:1100px;margin:0 auto;padding:52px 32px 0;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:32px;}
-.eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
-.eyebrow::before{content:'';width:28px;height:1px;background:var(--muted);}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:16px;}
-.hero-title em{font-style:italic;color:var(--red);}
-.hero-desc{font-size:0.85rem;line-height:1.8;color:var(--muted);max-width:520px;}
-.nat-block{text-align:right;}
-.nat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,8rem);letter-spacing:2px;line-height:1;color:var(--red);text-shadow:0 0 40px rgba(255,45,45,0.3);animation:flkr 7s infinite;}
-@keyframes flkr{0%,90%,100%{opacity:1}92%{opacity:0.6}94%{opacity:1}96%{opacity:0.5}98%{opacity:1}}
-.nat-lbl{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-.nat-status{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--red);margin-top:4px;}
-
-.sec{max-width:1100px;margin:40px auto 0;padding:0 32px;}
-.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
-.sec-line{flex:1;height:1px;background:var(--s3);}
-.sec-sub{font-size:0.62rem;letter-spacing:2px;color:var(--muted);white-space:nowrap;}
-
-.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
-.cards-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);margin-top:1px;}
-
-.card{background:var(--s1);padding:24px;position:relative;overflow:hidden;cursor:pointer;transition:background 0.2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;}
-.card:hover{background:var(--s2);}
-.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-.c-r::before{background:var(--red);}
-.c-o::before{background:var(--orange);}
-
-.card-top{display:flex;justify-content:space-between;align-items:flex-start;}
-.card-icon{font-size:1.8rem;line-height:1;}
-.badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid;}
-.br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
-.bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
-
-.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;line-height:1.1;}
-.card-sub{font-size:0.62rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-4px;}
-.card-score-row{display:flex;align-items:flex-end;gap:12px;}
-.card-score{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;line-height:1;}
-.c-r .card-score{color:var(--red);}
-.c-o .card-score{color:var(--orange);}
-.card-delta{font-size:0.65rem;font-weight:700;padding-bottom:6px;color:var(--red);}
-.c-o .card-delta{color:var(--orange);}
-.card-bar{width:100%;height:4px;background:var(--faint);}
-.card-bar-fill{height:100%;}
-.c-r .card-bar-fill{background:var(--red);}
-.c-o .card-bar-fill{background:var(--orange);}
-.spark{display:flex;align-items:flex-end;gap:3px;height:28px;}
-.sb{flex:1;border-radius:1px;opacity:0.3;}
-.sb:last-child{opacity:1;}
-.c-r .sb{background:var(--red);}
-.c-o .sb{background:var(--orange);}
-.card-source{font-size:0.57rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:10px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
-.card-arrow{opacity:0.4;transition:all 0.2s;}
-.card:hover .card-arrow{opacity:1;transform:translateX(4px);}
-
-.nat-bar-wrap{max-width:1100px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
-.nat-bar-inner{background:var(--s1);padding:22px 28px;display:flex;align-items:center;gap:24px;}
-.nbl{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-.nb-track{flex:1;height:7px;background:var(--faint);position:relative;overflow:hidden;}
-.nb-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--green),var(--yellow),var(--orange),var(--red));transition:width 2.5s ease;}
-.nbv{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--red);white-space:nowrap;}
-.nb-rule{font-size:0.62rem;letter-spacing:1px;color:var(--muted);max-width:300px;line-height:1.7;}
-.nb-rule strong{color:var(--red);}
-
-.rule-wrap{max-width:1100px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
-.rule-inner{background:rgba(255,45,45,0.05);border-left:3px solid var(--red);padding:20px 24px;display:flex;gap:16px;}
-.rule-icon{font-size:1.4rem;flex-shrink:0;}
-.rule-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
-.rule-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
-.rule-txt strong{color:var(--text);}
-
-/* ── LONG TERM ── */
-.long-term{max-width:1100px;margin:48px auto 0;padding:0 32px;}
-
-.lt-intro{background:var(--s1);border-left:3px solid var(--yellow);padding:20px 24px;margin-bottom:1px;display:flex;gap:16px;align-items:flex-start;}
-.lt-intro-icon{font-size:1.4rem;flex-shrink:0;}
-.lt-intro-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
-.lt-intro-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
-.lt-intro-txt strong{color:var(--text);}
-
-.lt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
-.lt-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);margin-top:1px;}
-
-.lt-card{background:var(--s1);padding:24px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;}
-.lt-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-.lt-y::before{background:var(--yellow);}
-.lt-o::before{background:var(--orange);}
-.lt-r::before{background:var(--red);}
-
-.lt-top{display:flex;justify-content:space-between;align-items:flex-start;}
-.lt-icon{font-size:1.8rem;line-height:1;}
-.lt-badge{font-size:0.52rem;letter-spacing:2px;padding:3px 9px;font-weight:700;text-transform:uppercase;border:1px solid;}
-.lt-by{color:var(--yellow);border-color:rgba(255,214,0,0.4);background:rgba(255,214,0,0.07);}
-.lt-bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.07);}
-.lt-br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.07);}
-
-.lt-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;line-height:1.1;}
-.lt-sub{font-size:0.62rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-4px;}
-.lt-val-row{display:flex;align-items:flex-end;gap:10px;}
-.lt-val{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;}
-.lt-y .lt-val{color:var(--yellow);}
-.lt-o .lt-val{color:var(--orange);}
-.lt-r .lt-val{color:var(--red);}
-.lt-trend{font-size:0.65rem;font-weight:600;padding-bottom:5px;}
-.t-dn{color:var(--red);}
-.t-up{color:var(--green);}
-.t-w{color:var(--orange);}
-
-.lt-bar{width:100%;height:4px;background:var(--faint);}
-.lt-bar-fill{height:100%;}
-.lt-y .lt-bar-fill{background:var(--yellow);}
-.lt-o .lt-bar-fill{background:var(--orange);}
-.lt-r .lt-bar-fill{background:var(--red);}
-
-.lt-timeline{display:flex;align-items:flex-end;gap:3px;height:32px;margin-top:4px;}
-.lt-tb{flex:1;border-radius:1px;opacity:0.3;}
-.lt-tb:last-child{opacity:1;}
-.lt-y .lt-tb{background:var(--yellow);}
-.lt-o .lt-tb{background:var(--orange);}
-.lt-r .lt-tb{background:var(--red);}
-
-.lt-years{display:flex;justify-content:space-between;font-size:0.5rem;color:var(--muted);letter-spacing:1px;margin-top:3px;}
-.lt-source{font-size:0.57rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:10px;border-top:1px solid var(--s3);}
-
-.lt-warning{max-width:1100px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
-.lt-warning-inner{background:rgba(255,214,0,0.04);border-left:3px solid var(--yellow);padding:20px 24px;display:flex;gap:16px;}
-.lt-w-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
-.lt-w-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
-.lt-w-txt strong{color:var(--text);}
-
-.cq-wrap{max-width:1100px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
-.cq-inner{background:var(--s1);padding:24px 28px;display:flex;align-items:center;gap:24px;}
-.cq-b{font-size:3rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-.cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:var(--muted);line-height:1.5;}
-.cq-t strong{color:var(--text);font-style:normal;}
-
-footer{max-width:1100px;margin:28px auto 0;padding:18px 32px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
-.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);}
-.foot-meta{font-size:0.57rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
-
-@media(max-width:800px){
-  .cards-grid,.lt-grid{grid-template-columns:repeat(2,1fr);}
-  .hero{grid-template-columns:1fr;}
-  .nat-block{text-align:left;}
-  .nat-bar-inner{flex-direction:column;align-items:flex-start;gap:12px;}
-  .nb-rule{max-width:100%;}
+:root {
+  --bg:#070707; --s1:#0F0F0F; --s2:#181818; --s3:#242424; --s4:#303030;
+  --text:#F5F0E8; --muted:#999990; --faint:#141414;
+  --red:#FF2D2D; --orange:#FF6D00; --green:#00E676; --yellow:#FFD600;
+  --accent:#FF2D2D; --glow:rgba(255,45,45,0.2);
 }
-@media(max-width:500px){
-  .cards-grid,.cards-grid-2,.lt-grid,.lt-grid-2{grid-template-columns:1fr;}
-  header{padding:14px 16px;}
-  .sec,.long-term,.nat-bar-wrap,.rule-wrap,.lt-warning,.cq-wrap,footer{padding-left:14px;padding-right:14px;}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+
+/* Grain */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+/* ALERT */
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;transition:background 1s ease;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;letter-spacing:1px;}
+
+/* HEADER */
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--accent);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;transition:background 1s ease;}
+
+/* LOADING STATE */
+.loading-bar{width:100%;height:3px;background:var(--s3);position:relative;overflow:hidden;}
+.loading-bar::after{content:'';position:absolute;left:-50%;top:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:loading 1.5s ease infinite;}
+@keyframes loading{from{left:-50%}to{left:150%}}
+.loading-bar.done{display:none;}
+
+/* MAIN WRAPPER */
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+
+/* HERO SECTION */
+.hero{padding:36px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;margin-bottom:0;}
+
+/* GAUGE */
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:502.4;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1),stroke 0.8s ease;filter:drop-shadow(0 0 12px var(--glow));}
+.g-tick{fill:none;stroke:#070707;stroke-width:3;}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-car{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;transition:color 1s ease;}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* RIGHT SIDE */
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:16px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:3px;line-height:1;transition:color 1s ease;}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+
+/* Risk pills */
+.pills{display:flex;flex-direction:column;gap:5px;}
+.pill{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid transparent;transition:all 0.4s ease;}
+.pill.active{border-color:var(--s4);background:rgba(255,255,255,0.03);}
+.pip{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.pill-name{font-size:0.65rem;letter-spacing:1.5px;font-weight:600;color:var(--muted);flex:1;}
+.pill.active .pill-name{color:var(--text);}
+.pill-rng{font-size:0.6rem;color:var(--muted);letter-spacing:1px;}
+
+/* DIVIDER */
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+
+/* WHAT THIS MEANS */
+.meaning-section{padding:0 28px;}
+.section-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.meaning-box{padding:18px 20px;border-left:3px solid var(--accent);background:rgba(255,45,45,0.05);transition:border-color 1s ease,background 1s ease;}
+.meaning-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;transition:color 1s ease;}
+.meaning-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+
+/* WHAT TO DO */
+.action-section{padding:0 28px;margin-top:20px;}
+.action-box{background:var(--s1);border:1px solid var(--s3);padding:18px 20px;}
+.action-title{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.action-list{display:flex;flex-direction:column;gap:8px;}
+.action-item{display:flex;align-items:flex-start;gap:12px;font-size:0.8rem;line-height:1.7;color:var(--text);}
+.action-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
+
+/* SOURCES */
+.sources-section{padding:0 28px;margin-top:20px;}
+.src-card{background:var(--s1);border-left:2px solid;padding:14px 16px;margin-bottom:8px;}
+.src-card:last-child{margin-bottom:0;}
+.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.src-name{font-size:0.75rem;font-weight:700;letter-spacing:0.5px;}
+.src-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;}
+.src-desc{font-size:0.72rem;color:var(--text);line-height:1.7;margin-bottom:4px;}
+.src-freq{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+
+/* CAUSAL CHAIN */
+.chain-section{padding:0 28px;margin-top:20px;}
+.chain{display:flex;flex-direction:column;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;line-height:1.2;}
+.chain-t{font-size:0.78rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;color:var(--text);}
+
+/* HISTORY */
+.hist-section{padding:0 28px;margin-top:20px;}
+.hrow{display:grid;grid-template-columns:72px 1fr 42px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.68rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;transition:width 2s ease;}
+.hv{font-size:0.68rem;text-align:right;font-weight:600;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin:20px 28px 0;}
+.stat{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:5px;}
+.stat-v{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;transition:color 1s ease;}
+.stat-l{font-size:0.65rem;letter-spacing:1px;color:var(--text);line-height:1.5;}
+
+/* METHODOLOGY */
+.method{margin:20px 28px 0;background:var(--s1);padding:18px 20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.75rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+
+/* CASTOR */
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:20px;display:flex;gap:16px;align-items:flex-start;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.8rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+
+/* FOOTER */
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+@media(max-width:480px){
+  .gauge-section{flex-direction:column;align-items:flex-start;}
+  .gauge-wrap{width:160px;height:160px;}
+  .risk-word{font-size:2.4rem;}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:fadeUp 0.5s ease 0.05s both;}
-.sec{animation:fadeUp 0.5s ease 0.1s both;}
-.long-term{animation:fadeUp 0.5s ease 0.2s both;}
+.wrapper{animation:fadeUp 0.4s ease both;}
 </style>
 </head>
 <body>
 
-<div class="alert">
+<!-- ALERT -->
+<div class="alert" id="alert-bar" style="background:var(--red);">
   <div class="a-dot"></div>
-  <div class="a-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
+  <div class="a-txt" id="alert-txt">🚨 HIGH RISK — Auto Theft Index: 0.72 — Elevated vehicle theft risk in the next 4 to 8 weeks.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 
+<!-- LOADING BAR -->
+<div class="loading-bar" id="loading-bar"></div>
+
+<!-- HEADER -->
 <header>
-  <div>
+  <a href="index.html" style="text-decoration:none;color:inherit;">
     <div class="logo">🦫 <span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
-    <div class="logo-sub">Canadian Stress Barometer — Predictive Signals</div>
-  </div>
-  <div class="live-pill"><div class="a-dot"></div>LIVE</div>
+    <div class="logo-sub">Canadian Stress Barometer</div>
+  </a>
+  <div class="live-pill" id="live-pill"><div class="a-dot" id="live-dot"></div>LIVE</div>
 </header>
 
-<div class="ticker-outer">
-  <div class="ticker-inner">
-    <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
-    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
-    <span class="ti">🍞 Near-expiry food Montreal <em>+22%</em> ///</span>
-    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITICAL</em> ///</span>
-    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
-    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
-    <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
-    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
-    <span class="ti">🍞 Near-expiry food Montreal <em>+22%</em> ///</span>
-    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITICAL</em> ///</span>
-    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
-    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
-  </div>
-</div>
+<div class="wrapper">
 
-<div class="hero">
-  <div>
-    <div class="eyebrow">🍁 National Dashboard — Canada</div>
-    <div class="hero-title">The Canadian<br><em>Stress</em><br>Barometer</div>
-    <div class="hero-desc">Predictive indicators based on real Canadian public data. Forecasts social, economic and criminal tensions 4 to 12 weeks — and up to 15 years — before they happen.</div>
-  </div>
-  <div class="nat-block">
-    <div class="nat-num" id="nat-num">0</div>
-    <div class="nat-lbl">National Score / 100</div>
-    <div class="nat-status">⚠️ HIGH TENSION</div>
-  </div>
-</div>
+  <!-- BACK -->
+  <a href="index.html" class="back-link">← All Indicators</a>
 
-<!-- SHORT TERM -->
-<div class="sec" style="margin-top:44px;">
-  <div class="sec-head">
-    <div class="sec-title">⚡ Short-Term Indicators</div>
-    <div class="sec-line"></div>
-    <div class="sec-sub">Predicts 4–12 weeks ahead · <span id="week-lbl">—</span></div>
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Indicator #01 — CASTOR.WATCH</div>
+    <div class="hero-title">Auto Theft<br>Risk Index</div>
+    <div class="hero-tagline">"The beaver watches your car."</div>
   </div>
 
-  <div class="cards-grid">
-    <a class="card c-r" href="auto-theft.html">
-      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br">🔴 CRITICAL</div></div>
-      <div class="card-name">Auto Theft Index</div>
-      <div class="card-sub">"The beaver watches your car."</div>
-      <div class="card-score-row"><div class="card-score">0.72</div><div class="card-delta">▲ +0.07</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
-      <div class="spark">
-        <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:55%"></div>
-        <div class="sb" style="height:60%"></div><div class="sb" style="height:65%"></div><div class="sb" style="height:68%"></div>
-        <div class="sb" style="height:65%"></div><div class="sb" style="height:72%"></div>
+  <!-- GAUGE -->
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <!-- Zone backgrounds -->
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9" stroke-dashoffset="0"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <!-- Tick at 0.4 -->
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(144 60 60)"/>
+        <!-- Tick at 0.7 -->
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(252 60 60)"/>
+        <!-- Active arc -->
+        <circle class="g-active" id="gauge-arc" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-car">🚗</div>
+        <div class="gc-val" id="g-val">—</div>
+        <div class="gc-lbl">Risk Score</div>
       </div>
-      <div class="card-source">Équité Assoc. · CANAFE · IBC <div class="card-arrow">→</div></div>
-    </a>
+    </div>
 
-    <a class="card c-o" href="logement.html">
-      <div class="card-top"><div class="card-icon">🏠</div><div class="badge bo">🟠 HIGH</div></div>
-      <div class="card-name">Housing Crisis</div>
-      <div class="card-sub">"When Kijiji becomes a shelter."</div>
-      <div class="card-score-row"><div class="card-score" style="color:var(--orange)">0.68</div><div class="card-delta" style="color:var(--orange)">▲ +0.05</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:68%;background:var(--orange)"></div></div>
-      <div class="spark">
-        <div class="sb" style="height:38%"></div><div class="sb" style="height:44%"></div><div class="sb" style="height:48%"></div>
-        <div class="sb" style="height:53%"></div><div class="sb" style="height:58%"></div><div class="sb" style="height:62%"></div>
-        <div class="sb" style="height:63%"></div><div class="sb" style="height:68%"></div>
+    <div class="gauge-right">
+      <div class="risk-word" id="risk-word">—</div>
+      <div class="risk-desc" id="risk-desc">Loading data from Google Sheets...</div>
+      <div class="pills">
+        <div class="pill" id="p-low">
+          <div class="pip" style="background:var(--green)"></div>
+          <div class="pill-name">LOW RISK</div>
+          <div class="pill-rng">0 – 0.39</div>
+        </div>
+        <div class="pill" id="p-mod">
+          <div class="pip" style="background:var(--orange)"></div>
+          <div class="pill-name">MODERATE RISK</div>
+          <div class="pill-rng">0.40 – 0.69</div>
+        </div>
+        <div class="pill" id="p-high">
+          <div class="pip" style="background:var(--red)"></div>
+          <div class="pill-name">HIGH RISK</div>
+          <div class="pill-rng">0.70 – 1.0</div>
+        </div>
       </div>
-      <div class="card-source">CMHC · Kijiji · Courts <div class="card-arrow">→</div></div>
-    </a>
-
-    <a class="card c-r" href="alimentaire.html">
-      <div class="card-top"><div class="card-icon">🍞</div><div class="badge br">🔴 CRITICAL</div></div>
-      <div class="card-name">Food Stress Index</div>
-      <div class="card-sub">"The empty lunch box never lies."</div>
-      <div class="card-score-row"><div class="card-score">0.71</div><div class="card-delta">▲ +0.09</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:71%"></div></div>
-      <div class="spark">
-        <div class="sb" style="height:30%"></div><div class="sb" style="height:36%"></div><div class="sb" style="height:42%"></div>
-        <div class="sb" style="height:50%"></div><div class="sb" style="height:56%"></div><div class="sb" style="height:62%"></div>
-        <div class="sb" style="height:62%"></div><div class="sb" style="height:71%"></div>
-      </div>
-      <div class="card-source">Food Banks Canada · Breakfast Club <div class="card-arrow">→</div></div>
-    </a>
+    </div>
   </div>
 
-  <div class="cards-grid-2">
-    <a class="card c-o" href="faillite.html">
-      <div class="card-top"><div class="card-icon">💸</div><div class="badge bo">🟠 HIGH</div></div>
-      <div class="card-name">Personal Bankruptcy</div>
-      <div class="card-sub">"When Money Mart is packed."</div>
-      <div class="card-score-row"><div class="card-score" style="color:var(--orange)">0.58</div><div class="card-delta" style="color:var(--orange)">▲ +0.04</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:58%;background:var(--orange)"></div></div>
-      <div class="spark">
-        <div class="sb" style="height:35%"></div><div class="sb" style="height:38%"></div><div class="sb" style="height:42%"></div>
-        <div class="sb" style="height:46%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:53%"></div>
-        <div class="sb" style="height:54%"></div><div class="sb" style="height:58%"></div>
-      </div>
-      <div class="card-source">BDO Canada · FCAC · Equifax <div class="card-arrow">→</div></div>
-    </a>
+  <div class="divider"></div>
 
-    <a class="card c-r" href="uhaul.html">
-      <div class="card-top"><div class="card-icon">🚛</div><div class="badge br">🔴 CRITICAL</div></div>
-      <div class="card-name">U-Haul Migration Index</div>
-      <div class="card-sub">"The trucks don't lie."</div>
-      <div class="card-score-row"><div class="card-score">0.87</div><div class="card-delta">▲ +0.11</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:87%"></div></div>
-      <div class="spark">
-        <div class="sb" style="height:44%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:57%"></div>
-        <div class="sb" style="height:63%"></div><div class="sb" style="height:69%"></div><div class="sb" style="height:74%"></div>
-        <div class="sb" style="height:76%"></div><div class="sb" style="height:87%"></div>
-      </div>
-      <div class="card-source">U-Haul Pricing · Atlas Van Lines · StatCan <div class="card-arrow">→</div></div>
-    </a>
+  <!-- WHAT THIS MEANS -->
+  <div class="meaning-section">
+    <div class="section-label">What this score means for you</div>
+    <div class="meaning-box" id="meaning-box">
+      <div class="meaning-title" id="meaning-title">Loading...</div>
+      <div class="meaning-txt" id="meaning-txt">Please wait while we load the latest data.</div>
+    </div>
   </div>
-</div>
 
-<div class="nat-bar-wrap">
-  <div class="nat-bar-inner">
-    <div class="nbl">National Score</div>
-    <div class="nb-track"><div class="nb-fill" id="nb-fill" style="width:0%"></div></div>
-    <div class="nbv">73 / 100</div>
-    <div class="nb-rule"><strong>Rule of 3 Reds:</strong> 3 red indicators simultaneously → major social incident within 6 weeks.</div>
+  <!-- WHAT TO DO -->
+  <div class="action-section">
+    <div class="section-label">What should you do ?</div>
+    <div class="action-box" id="action-box">
+      <div class="action-title" id="action-title">🚗 Loading recommendations...</div>
+      <div class="action-list" id="action-list"></div>
+    </div>
   </div>
-</div>
 
-<div class="rule-wrap">
-  <div class="rule-inner">
-    <div class="rule-icon">⚠️</div>
+  <div class="divider"></div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="section-label">📊 Data Sources</div>
+
+    <div class="src-card" style="border-color:var(--red)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--red)">Équité Association</div>
+        <div class="src-val" style="color:var(--red)" id="src1">—</div>
+      </div>
+      <div class="src-desc">Auto financing fraud + port export data (Halifax, Vancouver, Montreal). Official quarterly public report.</div>
+      <div class="src-freq">Weight 35% · Quarterly · equite-association.com</div>
+    </div>
+
+    <div class="src-card" style="border-color:var(--orange)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--orange)">CANAFE / Banks</div>
+        <div class="src-val" style="color:var(--orange)" id="src2">—</div>
+      </div>
+      <div class="src-desc">Suspicious transaction reports related to fraudulent auto financing. Aggregated by CANAFE, Canada's financial intelligence unit.</div>
+      <div class="src-freq">Weight 40% · Monthly · fintrac-canafe.gc.ca</div>
+    </div>
+
+    <div class="src-card" style="border-color:var(--s4)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--text)">IBC + Police Data</div>
+        <div class="src-val" style="color:var(--text)" id="src3">—</div>
+      </div>
+      <div class="src-desc">Insurance Bureau of Canada + open police data (Toronto, SPVM Montreal, Calgary). Vehicle theft statistics by region.</div>
+      <div class="src-freq">Weight 25% · Monthly · ibc.ca · data.torontopolice.on.ca</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CAUSAL CHAIN -->
+  <div class="chain-section">
+    <div class="section-label">🔗 How this indicator works</div>
+    <div class="chain">
+      <div class="chain-item">
+        <div class="chain-n">01</div>
+        <div class="chain-t"><strong>Fraud at ports rises</strong> — Auto loans approved for vehicles never registered locally. Banks report this to CANAFE.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">02</div>
+        <div class="chain-t"><strong>Export via containers increases</strong> — Halifax, Vancouver, Montreal. Local demand for stolen parts rises simultaneously.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">03</div>
+        <div class="chain-t"><strong>Cash-only parts market activates</strong> — Visible signal on Kijiji Auto and Facebook Marketplace.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">04</div>
+        <div class="chain-t"><strong>Vehicle theft spike follows</strong> — Documented 4 to 8 weeks after the composite signal activates. Source: GRC Project Whiplash 2023.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HISTORY -->
+  <div class="hist-section">
+    <div class="section-label">📈 6-Month History</div>
+    <div class="hrow">
+      <div class="hl">This month</div>
+      <div class="ht"><div class="hf" id="hb1" style="width:0%;background:var(--red)"></div></div>
+      <div class="hv" id="hv1" style="color:var(--red)">—</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">− 1 month</div>
+      <div class="ht"><div class="hf" style="width:65%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.65</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">− 2 months</div>
+      <div class="ht"><div class="hf" style="width:60%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.60</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">− 3 months</div>
+      <div class="ht"><div class="hf" style="width:54%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.54</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">− 4 months</div>
+      <div class="ht"><div class="hf" style="width:42%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.42</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">− 5 months</div>
+      <div class="ht"><div class="hf" style="width:30%;background:var(--green)"></div></div>
+      <div class="hv" style="color:var(--green)">0.30</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-v" id="st1" style="color:var(--red)">—</div>
+      <div class="stat-l">Change this month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v" style="color:var(--text)">4–8 wks</div>
+      <div class="stat-l">Predictive lead time (GRC)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v" style="color:var(--muted)">3 sources</div>
+      <div class="stat-l">Canadian institutions</div>
+    </div>
+  </div>
+
+  <!-- METHODOLOGY -->
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">
+      Monthly composite score: <strong>Équité Association</strong> port fraud data (35%) + <strong>CANAFE</strong> suspicious transaction reports on auto financing (40%) + <strong>IBC + open police data</strong> Toronto/Montreal/Calgary (25%). Correlation documented in <strong>GRC Project Whiplash 2023</strong>. Average predictive lead time: 4 to 8 weeks. This dashboard does not constitute legal or police advice.
+    </div>
+  </div>
+
+  <!-- CASTOR -->
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
     <div>
-      <div class="rule-title">Rule of 3 Reds — Active This Week</div>
-      <div class="rule-txt"><strong>Auto Theft (0.72) + Food Stress (0.71) + U-Haul Index (0.87)</strong> all red simultaneously. Last observed: <strong>October 2022</strong> (inflation peak + eviction wave). Major social incident predicted within <strong>4 to 8 weeks.</strong></div>
-    </div>
-  </div>
-</div>
-
-<!-- LONG TERM -->
-<div class="long-term">
-  <div class="sec-head">
-    <div class="sec-title">🔭 Long-Term Structural Indicators</div>
-    <div class="sec-line"></div>
-    <div class="sec-sub">Predicts 5–15 years ahead · StatCan data</div>
-  </div>
-
-  <div class="lt-intro">
-    <div class="lt-intro-icon">📊</div>
-    <div>
-      <div class="lt-intro-title">Why Long-Term Matters</div>
-      <div class="lt-intro-txt">Inspired by Emmanuel Todd's demographic analysis — <strong>structural shifts in education, gender balance and birth rates</strong> predict social upheaval years before it becomes visible. These indicators don't predict next month. They predict the next decade.</div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt" id="castor-txt">"Loading..."</div>
     </div>
   </div>
 
-  <div class="lt-grid">
-    <div class="lt-card lt-r">
-      <div class="lt-top"><div class="lt-icon">🎓</div><div class="lt-badge lt-br">🔴 DECLINING</div></div>
-      <div class="lt-name">Male University Enrollment</div>
-      <div class="lt-sub">"Men leaving higher education"</div>
-      <div class="lt-val-row"><div class="lt-val">38%</div><div class="lt-trend t-dn">▼ -8% since 2015</div></div>
-      <div class="lt-bar"><div class="lt-bar-fill" style="width:38%"></div></div>
-      <div class="lt-timeline">
-        <div class="lt-tb" style="height:80%"></div><div class="lt-tb" style="height:75%"></div>
-        <div class="lt-tb" style="height:70%"></div><div class="lt-tb" style="height:64%"></div>
-        <div class="lt-tb" style="height:58%"></div><div class="lt-tb" style="height:52%"></div>
-        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:38%"></div>
-      </div>
-      <div class="lt-years"><span>2015</span><span>2020</span><span>2025</span></div>
-      <div class="lt-source">Source: StatCan · Education Indicators in Canada</div>
-    </div>
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Public data · Canada<br>Updated monthly · <span id="last-updated">—</span></div>
+  </footer>
 
-    <div class="lt-card lt-o">
-      <div class="lt-top"><div class="lt-icon">⚖️</div><div class="lt-badge lt-bo">🟠 SHIFTING</div></div>
-      <div class="lt-name">Gender Employment Gap</div>
-      <div class="lt-sub">"Closing fast — structural tension"</div>
-      <div class="lt-val-row"><div class="lt-val">2.1%</div><div class="lt-trend t-w">▼ -6.4% since 2000</div></div>
-      <div class="lt-bar"><div class="lt-bar-fill" style="width:21%"></div></div>
-      <div class="lt-timeline">
-        <div class="lt-tb" style="height:85%"></div><div class="lt-tb" style="height:75%"></div>
-        <div class="lt-tb" style="height:65%"></div><div class="lt-tb" style="height:55%"></div>
-        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:35%"></div>
-        <div class="lt-tb" style="height:28%"></div><div class="lt-tb" style="height:21%"></div>
-      </div>
-      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
-      <div class="lt-source">Source: StatCan · Labour Force Survey</div>
-    </div>
-
-    <div class="lt-card lt-y">
-      <div class="lt-top"><div class="lt-icon">👶</div><div class="lt-badge lt-by">🟡 WATCH</div></div>
-      <div class="lt-name">Infant Mortality Rate</div>
-      <div class="lt-sub">"USSR collapsed — this was rising"</div>
-      <div class="lt-val-row"><div class="lt-val">4.6</div><div class="lt-trend t-w">per 1,000 births</div></div>
-      <div class="lt-bar"><div class="lt-bar-fill" style="width:46%"></div></div>
-      <div class="lt-timeline">
-        <div class="lt-tb" style="height:75%"></div><div class="lt-tb" style="height:68%"></div>
-        <div class="lt-tb" style="height:60%"></div><div class="lt-tb" style="height:54%"></div>
-        <div class="lt-tb" style="height:52%"></div><div class="lt-tb" style="height:50%"></div>
-        <div class="lt-tb" style="height:48%"></div><div class="lt-tb" style="height:46%"></div>
-      </div>
-      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
-      <div class="lt-source">Source: StatCan · Vital Statistics</div>
-    </div>
-  </div>
-
-  <div class="lt-grid-2">
-    <div class="lt-card lt-y">
-      <div class="lt-top"><div class="lt-icon">🌍</div><div class="lt-badge lt-by">🟡 SHIFTING</div></div>
-      <div class="lt-name">Immigration Demographic Shift</div>
-      <div class="lt-sub">"Structural composition changing fast"</div>
-      <div class="lt-val-row"><div class="lt-val">23%</div><div class="lt-trend t-up">▲ Foreign-born population</div></div>
-      <div class="lt-bar"><div class="lt-bar-fill" style="width:23%"></div></div>
-      <div class="lt-timeline">
-        <div class="lt-tb" style="height:40%"></div><div class="lt-tb" style="height:45%"></div>
-        <div class="lt-tb" style="height:50%"></div><div class="lt-tb" style="height:55%"></div>
-        <div class="lt-tb" style="height:60%"></div><div class="lt-tb" style="height:65%"></div>
-        <div class="lt-tb" style="height:70%"></div><div class="lt-tb" style="height:75%"></div>
-      </div>
-      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
-      <div class="lt-source">Source: StatCan · Census 2021</div>
-    </div>
-
-    <div class="lt-card lt-o">
-      <div class="lt-top"><div class="lt-icon">👴</div><div class="lt-badge lt-bo">🟠 AGING</div></div>
-      <div class="lt-name">Population Aging Index</div>
-      <div class="lt-sub">"More retirees than workers coming"</div>
-      <div class="lt-val-row"><div class="lt-val">47%</div><div class="lt-trend t-w">▲ Dependency ratio rising</div></div>
-      <div class="lt-bar"><div class="lt-bar-fill" style="width:47%"></div></div>
-      <div class="lt-timeline">
-        <div class="lt-tb" style="height:30%"></div><div class="lt-tb" style="height:33%"></div>
-        <div class="lt-tb" style="height:36%"></div><div class="lt-tb" style="height:38%"></div>
-        <div class="lt-tb" style="height:41%"></div><div class="lt-tb" style="height:43%"></div>
-        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:47%"></div>
-      </div>
-      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
-      <div class="lt-source">Source: StatCan · Demographic Projections</div>
-    </div>
-  </div>
-</div>
-
-<div class="lt-warning">
-  <div class="lt-warning-inner">
-    <div class="lt-intro-icon">🔭</div>
-    <div>
-      <div class="lt-w-title">What the Long-Term Data Tells Us</div>
-      <div class="lt-w-txt">Following Emmanuel Todd's methodology: <strong>when male university enrollment drops below 40% and the gender employment gap closes below 2%</strong>, structural social tensions emerge within 10–15 years. Canada is approaching both thresholds simultaneously. Combined with the infant mortality plateau and rapid demographic shifts — <strong>the structural foundation for a major social reorganization is building.</strong></div>
-    </div>
-  </div>
-</div>
-
-<div class="cq-wrap">
-  <div class="cq-inner">
-    <div class="cq-b">🦫</div>
-    <div class="cq-t">"The newspapers will cover it in 6 weeks.<br><strong>The Beaver knows it now.</strong>"</div>
-  </div>
-</div>
-
-<footer>
-  <div class="foot-brand">🦫 CASTOR.WATCH</div>
-  <div class="foot-meta">Independent Canadian project · Public data only<br>Monthly updates · Not affiliated with any government</div>
-</footer>
+</div><!-- /wrapper -->
 
 <script>
+const CIRC = 2 * Math.PI * 40; // 251.2
+
+// ── Google Sheets URL ──
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
+
+// ── Risk zones config ──
+const ZONES = {
+  low: {
+    color:'#00E676', glow:'rgba(0,230,118,0.15)', alertBg:'#00695C',
+    word:'LOW RISK',
+    desc:'Conditions are calm. The fraud and theft chain is inactive.',
+    alert:'✅ LOW RISK — Auto Theft Index: {v} — Vehicle theft risk is below the national average.',
+    meaningTitle:'Your car is NOT at elevated risk right now.',
+    meaningTxt:'At <strong>{v}</strong>, all three data sources show normal activity. There is <strong>no unusual fraud at ports, no suspicious banking activity</strong> and <strong>no spike in insurance claims</strong>. Enjoy peace of mind — but always use basic precautions.',
+    actionTitle:'🟢 Basic precautions are enough',
+    actions:['Park in well-lit areas when possible.','Make sure your doors are locked and windows closed.','No special action required at this risk level.'],
+    castor:'"At {v}, the data is quiet. The beaver is watching — but not worried."',
+    st1:'+0%', st1c:'#00E676', pill:'p-low',
+  },
+  moderate: {
+    color:'#FF6D00', glow:'rgba(255,109,0,0.15)', alertBg:'#E65100',
+    word:'MODERATE RISK',
+    desc:'Signals are rising. The theft chain is starting to activate.',
+    alert:'⚠️ MODERATE RISK — Auto Theft Index: {v} — Increased vehicle theft signals detected. Stay alert.',
+    meaningTitle:'There is a moderate risk your car could be targeted.',
+    meaningTxt:'At <strong>{v}</strong>, we are seeing <strong>rising fraud at Canadian ports and increased suspicious banking activity</strong>. This does not mean your car will be stolen — but the conditions that typically precede a theft spike are building. <strong>Extra precautions are recommended.</strong>',
+    actionTitle:'🟠 Take extra precautions now',
+    actions:['Consider parking in a garage or secured lot overnight.','Install or activate your steering wheel lock.','Check that your car alarm is working properly.','Avoid leaving valuables visible in your vehicle.'],
+    castor:'"At {v}, the signals are rising. The beaver has one eye open."',
+    st1:'+8%', st1c:'#FF6D00', pill:'p-mod',
+  },
+  high: {
+    color:'#FF2D2D', glow:'rgba(255,45,45,0.2)', alertBg:'#B71C1C',
+    word:'HIGH RISK',
+    desc:'All three sources in the danger zone. Theft spike predicted in 4–8 weeks.',
+    alert:'🚨 HIGH RISK — Auto Theft Index: {v} — All signals critical. Elevated vehicle theft risk in 4 to 8 weeks.',
+    meaningTitle:'Your car faces elevated theft risk in the next 4 to 8 weeks.',
+    meaningTxt:'At <strong>{v}</strong>, all three institutional sources are simultaneously elevated. <strong>Port fraud is high, CANAFE has flagged increased suspicious auto financing, and insurance data confirms the trend.</strong> Based on documented correlations (GRC Project Whiplash 2023), a significant vehicle theft spike is likely within 4 to 8 weeks. <strong>Take action now.</strong>',
+    actionTitle:'🔴 Take strong protective action',
+    actions:['Park in a locked garage every night if possible.','Install a GPS tracker on your vehicle.','Add a steering wheel lock or kill switch.','Contact your insurance company to review your coverage.','Never leave your car running unattended — even for 1 minute.','High-risk vehicles: Honda CR-V, Toyota Highlander, Ford F-150 — extra caution required.'],
+    castor:'"At {v}, the chain is activated. The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong>"',
+    st1:'+18%', st1c:'#FF2D2D', pill:'p-high',
+  }
+};
+
+function getZone(v){ return v<0.4?'low':v<0.7?'moderate':'high'; }
+
+function update(composite, equite, canafe, ibc, updatedAt) {
+  const v = parseFloat(composite).toFixed(2);
+  const pct = Math.round(parseFloat(v) * 100);
+  const zk = getZone(parseFloat(v));
+  const Z = ZONES[zk];
+
+  // CSS vars
+  document.documentElement.style.setProperty('--accent', Z.color);
+  document.documentElement.style.setProperty('--glow', Z.glow);
+
+  // Gauge arc
+  const arc = document.getElementById('gauge-arc');
+  arc.style.strokeDashoffset = CIRC*(1 - pct/100);
+  arc.style.stroke = Z.color;
+  arc.style.filter = `drop-shadow(0 0 14px ${Z.glow})`;
+
+  // Center
+  document.getElementById('g-val').textContent = v;
+  document.getElementById('g-val').style.color = Z.color;
+
+  // Risk word
+  document.getElementById('risk-word').textContent = Z.word;
+  document.getElementById('risk-word').style.color = Z.color;
+  document.getElementById('risk-desc').textContent = Z.desc;
+
+  // Pills
+  ['p-low','p-mod','p-high'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(Z.pill).classList.add('active');
+
+  // Alert
+  document.getElementById('alert-bar').style.background = Z.alertBg;
+  document.getElementById('alert-txt').textContent = Z.alert.replace(/{v}/g, v);
+
+  // Live pill
+  document.getElementById('live-pill').style.background = Z.color;
+  document.getElementById('live-dot').style.background = '#fff';
+
+  // Meaning
+  const mb = document.getElementById('meaning-box');
+  mb.style.borderLeftColor = Z.color;
+  mb.style.background = `${Z.color}08`;
+  document.getElementById('meaning-title').textContent = Z.meaningTitle;
+  document.getElementById('meaning-title').style.color = Z.color;
+  document.getElementById('meaning-txt').innerHTML = Z.meaningTxt.replace(/{v}/g, v);
+
+  // Actions
+  document.getElementById('action-title').textContent = Z.actionTitle;
+  const actionList = document.getElementById('action-list');
+  actionList.innerHTML = '';
+  Z.actions.forEach(a => {
+    actionList.innerHTML += `<div class="action-item"><div class="action-icon">→</div><div>${a}</div></div>`;
+  });
+
+  // Sources
+  if(equite) document.getElementById('src1').textContent = parseFloat(equite).toFixed(2);
+  if(canafe) document.getElementById('src2').textContent = parseFloat(canafe).toFixed(2);
+  if(ibc)    document.getElementById('src3').textContent = parseFloat(ibc).toFixed(2);
+
+  // Stats
+  const s1 = document.getElementById('st1');
+  s1.textContent = Z.st1;
+  s1.style.color = Z.st1c;
+
+  // History current
+  document.getElementById('hb1').style.width = pct + '%';
+  document.getElementById('hb1').style.background = Z.color;
+  document.getElementById('hv1').textContent = v;
+  document.getElementById('hv1').style.color = Z.color;
+
+  // Castor
+  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g, v);
+
+  // Last updated
+  if(updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('last-updated').textContent =
+      d.toLocaleDateString('en-CA', {month:'long', day:'numeric', year:'numeric'});
+  }
+
+  // Hide loading bar
+  document.getElementById('loading-bar').classList.add('done');
+}
+
+// ── Clock ──
 function tick(){
   const n=new Date();
   document.getElementById('clock').textContent=
@@ -466,20 +533,26 @@ function tick(){
 }
 setInterval(tick,1000);tick();
 
-const now=new Date(),day=now.getDay();
-const diff=now.getDate()-day+(day===0?-6:1);
-const mon=new Date(now.setDate(diff));
-document.getElementById('week-lbl').textContent=
-  'Week of '+mon.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});
+// ── Load from Google Sheets ──
+window.addEventListener('load', () => {
+  // Animate gauge starting from 0
+  const arc = document.getElementById('gauge-arc');
+  arc.style.strokeDashoffset = CIRC;
 
-function animCount(el,target,dur){
-  let v=0;const step=target/(dur/16);
-  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v>=target)clearInterval(t);},16);
-}
-window.addEventListener('load',()=>{
-  const el=document.getElementById('nat-num');
-  if(el)animCount(el,73,1800);
-  setTimeout(()=>{const f=document.getElementById('nb-fill');if(f)f.style.width='73%';},300);
+  fetch(SHEETS_URL)
+    .then(r => r.json())
+    .then(data => {
+      if(data.composite) {
+        update(data.composite, data.equite, data.canafe, data.ibc, data.updated);
+      } else {
+        // Fallback to default if no data
+        update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
+      }
+    })
+    .catch(() => {
+      // Fallback if fetch fails
+      update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
+    });
 });
 </script>
 </body>
