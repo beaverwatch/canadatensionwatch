@@ -3,7 +3,507 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚗 Auto Theft Risk — CASTOR.WATCH</title>
+<title>🚗 Auto Theft Risk — CASTOR.WATCH</title><!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦫 CASTOR.WATCH — Canadian Stress Barometer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+/* ALERT */
+.alert{width:100%;background:var(--red);padding:11px 28px;display:flex;align-items:center;gap:12px;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.7rem;opacity:0.7;}
+
+/* HEADER */
+header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:8px 18px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+
+/* TICKER */
+.ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:11px 0;}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 35s linear infinite;width:max-content;}
+.ti{padding:0 48px;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.ti em{color:var(--red);font-style:normal;font-weight:700;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* HERO */
+.hero{max-width:1000px;margin:0 auto;padding:56px 32px 0;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:32px;}
+.eyebrow{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:18px;}
+.hero-title em{font-style:italic;color:var(--red);}
+.hero-desc{font-size:0.95rem;line-height:1.9;color:var(--muted);max-width:500px;}
+.nat-block{text-align:right;flex-shrink:0;}
+.nat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,9rem);letter-spacing:2px;line-height:1;color:var(--red);text-shadow:0 0 40px rgba(255,45,45,0.3);animation:flkr 7s infinite;}
+@keyframes flkr{0%,90%,100%{opacity:1}92%{opacity:0.6}94%{opacity:1}96%{opacity:0.5}98%{opacity:1}}
+.nat-lbl{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.nat-status{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--red);margin-top:4px;}
+
+/* SECTION */
+.sec{max-width:1000px;margin:48px auto 0;padding:0 32px;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:24px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--s3);}
+.sec-sub{font-size:0.68rem;letter-spacing:2px;color:var(--muted);white-space:nowrap;}
+
+/* UNIVERSAL CARD GRID */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);margin-top:1px;}
+
+/* UNIVERSAL CARD */
+.card{background:var(--s1);padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;cursor:pointer;text-decoration:none;color:inherit;transition:background 0.2s;}
+.card:hover{background:var(--s2);}
+.card:hover .card-arrow{opacity:1;transform:translateX(5px);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;}
+
+/* Color variants */
+.c-r::before{background:var(--red);}
+.c-o::before{background:var(--orange);}
+.c-y::before{background:var(--yellow);}
+
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.card-icon{font-size:2rem;line-height:1;}
+
+.badge{font-size:0.6rem;letter-spacing:2px;padding:5px 11px;font-weight:700;text-transform:uppercase;border:1px solid;}
+.br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.by{color:var(--yellow);border-color:rgba(255,214,0,0.4);background:rgba(255,214,0,0.08);}
+
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;line-height:1.1;}
+.card-sub{font-size:0.7rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-6px;}
+
+.card-val-row{display:flex;align-items:flex-end;gap:12px;}
+.card-val{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;line-height:1;}
+.c-r .card-val{color:var(--red);}
+.c-o .card-val{color:var(--orange);}
+.c-y .card-val{color:var(--yellow);}
+
+.card-trend{font-size:0.72rem;font-weight:700;padding-bottom:6px;}
+.t-dn{color:var(--red);}
+.t-up{color:var(--green);}
+.t-w{color:var(--orange);}
+.t-r{color:var(--red);}
+
+.card-bar{width:100%;height:5px;background:var(--faint);}
+.card-bar-fill{height:100%;}
+.c-r .card-bar-fill{background:var(--red);}
+.c-o .card-bar-fill{background:var(--orange);}
+.c-y .card-bar-fill{background:var(--yellow);}
+
+/* Sparkline / Timeline */
+.spark{display:flex;align-items:flex-end;gap:3px;height:36px;margin-top:4px;}
+.sb{flex:1;border-radius:1px;opacity:0.3;}
+.sb:last-child{opacity:1;}
+.c-r .sb{background:var(--red);}
+.c-o .sb{background:var(--orange);}
+.c-y .sb{background:var(--yellow);}
+
+.spark-years{display:flex;justify-content:space-between;font-size:0.55rem;color:var(--muted);letter-spacing:1px;margin-top:4px;}
+
+.card-source{font-size:0.62rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:12px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.card-arrow{font-size:0.8rem;opacity:0.4;transition:all 0.2s;}
+
+/* SEE ALL */
+.see-all-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.see-all{background:var(--s2);padding:22px 26px;display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--text);transition:background 0.2s;border-left:4px solid var(--s4);}
+.see-all:hover{background:var(--s3);}
+.see-all-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;margin-bottom:4px;}
+.see-all-sub{font-size:0.7rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
+.see-all-badges{display:flex;gap:10px;margin-top:8px;}
+.sab{font-size:0.62rem;padding:5px 12px;border:1px solid;font-weight:700;letter-spacing:1px;}
+.see-all-cta{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--muted);white-space:nowrap;margin-left:24px;}
+
+/* NATIONAL BAR */
+.nat-bar-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.nat-bar-inner{background:var(--s1);padding:24px 28px;display:flex;align-items:center;gap:24px;}
+.nbl{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.nb-track{flex:1;height:8px;background:var(--faint);position:relative;overflow:hidden;}
+.nb-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--green),var(--yellow),var(--orange),var(--red));transition:width 2.5s ease;}
+.nbv{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;color:var(--red);white-space:nowrap;}
+.nb-rule{font-size:0.68rem;color:var(--muted);max-width:280px;line-height:1.8;}
+.nb-rule strong{color:var(--red);}
+
+/* RULE OF 3 */
+.rule-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.rule-inner{background:rgba(255,45,45,0.05);border-left:4px solid var(--red);padding:24px 28px;display:flex;gap:18px;}
+.rule-icon{font-size:1.8rem;flex-shrink:0;}
+.rule-title{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.rule-txt{font-size:0.88rem;line-height:1.9;color:var(--text);}
+.rule-txt strong{font-weight:700;}
+
+/* LT INTRO */
+.lt-intro{background:var(--s1);border-left:4px solid var(--yellow);padding:24px 28px;margin-bottom:1px;display:flex;gap:18px;align-items:flex-start;}
+.lt-intro-icon{font-size:1.8rem;flex-shrink:0;}
+.lt-intro-title{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.lt-intro-txt{font-size:0.9rem;line-height:1.9;color:var(--text);}
+.lt-intro-txt strong{font-weight:700;}
+
+/* LT WARNING */
+.lt-warning{max-width:1000px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
+.lt-warning-inner{background:rgba(255,214,0,0.04);border-left:4px solid var(--yellow);padding:24px 28px;display:flex;gap:18px;}
+.lt-w-icon{font-size:1.8rem;flex-shrink:0;}
+.lt-w-title{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.lt-w-txt{font-size:0.9rem;line-height:1.9;color:var(--text);}
+.lt-w-txt strong{font-weight:700;}
+
+/* CASTOR */
+.cq-wrap{max-width:1000px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
+.cq-inner{background:var(--s1);padding:30px;display:flex;align-items:center;gap:26px;}
+.cq-b{font-size:3.5rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--muted);line-height:1.6;}
+.cq-t strong{color:var(--text);font-style:normal;}
+
+/* FOOTER */
+footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;border-top:1px solid var(--s3);}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;align-items:start;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:5px;color:var(--muted);margin-bottom:6px;}
+.foot-desc{font-size:0.68rem;letter-spacing:1px;color:var(--muted);line-height:1.8;}
+.foot-col-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--s4);margin-bottom:8px;}
+.foot-links{display:flex;flex-direction:column;gap:6px;}
+.foot-link{font-size:0.68rem;color:var(--muted);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
+.foot-link:hover{color:var(--text);}
+.foot-contact{display:flex;flex-direction:column;gap:6px;}
+.foot-email{font-size:0.72rem;color:var(--muted);letter-spacing:1px;}
+.foot-email a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.foot-email a:hover{color:var(--text);}
+.foot-bottom{margin-top:20px;padding-top:16px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-copy{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.foot-disclaimer{font-size:0.6rem;letter-spacing:1px;color:var(--muted);text-align:right;max-width:400px;line-height:1.7;}
+
+/* RESPONSIVE */
+@media(max-width:800px){
+  .grid3{grid-template-columns:1fr;}
+  .grid2{grid-template-columns:1fr;}
+  .hero{grid-template-columns:1fr;}
+  .nat-block{text-align:left;}
+  .nat-bar-inner{flex-direction:column;align-items:flex-start;gap:14px;}
+  .nb-rule{max-width:100%;}
+  .footer-grid{grid-template-columns:1fr;}
+  .see-all{flex-direction:column;align-items:flex-start;gap:12px;}
+}
+@media(max-width:500px){
+  header{padding:16px 18px;}
+  .sec,.nat-bar-wrap,.rule-wrap,.lt-warning,.cq-wrap,.see-all-wrap,footer{padding-left:18px;padding-right:18px;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero,.sec{animation:fadeUp 0.5s ease 0.05s both;}
+</style>
+</head>
+<body>
+
+<!-- ALERT -->
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div>
+    <div class="logo">🦫 <span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
+    <div class="logo-sub">Canadian Stress Barometer — Predictive Signals</div>
+  </div>
+  <div class="live-pill"><div class="a-dot"></div>LIVE</div>
+</header>
+
+<!-- TICKER -->
+<div class="ticker-outer">
+  <div class="ticker-inner">
+    <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
+    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
+    <span class="ti">🍞 Food Stress Index <em>0.71 🔴</em> ///</span>
+    <span class="ti">💸 Payday Loan Radar <em>🔴 CRITICAL</em> ///</span>
+    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
+    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
+    <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
+    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
+    <span class="ti">🍞 Food Stress Index <em>0.71 🔴</em> ///</span>
+    <span class="ti">💸 Payday Loan Radar <em>🔴 CRITICAL</em> ///</span>
+    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
+    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="eyebrow">🍁 National Dashboard — Canada</div>
+    <div class="hero-title">The Canadian<br><em>Stress</em><br>Barometer</div>
+    <div class="hero-desc">Predictive indicators based on real Canadian public data. Forecasts social, economic and criminal tensions 4 to 12 weeks — and up to 15 years — before they happen.</div>
+  </div>
+  <div class="nat-block">
+    <div class="nat-num" id="nat-num">0</div>
+    <div class="nat-lbl">National Score / 100</div>
+    <div class="nat-status">⚠️ HIGH TENSION</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     SHORT TERM INDICATORS
+═══════════════════════════ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">⚡ Short-Term Indicators</div>
+    <div class="sec-line"></div>
+    <div class="sec-sub">Predicts 4–12 weeks ahead · <span id="week-lbl">—</span></div>
+  </div>
+
+  <div class="grid3">
+
+    <!-- AUTO THEFT -->
+    <a class="card c-r" href="auto-theft.html">
+      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Auto Theft Index</div>
+      <div class="card-sub">"The beaver watches your car."</div>
+      <div class="card-val-row"><div class="card-val">0.72</div><div class="card-trend t-r">▲ +0.07</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div>
+        <div class="sb" style="height:55%"></div><div class="sb" style="height:60%"></div>
+        <div class="sb" style="height:65%"></div><div class="sb" style="height:68%"></div>
+        <div class="sb" style="height:65%"></div><div class="sb" style="height:72%"></div>
+      </div>
+      <div class="card-source">Équité · CANAFE · IBC<div class="card-arrow">→</div></div>
+    </a>
+
+    <!-- FOOD STRESS -->
+    <a class="card c-r" href="food-stress.html">
+      <div class="card-top"><div class="card-icon">🍞</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Food Stress Index</div>
+      <div class="card-sub">"The empty lunch box never lies."</div>
+      <div class="card-val-row"><div class="card-val">0.71</div><div class="card-trend t-r">▲ +0.09</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:71%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:30%"></div><div class="sb" style="height:36%"></div>
+        <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div>
+        <div class="sb" style="height:56%"></div><div class="sb" style="height:62%"></div>
+        <div class="sb" style="height:62%"></div><div class="sb" style="height:71%"></div>
+      </div>
+      <div class="card-source">Food Banks Canada · Breakfast Club<div class="card-arrow">→</div></div>
+    </a>
+
+    <!-- U-HAUL -->
+    <a class="card c-r" href="uhaul.html">
+      <div class="card-top"><div class="card-icon">🚛</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">U-Haul Migration</div>
+      <div class="card-sub">"The trucks don't lie."</div>
+      <div class="card-val-row"><div class="card-val">0.87</div><div class="card-trend t-r">▲ +0.11</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:87%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:44%"></div><div class="sb" style="height:50%"></div>
+        <div class="sb" style="height:57%"></div><div class="sb" style="height:63%"></div>
+        <div class="sb" style="height:69%"></div><div class="sb" style="height:74%"></div>
+        <div class="sb" style="height:76%"></div><div class="sb" style="height:87%"></div>
+      </div>
+      <div class="card-source">U-Haul Pricing · Atlas Van Lines<div class="card-arrow">→</div></div>
+    </a>
+
+  </div>
+</div>
+
+<!-- SEE ALL -->
+<div class="see-all-wrap">
+  <a class="see-all" href="all-indicators.html">
+    <div>
+      <div class="see-all-title">See All Short-Term Indicators</div>
+      <div class="see-all-sub">Housing Crisis · Personal Bankruptcy · Payday Loan Radar · School Lunch Deficit · and more coming soon</div>
+      <div class="see-all-badges">
+        <div class="sab" style="color:var(--red);border-color:rgba(255,45,45,0.3);">3 🔴 CRITICAL</div>
+        <div class="sab" style="color:var(--orange);border-color:rgba(255,109,0,0.3);">2 🟠 HIGH</div>
+      </div>
+    </div>
+    <div class="see-all-cta">VIEW ALL →</div>
+  </a>
+</div>
+
+<!-- NATIONAL BAR -->
+<div class="nat-bar-wrap">
+  <div class="nat-bar-inner">
+    <div class="nbl">National Score</div>
+    <div class="nb-track"><div class="nb-fill" id="nb-fill" style="width:0%"></div></div>
+    <div class="nbv">73 / 100</div>
+    <div class="nb-rule"><strong>Rule of 3 Reds:</strong> 3 red indicators simultaneously → major social incident predicted within 6 weeks.</div>
+  </div>
+</div>
+
+<!-- RULE OF 3 -->
+<div class="rule-wrap">
+  <div class="rule-inner">
+    <div class="rule-icon">⚠️</div>
+    <div>
+      <div class="rule-title">Rule of 3 Reds — Active This Week</div>
+      <div class="rule-txt"><strong>Auto Theft (0.72) + Food Stress (0.71) + U-Haul Index (0.87)</strong> — all three in the red zone simultaneously. Last seen: <strong>October 2022</strong> (inflation peak + eviction wave). Major social incident predicted within <strong>4 to 8 weeks.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════
+     LONG TERM INDICATORS
+═══════════════════════════ -->
+<div class="sec" style="margin-top:56px;">
+  <div class="sec-head">
+    <div class="sec-title">🔭 Long-Term Structural Indicators</div>
+    <div class="sec-line"></div>
+    <div class="sec-sub">Predicts 5–15 years ahead · StatCan</div>
+  </div>
+
+  <div class="lt-intro">
+    <div class="lt-intro-icon">📊</div>
+    <div>
+      <div class="lt-intro-title">Why Long-Term Matters</div>
+      <div class="lt-intro-txt">Inspired by Emmanuel Todd's demographic analysis — <strong>structural shifts in education, gender balance and birth rates</strong> predict social upheaval years before it becomes visible. These indicators don't predict next month. <strong>They predict the next decade.</strong></div>
+    </div>
+  </div>
+
+  <div class="grid3" style="margin-top:1px;">
+
+    <!-- MALE ENROLLMENT -->
+    <div class="card c-r" style="cursor:default;">
+      <div class="card-top"><div class="card-icon">🎓</div><div class="badge br">🔴 DECLINING</div></div>
+      <div class="card-name">Male University Enrollment</div>
+      <div class="card-sub">"Men leaving higher education"</div>
+      <div class="card-val-row"><div class="card-val">38%</div><div class="card-trend t-dn">▼ -8% since 2015</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:38%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:80%"></div><div class="sb" style="height:74%"></div>
+        <div class="sb" style="height:68%"></div><div class="sb" style="height:62%"></div>
+        <div class="sb" style="height:56%"></div><div class="sb" style="height:50%"></div>
+        <div class="sb" style="height:44%"></div><div class="sb" style="height:38%"></div>
+      </div>
+      <div class="spark-years"><span>2015</span><span>2020</span><span>2025</span></div>
+      <div class="card-source">StatCan · Education Indicators</div>
+    </div>
+
+    <!-- GENDER GAP -->
+    <div class="card c-o" style="cursor:default;">
+      <div class="card-top"><div class="card-icon">⚖️</div><div class="badge bo">🟠 SHIFTING</div></div>
+      <div class="card-name">Gender Employment Gap</div>
+      <div class="card-sub">"Closing fast — structural tension"</div>
+      <div class="card-val-row"><div class="card-val">2.1%</div><div class="card-trend t-w">▼ -6.4% since 2000</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:21%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:85%"></div><div class="sb" style="height:75%"></div>
+        <div class="sb" style="height:65%"></div><div class="sb" style="height:55%"></div>
+        <div class="sb" style="height:45%"></div><div class="sb" style="height:35%"></div>
+        <div class="sb" style="height:28%"></div><div class="sb" style="height:21%"></div>
+      </div>
+      <div class="spark-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="card-source">StatCan · Labour Force Survey</div>
+    </div>
+
+    <!-- INFANT MORTALITY -->
+    <div class="card c-y" style="cursor:default;">
+      <div class="card-top"><div class="card-icon">👶</div><div class="badge by">🟡 WATCH</div></div>
+      <div class="card-name">Infant Mortality Rate</div>
+      <div class="card-sub">"A key indicator of societal stress"</div>
+      <div class="card-val-row"><div class="card-val">4.6</div><div class="card-trend t-w">per 1,000 births</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:46%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:75%"></div><div class="sb" style="height:68%"></div>
+        <div class="sb" style="height:60%"></div><div class="sb" style="height:54%"></div>
+        <div class="sb" style="height:52%"></div><div class="sb" style="height:50%"></div>
+        <div class="sb" style="height:48%"></div><div class="sb" style="height:46%"></div>
+      </div>
+      <div class="spark-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="card-source">StatCan · Vital Statistics</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- LT WARNING -->
+<div class="lt-warning">
+  <div class="lt-warning-inner">
+    <div class="lt-w-icon">🔭</div>
+    <div>
+      <div class="lt-w-title">What the Long-Term Data Tells Us</div>
+      <div class="lt-w-txt">Following Emmanuel Todd's methodology: <strong>when male university enrollment drops below 40% and the gender employment gap closes below 2%</strong>, structural social tensions emerge within 10–15 years. Canada is approaching both thresholds simultaneously. Combined with the infant mortality plateau — <strong>the structural foundation for a major social reorganization is building.</strong></div>
+    </div>
+  </div>
+</div>
+
+<!-- CASTOR QUOTE -->
+<div class="cq-wrap">
+  <div class="cq-inner">
+    <div class="cq-b">🦫</div>
+    <div class="cq-t">"The newspapers will cover it in 6 weeks.<br><strong>The Beaver knows it now.</strong>"</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="foot-brand">🦫 CASTOR.WATCH</div>
+      <div class="foot-desc">Independent Canadian predictive dashboard. Public data only. Not affiliated with any government or political party.</div>
+    </div>
+    <div>
+      <div class="foot-col-title">Indicators</div>
+      <div class="foot-links">
+        <a href="auto-theft.html" class="foot-link">🚗 Auto Theft Index</a>
+        <a href="food-stress.html" class="foot-link">🍞 Food Stress Index</a>
+        <a href="uhaul.html" class="foot-link">🚛 U-Haul Migration</a>
+        <a href="all-indicators.html" class="foot-link">→ See all indicators</a>
+      </div>
+    </div>
+    <div>
+      <div class="foot-col-title">Contact</div>
+      <div class="foot-contact">
+        <div class="foot-email">📧 <a href="mailto:tensionsgeopolitiques@gmail.com">tensionsgeopolitiques@gmail.com</a></div>
+        <div class="foot-desc" style="margin-top:8px;">Media inquiries, data partnerships, collaborations welcome.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 CASTOR.WATCH · Monthly updates · Public data</div>
+    <div class="foot-disclaimer">This dashboard is for informational purposes only. Predictions are based on statistical correlations and do not constitute professional advice.</div>
+  </div>
+</footer>
+
+<script>
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+}
+setInterval(tick,1000);tick();
+
+const now=new Date(),day=now.getDay();
+const diff=now.getDate()-day+(day===0?-6:1);
+const mon=new Date(now.setDate(diff));
+document.getElementById('week-lbl').textContent=
+  'Week of '+mon.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});
+
+function animCount(el,target,dur){
+  let v=0;const step=target/(dur/16);
+  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v>=target)clearInterval(t);},16);
+}
+window.addEventListener('load',()=>{
+  const el=document.getElementById('nat-num');
+  if(el)animCount(el,73,1800);
+  setTimeout(()=>{const f=document.getElementById('nb-fill');if(f)f.style.width='73%';},300);
+});
+</script>
+</body>
+</html>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root {
