@@ -1,180 +1,204 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🦫 CASTOR.WATCH — Baromètre du Stress Canadien</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<title>🦫 CASTOR.WATCH — Canadian Stress Barometer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#070707;--s1:#0F0F0F;--s2:#161616;--s3:#1F1F1F;--s4:#2A2A2A;--text:#EDE8DC;--muted:#4A4540;--faint:#141414;--vert:#00E676;--orange:#FF6D00;--rouge:#FF1A1A;--jaune:#FFD600;}
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#161616;--s3:#222222;--s4:#2E2E2E;--text:#F0EBE0;--muted:#888880;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;min-height:100vh;overflow-x:hidden;}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9998;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* ALERT */
-.alert{width:100%;background:var(--rouge);padding:9px 24px;display:flex;align-items:center;gap:12px;position:relative;overflow:hidden;}
-.alert::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 60px,rgba(255,255,255,0.03) 60px,rgba(255,255,255,0.03) 61px);}
-.a-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;animation:ablnk 1.3s ease-in-out infinite;}
-@keyframes ablnk{0%,100%{opacity:1}50%{opacity:0.15}}
-.a-txt{font-size:0.62rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
-.a-time{font-size:0.55rem;opacity:0.65;}
+.alert{width:100%;background:var(--red);padding:10px 24px;display:flex;align-items:center;gap:12px;}
+.a-dot{width:8px;height:8px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.2}}
+.a-txt{font-size:0.72rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
 
-/* HEADER */
-header{padding:20px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--rouge);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
-.logo-c{color:var(--rouge);}.logo-d{color:var(--jaune);}
-.logo-sub{font-size:0.5rem;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
-.live-pill{display:flex;align-items:center;gap:7px;background:var(--rouge);padding:6px 14px;font-size:0.58rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+header{padding:18px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.65rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
 
-/* TICKER */
-.ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:9px 0;}
-.ticker-inner{display:flex;gap:0;white-space:nowrap;animation:ticker 35s linear infinite;width:max-content;}
-.ti{padding:0 44px;font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
-.ti em{color:var(--rouge);font-style:normal;font-weight:700;}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:10px 0;}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 35s linear infinite;width:max-content;}
+.ti{padding:0 44px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.ti em{color:var(--red);font-style:normal;font-weight:700;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* HERO */
-.hero{padding:48px 28px 0;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:24px;}
-.hero-eyebrow{font-size:0.55rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--muted);}
-.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,6vw,4.5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:12px;}
-.hero-title em{font-style:italic;color:var(--rouge);}
-.hero-desc{font-size:0.6rem;letter-spacing:1.5px;line-height:1.9;color:var(--muted);max-width:520px;}
-.nat-score-block{text-align:right;flex-shrink:0;}
-.nat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,7rem);letter-spacing:2px;line-height:1;color:var(--rouge);text-shadow:0 0 40px rgba(255,26,26,0.25);animation:flkr 7s infinite;}
-@keyframes flkr{0%,90%,100%{opacity:1}91%{opacity:0.7}93%{opacity:1}95%{opacity:0.5}97%{opacity:1}}
-.nat-lbl{font-size:0.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
-.nat-status{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--rouge);margin-top:2px;}
+.hero{max-width:1100px;margin:0 auto;padding:52px 32px 0;display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:32px;}
+.eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,6vw,5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:16px;}
+.hero-title em{font-style:italic;color:var(--red);}
+.hero-desc{font-size:0.85rem;line-height:1.8;color:var(--muted);max-width:520px;}
+.nat-block{text-align:right;}
+.nat-num{font-family:'Bebas Neue',sans-serif;font-size:clamp(5rem,12vw,8rem);letter-spacing:2px;line-height:1;color:var(--red);text-shadow:0 0 40px rgba(255,45,45,0.3);animation:flkr 7s infinite;}
+@keyframes flkr{0%,90%,100%{opacity:1}92%{opacity:0.6}94%{opacity:1}96%{opacity:0.5}98%{opacity:1}}
+.nat-lbl{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+.nat-status{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--red);margin-top:4px;}
 
-/* SECTION HEAD */
-.sec-head{max-width:1000px;margin:32px auto 0;padding:0 28px;}
-.sec-line{display:flex;align-items:center;gap:16px;}
-.sec-t{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
-.sec-hr{flex:1;height:1px;background:var(--s3);}
-.sec-d{font-size:0.5rem;letter-spacing:2px;color:var(--muted);white-space:nowrap;}
+.sec{max-width:1100px;margin:40px auto 0;padding:0 32px;}
+.sec-head{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--s3);}
+.sec-sub{font-size:0.62rem;letter-spacing:2px;color:var(--muted);white-space:nowrap;}
 
-/* GRID */
-.grid{max-width:1000px;margin:16px auto 0;padding:0 28px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
-.grid-b{max-width:1000px;margin:1px auto 0;padding:0 28px;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.cards-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);margin-top:1px;}
 
-/* CARD */
-.card{background:var(--s1);padding:22px;position:relative;overflow:hidden;cursor:pointer;transition:background 0.2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:14px;}
+.card{background:var(--s1);padding:24px;position:relative;overflow:hidden;cursor:pointer;transition:background 0.2s;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:12px;}
 .card:hover{background:var(--s2);}
-.card:hover .card-arrow{opacity:1;transform:translateX(4px);}
 .card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
-.c-r::before{background:var(--rouge);box-shadow:2px 0 12px rgba(255,26,26,0.3);}
-.c-o::before{background:var(--orange);box-shadow:2px 0 12px rgba(255,109,0,0.3);}
+.c-r::before{background:var(--red);}
+.c-o::before{background:var(--orange);}
 
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;}
 .card-icon{font-size:1.8rem;line-height:1;}
-.badge{font-size:0.48rem;letter-spacing:2px;padding:3px 8px;font-weight:700;text-transform:uppercase;border:1px solid;}
-.br{color:var(--rouge);border-color:rgba(255,26,26,0.3);background:rgba(255,26,26,0.07);}
-.bo{color:var(--orange);border-color:rgba(255,109,0,0.3);background:rgba(255,109,0,0.07);}
+.badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid;}
+.br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
 
-.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;line-height:1.1;}
-.card-sub{font-size:0.52rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-8px;}
-.card-score-row{display:flex;align-items:flex-end;gap:10px;}
-.card-score{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;}
-.c-r .card-score{color:var(--rouge);}.c-o .card-score{color:var(--orange);}
-.card-delta{font-size:0.58rem;font-weight:700;padding-bottom:5px;color:var(--rouge);}
-
-.card-bar{width:100%;height:3px;background:var(--faint);position:relative;overflow:hidden;}
-.card-bar-fill{position:absolute;left:0;top:0;bottom:0;transition:width 2s ease;}
-.c-r .card-bar-fill{background:var(--rouge);}.c-o .card-bar-fill{background:var(--orange);}
-
-.spark{display:flex;align-items:flex-end;gap:3px;height:24px;}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;line-height:1.1;}
+.card-sub{font-size:0.62rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-4px;}
+.card-score-row{display:flex;align-items:flex-end;gap:12px;}
+.card-score{font-family:'Playfair Display',serif;font-size:3rem;font-weight:900;line-height:1;}
+.c-r .card-score{color:var(--red);}
+.c-o .card-score{color:var(--orange);}
+.card-delta{font-size:0.65rem;font-weight:700;padding-bottom:6px;color:var(--red);}
+.c-o .card-delta{color:var(--orange);}
+.card-bar{width:100%;height:4px;background:var(--faint);}
+.card-bar-fill{height:100%;}
+.c-r .card-bar-fill{background:var(--red);}
+.c-o .card-bar-fill{background:var(--orange);}
+.spark{display:flex;align-items:flex-end;gap:3px;height:28px;}
 .sb{flex:1;border-radius:1px;opacity:0.3;}
 .sb:last-child{opacity:1;}
-.c-r .sb{background:var(--rouge);}.c-o .sb{background:var(--orange);}
+.c-r .sb{background:var(--red);}
+.c-o .sb{background:var(--orange);}
+.card-source{font-size:0.57rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:10px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.card-arrow{opacity:0.4;transition:all 0.2s;}
+.card:hover .card-arrow{opacity:1;transform:translateX(4px);}
 
-.card-source{font-size:0.46rem;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:8px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
-.card-arrow{font-size:0.7rem;color:var(--muted);transition:opacity 0.2s,transform 0.2s;opacity:0.4;}
+.nat-bar-wrap{max-width:1100px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.nat-bar-inner{background:var(--s1);padding:22px 28px;display:flex;align-items:center;gap:24px;}
+.nbl{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
+.nb-track{flex:1;height:7px;background:var(--faint);position:relative;overflow:hidden;}
+.nb-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--green),var(--yellow),var(--orange),var(--red));transition:width 2.5s ease;}
+.nbv{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;color:var(--red);white-space:nowrap;}
+.nb-rule{font-size:0.62rem;letter-spacing:1px;color:var(--muted);max-width:300px;line-height:1.7;}
+.nb-rule strong{color:var(--red);}
 
-/* NAT BAR */
-.nat-bar-section{max-width:1000px;margin:1px auto 0;padding:0 28px;background:var(--s3);}
-.nat-bar-inner{background:var(--s1);padding:20px 24px;display:flex;align-items:center;gap:20px;}
-.nbl{font-size:0.52rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);white-space:nowrap;}
-.nb-track{flex:1;height:6px;background:var(--faint);position:relative;overflow:hidden;}
-.nb-fill{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,var(--vert),var(--jaune),var(--orange),var(--rouge));transition:width 2.5s cubic-bezier(.3,0,.2,1);}
-.nbv{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;color:var(--rouge);white-space:nowrap;}
-.nb-rule{font-size:0.48rem;letter-spacing:1.5px;color:var(--muted);max-width:280px;line-height:1.7;flex-shrink:0;}
-.nb-rule strong{color:var(--rouge);}
-
-/* RULE 3 */
-.rule-3{max-width:1000px;margin:1px auto 0;padding:0 28px;background:var(--s3);}
-.rule-3-inner{background:rgba(255,26,26,0.04);border-left:3px solid var(--rouge);padding:18px 22px;display:flex;align-items:flex-start;gap:16px;}
+.rule-wrap{max-width:1100px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.rule-inner{background:rgba(255,45,45,0.05);border-left:3px solid var(--red);padding:20px 24px;display:flex;gap:16px;}
 .rule-icon{font-size:1.4rem;flex-shrink:0;}
-.rule-title{font-size:0.5rem;letter-spacing:3px;text-transform:uppercase;color:var(--rouge);margin-bottom:6px;}
-.rule-txt{font-size:0.6rem;line-height:1.9;color:var(--muted);}
+.rule-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.rule-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
 .rule-txt strong{color:var(--text);}
 
-/* CASTOR */
-.cq{max-width:1000px;margin:1px auto 0;padding:0 28px;background:var(--s3);}
-.cq-inner{background:var(--s1);padding:22px 24px;display:flex;align-items:center;gap:20px;}
-.cq-b{font-size:2.8rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
+/* ── LONG TERM ── */
+.long-term{max-width:1100px;margin:48px auto 0;padding:0 32px;}
+
+.lt-intro{background:var(--s1);border-left:3px solid var(--yellow);padding:20px 24px;margin-bottom:1px;display:flex;gap:16px;align-items:flex-start;}
+.lt-intro-icon{font-size:1.4rem;flex-shrink:0;}
+.lt-intro-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.lt-intro-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
+.lt-intro-txt strong{color:var(--text);}
+
+.lt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.lt-grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);margin-top:1px;}
+
+.lt-card{background:var(--s1);padding:24px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:12px;}
+.lt-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.lt-y::before{background:var(--yellow);}
+.lt-o::before{background:var(--orange);}
+.lt-r::before{background:var(--red);}
+
+.lt-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.lt-icon{font-size:1.8rem;line-height:1;}
+.lt-badge{font-size:0.52rem;letter-spacing:2px;padding:3px 9px;font-weight:700;text-transform:uppercase;border:1px solid;}
+.lt-by{color:var(--yellow);border-color:rgba(255,214,0,0.4);background:rgba(255,214,0,0.07);}
+.lt-bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.07);}
+.lt-br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.07);}
+
+.lt-name{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:2px;line-height:1.1;}
+.lt-sub{font-size:0.62rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-4px;}
+.lt-val-row{display:flex;align-items:flex-end;gap:10px;}
+.lt-val{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;}
+.lt-y .lt-val{color:var(--yellow);}
+.lt-o .lt-val{color:var(--orange);}
+.lt-r .lt-val{color:var(--red);}
+.lt-trend{font-size:0.65rem;font-weight:600;padding-bottom:5px;}
+.t-dn{color:var(--red);}
+.t-up{color:var(--green);}
+.t-w{color:var(--orange);}
+
+.lt-bar{width:100%;height:4px;background:var(--faint);}
+.lt-bar-fill{height:100%;}
+.lt-y .lt-bar-fill{background:var(--yellow);}
+.lt-o .lt-bar-fill{background:var(--orange);}
+.lt-r .lt-bar-fill{background:var(--red);}
+
+.lt-timeline{display:flex;align-items:flex-end;gap:3px;height:32px;margin-top:4px;}
+.lt-tb{flex:1;border-radius:1px;opacity:0.3;}
+.lt-tb:last-child{opacity:1;}
+.lt-y .lt-tb{background:var(--yellow);}
+.lt-o .lt-tb{background:var(--orange);}
+.lt-r .lt-tb{background:var(--red);}
+
+.lt-years{display:flex;justify-content:space-between;font-size:0.5rem;color:var(--muted);letter-spacing:1px;margin-top:3px;}
+.lt-source{font-size:0.57rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:10px;border-top:1px solid var(--s3);}
+
+.lt-warning{max-width:1100px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
+.lt-warning-inner{background:rgba(255,214,0,0.04);border-left:3px solid var(--yellow);padding:20px 24px;display:flex;gap:16px;}
+.lt-w-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.lt-w-txt{font-size:0.78rem;line-height:1.9;color:var(--muted);}
+.lt-w-txt strong{color:var(--text);}
+
+.cq-wrap{max-width:1100px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
+.cq-inner{background:var(--s1);padding:24px 28px;display:flex;align-items:center;gap:24px;}
+.cq-b{font-size:3rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
-.cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,3vw,1.4rem);color:var(--muted);line-height:1.5;}
+.cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1rem,2.5vw,1.5rem);color:var(--muted);line-height:1.5;}
 .cq-t strong{color:var(--text);font-style:normal;}
 
-/* FULL LIST */
-.full-list{max-width:1000px;margin:28px auto 0;padding:0 28px;}
-.fl-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:16px;}
-.fl-title::after{content:'';flex:1;height:1px;background:var(--s3);}
-.fl-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);}
-.fli{background:var(--s2);padding:10px 14px;display:flex;align-items:center;gap:10px;font-size:0.56rem;letter-spacing:1px;color:var(--muted);}
-.fli.ready{color:var(--text);cursor:pointer;transition:background 0.15s;}
-.fli.ready:hover{background:var(--s3);}
-.fl-n{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;color:var(--s4);width:22px;flex-shrink:0;}
-.fl-i{font-size:0.9rem;flex-shrink:0;}
-.fl-nm{flex:1;}
-.fl-s{font-size:0.44rem;letter-spacing:1.5px;text-transform:uppercase;padding:2px 6px;border:1px solid;}
-.st-live{color:var(--vert);border-color:rgba(0,230,118,0.3);background:rgba(0,230,118,0.07);}
-.st-soon{color:var(--jaune);border-color:rgba(255,214,0,0.3);background:rgba(255,214,0,0.07);}
-.st-wip{color:var(--muted);border-color:var(--s4);}
-
-/* FOOTER */
-footer{max-width:1000px;margin:28px auto 0;padding:18px 28px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+footer{max-width:1100px;margin:28px auto 0;padding:18px 32px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);}
-.foot-meta{font-size:0.48rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+.foot-meta{font-size:0.57rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
 
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.hero{animation:fadeUp 0.5s ease 0.05s both;}
-.sec-head{animation:fadeUp 0.5s ease 0.1s both;}
-.grid{animation:fadeUp 0.5s ease 0.15s both;}
-.grid-b{animation:fadeUp 0.5s ease 0.2s both;}
-.nat-bar-section{animation:fadeUp 0.5s ease 0.25s both;}
-.rule-3{animation:fadeUp 0.5s ease 0.3s both;}
-.cq{animation:fadeUp 0.5s ease 0.35s both;}
-
-/* RESPONSIVE */
-@media(max-width:720px){
-  .grid{grid-template-columns:repeat(2,1fr);}
-  .grid-b{grid-template-columns:1fr;}
+@media(max-width:800px){
+  .cards-grid,.lt-grid{grid-template-columns:repeat(2,1fr);}
   .hero{grid-template-columns:1fr;}
-  .nat-score-block{text-align:left;}
+  .nat-block{text-align:left;}
   .nat-bar-inner{flex-direction:column;align-items:flex-start;gap:12px;}
   .nb-rule{max-width:100%;}
-  .fl-grid{grid-template-columns:1fr;}
-  header{padding:14px 16px;}
-  .grid,.grid-b,.nat-bar-section,.rule-3,.cq,.full-list,footer,.sec-head{padding-left:14px;padding-right:14px;}
 }
-@media(max-width:480px){.grid{grid-template-columns:1fr;}}
+@media(max-width:500px){
+  .cards-grid,.cards-grid-2,.lt-grid,.lt-grid-2{grid-template-columns:1fr;}
+  header{padding:14px 16px;}
+  .sec,.long-term,.nat-bar-wrap,.rule-wrap,.lt-warning,.cq-wrap,footer{padding-left:14px;padding-right:14px;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp 0.5s ease 0.05s both;}
+.sec{animation:fadeUp 0.5s ease 0.1s both;}
+.long-term{animation:fadeUp 0.5s ease 0.2s both;}
 </style>
 </head>
 <body>
 
 <div class="alert">
   <div class="a-dot"></div>
-  <div class="a-txt">🚨 3 INDICATEURS EN ROUGE — Règle des 3 rouges activée. Incident social prédit dans 6 semaines.</div>
+  <div class="a-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 
 <header>
   <div>
     <div class="logo">🦫 <span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
-    <div class="logo-sub">Baromètre du Stress Canadien — Signaux faibles prédictifs</div>
+    <div class="logo-sub">Canadian Stress Barometer — Predictive Signals</div>
   </div>
   <div class="live-pill"><div class="a-dot"></div>LIVE</div>
 </header>
@@ -182,162 +206,256 @@ footer{max-width:1000px;margin:28px auto 0;padding:18px 28px;border-top:1px soli
 <div class="ticker-outer">
   <div class="ticker-inner">
     <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
-    <span class="ti">🚗 Vol Voiture <em>0.72 🔴</em> ///</span>
-    <span class="ti">🍞 Pain périmé Montréal <em>+22%</em> ///</span>
-    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITIQUE</em> ///</span>
-    <span class="ti">🏠 Hébergement urgent Kijiji <em>+41%</em> ///</span>
-    <span class="ti">🦫 Castor nerveux depuis <em>6 semaines</em> ///</span>
+    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
+    <span class="ti">🍞 Near-expiry food Montreal <em>+22%</em> ///</span>
+    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITICAL</em> ///</span>
+    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
+    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
     <span class="ti">🚛 U-Haul Toronto→Calgary <em>+34%</em> ///</span>
-    <span class="ti">🚗 Vol Voiture <em>0.72 🔴</em> ///</span>
-    <span class="ti">🍞 Pain périmé Montréal <em>+22%</em> ///</span>
-    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITIQUE</em> ///</span>
-    <span class="ti">🏠 Hébergement urgent Kijiji <em>+41%</em> ///</span>
-    <span class="ti">🦫 Castor nerveux depuis <em>6 semaines</em> ///</span>
+    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
+    <span class="ti">🍞 Near-expiry food Montreal <em>+22%</em> ///</span>
+    <span class="ti">💸 Payday Loan Ontario <em>🔴 CRITICAL</em> ///</span>
+    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
+    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
   </div>
 </div>
 
 <div class="hero">
   <div>
-    <div class="hero-eyebrow">🍁 Dashboard National — Canada</div>
-    <div class="hero-title">Le Baromètre<br>du <em>Stress</em><br>Canadien</div>
-    <div class="hero-desc">5 indicateurs prédictifs basés sur des données publiques canadiennes. Prédit les tensions sociales, économiques et criminelles 4 à 12 semaines avant qu'elles arrivent.</div>
+    <div class="eyebrow">🍁 National Dashboard — Canada</div>
+    <div class="hero-title">The Canadian<br><em>Stress</em><br>Barometer</div>
+    <div class="hero-desc">Predictive indicators based on real Canadian public data. Forecasts social, economic and criminal tensions 4 to 12 weeks — and up to 15 years — before they happen.</div>
   </div>
-  <div class="nat-score-block">
+  <div class="nat-block">
     <div class="nat-num" id="nat-num">0</div>
-    <div class="nat-lbl">Score National / 100</div>
-    <div class="nat-status">⚠️ TENSION ÉLEVÉE</div>
+    <div class="nat-lbl">National Score / 100</div>
+    <div class="nat-status">⚠️ HIGH TENSION</div>
   </div>
 </div>
 
-<div class="sec-head" style="margin-top:36px;">
-  <div class="sec-line">
-    <div class="sec-t">Indicateurs Actifs</div>
-    <div class="sec-hr"></div>
-    <div class="sec-d" id="week-lbl">—</div>
+<!-- SHORT TERM -->
+<div class="sec" style="margin-top:44px;">
+  <div class="sec-head">
+    <div class="sec-title">⚡ Short-Term Indicators</div>
+    <div class="sec-line"></div>
+    <div class="sec-sub">Predicts 4–12 weeks ahead · <span id="week-lbl">—</span></div>
+  </div>
+
+  <div class="cards-grid">
+    <a class="card c-r" href="auto-theft.html">
+      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Auto Theft Index</div>
+      <div class="card-sub">"The beaver watches your car."</div>
+      <div class="card-score-row"><div class="card-score">0.72</div><div class="card-delta">▲ +0.07</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:55%"></div>
+        <div class="sb" style="height:60%"></div><div class="sb" style="height:65%"></div><div class="sb" style="height:68%"></div>
+        <div class="sb" style="height:65%"></div><div class="sb" style="height:72%"></div>
+      </div>
+      <div class="card-source">Équité Assoc. · CANAFE · IBC <div class="card-arrow">→</div></div>
+    </a>
+
+    <a class="card c-o" href="logement.html">
+      <div class="card-top"><div class="card-icon">🏠</div><div class="badge bo">🟠 HIGH</div></div>
+      <div class="card-name">Housing Crisis</div>
+      <div class="card-sub">"When Kijiji becomes a shelter."</div>
+      <div class="card-score-row"><div class="card-score" style="color:var(--orange)">0.68</div><div class="card-delta" style="color:var(--orange)">▲ +0.05</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:68%;background:var(--orange)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:38%"></div><div class="sb" style="height:44%"></div><div class="sb" style="height:48%"></div>
+        <div class="sb" style="height:53%"></div><div class="sb" style="height:58%"></div><div class="sb" style="height:62%"></div>
+        <div class="sb" style="height:63%"></div><div class="sb" style="height:68%"></div>
+      </div>
+      <div class="card-source">CMHC · Kijiji · Courts <div class="card-arrow">→</div></div>
+    </a>
+
+    <a class="card c-r" href="alimentaire.html">
+      <div class="card-top"><div class="card-icon">🍞</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Food Stress Index</div>
+      <div class="card-sub">"The empty lunch box never lies."</div>
+      <div class="card-score-row"><div class="card-score">0.71</div><div class="card-delta">▲ +0.09</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:71%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:30%"></div><div class="sb" style="height:36%"></div><div class="sb" style="height:42%"></div>
+        <div class="sb" style="height:50%"></div><div class="sb" style="height:56%"></div><div class="sb" style="height:62%"></div>
+        <div class="sb" style="height:62%"></div><div class="sb" style="height:71%"></div>
+      </div>
+      <div class="card-source">Food Banks Canada · Breakfast Club <div class="card-arrow">→</div></div>
+    </a>
+  </div>
+
+  <div class="cards-grid-2">
+    <a class="card c-o" href="faillite.html">
+      <div class="card-top"><div class="card-icon">💸</div><div class="badge bo">🟠 HIGH</div></div>
+      <div class="card-name">Personal Bankruptcy</div>
+      <div class="card-sub">"When Money Mart is packed."</div>
+      <div class="card-score-row"><div class="card-score" style="color:var(--orange)">0.58</div><div class="card-delta" style="color:var(--orange)">▲ +0.04</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:58%;background:var(--orange)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:35%"></div><div class="sb" style="height:38%"></div><div class="sb" style="height:42%"></div>
+        <div class="sb" style="height:46%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:53%"></div>
+        <div class="sb" style="height:54%"></div><div class="sb" style="height:58%"></div>
+      </div>
+      <div class="card-source">BDO Canada · FCAC · Equifax <div class="card-arrow">→</div></div>
+    </a>
+
+    <a class="card c-r" href="uhaul.html">
+      <div class="card-top"><div class="card-icon">🚛</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">U-Haul Migration Index</div>
+      <div class="card-sub">"The trucks don't lie."</div>
+      <div class="card-score-row"><div class="card-score">0.87</div><div class="card-delta">▲ +0.11</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:87%"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:44%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:57%"></div>
+        <div class="sb" style="height:63%"></div><div class="sb" style="height:69%"></div><div class="sb" style="height:74%"></div>
+        <div class="sb" style="height:76%"></div><div class="sb" style="height:87%"></div>
+      </div>
+      <div class="card-source">U-Haul Pricing · Atlas Van Lines · StatCan <div class="card-arrow">→</div></div>
+    </a>
   </div>
 </div>
 
-<div class="grid">
-  <a class="card c-r" href="auto-theft.html">
-    <div class="card-top"><div class="card-icon">🚗</div><div class="badge br">🔴 CRITIQUE</div></div>
-    <div class="card-name">Vol de Voiture</div>
-    <div class="card-sub">"Le castor surveille ton char."</div>
-    <div class="card-score-row"><div class="card-score">0.72</div><div class="card-delta">▲ +0.07</div></div>
-    <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
-    <div class="spark">
-      <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:55%"></div>
-      <div class="sb" style="height:60%"></div><div class="sb" style="height:65%"></div><div class="sb" style="height:68%"></div>
-      <div class="sb" style="height:65%"></div><div class="sb" style="height:72%"></div>
-    </div>
-    <div class="card-source">Équité Assoc. · CANAFE · IBC <div class="card-arrow">→</div></div>
-  </a>
-
-  <a class="card c-o" href="logement.html">
-    <div class="card-top"><div class="card-icon">🏠</div><div class="badge bo">🟠 ÉLEVÉ</div></div>
-    <div class="card-name">Crise du Logement</div>
-    <div class="card-sub">"Quand Kijiji devient un refuge."</div>
-    <div class="card-score-row"><div class="card-score">0.68</div><div class="card-delta" style="color:var(--orange)">▲ +0.05</div></div>
-    <div class="card-bar"><div class="card-bar-fill" style="width:68%"></div></div>
-    <div class="spark">
-      <div class="sb" style="height:38%"></div><div class="sb" style="height:44%"></div><div class="sb" style="height:48%"></div>
-      <div class="sb" style="height:53%"></div><div class="sb" style="height:58%"></div><div class="sb" style="height:62%"></div>
-      <div class="sb" style="height:63%"></div><div class="sb" style="height:68%"></div>
-    </div>
-    <div class="card-source">SCHL · Kijiji · Tribunaux <div class="card-arrow">→</div></div>
-  </a>
-
-  <a class="card c-r" href="alimentaire.html">
-    <div class="card-top"><div class="card-icon">🍞</div><div class="badge br">🔴 CRITIQUE</div></div>
-    <div class="card-name">Stress Alimentaire</div>
-    <div class="card-sub">"La boîte à lunch vide ment pas."</div>
-    <div class="card-score-row"><div class="card-score">0.71</div><div class="card-delta">▲ +0.09</div></div>
-    <div class="card-bar"><div class="card-bar-fill" style="width:71%"></div></div>
-    <div class="spark">
-      <div class="sb" style="height:30%"></div><div class="sb" style="height:36%"></div><div class="sb" style="height:42%"></div>
-      <div class="sb" style="height:50%"></div><div class="sb" style="height:56%"></div><div class="sb" style="height:62%"></div>
-      <div class="sb" style="height:62%"></div><div class="sb" style="height:71%"></div>
-    </div>
-    <div class="card-source">Banques Alim. Canada · Breakfast Club <div class="card-arrow">→</div></div>
-  </a>
-</div>
-
-<div class="grid-b">
-  <a class="card c-o" href="faillite.html">
-    <div class="card-top"><div class="card-icon">💸</div><div class="badge bo">🟠 ÉLEVÉ</div></div>
-    <div class="card-name">Faillite Personnelle</div>
-    <div class="card-sub">"Quand Money Mart fait salle comble."</div>
-    <div class="card-score-row"><div class="card-score">0.58</div><div class="card-delta" style="color:var(--orange)">▲ +0.04</div></div>
-    <div class="card-bar"><div class="card-bar-fill" style="width:58%"></div></div>
-    <div class="spark">
-      <div class="sb" style="height:35%"></div><div class="sb" style="height:38%"></div><div class="sb" style="height:42%"></div>
-      <div class="sb" style="height:46%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:53%"></div>
-      <div class="sb" style="height:54%"></div><div class="sb" style="height:58%"></div>
-    </div>
-    <div class="card-source">BDO Canada · ACFC · Equifax <div class="card-arrow">→</div></div>
-  </a>
-
-  <a class="card c-r" href="uhaul.html">
-    <div class="card-top"><div class="card-icon">🚛</div><div class="badge br">🔴 CRITIQUE</div></div>
-    <div class="card-name">U-Haul Migration Index</div>
-    <div class="card-sub">"Les camions mentent pas."</div>
-    <div class="card-score-row"><div class="card-score">0.87</div><div class="card-delta">▲ +0.11</div></div>
-    <div class="card-bar"><div class="card-bar-fill" style="width:87%"></div></div>
-    <div class="spark">
-      <div class="sb" style="height:44%"></div><div class="sb" style="height:50%"></div><div class="sb" style="height:57%"></div>
-      <div class="sb" style="height:63%"></div><div class="sb" style="height:69%"></div><div class="sb" style="height:74%"></div>
-      <div class="sb" style="height:76%"></div><div class="sb" style="height:87%"></div>
-    </div>
-    <div class="card-source">U-Haul pricing · Atlas Van Lines · StatCan <div class="card-arrow">→</div></div>
-  </a>
-</div>
-
-<div class="nat-bar-section">
+<div class="nat-bar-wrap">
   <div class="nat-bar-inner">
-    <div class="nbl">Score National</div>
+    <div class="nbl">National Score</div>
     <div class="nb-track"><div class="nb-fill" id="nb-fill" style="width:0%"></div></div>
     <div class="nbv">73 / 100</div>
-    <div class="nb-rule"><strong>Règle des 3 rouges :</strong> 3 indicateurs rouges simultanément → incident social majeur dans 6 semaines.</div>
+    <div class="nb-rule"><strong>Rule of 3 Reds:</strong> 3 red indicators simultaneously → major social incident within 6 weeks.</div>
   </div>
 </div>
 
-<div class="rule-3">
-  <div class="rule-3-inner">
+<div class="rule-wrap">
+  <div class="rule-inner">
     <div class="rule-icon">⚠️</div>
     <div>
-      <div class="rule-title">Règle des 3 Rouges — Activée cette semaine</div>
-      <div class="rule-txt"><strong>Vol de Voiture (0.72) + Stress Alimentaire (0.71) + U-Haul Index (0.87)</strong> tous en rouge simultanément. Configuration observée pour la dernière fois : <strong>octobre 2022</strong> (pic inflation + vague d'évictions). Incident social majeur prédit dans <strong>4 à 8 semaines</strong>.</div>
+      <div class="rule-title">Rule of 3 Reds — Active This Week</div>
+      <div class="rule-txt"><strong>Auto Theft (0.72) + Food Stress (0.71) + U-Haul Index (0.87)</strong> all red simultaneously. Last observed: <strong>October 2022</strong> (inflation peak + eviction wave). Major social incident predicted within <strong>4 to 8 weeks.</strong></div>
     </div>
   </div>
 </div>
 
-<div class="cq">
-  <div class="cq-inner">
-    <div class="cq-b">🦫</div>
-    <div class="cq-t">"Les journaux vont en parler dans 6 semaines.<br><strong>Le Castor le sait maintenant.</strong>"</div>
+<!-- LONG TERM -->
+<div class="long-term">
+  <div class="sec-head">
+    <div class="sec-title">🔭 Long-Term Structural Indicators</div>
+    <div class="sec-line"></div>
+    <div class="sec-sub">Predicts 5–15 years ahead · StatCan data</div>
+  </div>
+
+  <div class="lt-intro">
+    <div class="lt-intro-icon">📊</div>
+    <div>
+      <div class="lt-intro-title">Why Long-Term Matters</div>
+      <div class="lt-intro-txt">Inspired by Emmanuel Todd's demographic analysis — <strong>structural shifts in education, gender balance and birth rates</strong> predict social upheaval years before it becomes visible. These indicators don't predict next month. They predict the next decade.</div>
+    </div>
+  </div>
+
+  <div class="lt-grid">
+    <div class="lt-card lt-r">
+      <div class="lt-top"><div class="lt-icon">🎓</div><div class="lt-badge lt-br">🔴 DECLINING</div></div>
+      <div class="lt-name">Male University Enrollment</div>
+      <div class="lt-sub">"Men leaving higher education"</div>
+      <div class="lt-val-row"><div class="lt-val">38%</div><div class="lt-trend t-dn">▼ -8% since 2015</div></div>
+      <div class="lt-bar"><div class="lt-bar-fill" style="width:38%"></div></div>
+      <div class="lt-timeline">
+        <div class="lt-tb" style="height:80%"></div><div class="lt-tb" style="height:75%"></div>
+        <div class="lt-tb" style="height:70%"></div><div class="lt-tb" style="height:64%"></div>
+        <div class="lt-tb" style="height:58%"></div><div class="lt-tb" style="height:52%"></div>
+        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:38%"></div>
+      </div>
+      <div class="lt-years"><span>2015</span><span>2020</span><span>2025</span></div>
+      <div class="lt-source">Source: StatCan · Education Indicators in Canada</div>
+    </div>
+
+    <div class="lt-card lt-o">
+      <div class="lt-top"><div class="lt-icon">⚖️</div><div class="lt-badge lt-bo">🟠 SHIFTING</div></div>
+      <div class="lt-name">Gender Employment Gap</div>
+      <div class="lt-sub">"Closing fast — structural tension"</div>
+      <div class="lt-val-row"><div class="lt-val">2.1%</div><div class="lt-trend t-w">▼ -6.4% since 2000</div></div>
+      <div class="lt-bar"><div class="lt-bar-fill" style="width:21%"></div></div>
+      <div class="lt-timeline">
+        <div class="lt-tb" style="height:85%"></div><div class="lt-tb" style="height:75%"></div>
+        <div class="lt-tb" style="height:65%"></div><div class="lt-tb" style="height:55%"></div>
+        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:35%"></div>
+        <div class="lt-tb" style="height:28%"></div><div class="lt-tb" style="height:21%"></div>
+      </div>
+      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="lt-source">Source: StatCan · Labour Force Survey</div>
+    </div>
+
+    <div class="lt-card lt-y">
+      <div class="lt-top"><div class="lt-icon">👶</div><div class="lt-badge lt-by">🟡 WATCH</div></div>
+      <div class="lt-name">Infant Mortality Rate</div>
+      <div class="lt-sub">"USSR collapsed — this was rising"</div>
+      <div class="lt-val-row"><div class="lt-val">4.6</div><div class="lt-trend t-w">per 1,000 births</div></div>
+      <div class="lt-bar"><div class="lt-bar-fill" style="width:46%"></div></div>
+      <div class="lt-timeline">
+        <div class="lt-tb" style="height:75%"></div><div class="lt-tb" style="height:68%"></div>
+        <div class="lt-tb" style="height:60%"></div><div class="lt-tb" style="height:54%"></div>
+        <div class="lt-tb" style="height:52%"></div><div class="lt-tb" style="height:50%"></div>
+        <div class="lt-tb" style="height:48%"></div><div class="lt-tb" style="height:46%"></div>
+      </div>
+      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="lt-source">Source: StatCan · Vital Statistics</div>
+    </div>
+  </div>
+
+  <div class="lt-grid-2">
+    <div class="lt-card lt-y">
+      <div class="lt-top"><div class="lt-icon">🌍</div><div class="lt-badge lt-by">🟡 SHIFTING</div></div>
+      <div class="lt-name">Immigration Demographic Shift</div>
+      <div class="lt-sub">"Structural composition changing fast"</div>
+      <div class="lt-val-row"><div class="lt-val">23%</div><div class="lt-trend t-up">▲ Foreign-born population</div></div>
+      <div class="lt-bar"><div class="lt-bar-fill" style="width:23%"></div></div>
+      <div class="lt-timeline">
+        <div class="lt-tb" style="height:40%"></div><div class="lt-tb" style="height:45%"></div>
+        <div class="lt-tb" style="height:50%"></div><div class="lt-tb" style="height:55%"></div>
+        <div class="lt-tb" style="height:60%"></div><div class="lt-tb" style="height:65%"></div>
+        <div class="lt-tb" style="height:70%"></div><div class="lt-tb" style="height:75%"></div>
+      </div>
+      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="lt-source">Source: StatCan · Census 2021</div>
+    </div>
+
+    <div class="lt-card lt-o">
+      <div class="lt-top"><div class="lt-icon">👴</div><div class="lt-badge lt-bo">🟠 AGING</div></div>
+      <div class="lt-name">Population Aging Index</div>
+      <div class="lt-sub">"More retirees than workers coming"</div>
+      <div class="lt-val-row"><div class="lt-val">47%</div><div class="lt-trend t-w">▲ Dependency ratio rising</div></div>
+      <div class="lt-bar"><div class="lt-bar-fill" style="width:47%"></div></div>
+      <div class="lt-timeline">
+        <div class="lt-tb" style="height:30%"></div><div class="lt-tb" style="height:33%"></div>
+        <div class="lt-tb" style="height:36%"></div><div class="lt-tb" style="height:38%"></div>
+        <div class="lt-tb" style="height:41%"></div><div class="lt-tb" style="height:43%"></div>
+        <div class="lt-tb" style="height:45%"></div><div class="lt-tb" style="height:47%"></div>
+      </div>
+      <div class="lt-years"><span>2000</span><span>2012</span><span>2025</span></div>
+      <div class="lt-source">Source: StatCan · Demographic Projections</div>
+    </div>
   </div>
 </div>
 
-<div class="full-list">
-  <div class="fl-title">Tous les Indicateurs — Roadmap</div>
-  <div class="fl-grid">
-    <div class="fli ready" onclick="location.href='auto-theft.html'"><div class="fl-n">01</div><div class="fl-i">🚗</div><div class="fl-nm">Vol de Voiture</div><div class="fl-s st-live">LIVE</div></div>
-    <div class="fli ready" onclick="location.href='logement.html'"><div class="fl-n">02</div><div class="fl-i">🏠</div><div class="fl-nm">Crise du Logement</div><div class="fl-s st-soon">BIENTÔT</div></div>
-    <div class="fli ready" onclick="location.href='alimentaire.html'"><div class="fl-n">03</div><div class="fl-i">🍞</div><div class="fl-nm">Stress Alimentaire</div><div class="fl-s st-soon">BIENTÔT</div></div>
-    <div class="fli ready" onclick="location.href='faillite.html'"><div class="fl-n">04</div><div class="fl-i">💸</div><div class="fl-nm">Faillite Personnelle</div><div class="fl-s st-soon">BIENTÔT</div></div>
-    <div class="fli ready" onclick="location.href='uhaul.html'"><div class="fl-n">05</div><div class="fl-i">🚛</div><div class="fl-nm">U-Haul Migration</div><div class="fl-s st-soon">BIENTÔT</div></div>
-    <div class="fli"><div class="fl-n">06</div><div class="fl-i">☕</div><div class="fl-nm">Tim's Misery Index</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">07</div><div class="fl-i">🛋️</div><div class="fl-nm">Couch Surf Index</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">08</div><div class="fl-i">🎰</div><div class="fl-nm">OLG Panic Meter</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">09</div><div class="fl-i">🛵</div><div class="fl-nm">Night Shift Surge</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">10</div><div class="fl-i">🚨</div><div class="fl-nm">Ambulance Sourde</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">11</div><div class="fl-i">💍</div><div class="fl-nm">Divorce Yard Sale</div><div class="fl-s st-wip">EN DEV</div></div>
-    <div class="fli"><div class="fl-n">12</div><div class="fl-i">🥪</div><div class="fl-nm">School Lunch Deficit</div><div class="fl-s st-wip">EN DEV</div></div>
+<div class="lt-warning">
+  <div class="lt-warning-inner">
+    <div class="lt-intro-icon">🔭</div>
+    <div>
+      <div class="lt-w-title">What the Long-Term Data Tells Us</div>
+      <div class="lt-w-txt">Following Emmanuel Todd's methodology: <strong>when male university enrollment drops below 40% and the gender employment gap closes below 2%</strong>, structural social tensions emerge within 10–15 years. Canada is approaching both thresholds simultaneously. Combined with the infant mortality plateau and rapid demographic shifts — <strong>the structural foundation for a major social reorganization is building.</strong></div>
+    </div>
+  </div>
+</div>
+
+<div class="cq-wrap">
+  <div class="cq-inner">
+    <div class="cq-b">🦫</div>
+    <div class="cq-t">"The newspapers will cover it in 6 weeks.<br><strong>The Beaver knows it now.</strong>"</div>
   </div>
 </div>
 
 <footer>
   <div class="foot-brand">🦫 CASTOR.WATCH</div>
-  <div class="foot-meta">Projet indépendant canadien · Données publiques<br>Mise à jour mensuelle · Non affilié à aucun gouvernement</div>
+  <div class="foot-meta">Independent Canadian project · Public data only<br>Monthly updates · Not affiliated with any government</div>
 </footer>
 
 <script>
@@ -348,15 +466,16 @@ function tick(){
 }
 setInterval(tick,1000);tick();
 
-const now=new Date(),day=now.getDay(),diff=now.getDate()-day+(day===0?-6:1);
+const now=new Date(),day=now.getDay();
+const diff=now.getDate()-day+(day===0?-6:1);
 const mon=new Date(now.setDate(diff));
-document.getElementById('week-lbl').textContent='Semaine du '+mon.toLocaleDateString('fr-CA',{day:'numeric',month:'long',year:'numeric'});
+document.getElementById('week-lbl').textContent=
+  'Week of '+mon.toLocaleDateString('en-CA',{month:'long',day:'numeric',year:'numeric'});
 
 function animCount(el,target,dur){
   let v=0;const step=target/(dur/16);
   const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v>=target)clearInterval(t);},16);
 }
-
 window.addEventListener('load',()=>{
   const el=document.getElementById('nat-num');
   if(el)animCount(el,73,1800);
