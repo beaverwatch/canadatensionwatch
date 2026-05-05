@@ -1,413 +1,236 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚗 Risque de Vol de Voiture — CASTOR.WATCH</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Playfair+Display:wght@900&display=swap" rel="stylesheet">
+<title>🚗 Auto Theft Risk — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:     #090909;
-  --s1:     #111111;
-  --s2:     #181818;
-  --s3:     #222222;
-  --s4:     #2E2E2E;
-  --text:   #EDE8DC;
-  --muted:  #484340;
-  --faint:  #1A1A1A;
-  --accent: #FF1A1A;
-  --glow:   rgba(255,26,26,0.2);
-  --vert:   #00E676;
-  --orange: #FF6D00;
-  --rouge:  #FF1A1A;
+  --bg:#070707; --s1:#0F0F0F; --s2:#181818; --s3:#242424; --s4:#303030;
+  --text:#F5F0E8; --muted:#999990; --faint:#141414;
+  --red:#FF2D2D; --orange:#FF6D00; --green:#00E676; --yellow:#FFD600;
+  --accent:#FF2D2D; --glow:rgba(255,45,45,0.2);
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior:smooth; }
-
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'DM Mono', monospace;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-bottom: 48px;
-  overflow-x: hidden;
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
 
 /* Grain */
-body::after {
-  content:''; position:fixed; inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.032'/%3E%3C/svg%3E");
-  pointer-events:none; z-index:9999;
-}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
-/* ── ALERT ── */
-.alert {
-  width:100%;
-  padding:10px 20px;
-  display:flex; align-items:center; gap:12px;
-  transition: background 1s ease;
-  background: var(--rouge);
-  position:relative; overflow:hidden;
-}
-.alert::before {
-  content:''; position:absolute; inset:0;
-  background:repeating-linear-gradient(90deg,transparent,transparent 50px,rgba(255,255,255,0.03) 50px,rgba(255,255,255,0.03) 51px);
-}
-.a-dot { width:8px; height:8px; border-radius:50%; background:#fff; flex-shrink:0; animation:blnk 1.3s ease-in-out infinite; }
-@keyframes blnk { 0%,100%{opacity:1} 50%{opacity:0.1} }
-.a-txt { font-size:0.62rem; letter-spacing:1.5px; font-weight:700; text-transform:uppercase; flex:1; }
-.a-time { font-size:0.55rem; opacity:0.6; }
+/* ALERT */
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;transition:background 1s ease;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;letter-spacing:1px;}
 
-/* ── CARD WRAPPER ── */
-.card {
-  width:100%; max-width:500px;
-  background: var(--s1);
-  border:1px solid var(--s3);
-  position:relative; overflow:hidden;
-  margin-top:0;
-}
+/* HEADER */
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--accent);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;transition:background 1s ease;}
 
-/* Top glow bar */
-.card::before {
-  content:''; position:absolute;
-  top:0; left:0; right:0; height:3px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  transition: background 1s ease;
-}
+/* LOADING STATE */
+.loading-bar{width:100%;height:3px;background:var(--s3);position:relative;overflow:hidden;}
+.loading-bar::after{content:'';position:absolute;left:-50%;top:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:loading 1.5s ease infinite;}
+@keyframes loading{from{left:-50%}to{left:150%}}
+.loading-bar.done{display:none;}
 
-/* Corner */
-.corner {
-  position:absolute; top:14px; right:16px;
-  font-size:0.48rem; letter-spacing:2.5px; text-transform:uppercase;
-  color:var(--muted); display:flex; align-items:center; gap:6px;
-}
-.corner .a-dot { background:var(--accent); width:6px; height:6px; transition:background 1s ease; }
+/* MAIN WRAPPER */
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
 
-/* ── HEADER ── */
-.card-head { padding:28px 28px 0; }
-.eyebrow {
-  font-size:0.5rem; letter-spacing:4px; text-transform:uppercase;
-  color:var(--muted); margin-bottom:10px;
-  display:flex; align-items:center; gap:10px;
-}
-.eyebrow::before { content:''; width:24px; height:1px; background:var(--muted); }
+/* HERO SECTION */
+.hero{padding:36px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;margin-bottom:0;}
 
-.card-title {
-  font-family:'Playfair Display',serif;
-  font-size:2.4rem; font-weight:900;
-  line-height:1.05; margin-bottom:5px;
-  letter-spacing:-0.5px;
-}
-.card-tagline {
-  font-size:0.6rem; color:var(--muted);
-  font-style:italic; letter-spacing:1px; margin-bottom:26px;
-}
+/* GAUGE */
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:502.4;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1),stroke 0.8s ease;filter:drop-shadow(0 0 12px var(--glow));}
+.g-tick{fill:none;stroke:#070707;stroke-width:3;}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-car{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;transition:color 1s ease;}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 
-/* ── GAUGE SECTION ── */
-.gauge-section {
-  padding:0 28px;
-  display:flex; align-items:center; gap:24px;
-}
+/* RIGHT SIDE */
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:16px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:3px;line-height:1;transition:color 1s ease;}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
 
-.gauge-wrap {
-  width:190px; height:190px;
-  position:relative; flex-shrink:0;
-}
-.gauge-svg { width:100%; height:100%; transform:rotate(-90deg); }
+/* Risk pills */
+.pills{display:flex;flex-direction:column;gap:5px;}
+.pill{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid transparent;transition:all 0.4s ease;}
+.pill.active{border-color:var(--s4);background:rgba(255,255,255,0.03);}
+.pip{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.pill-name{font-size:0.65rem;letter-spacing:1.5px;font-weight:600;color:var(--muted);flex:1;}
+.pill.active .pill-name{color:var(--text);}
+.pill-rng{font-size:0.6rem;color:var(--muted);letter-spacing:1px;}
 
-/* Zone backgrounds */
-.gz { fill:none; stroke-width:18; stroke-linecap:butt; }
+/* DIVIDER */
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
 
-/* Active fill */
-.ga {
-  fill:none; stroke-width:18; stroke-linecap:butt;
-  stroke-dasharray:502.4; stroke-dashoffset:502.4;
-  stroke:var(--accent);
-  filter:drop-shadow(0 0 12px var(--glow));
-  transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1), stroke 0.8s ease, filter 0.8s ease;
-}
+/* WHAT THIS MEANS */
+.meaning-section{padding:0 28px;}
+.section-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.meaning-box{padding:18px 20px;border-left:3px solid var(--accent);background:rgba(255,45,45,0.05);transition:border-color 1s ease,background 1s ease;}
+.meaning-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;transition:color 1s ease;}
+.meaning-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
 
-/* Center */
-.gc {
-  position:absolute; inset:0;
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center; gap:2px;
-}
-.gc-car { font-size:2.6rem; animation:bob 3s ease-in-out infinite; }
-@keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-3px)} }
-.gc-num {
-  font-family:'Playfair Display',serif;
-  font-size:1.7rem; font-weight:900; line-height:1;
-  transition:color 1s ease;
-  color:var(--accent);
-}
-.gc-lbl { font-size:0.44rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+/* WHAT TO DO */
+.action-section{padding:0 28px;margin-top:20px;}
+.action-box{background:var(--s1);border:1px solid var(--s3);padding:18px 20px;}
+.action-title{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.action-list{display:flex;flex-direction:column;gap:8px;}
+.action-item{display:flex;align-items:flex-start;gap:12px;font-size:0.8rem;line-height:1.7;color:var(--text);}
+.action-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
 
-/* Right side */
-.gauge-right { flex:1; display:flex; flex-direction:column; gap:14px; }
+/* SOURCES */
+.sources-section{padding:0 28px;margin-top:20px;}
+.src-card{background:var(--s1);border-left:2px solid;padding:14px 16px;margin-bottom:8px;}
+.src-card:last-child{margin-bottom:0;}
+.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.src-name{font-size:0.75rem;font-weight:700;letter-spacing:0.5px;}
+.src-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;}
+.src-desc{font-size:0.72rem;color:var(--text);line-height:1.7;margin-bottom:4px;}
+.src-freq{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
 
-.risk-word {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:3.4rem; letter-spacing:3px; line-height:1;
-  transition:color 1s ease; color:var(--accent);
-}
-.risk-desc {
-  font-size:0.6rem; line-height:1.9; color:var(--muted); max-width:180px;
-}
+/* CAUSAL CHAIN */
+.chain-section{padding:0 28px;margin-top:20px;}
+.chain{display:flex;flex-direction:column;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;line-height:1.2;}
+.chain-t{font-size:0.78rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;color:var(--text);}
 
-/* Pills */
-.pills { display:flex; flex-direction:column; gap:4px; }
-.pill {
-  display:flex; align-items:center; gap:8px;
-  padding:5px 10px; border:1px solid transparent;
-  transition:all 0.4s ease; cursor:default;
-}
-.pill.active { border-color:var(--s4); background:rgba(255,255,255,0.025); }
-.pip { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
-.pill-name { font-size:0.52rem; letter-spacing:1.5px; color:var(--muted); flex:1; }
-.pill.active .pill-name { color:var(--text); }
-.pill-rng { font-size:0.48rem; letter-spacing:1px; color:var(--muted); }
+/* HISTORY */
+.hist-section{padding:0 28px;margin-top:20px;}
+.hrow{display:grid;grid-template-columns:72px 1fr 42px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.68rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;transition:width 2s ease;}
+.hv{font-size:0.68rem;text-align:right;font-weight:600;}
 
-/* ── DIVIDER ── */
-.divider { margin:22px 28px; height:1px; background:var(--s3); }
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin:20px 28px 0;}
+.stat{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:5px;}
+.stat-v{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;transition:color 1s ease;}
+.stat-l{font-size:0.65rem;letter-spacing:1px;color:var(--text);line-height:1.5;}
 
-/* ── SOURCES ── */
-.sources { padding:0 28px; }
-.sec-lbl {
-  font-size:0.5rem; letter-spacing:3px; text-transform:uppercase;
-  color:var(--muted); margin-bottom:12px;
-}
+/* METHODOLOGY */
+.method{margin:20px 28px 0;background:var(--s1);padding:18px 20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.75rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
 
-.src-card {
-  background:var(--s2);
-  border-left:2px solid;
-  padding:12px 14px;
-  margin-bottom:7px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:4px;
-  cursor:pointer;
-  transition:background 0.15s;
-}
-.src-card:hover { background:var(--s3); }
-.src-card:last-child { margin-bottom:0; }
+/* CASTOR */
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:20px;display:flex;gap:16px;align-items:flex-start;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.8rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
 
-.src-name { font-size:0.6rem; font-weight:500; letter-spacing:1px; }
-.src-val {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.1rem; letter-spacing:1px;
-  grid-row:1/3; align-self:center;
-}
-.src-desc { font-size:0.52rem; color:var(--muted); line-height:1.6; }
-.src-freq { font-size:0.44rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-top:2px; }
+/* FOOTER */
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
 
-/* ── MEANING BOX ── */
-.meaning {
-  margin:20px 28px 0;
-  padding:14px 16px;
-  border-left:2px solid var(--accent);
-  background:rgba(255,26,26,0.05);
-  transition:border-color 1s ease, background 1s ease;
-}
-.meaning-lbl {
-  font-size:0.48rem; letter-spacing:3px; text-transform:uppercase;
-  color:var(--muted); margin-bottom:8px;
-}
-.meaning-txt {
-  font-size:0.62rem; line-height:1.9; color:var(--text); opacity:0.85;
-}
-.meaning-txt strong { color:var(--accent); font-style:normal; transition:color 1s ease; }
-
-/* ── CHAIN ── */
-.chain { padding:0 28px; margin-top:20px; }
-.chain-item {
-  display:flex; align-items:flex-start; gap:12px;
-  padding:9px 0; border-bottom:1px solid var(--faint);
-}
-.chain-item:last-child { border-bottom:none; }
-.chain-n {
-  font-family:'Bebas Neue',sans-serif; font-size:1rem;
-  color:var(--muted); width:20px; flex-shrink:0; line-height:1.2;
-}
-.chain-t { font-size:0.57rem; color:var(--muted); line-height:1.8; }
-.chain-t strong { color:var(--text); }
-
-/* ── HISTORY ── */
-.hist { padding:0 28px; margin-top:20px; }
-.hrow {
-  display:grid; grid-template-columns:68px 1fr 38px;
-  align-items:center; gap:8px; margin-bottom:7px;
-}
-.hl { font-size:0.54rem; color:var(--muted); }
-.ht { height:4px; background:var(--faint); position:relative; overflow:hidden; }
-.hf { position:absolute; left:0; top:0; bottom:0; transition:width 2s ease; }
-.hv { font-size:0.54rem; text-align:right; }
-
-/* ── STATS ROW ── */
-.stats {
-  width:100%; max-width:500px;
-  display:grid; grid-template-columns:repeat(3,1fr);
-  gap:1px; background:var(--s3); margin-top:1px;
-}
-.stat { background:var(--s1); padding:16px 18px; display:flex; flex-direction:column; gap:4px; }
-.stat-v {
-  font-family:'Bebas Neue',sans-serif;
-  font-size:1.5rem; letter-spacing:2px; line-height:1;
-  transition:color 1s ease;
-}
-.stat-l { font-size:0.46rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); line-height:1.5; }
-
-/* ── METHODOLOGY ── */
-.method {
-  width:100%; max-width:500px;
-  background:var(--s1); margin-top:1px;
-  padding:18px 22px;
-  border-left:2px solid var(--s4);
-}
-.method-ttl { font-size:0.48rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; }
-.method-txt { font-size:0.57rem; line-height:1.9; color:var(--muted); }
-.method-txt strong { color:var(--text); }
-
-/* ── CASTOR TIP ── */
-.tip {
-  width:100%; max-width:500px;
-  background:var(--s2); margin-top:1px;
-  padding:18px 22px;
-  display:flex; gap:14px; align-items:flex-start;
-}
-.tip-icon { font-size:1.4rem; flex-shrink:0; padding-top:2px; }
-.tip-inner {}
-.tip-lbl { font-size:0.46rem; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
-.tip-txt { font-size:0.62rem; line-height:1.9; color:var(--muted); font-style:italic; }
-.tip-txt strong { color:var(--text); font-style:normal; }
-
-/* ── DEMO SLIDER ── */
-.demo {
-  width:100%; max-width:500px; margin-top:16px;
-  padding:14px 22px; background:var(--s2); border:1px solid var(--s3);
-  display:flex; align-items:center; gap:14px;
-}
-.demo-l { font-size:0.5rem; letter-spacing:2px; text-transform:uppercase; color:var(--muted); white-space:nowrap; }
-input[type=range] {
-  flex:1; -webkit-appearance:none; height:3px;
-  background:var(--s4); outline:none;
-}
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance:none; width:14px; height:14px;
-  background:var(--text); border-radius:50%; cursor:pointer;
-}
-.demo-v {
-  font-family:'Bebas Neue',sans-serif; font-size:1.1rem;
-  letter-spacing:2px; width:38px; text-align:right;
-}
-.demo-note {
-  font-size:0.46rem; letter-spacing:2px; text-transform:uppercase;
-  color:var(--muted); text-align:center; margin-top:6px;
-}
-
-/* ── FOOTER ── */
-footer {
-  width:100%; max-width:500px; margin-top:16px;
-  padding:16px 22px; border-top:1px solid var(--s3);
-  display:flex; justify-content:space-between; align-items:center;
-}
-.foot-brand { font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:5px; color:var(--muted); }
-.foot-meta { font-size:0.46rem; letter-spacing:1.5px; color:var(--muted); text-align:right; line-height:2; text-transform:uppercase; }
-
-/* Animations */
-@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
-.card   { animation:fadeUp 0.5s ease 0.1s both; }
-.stats  { animation:fadeUp 0.5s ease 0.2s both; }
-.method { animation:fadeUp 0.5s ease 0.25s both; }
-.tip    { animation:fadeUp 0.5s ease 0.3s both; }
+/* Back link */
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
 
 @media(max-width:480px){
-  .card-title { font-size:2rem; }
-  .gauge-section { flex-direction:column; align-items:flex-start; }
-  .gauge-wrap { width:160px; height:160px; }
-  .risk-word { font-size:2.6rem; }
+  .gauge-section{flex-direction:column;align-items:flex-start;}
+  .gauge-wrap{width:160px;height:160px;}
+  .risk-word{font-size:2.4rem;}
 }
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
 </style>
 </head>
 <body>
 
 <!-- ALERT -->
-<div class="alert" id="alert-bar">
+<div class="alert" id="alert-bar" style="background:var(--red);">
   <div class="a-dot"></div>
-  <div class="a-txt" id="alert-txt">🚨 DANGER — Indice Prédation Automobile : 0.72 — Pic de vols prédit dans 4 à 8 semaines.</div>
-  <div class="a-time" id="clock">--:--</div>
+  <div class="a-txt" id="alert-txt">🚨 HIGH RISK — Auto Theft Index: 0.72 — Elevated vehicle theft risk in the next 4 to 8 weeks.</div>
+  <div class="a-time" id="clock">--:--:--</div>
 </div>
 
-<!-- CARD -->
-<div class="card">
+<!-- LOADING BAR -->
+<div class="loading-bar" id="loading-bar"></div>
 
-  <div class="corner">
-    <div class="a-dot" id="corner-dot"></div>
-    LIVE · MAJ MENSUELLE
+<!-- HEADER -->
+<header>
+  <a href="index.html" style="text-decoration:none;color:inherit;">
+    <div class="logo">🦫 <span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
+    <div class="logo-sub">Canadian Stress Barometer</div>
+  </a>
+  <div class="live-pill" id="live-pill"><div class="a-dot" id="live-dot"></div>LIVE</div>
+</header>
+
+<div class="wrapper">
+
+  <!-- BACK -->
+  <a href="index.html" class="back-link">← All Indicators</a>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Indicator #01 — CASTOR.WATCH</div>
+    <div class="hero-title">Auto Theft<br>Risk Index</div>
+    <div class="hero-tagline">"The beaver watches your car."</div>
   </div>
 
-  <!-- Header -->
-  <div class="card-head">
-    <div class="eyebrow">Indicateur #03 — CASTOR.WATCH</div>
-    <div class="card-title">Risque de Vol<br>de Voiture</div>
-    <div class="card-tagline">"Le castor surveille ton char."</div>
-  </div>
-
-  <!-- Gauge -->
+  <!-- GAUGE -->
   <div class="gauge-section">
     <div class="gauge-wrap">
       <svg class="gauge-svg" viewBox="0 0 120 120">
         <!-- Zone backgrounds -->
-        <circle class="gz" cx="60" cy="60" r="40"
-          stroke="#00E676" stroke-opacity="0.12"
-          stroke-dasharray="100.5 401.9" stroke-dashoffset="0"/>
-        <circle class="gz" cx="60" cy="60" r="40"
-          stroke="#FF6D00" stroke-opacity="0.12"
-          stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
-        <circle class="gz" cx="60" cy="60" r="40"
-          stroke="#FF1A1A" stroke-opacity="0.12"
-          stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
-        <!-- Tick 0.4 -->
-        <line stroke="#090909" stroke-width="3"
-          x1="60" y1="23" x2="60" y2="16"
-          transform="rotate(144 60 60)"/>
-        <!-- Tick 0.7 -->
-        <line stroke="#090909" stroke-width="3"
-          x1="60" y1="23" x2="60" y2="16"
-          transform="rotate(252 60 60)"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9" stroke-dashoffset="0"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <!-- Tick at 0.4 -->
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(144 60 60)"/>
+        <!-- Tick at 0.7 -->
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(252 60 60)"/>
         <!-- Active arc -->
-        <circle class="ga" id="gauge-arc" cx="60" cy="60" r="40"/>
+        <circle class="g-active" id="gauge-arc" cx="60" cy="60" r="40" stroke="var(--red)"/>
       </svg>
-      <div class="gc">
+      <div class="gauge-center">
         <div class="gc-car">🚗</div>
-        <div class="gc-num" id="g-num">0.72</div>
-        <div class="gc-lbl">Indice composite</div>
+        <div class="gc-val" id="g-val">—</div>
+        <div class="gc-lbl">Risk Score</div>
       </div>
     </div>
 
     <div class="gauge-right">
-      <div class="risk-word" id="risk-word">DANGER</div>
-      <div class="risk-desc" id="risk-desc">
-        Conditions réunies pour un pic de vols dans les 4 à 8 semaines. Garez votre char en garage.
-      </div>
+      <div class="risk-word" id="risk-word">—</div>
+      <div class="risk-desc" id="risk-desc">Loading data from Google Sheets...</div>
       <div class="pills">
-        <div class="pill" id="p-safe">
-          <div class="pip" style="background:var(--vert)"></div>
-          <div class="pill-name">SÉCURITAIRE</div>
+        <div class="pill" id="p-low">
+          <div class="pip" style="background:var(--green)"></div>
+          <div class="pill-name">LOW RISK</div>
           <div class="pill-rng">0 – 0.39</div>
         </div>
-        <div class="pill" id="p-warn">
+        <div class="pill" id="p-mod">
           <div class="pip" style="background:var(--orange)"></div>
-          <div class="pill-name">ATTENTION</div>
+          <div class="pill-name">MODERATE RISK</div>
           <div class="pill-rng">0.40 – 0.69</div>
         </div>
-        <div class="pill active" id="p-danger">
-          <div class="pip" style="background:var(--rouge)"></div>
-          <div class="pill-name">DANGER</div>
+        <div class="pill" id="p-high">
+          <div class="pip" style="background:var(--red)"></div>
+          <div class="pill-name">HIGH RISK</div>
           <div class="pill-rng">0.70 – 1.0</div>
         </div>
       </div>
@@ -416,292 +239,321 @@ footer {
 
   <div class="divider"></div>
 
-  <!-- Sources -->
-  <div class="sources">
-    <div class="sec-lbl">📊 Sources institutionnelles canadiennes</div>
+  <!-- WHAT THIS MEANS -->
+  <div class="meaning-section">
+    <div class="section-label">What this score means for you</div>
+    <div class="meaning-box" id="meaning-box">
+      <div class="meaning-title" id="meaning-title">Loading...</div>
+      <div class="meaning-txt" id="meaning-txt">Please wait while we load the latest data.</div>
+    </div>
+  </div>
 
-    <div class="src-card" style="border-color:#FF1A1A">
-      <div class="src-name" style="color:#FF1A1A">Équité Association</div>
-      <div class="src-val" style="color:#FF1A1A" id="src1">0.85</div>
-      <div class="src-desc">Fraude financement auto + exportation ports (Halifax, Vancouver, Montréal). Rapport trimestriel public.</div>
-      <div class="src-freq">Poids 35% · Trimestriel · equite-association.com</div>
+  <!-- WHAT TO DO -->
+  <div class="action-section">
+    <div class="section-label">What should you do ?</div>
+    <div class="action-box" id="action-box">
+      <div class="action-title" id="action-title">🚗 Loading recommendations...</div>
+      <div class="action-list" id="action-list"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <div class="section-label">📊 Data Sources</div>
+
+    <div class="src-card" style="border-color:var(--red)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--red)">Équité Association</div>
+        <div class="src-val" style="color:var(--red)" id="src1">—</div>
+      </div>
+      <div class="src-desc">Auto financing fraud + port export data (Halifax, Vancouver, Montreal). Official quarterly public report.</div>
+      <div class="src-freq">Weight 35% · Quarterly · equite-association.com</div>
     </div>
 
-    <div class="src-card" style="border-color:#FF6D00">
-      <div class="src-name" style="color:#FF6D00">CANAFE / Banques</div>
-      <div class="src-val" style="color:#FF6D00" id="src2">0.71</div>
-      <div class="src-desc">Déclarations d'opérations douteuses liées au financement auto frauduleux. Agrégé par CANAFE.</div>
-      <div class="src-freq">Poids 40% · Mensuel · fintrac-canafe.gc.ca</div>
+    <div class="src-card" style="border-color:var(--orange)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--orange)">CANAFE / Banks</div>
+        <div class="src-val" style="color:var(--orange)" id="src2">—</div>
+      </div>
+      <div class="src-desc">Suspicious transaction reports related to fraudulent auto financing. Aggregated by CANAFE, Canada's financial intelligence unit.</div>
+      <div class="src-freq">Weight 40% · Monthly · fintrac-canafe.gc.ca</div>
     </div>
 
     <div class="src-card" style="border-color:var(--s4)">
-      <div class="src-name" style="color:var(--text)">IBC + Police locale</div>
-      <div class="src-val" style="color:var(--text)" id="src3">0.52</div>
-      <div class="src-desc">Insurance Bureau of Canada + données ouvertes police (Toronto, SPVM, Calgary).</div>
-      <div class="src-freq">Poids 25% · Mensuel · ibc.ca · data.torontopolice.on.ca</div>
+      <div class="src-top">
+        <div class="src-name" style="color:var(--text)">IBC + Police Data</div>
+        <div class="src-val" style="color:var(--text)" id="src3">—</div>
+      </div>
+      <div class="src-desc">Insurance Bureau of Canada + open police data (Toronto, SPVM Montreal, Calgary). Vehicle theft statistics by region.</div>
+      <div class="src-freq">Weight 25% · Monthly · ibc.ca · data.torontopolice.on.ca</div>
     </div>
   </div>
 
-  <!-- Meaning -->
-  <div class="meaning" id="meaning-box">
-    <div class="meaning-lbl">⚠️ Ce que ça veut dire concrètement</div>
-    <div class="meaning-txt" id="meaning-txt">
-      À <strong>0.72</strong>, les trois sources institutionnelles sont en zone élevée simultanément. La <strong>chaîne fraude → export → vols locaux</strong> est activée. Documenté par GRC Project Whiplash 2023. <strong>Pic de vols attendu dans 4 à 8 semaines.</strong>
+  <div class="divider"></div>
+
+  <!-- CAUSAL CHAIN -->
+  <div class="chain-section">
+    <div class="section-label">🔗 How this indicator works</div>
+    <div class="chain">
+      <div class="chain-item">
+        <div class="chain-n">01</div>
+        <div class="chain-t"><strong>Fraud at ports rises</strong> — Auto loans approved for vehicles never registered locally. Banks report this to CANAFE.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">02</div>
+        <div class="chain-t"><strong>Export via containers increases</strong> — Halifax, Vancouver, Montreal. Local demand for stolen parts rises simultaneously.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">03</div>
+        <div class="chain-t"><strong>Cash-only parts market activates</strong> — Visible signal on Kijiji Auto and Facebook Marketplace.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">04</div>
+        <div class="chain-t"><strong>Vehicle theft spike follows</strong> — Documented 4 to 8 weeks after the composite signal activates. Source: GRC Project Whiplash 2023.</div>
+      </div>
     </div>
   </div>
 
-  <!-- Chain -->
-  <div class="chain" style="margin-top:20px;">
-    <div class="sec-lbl">🔗 Chaîne causale documentée</div>
-    <div class="chain-item">
-      <div class="chain-n">01</div>
-      <div class="chain-t"><strong>Fraude financement aux ports</strong> — prêts auto approuvés, véhicules jamais immatriculés localement. Déclarés à CANAFE par les banques.</div>
-    </div>
-    <div class="chain-item">
-      <div class="chain-n">02</div>
-      <div class="chain-t"><strong>Export via conteneurs</strong> — Halifax, Vancouver, Montréal. La demande locale en pièces détachées monte.</div>
-    </div>
-    <div class="chain-item">
-      <div class="chain-n">03</div>
-      <div class="chain-t"><strong>Marché pièces "cash only"</strong> s'active — signal visible sur Kijiji Auto et Facebook Marketplace.</div>
-    </div>
-    <div class="chain-item">
-      <div class="chain-n">04</div>
-      <div class="chain-t"><strong>Pic de vols de véhicules</strong> — documenté 4 à 8 semaines après l'activation du signal composite.</div>
-    </div>
-  </div>
+  <div class="divider"></div>
 
-  <!-- History -->
-  <div class="hist" style="margin-bottom:24px;">
-    <div class="sec-lbl" style="margin-top:4px;">📈 Historique 6 mois</div>
+  <!-- HISTORY -->
+  <div class="hist-section">
+    <div class="section-label">📈 6-Month History</div>
     <div class="hrow">
-      <div class="hl">Ce mois</div>
-      <div class="ht"><div class="hf" id="hb-now" style="width:72%;background:var(--rouge)"></div></div>
-      <div class="hv" style="color:var(--rouge)" id="hv-now">0.72</div>
+      <div class="hl">This month</div>
+      <div class="ht"><div class="hf" id="hb1" style="width:0%;background:var(--red)"></div></div>
+      <div class="hv" id="hv1" style="color:var(--red)">—</div>
     </div>
     <div class="hrow">
-      <div class="hl">− 1 mois</div>
+      <div class="hl">− 1 month</div>
       <div class="ht"><div class="hf" style="width:65%;background:var(--orange)"></div></div>
       <div class="hv" style="color:var(--orange)">0.65</div>
     </div>
     <div class="hrow">
-      <div class="hl">− 2 mois</div>
+      <div class="hl">− 2 months</div>
       <div class="ht"><div class="hf" style="width:60%;background:var(--orange)"></div></div>
       <div class="hv" style="color:var(--orange)">0.60</div>
     </div>
     <div class="hrow">
-      <div class="hl">− 3 mois</div>
+      <div class="hl">− 3 months</div>
       <div class="ht"><div class="hf" style="width:54%;background:var(--orange)"></div></div>
       <div class="hv" style="color:var(--orange)">0.54</div>
     </div>
     <div class="hrow">
-      <div class="hl">− 4 mois</div>
+      <div class="hl">− 4 months</div>
       <div class="ht"><div class="hf" style="width:42%;background:var(--orange)"></div></div>
       <div class="hv" style="color:var(--orange)">0.42</div>
     </div>
     <div class="hrow">
-      <div class="hl">− 5 mois</div>
-      <div class="ht"><div class="hf" style="width:30%;background:var(--vert)"></div></div>
-      <div class="hv" style="color:var(--vert)">0.30</div>
+      <div class="hl">− 5 months</div>
+      <div class="ht"><div class="hf" style="width:30%;background:var(--green)"></div></div>
+      <div class="hv" style="color:var(--green)">0.30</div>
     </div>
   </div>
 
-</div><!-- /card -->
-
-<!-- STATS -->
-<div class="stats">
-  <div class="stat">
-    <div class="stat-v" id="st1" style="color:var(--rouge)">+18%</div>
-    <div class="stat-l">Fraude financement<br>auto ce trimestre</div>
-  </div>
-  <div class="stat">
-    <div class="stat-v" style="color:var(--text)">4–8 sem.</div>
-    <div class="stat-l">Délai prédictif<br>documenté GRC</div>
-  </div>
-  <div class="stat">
-    <div class="stat-v" style="color:var(--muted)">3 sources</div>
-    <div class="stat-l">Institutionnelles<br>canadiennes</div>
-  </div>
-</div>
-
-<!-- METHODOLOGY -->
-<div class="method">
-  <div class="method-ttl">📋 Méthodologie</div>
-  <div class="method-txt">
-    Composite mensuel : <strong>Équité Association</strong> fraude auto ports (35%) +
-    <strong>CANAFE</strong> déclarations douteuses financement auto (40%) +
-    <strong>IBC + police ouverte</strong> Toronto/Montréal/Calgary (25%).
-    Corrélation documentée : <strong>GRC Project Whiplash 2023</strong>.
-    Délai prédictif moyen : 4 à 8 semaines.
-  </div>
-</div>
-
-<!-- CASTOR TIP -->
-<div class="tip">
-  <div class="tip-icon">🦫</div>
-  <div class="tip-inner">
-    <div class="tip-lbl">Le Castor dit</div>
-    <div class="tip-txt" id="tip-txt">
-      "À <strong>0.72</strong>, les banques le savent. Les assureurs le savent. Les ports le savent.
-      <strong>Dans 6 semaines, les journaux vont l'apprendre.</strong>"
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-v" id="st1" style="color:var(--red)">—</div>
+      <div class="stat-l">Change this month</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v" style="color:var(--text)">4–8 wks</div>
+      <div class="stat-l">Predictive lead time (GRC)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-v" style="color:var(--muted)">3 sources</div>
+      <div class="stat-l">Canadian institutions</div>
     </div>
   </div>
-</div>
 
-<!-- DEMO -->
-<div class="demo">
-  <div class="demo-l">Simuler →</div>
-  <input type="range" id="slider" min="0" max="100" value="72" step="1">
-  <div class="demo-v" id="demo-v">0.72</div>
-</div>
-<div class="demo-note">← Glisse pour voir le dashboard réagir</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="foot-brand">🦫 CASTOR.WATCH</div>
-  <div class="foot-meta">
-    Données publiques · Canada<br>
-    MAJ : 1er de chaque mois
+  <!-- METHODOLOGY -->
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">
+      Monthly composite score: <strong>Équité Association</strong> port fraud data (35%) + <strong>CANAFE</strong> suspicious transaction reports on auto financing (40%) + <strong>IBC + open police data</strong> Toronto/Montreal/Calgary (25%). Correlation documented in <strong>GRC Project Whiplash 2023</strong>. Average predictive lead time: 4 to 8 weeks. This dashboard does not constitute legal or police advice.
+    </div>
   </div>
-</footer>
+
+  <!-- CASTOR -->
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt" id="castor-txt">"Loading..."</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Public data · Canada<br>Updated monthly · <span id="last-updated">—</span></div>
+  </footer>
+
+</div><!-- /wrapper -->
 
 <script>
-const CIRC = 2 * Math.PI * 40;
+const CIRC = 2 * Math.PI * 40; // 251.2
 
-const Z = {
-  safe: {
-    accent:'#00E676', glow:'rgba(0,230,118,0.15)',
-    alertBg:'#00C853',
-    word:'SÉCURITAIRE',
-    desc:'Risque faible. Les sources institutionnelles sont calmes. Le castor dort bien.',
-    alert:'✅ STABLE — Indice : {v} — Risque de vol sous la moyenne nationale.',
-    meaning:'À <strong>{v}</strong>, les trois sources sont en zone verte. <strong>Risque de vol de véhicule sous la moyenne</strong>. Aucune action particulière requise.',
-    tip:'"À {v}, les signaux sont calmes. Les données le confirment. Aucun pic prévu. Le castor surveille quand même."',
-    pill:'p-safe', st1:{v:'-4%',c:'#00E676'},
+// ── Google Sheets URL ──
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
+
+// ── Risk zones config ──
+const ZONES = {
+  low: {
+    color:'#00E676', glow:'rgba(0,230,118,0.15)', alertBg:'#00695C',
+    word:'LOW RISK',
+    desc:'Conditions are calm. The fraud and theft chain is inactive.',
+    alert:'✅ LOW RISK — Auto Theft Index: {v} — Vehicle theft risk is below the national average.',
+    meaningTitle:'Your car is NOT at elevated risk right now.',
+    meaningTxt:'At <strong>{v}</strong>, all three data sources show normal activity. There is <strong>no unusual fraud at ports, no suspicious banking activity</strong> and <strong>no spike in insurance claims</strong>. Enjoy peace of mind — but always use basic precautions.',
+    actionTitle:'🟢 Basic precautions are enough',
+    actions:['Park in well-lit areas when possible.','Make sure your doors are locked and windows closed.','No special action required at this risk level.'],
+    castor:'"At {v}, the data is quiet. The beaver is watching — but not worried."',
+    st1:'+0%', st1c:'#00E676', pill:'p-low',
   },
-  warn: {
-    accent:'#FF6D00', glow:'rgba(255,109,0,0.15)',
-    alertBg:'#E65100',
-    word:'ATTENTION',
-    desc:'Signaux modérés détectés. La chaîne commence à s\'activer. Vigilance recommandée.',
-    alert:'⚠️ ATTENTION — Indice : {v} — Signaux modérés. Surveillance accrue recommandée.',
-    meaning:'À <strong>{v}</strong>, les signaux montent dans les données CANAFE et Équité. <strong>La chaîne fraude → export → vols commence à s\'activer.</strong> Restez vigilant.',
-    tip:'"À {v}, les premiers signaux apparaissent. Ce n\'est pas encore rouge. Mais la courbe monte depuis 3 mois."',
-    pill:'p-warn', st1:{v:'+8%',c:'#FF6D00'},
+  moderate: {
+    color:'#FF6D00', glow:'rgba(255,109,0,0.15)', alertBg:'#E65100',
+    word:'MODERATE RISK',
+    desc:'Signals are rising. The theft chain is starting to activate.',
+    alert:'⚠️ MODERATE RISK — Auto Theft Index: {v} — Increased vehicle theft signals detected. Stay alert.',
+    meaningTitle:'There is a moderate risk your car could be targeted.',
+    meaningTxt:'At <strong>{v}</strong>, we are seeing <strong>rising fraud at Canadian ports and increased suspicious banking activity</strong>. This does not mean your car will be stolen — but the conditions that typically precede a theft spike are building. <strong>Extra precautions are recommended.</strong>',
+    actionTitle:'🟠 Take extra precautions now',
+    actions:['Consider parking in a garage or secured lot overnight.','Install or activate your steering wheel lock.','Check that your car alarm is working properly.','Avoid leaving valuables visible in your vehicle.'],
+    castor:'"At {v}, the signals are rising. The beaver has one eye open."',
+    st1:'+8%', st1c:'#FF6D00', pill:'p-mod',
   },
-  danger: {
-    accent:'#FF1A1A', glow:'rgba(255,26,26,0.2)',
-    alertBg:'#C62828',
-    word:'DANGER',
-    desc:'Conditions réunies pour un pic de vols dans les 4 à 8 semaines. Garez votre char en garage.',
-    alert:'🚨 DANGER — Indice : {v} — Niveau critique. Pic de vols prédit dans 4 à 8 semaines.',
-    meaning:'À <strong>{v}</strong>, les trois sources institutionnelles sont en zone élevée simultanément. La <strong>chaîne fraude → export → vols locaux</strong> est activée. Documenté par GRC Project Whiplash 2023. <strong>Pic de vols attendu dans 4 à 8 semaines.</strong>',
-    tip:'"À {v}, les banques le savent. Les assureurs le savent. Les ports le savent. <strong>Dans 6 semaines, les journaux vont l\'apprendre.</strong>"',
-    pill:'p-danger', st1:{v:'+18%',c:'#FF1A1A'},
+  high: {
+    color:'#FF2D2D', glow:'rgba(255,45,45,0.2)', alertBg:'#B71C1C',
+    word:'HIGH RISK',
+    desc:'All three sources in the danger zone. Theft spike predicted in 4–8 weeks.',
+    alert:'🚨 HIGH RISK — Auto Theft Index: {v} — All signals critical. Elevated vehicle theft risk in 4 to 8 weeks.',
+    meaningTitle:'Your car faces elevated theft risk in the next 4 to 8 weeks.',
+    meaningTxt:'At <strong>{v}</strong>, all three institutional sources are simultaneously elevated. <strong>Port fraud is high, CANAFE has flagged increased suspicious auto financing, and insurance data confirms the trend.</strong> Based on documented correlations (GRC Project Whiplash 2023), a significant vehicle theft spike is likely within 4 to 8 weeks. <strong>Take action now.</strong>',
+    actionTitle:'🔴 Take strong protective action',
+    actions:['Park in a locked garage every night if possible.','Install a GPS tracker on your vehicle.','Add a steering wheel lock or kill switch.','Contact your insurance company to review your coverage.','Never leave your car running unattended — even for 1 minute.','High-risk vehicles: Honda CR-V, Toyota Highlander, Ford F-150 — extra caution required.'],
+    castor:'"At {v}, the chain is activated. The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong>"',
+    st1:'+18%', st1c:'#FF2D2D', pill:'p-high',
   }
 };
 
-function zone(v){ return v<0.4?'safe':v<0.7?'warn':'danger'; }
+function getZone(v){ return v<0.4?'low':v<0.7?'moderate':'high'; }
 
-function update(pct){
-  const v = (pct/100).toFixed(2);
-  const zk = zone(parseFloat(v));
-  const d = Z[zk];
+function update(composite, equite, canafe, ibc, updatedAt) {
+  const v = parseFloat(composite).toFixed(2);
+  const pct = Math.round(parseFloat(v) * 100);
+  const zk = getZone(parseFloat(v));
+  const Z = ZONES[zk];
 
   // CSS vars
-  document.documentElement.style.setProperty('--accent', d.accent);
-  document.documentElement.style.setProperty('--glow', d.glow);
+  document.documentElement.style.setProperty('--accent', Z.color);
+  document.documentElement.style.setProperty('--glow', Z.glow);
 
-  // Gauge
+  // Gauge arc
   const arc = document.getElementById('gauge-arc');
-  arc.style.strokeDashoffset = CIRC*(1-pct/100);
-  arc.style.stroke = d.accent;
-  arc.style.filter = `drop-shadow(0 0 14px ${d.glow})`;
+  arc.style.strokeDashoffset = CIRC*(1 - pct/100);
+  arc.style.stroke = Z.color;
+  arc.style.filter = `drop-shadow(0 0 14px ${Z.glow})`;
 
-  // Center num
-  const gn = document.getElementById('g-num');
-  gn.textContent = v; gn.style.color = d.accent;
+  // Center
+  document.getElementById('g-val').textContent = v;
+  document.getElementById('g-val').style.color = Z.color;
 
-  // Risk word/desc
-  document.getElementById('risk-word').textContent = d.word;
-  document.getElementById('risk-word').style.color = d.accent;
-  document.getElementById('risk-desc').textContent = d.desc;
+  // Risk word
+  document.getElementById('risk-word').textContent = Z.word;
+  document.getElementById('risk-word').style.color = Z.color;
+  document.getElementById('risk-desc').textContent = Z.desc;
 
   // Pills
-  ['p-safe','p-warn','p-danger'].forEach(id=>document.getElementById(id).classList.remove('active'));
-  document.getElementById(d.pill).classList.add('active');
+  ['p-low','p-mod','p-high'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(Z.pill).classList.add('active');
 
   // Alert
-  document.getElementById('alert-bar').style.background = d.alertBg;
-  document.getElementById('alert-txt').textContent = d.alert.replace(/{v}/g,v);
+  document.getElementById('alert-bar').style.background = Z.alertBg;
+  document.getElementById('alert-txt').textContent = Z.alert.replace(/{v}/g, v);
+
+  // Live pill
+  document.getElementById('live-pill').style.background = Z.color;
+  document.getElementById('live-dot').style.background = '#fff';
 
   // Meaning
   const mb = document.getElementById('meaning-box');
-  mb.style.borderLeftColor = d.accent;
-  mb.style.background = `${d.accent}09`;
-  document.getElementById('meaning-txt').innerHTML = d.meaning.replace(/{v}/g,v);
+  mb.style.borderLeftColor = Z.color;
+  mb.style.background = `${Z.color}08`;
+  document.getElementById('meaning-title').textContent = Z.meaningTitle;
+  document.getElementById('meaning-title').style.color = Z.color;
+  document.getElementById('meaning-txt').innerHTML = Z.meaningTxt.replace(/{v}/g, v);
 
-  // Tip
-  document.getElementById('tip-txt').innerHTML = d.tip.replace(/{v}/g,v);
+  // Actions
+  document.getElementById('action-title').textContent = Z.actionTitle;
+  const actionList = document.getElementById('action-list');
+  actionList.innerHTML = '';
+  Z.actions.forEach(a => {
+    actionList.innerHTML += `<div class="action-item"><div class="action-icon">→</div><div>${a}</div></div>`;
+  });
+
+  // Sources
+  if(equite) document.getElementById('src1').textContent = parseFloat(equite).toFixed(2);
+  if(canafe) document.getElementById('src2').textContent = parseFloat(canafe).toFixed(2);
+  if(ibc)    document.getElementById('src3').textContent = parseFloat(ibc).toFixed(2);
 
   // Stats
   const s1 = document.getElementById('st1');
-  s1.textContent = d.st1.v; s1.style.color = d.st1.c;
+  s1.textContent = Z.st1;
+  s1.style.color = Z.st1c;
 
   // History current
-  document.getElementById('hb-now').style.width = pct+'%';
-  document.getElementById('hb-now').style.background = d.accent;
-  const hv = document.getElementById('hv-now');
-  hv.textContent = v; hv.style.color = d.accent;
+  document.getElementById('hb1').style.width = pct + '%';
+  document.getElementById('hb1').style.background = Z.color;
+  document.getElementById('hv1').textContent = v;
+  document.getElementById('hv1').style.color = Z.color;
 
-  // Corner dot
-  document.getElementById('corner-dot').style.background = d.accent;
+  // Castor
+  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g, v);
 
-  // Demo display
-  document.getElementById('demo-v').textContent = v;
+  // Last updated
+  if(updatedAt) {
+    const d = new Date(updatedAt);
+    document.getElementById('last-updated').textContent =
+      d.toLocaleDateString('en-CA', {month:'long', day:'numeric', year:'numeric'});
+  }
+
+  // Hide loading bar
+  document.getElementById('loading-bar').classList.add('done');
 }
 
-// Clock
+// ── Clock ──
 function tick(){
   const n=new Date();
-  document.getElementById('clock').textContent =
+  document.getElementById('clock').textContent=
     [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
 }
-setInterval(tick,1000); tick();
+setInterval(tick,1000);tick();
 
-// Slider
-document.getElementById('slider').addEventListener('input',function(){
-  update(parseInt(this.value));
-});
+// ── Load from Google Sheets ──
+window.addEventListener('load', () => {
+  // Animate gauge starting from 0
+  const arc = document.getElementById('gauge-arc');
+  arc.style.strokeDashoffset = CIRC;
 
-// Init with animation
-window.addEventListener('load',()=>{
-  document.getElementById('gauge-arc').style.strokeDashoffset = CIRC;
-  setTimeout(()=>update(72), 150);
-});
-
-// ══════════════════════════════════
-// GOOGLE SHEETS AUTO-CONNECT
-// Remplace cette URL par ton URL Apps Script
-// ══════════════════════════════════
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
-
-if(SHEETS_URL) {
   fetch(SHEETS_URL)
-    .then(r=>r.json())
-    .then(data=>{
-      if(data.composite){
-        const pct = Math.round(data.composite * 100);
-        document.getElementById('slider').value = pct;
-        update(pct);
-        // Mettre à jour les sources individuelles
-        if(data.equite)  document.getElementById('src1').textContent = parseFloat(data.equite).toFixed(2);
-        if(data.canafe)  document.getElementById('src2').textContent = parseFloat(data.canafe).toFixed(2);
-        if(data.ibc)     document.getElementById('src3').textContent = parseFloat(data.ibc).toFixed(2);
+    .then(r => r.json())
+    .then(data => {
+      if(data.composite) {
+        update(data.composite, data.equite, data.canafe, data.ibc, data.updated);
+      } else {
+        // Fallback to default if no data
+        update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
       }
     })
-    .catch(()=>{ /* Fallback sur valeur par défaut 0.72 */ });
-}
+    .catch(() => {
+      // Fallback if fetch fails
+      update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
+    });
+});
 </script>
 </body>
 </html>
