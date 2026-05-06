@@ -495,12 +495,12 @@ window.addEventListener('load',()=>{
       document.getElementById('b3').className = getBadgeClass(pd);
 
       // National score — average of all indicators
-      const sl = data.schoolLunch||0.73;
-      const hc = data.haircut||0.34;
-      const ct = data.ctFlyer||0.097;
-      const cs = data.couchSurf||0.40;
+      const sl  = data.schoolLunch || 0.73;
+      const hc  = data.haircut     || 0.34;
+      const ct  = data.ctFlyer     || 0.097;
+      const c2  = data.crisis211   || 0.72;
 
-      const allScores = [at, fs, pd, sl, hc, ct, cs];
+      const allScores = [at, fs, pd, sl, hc, ct, c2];
       const avg = allScores.reduce((a,b)=>a+b,0)/allScores.length;
       const natScore = Math.round(avg*100);
 
