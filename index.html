@@ -61,26 +61,34 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .c-r::before{background:var(--red);}
 .c-o::before{background:var(--orange);}
 .c-y::before{background:var(--yellow);}
+.c-g::before{background:var(--green);}
 
 .card-top{display:flex;justify-content:space-between;align-items:flex-start;}
 .card-icon{font-size:2rem;line-height:1;}
 .badge{font-size:0.6rem;letter-spacing:2px;padding:5px 11px;font-weight:700;text-transform:uppercase;border:1px solid;}
 .br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
 .bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.bg{color:var(--green);border-color:rgba(0,230,118,0.4);background:rgba(0,230,118,0.08);}
 
 .card-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;line-height:1.1;}
 .card-sub{font-size:0.68rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-6px;}
 .card-val-row{display:flex;align-items:flex-end;gap:12px;}
 .card-val{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;line-height:1;}
 .c-r .card-val{color:var(--red);}
-.card-trend{font-size:0.72rem;font-weight:700;padding-bottom:6px;color:var(--red);}
+.c-o .card-val{color:var(--orange);}
+.c-g .card-val{color:var(--green);}
+.card-trend{font-size:0.72rem;font-weight:700;padding-bottom:6px;}
 .card-bar{width:100%;height:5px;background:var(--faint);}
 .card-bar-fill{height:100%;}
 .c-r .card-bar-fill{background:var(--red);}
+.c-o .card-bar-fill{background:var(--orange);}
+.c-g .card-bar-fill{background:var(--green);}
 .spark{display:flex;align-items:flex-end;gap:3px;height:32px;}
 .sb{flex:1;border-radius:1px;opacity:0.3;}
 .sb:last-child{opacity:1;}
 .c-r .sb{background:var(--red);}
+.c-o .sb{background:var(--orange);}
+.c-g .sb{background:var(--green);}
 .card-source{font-size:0.62rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:12px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .card-arrow{font-size:0.8rem;opacity:0.4;transition:all 0.2s;}
 
@@ -109,7 +117,6 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .rule-txt{font-size:0.88rem;line-height:1.9;color:var(--text);}
 .rule-txt strong{font-weight:700;}
 
-/* LONG TERM */
 .lt-intro{background:var(--s1);border-left:4px solid var(--yellow);padding:24px 28px;margin-bottom:1px;display:flex;gap:18px;}
 .lt-intro-icon{font-size:1.8rem;flex-shrink:0;}
 .lt-intro-title{font-size:0.68rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
@@ -138,8 +145,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 .foot-links{display:flex;flex-direction:column;gap:8px;}
 .foot-link{font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
 .foot-link:hover{color:var(--text);}
-.foot-email{font-size:0.72rem;color:var(--muted);}
-.foot-email a{color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.foot-email a{color:var(--muted);text-decoration:none;font-size:0.72rem;transition:color 0.2s;}
 .foot-email a:hover{color:var(--text);}
 .foot-bottom{margin-top:20px;padding-top:16px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .foot-copy{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
@@ -166,7 +172,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 
 <div class="alert">
   <div class="a-dot"></div>
-  <div class="a-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
+  <div class="a-txt" id="alert-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 
@@ -180,18 +186,18 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 
 <div class="ticker-outer">
   <div class="ticker-inner">
+    <span class="ti">🚗 Auto Theft Index <em id="t1">0.72 🔴</em> ///</span>
+    <span class="ti">🍞 Food Stress Index <em id="t2">0.71 🔴</em> ///</span>
+    <span class="ti">💸 Payday Loan Radar <em id="t3">0.82 🔴</em> ///</span>
+    <span class="ti">🥪 School Lunch Deficit <em id="t4">0.73 🔴</em> ///</span>
+    <span class="ti">✂️ Haircut Index <em id="t5">0.34 🟢</em> ///</span>
+    <span class="ti">🛋️ Couch Surf Index <em id="t6">0.40 🟠</em> ///</span>
     <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
     <span class="ti">🍞 Food Stress Index <em>0.71 🔴</em> ///</span>
     <span class="ti">💸 Payday Loan Radar <em>0.82 🔴</em> ///</span>
-    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
-    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
-    <span class="ti">💳 Credit card defaults <em>rising in Ontario</em> ///</span>
-    <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
-    <span class="ti">🍞 Food Stress Index <em>0.71 🔴</em> ///</span>
-    <span class="ti">💸 Payday Loan Radar <em>0.82 🔴</em> ///</span>
-    <span class="ti">📉 Male university enrollment <em>-8% since 2015</em> ///</span>
-    <span class="ti">🦫 Beaver nervous for <em>6 consecutive weeks</em> ///</span>
-    <span class="ti">💳 Credit card defaults <em>rising in Ontario</em> ///</span>
+    <span class="ti">🥪 School Lunch Deficit <em>0.73 🔴</em> ///</span>
+    <span class="ti">✂️ Haircut Index <em>0.34 🟢</em> ///</span>
+    <span class="ti">🛋️ Couch Surf Index <em>0.40 🟠</em> ///</span>
   </div>
 </div>
 
@@ -202,9 +208,9 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     <div class="hero-desc">Predictive indicators based on real Canadian public data. Forecasts social, economic and criminal tensions 4 to 16 weeks — and up to 15 years — before they happen.</div>
   </div>
   <div class="nat-block">
-    <div class="nat-num" id="nat-num">0</div>
+    <div class="nat-num" id="nat-num">—</div>
     <div class="nat-lbl">National Score / 100</div>
-    <div class="nat-status">⚠️ HIGH TENSION</div>
+    <div class="nat-status" id="nat-status">⏳ LOADING</div>
   </div>
 </div>
 
@@ -219,11 +225,11 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   <div class="grid3">
 
     <a class="card c-r" href="auto-theft.html">
-      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br" id="b1">🔴 CRITICAL</div></div>
       <div class="card-name">Auto Theft Index</div>
       <div class="card-sub">"The beaver watches your car."</div>
-      <div class="card-val-row"><div class="card-val">0.72</div><div class="card-trend">▲ +0.07</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:72%"></div></div>
+      <div class="card-val-row"><div class="card-val" id="v1">—</div><div class="card-trend" style="color:var(--red)">▲ +0.07</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar1" style="width:0%"></div></div>
       <div class="spark">
         <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div>
         <div class="sb" style="height:55%"></div><div class="sb" style="height:60%"></div>
@@ -234,11 +240,11 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </a>
 
     <a class="card c-r" href="food-stress.html">
-      <div class="card-top"><div class="card-icon">🍞</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-top"><div class="card-icon">🍞</div><div class="badge br" id="b2">🔴 CRITICAL</div></div>
       <div class="card-name">Food Stress Index</div>
       <div class="card-sub">"The empty lunch box never lies."</div>
-      <div class="card-val-row"><div class="card-val">0.71</div><div class="card-trend">▲ +0.09</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:71%"></div></div>
+      <div class="card-val-row"><div class="card-val" id="v2">—</div><div class="card-trend" style="color:var(--red)">▲ +0.09</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar2" style="width:0%"></div></div>
       <div class="spark">
         <div class="sb" style="height:30%"></div><div class="sb" style="height:36%"></div>
         <div class="sb" style="height:42%"></div><div class="sb" style="height:50%"></div>
@@ -249,11 +255,11 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </a>
 
     <a class="card c-r" href="payday-loan.html">
-      <div class="card-top"><div class="card-icon">💸</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-top"><div class="card-icon">💸</div><div class="badge br" id="b3">🔴 CRITICAL</div></div>
       <div class="card-name">Payday Loan Radar</div>
       <div class="card-sub">"When Money Mart is packed."</div>
-      <div class="card-val-row"><div class="card-val">0.82</div><div class="card-trend">▲ +0.08</div></div>
-      <div class="card-bar"><div class="card-bar-fill" style="width:82%"></div></div>
+      <div class="card-val-row"><div class="card-val" id="v3">—</div><div class="card-trend" style="color:var(--red)">▲ +0.08</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar3" style="width:0%"></div></div>
       <div class="spark">
         <div class="sb" style="height:38%"></div><div class="sb" style="height:44%"></div>
         <div class="sb" style="height:52%"></div><div class="sb" style="height:61%"></div>
@@ -266,35 +272,39 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   </div>
 </div>
 
+<!-- SEE ALL -->
 <div class="see-all-wrap">
   <a class="see-all" href="all-indicators.html">
     <div>
       <div class="see-all-title">See All Short-Term Indicators</div>
-      <div class="see-all-sub">U-Haul Migration · Housing Crisis · School Lunch Deficit · Night Shift Surge · and more coming soon</div>
+      <div class="see-all-sub">School Lunch Deficit · Haircut Index · Canadian Tire Flyer · Couch Surf Index · and more coming soon</div>
       <div class="see-all-badges">
-        <div class="sab" style="color:var(--red);border-color:rgba(255,45,45,0.3);">3 🔴 CRITICAL</div>
-        <div class="sab" style="color:var(--orange);border-color:rgba(255,109,0,0.3);">2 🟠 HIGH</div>
+        <div class="sab" style="color:var(--red);border-color:rgba(255,45,45,0.3);" id="red-count">3 🔴 CRITICAL</div>
+        <div class="sab" style="color:var(--orange);border-color:rgba(255,109,0,0.3);" id="orange-count">1 🟠 HIGH</div>
+        <div class="sab" style="color:var(--green);border-color:rgba(0,230,118,0.3);" id="green-count">2 🟢 STABLE</div>
       </div>
     </div>
     <div class="see-all-cta">VIEW ALL →</div>
   </a>
 </div>
 
+<!-- NATIONAL BAR -->
 <div class="nat-bar-wrap">
   <div class="nat-bar-inner">
     <div class="nbl">National Score</div>
     <div class="nb-track"><div class="nb-fill" id="nb-fill" style="width:0%"></div></div>
-    <div class="nbv">73 / 100</div>
+    <div class="nbv" id="nb-val">— / 100</div>
     <div class="nb-rule"><strong>Rule of 3 Reds:</strong> 3 red indicators simultaneously → major social incident predicted within 6 weeks.</div>
   </div>
 </div>
 
+<!-- RULE OF 3 -->
 <div class="rule-wrap">
   <div class="rule-inner">
     <div class="rule-icon">⚠️</div>
     <div>
       <div class="rule-title">Rule of 3 Reds — Active This Week</div>
-      <div class="rule-txt"><strong>Auto Theft (0.72) + Food Stress (0.71) + Payday Loan (0.82)</strong> — all three in the red zone simultaneously. Last seen: <strong>October 2022</strong>. The Payday Loan Radar at 0.82 is the strongest signal — <strong>a personal bankruptcy wave is predicted in 8 to 16 weeks.</strong></div>
+      <div class="rule-txt" id="rule-txt"><strong>Auto Theft + Food Stress + Payday Loan</strong> — all three in the red zone simultaneously. Last seen: <strong>October 2022</strong>. The Payday Loan Radar is the strongest signal — <strong>a personal bankruptcy wave is predicted in 8 to 16 weeks.</strong></div>
     </div>
   </div>
 </div>
@@ -316,7 +326,6 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   </div>
 
   <div class="grid3" style="margin-top:1px;">
-
     <div class="card c-r" style="cursor:default;">
       <div class="card-top"><div class="card-icon">🎓</div><div class="badge br">🔴 DECLINING</div></div>
       <div class="card-name">Male University Enrollment</div>
@@ -329,7 +338,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
         <div class="sb" style="height:56%"></div><div class="sb" style="height:50%"></div>
         <div class="sb" style="height:44%"></div><div class="sb" style="height:38%"></div>
       </div>
-      <div class="card-source" style="justify-content:flex-start;">StatCan · Education Indicators</div>
+      <div class="card-source" style="justify-content:flex-start;">StatCan · Education Indicators in Canada</div>
     </div>
 
     <div class="card c-o" style="cursor:default;">
@@ -338,7 +347,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"Closing fast — structural tension"</div>
       <div class="card-val-row"><div class="card-val" style="color:var(--orange)">2.1%</div><div class="card-trend" style="color:var(--orange)">▼ -6.4% since 2000</div></div>
       <div class="card-bar"><div class="card-bar-fill" style="width:21%;background:var(--orange)"></div></div>
-      <div class="spark" style="--color:var(--orange)">
+      <div class="spark">
         <div class="sb" style="height:85%;background:var(--orange)"></div><div class="sb" style="height:75%;background:var(--orange)"></div>
         <div class="sb" style="height:65%;background:var(--orange)"></div><div class="sb" style="height:55%;background:var(--orange)"></div>
         <div class="sb" style="height:45%;background:var(--orange)"></div><div class="sb" style="height:35%;background:var(--orange)"></div>
@@ -361,10 +370,10 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       </div>
       <div class="card-source" style="justify-content:flex-start;">StatCan · Vital Statistics</div>
     </div>
-
   </div>
 </div>
 
+<!-- LT WARNING -->
 <div class="lt-warning">
   <div class="lt-warning-inner">
     <div class="lt-w-icon">🔭</div>
@@ -375,6 +384,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   </div>
 </div>
 
+<!-- CASTOR QUOTE -->
 <div class="cq-wrap">
   <div class="cq-inner">
     <div class="cq-b">🦫</div>
@@ -382,6 +392,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
@@ -394,6 +405,8 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
         <a href="auto-theft.html" class="foot-link">🚗 Auto Theft Index</a>
         <a href="food-stress.html" class="foot-link">🍞 Food Stress Index</a>
         <a href="payday-loan.html" class="foot-link">💸 Payday Loan Radar</a>
+        <a href="school-lunch.html" class="foot-link">🥪 School Lunch Deficit</a>
+        <a href="haircut.html" class="foot-link">✂️ Haircut Frequency Index</a>
         <a href="all-indicators.html" class="foot-link">→ See all indicators</a>
       </div>
     </div>
@@ -412,6 +425,21 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 </footer>
 
 <script>
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyiyfqjJPdMlqMnBMxAmnQ6bihJvBxkYXO_HhislTqCa_4r3GsF_kw8lobhmyNL5a6-Mw/exec";
+
+function getColor(v){
+  return v>=0.7?'var(--red)':v>=0.4?'var(--orange)':'var(--green)';
+}
+function getBadge(v){
+  return v>=0.7?'🔴 CRITICAL':v>=0.4?'🟠 HIGH':'🟢 STABLE';
+}
+function getBadgeClass(v){
+  return v>=0.7?'badge br':v>=0.4?'badge bo':'badge bg';
+}
+function getEmoji(v){
+  return v>=0.7?'🔴':v>=0.4?'🟠':'🟢';
+}
+
 function tick(){
   const n=new Date();
   document.getElementById('clock').textContent=
@@ -427,12 +455,101 @@ document.getElementById('week-lbl').textContent=
 
 function animCount(el,target,dur){
   let v=0;const step=target/(dur/16);
-  const t=setInterval(()=>{v=Math.min(v+step,target);el.textContent=Math.floor(v);if(v>=target)clearInterval(t);},16);
+  const t=setInterval(()=>{
+    v=Math.min(v+step,target);
+    el.textContent=Math.floor(v);
+    if(v>=target)clearInterval(t);
+  },16);
 }
+
 window.addEventListener('load',()=>{
-  const el=document.getElementById('nat-num');
-  if(el)animCount(el,73,1800);
-  setTimeout(()=>{const f=document.getElementById('nb-fill');if(f)f.style.width='73%';},300);
+  fetch(SHEETS_URL)
+    .then(r=>r.json())
+    .then(data=>{
+
+      // Auto Theft
+      const at = data.composite||0.72;
+      document.getElementById('v1').textContent = parseFloat(at).toFixed(2);
+      document.getElementById('v1').style.color = getColor(at);
+      document.getElementById('bar1').style.width = (at*100)+'%';
+      document.getElementById('bar1').style.background = getColor(at);
+      document.getElementById('b1').textContent = getBadge(at);
+      document.getElementById('b1').className = getBadgeClass(at);
+
+      // Food Stress
+      const fs = data.foodStress||0.71;
+      document.getElementById('v2').textContent = parseFloat(fs).toFixed(2);
+      document.getElementById('v2').style.color = getColor(fs);
+      document.getElementById('bar2').style.width = (fs*100)+'%';
+      document.getElementById('bar2').style.background = getColor(fs);
+      document.getElementById('b2').textContent = getBadge(fs);
+      document.getElementById('b2').className = getBadgeClass(fs);
+
+      // Payday
+      const pd = data.payday||0.82;
+      document.getElementById('v3').textContent = parseFloat(pd).toFixed(2);
+      document.getElementById('v3').style.color = getColor(pd);
+      document.getElementById('bar3').style.width = (pd*100)+'%';
+      document.getElementById('bar3').style.background = getColor(pd);
+      document.getElementById('b3').textContent = getBadge(pd);
+      document.getElementById('b3').className = getBadgeClass(pd);
+
+      // National score — average of all indicators
+      const sl = data.schoolLunch||0.73;
+      const hc = data.haircut||0.34;
+      const ct = data.ctFlyer||0.097;
+      const cs = data.couchSurf||0.40;
+
+      const allScores = [at, fs, pd, sl, hc, ct, cs];
+      const avg = allScores.reduce((a,b)=>a+b,0)/allScores.length;
+      const natScore = Math.round(avg*100);
+
+      animCount(document.getElementById('nat-num'), natScore, 1800);
+      setTimeout(()=>{
+        document.getElementById('nb-fill').style.width = natScore+'%';
+        document.getElementById('nb-val').textContent = natScore+' / 100';
+      },300);
+
+      // Status
+      const status = natScore>=70?'⚠️ HIGH TENSION':natScore>=40?'⚡ MODERATE':'✅ STABLE';
+      document.getElementById('nat-status').textContent = status;
+
+      // Ticker update
+      document.getElementById('t1').textContent = parseFloat(at).toFixed(2)+' '+getEmoji(at);
+      document.getElementById('t2').textContent = parseFloat(fs).toFixed(2)+' '+getEmoji(fs);
+      document.getElementById('t3').textContent = parseFloat(pd).toFixed(2)+' '+getEmoji(pd);
+      document.getElementById('t4').textContent = parseFloat(sl).toFixed(2)+' '+getEmoji(sl);
+      document.getElementById('t5').textContent = parseFloat(hc).toFixed(2)+' '+getEmoji(hc);
+      document.getElementById('t6').textContent = parseFloat(cs).toFixed(2)+' '+getEmoji(cs);
+
+      // Count reds/oranges/greens
+      const reds = allScores.filter(s=>s>=0.7).length;
+      const oranges = allScores.filter(s=>s>=0.4&&s<0.7).length;
+      const greens = allScores.filter(s=>s<0.4).length;
+      document.getElementById('red-count').textContent = reds+' 🔴 CRITICAL';
+      document.getElementById('orange-count').textContent = oranges+' 🟠 HIGH';
+      document.getElementById('green-count').textContent = greens+' 🟢 STABLE';
+
+    })
+    .catch(()=>{
+      // Fallback hardcoded
+      animCount(document.getElementById('nat-num'), 62, 1800);
+      setTimeout(()=>{
+        document.getElementById('nb-fill').style.width='62%';
+        document.getElementById('nb-val').textContent='62 / 100';
+        document.getElementById('nat-status').textContent='⚠️ HIGH TENSION';
+      },300);
+      ['v1','v2','v3'].forEach((id,i)=>{
+        const vals=['0.72','0.71','0.82'];
+        document.getElementById(id).textContent=vals[i];
+        document.getElementById(id).style.color='var(--red)';
+      });
+      ['bar1','bar2','bar3'].forEach((id,i)=>{
+        const pcts=['72%','71%','82%'];
+        document.getElementById(id).style.width=pcts[i];
+        document.getElementById(id).style.background='var(--red)';
+      });
+    });
 });
 </script>
 </body>
