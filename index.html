@@ -191,13 +191,13 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     <span class="ti">💸 Payday Loan Radar <em id="t3">0.82 🔴</em> ///</span>
     <span class="ti">🥪 School Lunch Deficit <em id="t4">0.73 🔴</em> ///</span>
     <span class="ti">✂️ Haircut Index <em id="t5">0.34 🟢</em> ///</span>
-    <span class="ti">🛋️ Couch Surf Index <em id="t6">0.40 🟠</em> ///</span>
+    <span class="ti">📞 211 Crisis Index <em id="t6">0.72 🔴</em> ///</span>
     <span class="ti">🚗 Auto Theft Index <em>0.72 🔴</em> ///</span>
     <span class="ti">🍞 Food Stress Index <em>0.71 🔴</em> ///</span>
     <span class="ti">💸 Payday Loan Radar <em>0.82 🔴</em> ///</span>
     <span class="ti">🥪 School Lunch Deficit <em>0.73 🔴</em> ///</span>
     <span class="ti">✂️ Haircut Index <em>0.34 🟢</em> ///</span>
-    <span class="ti">🛋️ Couch Surf Index <em>0.40 🟠</em> ///</span>
+    <span class="ti">📞 211 Crisis Index <em>0.72 🔴</em> ///</span>
   </div>
 </div>
 
@@ -512,6 +512,9 @@ window.addEventListener('load',()=>{
 
       // Status
       const status = natScore>=70?'⚠️ HIGH TENSION':natScore>=40?'⚡ MODERATE':'✅ STABLE';
+      const statusColor = natScore>=70?'var(--red)':natScore>=40?'var(--orange)':'var(--green)';
+      document.getElementById('nat-status').style.color = statusColor;
+      document.getElementById('nat-num').style.color = statusColor;
       document.getElementById('nat-status').textContent = status;
 
       // Ticker update
@@ -520,7 +523,7 @@ window.addEventListener('load',()=>{
       document.getElementById('t3').textContent = parseFloat(pd).toFixed(2)+' '+getEmoji(pd);
       document.getElementById('t4').textContent = parseFloat(sl).toFixed(2)+' '+getEmoji(sl);
       document.getElementById('t5').textContent = parseFloat(hc).toFixed(2)+' '+getEmoji(hc);
-      document.getElementById('t6').textContent = parseFloat(cs).toFixed(2)+' '+getEmoji(cs);
+      document.getElementById('t6').textContent = parseFloat(c2).toFixed(2)+' '+getEmoji(c2);
 
       // Count reds/oranges/greens
       const reds = allScores.filter(s=>s>=0.7).length;
@@ -533,11 +536,13 @@ window.addEventListener('load',()=>{
     })
     .catch(()=>{
       // Fallback hardcoded
-      animCount(document.getElementById('nat-num'), 62, 1800);
+      animCount(document.getElementById("nat-num"), 57, 1800);
       setTimeout(()=>{
-        document.getElementById('nb-fill').style.width='62%';
-        document.getElementById('nb-val').textContent='62 / 100';
-        document.getElementById('nat-status').textContent='⚠️ HIGH TENSION';
+        document.getElementById('nb-fill').style.width='57%';
+        document.getElementById('nb-val').textContent='57 / 100';
+        document.getElementById('nat-status').textContent='⚡ MODERATE';
+        document.getElementById('nat-status').style.color='var(--orange)';
+        document.getElementById('nat-num').style.color='var(--orange)';
       },300);
       ['v1','v2','v3'].forEach((id,i)=>{
         const vals=['0.72','0.71','0.82'];
