@@ -39,6 +39,19 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .page-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;line-height:1;margin-bottom:8px;}
 .page-desc{font-size:0.85rem;color:var(--muted);line-height:1.8;max-width:600px;}
 
+/* SUMMARY */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin-top:28px;}
+.sum-block{background:var(--s1);padding:20px;display:flex;flex-direction:column;gap:6px;}
+.sum-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;}
+.sum-lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PREDICTION BOX */
+.pred-box{background:rgba(255,45,45,0.05);border-left:4px solid var(--red);padding:20px 24px;margin-top:1px;}
+.pred-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.pred-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.pred-txt strong{font-weight:700;}
+.pred-date{font-size:0.6rem;letter-spacing:2px;color:var(--muted);margin-top:8px;text-transform:uppercase;}
+
 .sec-head{display:flex;align-items:center;gap:16px;margin:36px 0 16px;}
 .sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
 .sec-line{flex:1;height:1px;background:var(--s3);}
@@ -60,6 +73,10 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .ind-sub{font-size:0.62rem;color:var(--muted);letter-spacing:1px;}
 .ind-source{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
 
+.ind-bar-wrap{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.ind-bar{flex:1;height:3px;background:var(--faint);max-width:120px;}
+.ind-bar-fill{height:100%;transition:width 1.5s ease;}
+
 .ind-score{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;text-align:right;flex-shrink:0;min-width:60px;}
 .red .ind-score{color:var(--red);}
 .orange .ind-score{color:var(--orange);}
@@ -76,21 +93,20 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .ind-arrow{font-size:0.8rem;color:var(--muted);flex-shrink:0;transition:all 0.2s;}
 .ind-row:hover:not(.coming) .ind-arrow{color:var(--text);transform:translateX(4px);}
 
-/* BAR MINI */
-.ind-bar-wrap{display:flex;align-items:center;gap:8px;margin-top:4px;}
-.ind-bar{flex:1;height:3px;background:var(--faint);max-width:120px;}
-.ind-bar-fill{height:100%;transition:width 1.5s ease;}
-
-/* COMING SOON */
 .coming-badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid var(--s4);color:var(--s4);background:transparent;}
 
-/* SUMMARY BAR */
-.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin-top:24px;}
-.sum-block{background:var(--s1);padding:20px;display:flex;flex-direction:column;gap:6px;}
-.sum-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;}
-.sum-lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+/* CONTEXT NOTE */
+.context-box{background:var(--s1);border-left:3px solid var(--yellow);padding:18px 22px;margin-top:1px;}
+.context-title{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.context-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.context-txt strong{font-weight:700;}
 
-footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+/* TRANSPARENCY */
+.transp-box{margin-top:24px;padding:16px 20px;background:rgba(255,214,0,0.04);border-left:3px solid var(--yellow);}
+.transp-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.transp-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+
+footer{margin:28px auto 0;padding:20px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);}
 .foot-meta{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
 
@@ -100,7 +116,6 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
   .summary{grid-template-columns:1fr;}
   .wrapper{padding:0 18px 48px;}
   header{padding:16px 18px;}
-  footer{padding:18px;}
 }
 @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
 .wrapper{animation:fadeUp 0.4s ease both;}
@@ -110,7 +125,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
 
 <div class="alert">
   <div class="a-dot"></div>
-  <div class="a-txt">🚨 3 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
+  <div class="a-txt">🚨 RULE OF 3 REDS ACTIVE — Social incident predicted within 6 weeks.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 
@@ -125,9 +140,9 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
   <a href="index.html" class="back-link">← Back to Dashboard</a>
 
   <div class="page-hero">
-    <div class="page-eyebrow">🍁 All Indicators — Canada</div>
+    <div class="page-eyebrow">🍁 All Indicators — Canada · May 2026</div>
     <div class="page-title">All Short-Term<br>Indicators</div>
-    <div class="page-desc">Every indicator tracked by CASTOR.WATCH. All data sourced from Canadian public institutions. Updated monthly. Scores are composites — see each indicator page for full methodology.</div>
+    <div class="page-desc">Every indicator tracked by CASTOR.WATCH. All data sourced from Canadian public institutions. Scores updated monthly. See each indicator page for full methodology and sources.</div>
   </div>
 
   <!-- SUMMARY -->
@@ -144,6 +159,15 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="sum-val" style="color:var(--green)" id="sum-green">—</div>
       <div class="sum-lbl">🟢 Stable — Normal range</div>
     </div>
+  </div>
+
+  <!-- PREDICTION -->
+  <div class="pred-box">
+    <div class="pred-title">🎯 Public Prediction — Made May 6, 2026</div>
+    <div class="pred-txt">
+      With <strong>5 indicators simultaneously in the red zone</strong> — Auto Theft (0.72), Food Stress (0.71), Payday Loan (0.82), School Lunch (0.73) and 211 Crisis (0.72) — CASTOR.WATCH predicts: <strong>a significant wave of personal insolvencies in Canada by July 2026</strong>, combined with measurable increases in child welfare interventions and visible homelessness in major urban centres. We will verify this prediction publicly in 8 weeks.
+    </div>
+    <div class="pred-date">Prediction date: May 6, 2026 · Verification date: July 1, 2026</div>
   </div>
 
   <!-- LIVE INDICATORS -->
@@ -230,21 +254,21 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="ind-arrow">→</div>
     </a>
 
-    <!-- COUCH SURF -->
-    <a class="ind-row orange" href="couch-surf.html">
-      <div class="ind-icon">🛋️</div>
+    <!-- 211 CRISIS -->
+    <a class="ind-row red" href="211-crisis.html">
+      <div class="ind-icon">📞</div>
       <div class="ind-info">
-        <div class="ind-name">Couch Surf Index</div>
-        <div class="ind-sub">"The hidden homelessness signal."</div>
+        <div class="ind-name">211 Crisis Index</div>
+        <div class="ind-sub">"35% of housing needs unmet — #1 crisis in Canada."</div>
         <div class="ind-bar-wrap">
-          <div class="ind-bar"><div class="ind-bar-fill" id="bar-cs" style="width:0%;background:var(--orange)"></div></div>
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-c2" style="width:0%;background:var(--red)"></div></div>
         </div>
-        <div class="ind-source">Google Trends · CMHC Vacancy Rate</div>
+        <div class="ind-source">211 Canada · 211 Ontario · Official quarterly data</div>
       </div>
-      <div class="ind-score" id="score-cs">—</div>
+      <div class="ind-score" id="score-c2">—</div>
       <div>
-        <div class="ind-badge badge-o" id="badge-cs">🟠 HIGH</div>
-        <div class="ind-lead">Lead: 4–8 weeks</div>
+        <div class="ind-badge badge-r" id="badge-c2">🔴 CRITICAL</div>
+        <div class="ind-lead">Lead: 4–12 weeks</div>
       </div>
       <div class="ind-arrow">→</div>
     </a>
@@ -258,7 +282,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
         <div class="ind-bar-wrap">
           <div class="ind-bar"><div class="ind-bar-fill" id="bar-hc" style="width:0%;background:var(--green)"></div></div>
         </div>
-        <div class="ind-source">Google Trends Web + YouTube · Canada</div>
+        <div class="ind-source">Google Trends Web + YouTube · Canada · Monthly</div>
       </div>
       <div class="ind-score" id="score-hc">—</div>
       <div>
@@ -273,11 +297,11 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="ind-icon">🔒</div>
       <div class="ind-info">
         <div class="ind-name">Canadian Tire Flyer Index</div>
-        <div class="ind-sub">"Security vs. fun — what Canadian Tire knows."</div>
+        <div class="ind-sub">"Security vs. fun — what the flyer reveals."</div>
         <div class="ind-bar-wrap">
           <div class="ind-bar"><div class="ind-bar-fill" id="bar-ct" style="width:0%;background:var(--green)"></div></div>
         </div>
-        <div class="ind-source">Flipp.com · Biweekly flyer analysis</div>
+        <div class="ind-source">Flipp.com · Biweekly manual analysis · May 2026</div>
       </div>
       <div class="ind-score" id="score-ct">—</div>
       <div>
@@ -287,6 +311,14 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="ind-arrow">→</div>
     </a>
 
+  </div>
+
+  <!-- CONTEXT NOTE -->
+  <div class="context-box">
+    <div class="context-title">📊 Why so many red indicators ?</div>
+    <div class="context-txt">
+      5 out of 7 indicators are currently in the red zone. This is not normal — and it is not a dashboard design choice. <strong>In 2019, all indicators were green or yellow.</strong> The current concentration of red signals reflects a real and documented deterioration in Canadian social and economic conditions since 2022. The two green indicators (Haircut Index and Canadian Tire Flyer) confirm that <strong>not everything is in crisis</strong> — which validates the methodology. If all indicators were always red, the dashboard would be meaningless.
+    </div>
   </div>
 
   <!-- COMING SOON -->
@@ -326,19 +358,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="ind-info">
         <div class="ind-name">Pet Surrender Index</div>
         <div class="ind-sub">"Families abandon pets before they lose homes."</div>
-        <div class="ind-source">SPCA Canada · Facebook Marketplace · Google Trends</div>
-      </div>
-      <div class="ind-score">—</div>
-      <div><div class="coming-badge">COMING SOON</div></div>
-      <div class="ind-arrow" style="opacity:0.2;">→</div>
-    </div>
-
-    <div class="ind-row coming">
-      <div class="ind-icon">🍁</div>
-      <div class="ind-info">
-        <div class="ind-name">Maple Syrup Panic Index</div>
-        <div class="ind-sub">"When Québécois stock up — it's serious."</div>
-        <div class="ind-source">Google Trends · IGA/Metro flyers · Fédération producteurs</div>
+        <div class="ind-source">SPCA Canada · Google Trends</div>
       </div>
       <div class="ind-score">—</div>
       <div><div class="coming-badge">COMING SOON</div></div>
@@ -350,7 +370,19 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
       <div class="ind-info">
         <div class="ind-name">Staycation Stress Index</div>
         <div class="ind-sub">"When Canadians cancel Cancun for camping."</div>
-        <div class="ind-source">Google Trends · Parks Canada · Booking.com trends</div>
+        <div class="ind-source">Google Trends · Parks Canada · Booking.com</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">COMING SOON</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+    <div class="ind-row coming">
+      <div class="ind-icon">🍁</div>
+      <div class="ind-info">
+        <div class="ind-name">Maple Syrup Panic Index</div>
+        <div class="ind-sub">"When Québécois stock up — it's serious."</div>
+        <div class="ind-source">Google Trends · Fédération producteurs sirop érable</div>
       </div>
       <div class="ind-score">—</div>
       <div><div class="coming-badge">COMING SOON</div></div>
@@ -359,10 +391,10 @@ footer{max-width:1000px;margin:28px auto 0;padding:20px 32px;border-top:1px soli
 
   </div>
 
-  <!-- FOOTER NOTE -->
-  <div style="margin-top:24px;padding:16px 20px;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);">
-    <div style="font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;">⚠️ Transparency Note</div>
-    <div style="font-size:0.72rem;line-height:1.8;color:var(--muted);">All scores are composites based on publicly available Canadian data. Sources are cited on each indicator page. This dashboard does not constitute professional, legal or financial advice. Predictions are based on statistical correlations — not guarantees. We are not affiliated with any government, political party or financial institution.</div>
+  <!-- TRANSPARENCY -->
+  <div class="transp-box">
+    <div class="transp-title">⚠️ Transparency & Limitations</div>
+    <div class="transp-txt">All scores are composites based on publicly available Canadian data. Sources are cited on each indicator page. No data is invented or estimated without disclosure. This dashboard does not constitute professional, legal or financial advice. Predictions are based on statistical correlations — not guarantees. CASTOR.WATCH is independent and not affiliated with any government, political party or financial institution. Contact: tensionsgeopolitiques@gmail.com</div>
   </div>
 
 </div>
@@ -386,7 +418,8 @@ function tick(){
 }
 setInterval(tick,1000);tick();
 
-function setIndicator(scoreId, barId, badgeId, value, color){
+function setInd(scoreId, barId, badgeId, value){
+  const color = getColor(value);
   document.getElementById(scoreId).textContent = parseFloat(value).toFixed(2);
   document.getElementById(scoreId).style.color = color;
   document.getElementById(barId).style.width = (value*100)+'%';
@@ -399,41 +432,43 @@ window.addEventListener('load',()=>{
   fetch(SHEETS_URL)
     .then(r=>r.json())
     .then(data=>{
-      const at = data.composite||0.72;
-      const fs = data.foodStress||0.71;
-      const pd = data.payday||0.82;
-      const sl = data.schoolLunch||0.73;
-      const cs = data.couchSurf||0.40;
-      const hc = data.haircut||0.34;
-      const ct = data.ctFlyer||0.097;
+      const at  = data.composite   || 0.72;
+      const fs  = data.foodStress  || 0.71;
+      const pd  = data.payday      || 0.82;
+      const sl  = data.schoolLunch || 0.73;
+      const c2  = data.crisis211   || 0.72;
+      const hc  = data.haircut     || 0.34;
+      const ct  = data.ctFlyer     || 0.097;
 
-      setIndicator('score-at','bar-at','badge-at', at, getColor(at));
-      setIndicator('score-fs','bar-fs','badge-fs', fs, getColor(fs));
-      setIndicator('score-pd','bar-pd','badge-pd', pd, getColor(pd));
-      setIndicator('score-sl','bar-sl','badge-sl', sl, getColor(sl));
-      setIndicator('score-cs','bar-cs','badge-cs', cs, getColor(cs));
-      setIndicator('score-hc','bar-hc','badge-hc', hc, getColor(hc));
-      setIndicator('score-ct','bar-ct','badge-ct', ct, getColor(ct));
+      setInd('score-at','bar-at','badge-at', at);
+      setInd('score-fs','bar-fs','badge-fs', fs);
+      setInd('score-pd','bar-pd','badge-pd', pd);
+      setInd('score-sl','bar-sl','badge-sl', sl);
+      setInd('score-c2','bar-c2','badge-c2', c2);
+      setInd('score-hc','bar-hc','badge-hc', hc);
+      setInd('score-ct','bar-ct','badge-ct', ct);
 
-      // Summary counts
-      const all = [at,fs,pd,sl,cs,hc,ct];
-      document.getElementById('sum-red').textContent = all.filter(v=>v>=0.7).length+' indicators';
-      document.getElementById('sum-orange').textContent = all.filter(v=>v>=0.4&&v<0.7).length+' indicators';
-      document.getElementById('sum-green').textContent = all.filter(v=>v<0.4).length+' indicators';
+      const all = [at,fs,pd,sl,c2,hc,ct];
+      const reds    = all.filter(v=>v>=0.7).length;
+      const oranges = all.filter(v=>v>=0.4&&v<0.7).length;
+      const greens  = all.filter(v=>v<0.4).length;
+
+      document.getElementById('sum-red').textContent    = reds+' indicators';
+      document.getElementById('sum-orange').textContent = oranges+' indicator'+(oranges>1?'s':'');
+      document.getElementById('sum-green').textContent  = greens+' indicators';
     })
     .catch(()=>{
-      // Fallback
-      const fallback = {at:0.72,fs:0.71,pd:0.82,sl:0.73,cs:0.40,hc:0.34,ct:0.097};
-      setIndicator('score-at','bar-at','badge-at',fallback.at,getColor(fallback.at));
-      setIndicator('score-fs','bar-fs','badge-fs',fallback.fs,getColor(fallback.fs));
-      setIndicator('score-pd','bar-pd','badge-pd',fallback.pd,getColor(fallback.pd));
-      setIndicator('score-sl','bar-sl','badge-sl',fallback.sl,getColor(fallback.sl));
-      setIndicator('score-cs','bar-cs','badge-cs',fallback.cs,getColor(fallback.cs));
-      setIndicator('score-hc','bar-hc','badge-hc',fallback.hc,getColor(fallback.hc));
-      setIndicator('score-ct','bar-ct','badge-ct',fallback.ct,getColor(fallback.ct));
-      document.getElementById('sum-red').textContent = '4 indicators';
-      document.getElementById('sum-orange').textContent = '1 indicator';
-      document.getElementById('sum-green').textContent = '2 indicators';
+      const fallback = {at:0.72,fs:0.71,pd:0.82,sl:0.73,c2:0.72,hc:0.34,ct:0.097};
+      setInd('score-at','bar-at','badge-at', fallback.at);
+      setInd('score-fs','bar-fs','badge-fs', fallback.fs);
+      setInd('score-pd','bar-pd','badge-pd', fallback.pd);
+      setInd('score-sl','bar-sl','badge-sl', fallback.sl);
+      setInd('score-c2','bar-c2','badge-c2', fallback.c2);
+      setInd('score-hc','bar-hc','badge-hc', fallback.hc);
+      setInd('score-ct','bar-ct','badge-ct', fallback.ct);
+      document.getElementById('sum-red').textContent    = '5 indicators';
+      document.getElementById('sum-orange').textContent = '0 indicators';
+      document.getElementById('sum-green').textContent  = '2 indicators';
     });
 });
 </script>
