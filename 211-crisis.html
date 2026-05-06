@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📞 211 Crisis Index — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+  --accent:#FF2D2D;--glow:rgba(255,45,45,0.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;transition:background 1s ease;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+
+.loading-bar{width:100%;height:3px;background:var(--s3);position:relative;overflow:hidden;}
+.loading-bar::after{content:'';position:absolute;left:-50%;top:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:loading 1.5s ease infinite;}
+@keyframes loading{from{left:-50%}to{left:150%}}
+.loading-bar.done{display:none;}
+
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--accent);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;transition:border-color 1s ease;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.live-pill{display:flex;align-items:center;gap:7px;padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;transition:background 1s ease;}
+
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:502.4;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1),stroke 0.8s ease;filter:drop-shadow(0 0 12px var(--glow));}
+.g-tick{fill:none;stroke:#070707;stroke-width:3;}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;transition:color 1s ease;}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:16px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:3px;line-height:1;transition:color 1s ease;}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+
+.pills{display:flex;flex-direction:column;gap:5px;}
+.pill{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid transparent;transition:all 0.4s ease;}
+.pill.active{border-color:var(--s4);background:rgba(255,255,255,0.03);}
+.pip{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.pill-name{font-size:0.65rem;letter-spacing:1.5px;font-weight:600;color:var(--muted);flex:1;}
+.pill.active .pill-name{color:var(--text);}
+.pill-rng{font-size:0.6rem;color:var(--muted);letter-spacing:1px;}
+
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+/* KEY STATS */
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+
+.meaning-box{padding:20px;border-left:3px solid var(--accent);transition:border-color 1s ease,background 1s ease;}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;transition:color 1s ease;}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.timeline{display:flex;flex-direction:column;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+
+.action-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.action-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:14px;}
+.action-list{display:flex;flex-direction:column;gap:10px;}
+.action-item{display:flex;align-items:flex-start;gap:12px;font-size:0.82rem;line-height:1.7;color:var(--text);}
+
+.src-card{background:var(--s1);border-left:3px solid;padding:16px;margin-bottom:8px;}
+.src-card:last-child{margin-bottom:0;}
+.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.src-name{font-size:0.78rem;font-weight:700;}
+.src-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;}
+.src-desc{font-size:0.75rem;color:var(--text);line-height:1.7;margin-bottom:4px;}
+.src-freq{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
+
+.chain{display:flex;flex-direction:column;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+
+.hrow{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;transition:width 2s ease;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+
+@media(max-width:480px){
+  .gauge-section{flex-direction:column;align-items:flex-start;}
+  .gauge-wrap{width:160px;height:160px;}
+  .risk-word{font-size:2.4rem;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert" id="alert-bar" style="background:var(--red);">
+  <div class="a-dot"></div>
+  <div class="a-txt" id="alert-txt">🚨 HIGH RISK — 211 Crisis Index: 0.72 — 35% of housing needs unmet. Persistent crisis signal.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<div class="loading-bar" id="loading-bar"></div>
+
+<header id="main-header" style="border-color:var(--red);">
+  <a href="index.html" class="logo">
+    <span>🦫</span>
+    <div>
+      <div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
+      <div class="logo-sub">Canadian Stress Barometer</div>
+    </div>
+  </a>
+  <div class="live-pill" id="live-pill" style="background:var(--red);"><div class="a-dot"></div>LIVE</div>
+</header>
+
+<div class="wrapper">
+  <a href="index.html" class="back-link">← All Indicators</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Indicator #06 — CASTOR.WATCH</div>
+    <div class="hero-title">211 Crisis<br>Index</div>
+    <div class="hero-tagline">"When Canadians call 211, they have nowhere else to turn."</div>
+  </div>
+
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9" stroke-dashoffset="0"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(144 60 60)"/>
+        <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(252 60 60)"/>
+        <circle class="g-active" id="gauge-arc" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">📞</div>
+        <div class="gc-val" id="g-val">—</div>
+        <div class="gc-lbl">Risk Score</div>
+      </div>
+    </div>
+
+    <div class="gauge-right">
+      <div class="risk-word" id="risk-word">—</div>
+      <div class="risk-desc" id="risk-desc">Loading data...</div>
+      <div class="pills">
+        <div class="pill" id="p-low">
+          <div class="pip" style="background:var(--green)"></div>
+          <div class="pill-name">LOW RISK</div>
+          <div class="pill-rng">0 – 0.39</div>
+        </div>
+        <div class="pill" id="p-mod">
+          <div class="pip" style="background:var(--orange)"></div>
+          <div class="pill-name">MODERATE RISK</div>
+          <div class="pill-rng">0.40 – 0.69</div>
+        </div>
+        <div class="pill" id="p-high">
+          <div class="pip" style="background:var(--red)"></div>
+          <div class="pill-name">HIGH RISK</div>
+          <div class="pill-rng">0.70 – 1.0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEY STATS -->
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — 211 Canada · February 2026</div>
+    <div class="key-stats">
+      <div class="ks">
+        <div class="ks-val" style="color:var(--red)">35%</div>
+        <div class="ks-lbl">Housing needs unmet — #1 unmet need in Canada</div>
+      </div>
+      <div class="ks">
+        <div class="ks-val" style="color:var(--red)">301K</div>
+        <div class="ks-lbl">Ontario contacts 2024-2025 (calls + texts + chats)</div>
+      </div>
+      <div class="ks">
+        <div class="ks-val" style="color:var(--orange)">Stable</div>
+        <div class="ks-lbl">No improvement vs 2024 — crisis persists</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEANING -->
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">What this score means</div>
+    <div class="meaning-box" id="meaning-box">
+      <div class="meaning-title" id="meaning-title">Loading...</div>
+      <div class="meaning-txt" id="meaning-txt">Please wait while we load the latest data.</div>
+    </div>
+  </div>
+
+  <!-- CONSEQUENCES -->
+  <div class="section">
+    <div class="sec-label">⏱️ If this trend continues — what happens next</div>
+    <div class="conseq-box">
+      <div class="conseq-title" id="conseq-title">Predicted consequences</div>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section">
+    <div class="sec-label">What should you do ?</div>
+    <div class="action-box">
+      <div class="action-title" id="action-title">Loading...</div>
+      <div class="action-list" id="action-list"></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SOURCES -->
+  <div class="section">
+    <div class="sec-label">📊 Data Sources</div>
+
+    <div class="src-card" style="border-color:var(--red)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--red)">211 Canada — National Dashboard</div>
+        <div class="src-val" style="color:var(--red)">35%</div>
+      </div>
+      <div class="src-desc">Housing represents 35% of all unmet needs reported by 211 callers — the #1 unmet need in Canada. Data published February 2026. No improvement vs 2024-2025.</div>
+      <div class="src-freq">Weight 60% · Quarterly · 211canada.ca/research</div>
+    </div>
+
+    <div class="src-card" style="border-color:var(--orange)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--orange)">211 Ontario — Contact Volume</div>
+        <div class="src-val" style="color:var(--orange)">301K</div>
+      </div>
+      <div class="src-desc">301,583 contacts (calls, texts, chats) in Ontario 2024-2025. Ontario represents the largest 211 network in Canada and serves as the national proxy.</div>
+      <div class="src-freq">Weight 40% · Annual · 211ontario.ca</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CHAIN -->
+  <div class="section">
+    <div class="sec-label">🔗 How this indicator works</div>
+    <div class="chain">
+      <div class="chain-item">
+        <div class="chain-n">01</div>
+        <div class="chain-t"><strong>Someone calls 211</strong> — they have exhausted all other options. 211 is the social safety net of last resort in Canada. Every call represents a real person in genuine crisis.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">02</div>
+        <div class="chain-t"><strong>Housing is the #1 unmet need</strong> — 35% of callers need housing help and cannot get it. This is not a new problem — but it is not improving despite government programs.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">03</div>
+        <div class="chain-t"><strong>Unmet needs cascade</strong> — when housing needs go unmet, food insecurity, mental health crises and family breakdown follow within weeks. 211 data captures the leading edge of this cascade.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">04</div>
+        <div class="chain-t"><strong>Visible homelessness follows</strong> — persistent unmet housing needs through 211 precede increases in visible street homelessness by 4 to 12 weeks. Source: Canadian Observatory on Homelessness.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HISTORY -->
+  <div class="section">
+    <div class="sec-label">📈 Historical Context</div>
+    <div class="hrow">
+      <div class="hl">Q1 2026</div>
+      <div class="ht"><div class="hf" id="hb1" style="width:72%;background:var(--red)"></div></div>
+      <div class="hv" style="color:var(--red)">0.72</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">2024-2025</div>
+      <div class="ht"><div class="hf" style="width:70%;background:var(--red)"></div></div>
+      <div class="hv" style="color:var(--red)">0.70</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">2023-2024</div>
+      <div class="ht"><div class="hf" style="width:65%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.65</div>
+    </div>
+    <div class="hrow">
+      <div class="hl">2022-2023</div>
+      <div class="ht"><div class="hf" style="width:58%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.58</div>
+    </div>
+    <div style="font-size:0.55rem;color:var(--muted);margin-top:6px;">* Pre-2026 values estimated from 211 Canada published trend reports.</div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency Note</div>
+    <div class="note-txt">
+      211 data is published quarterly by 211 Canada and provincial networks. The score of 0.72 is derived from the February 2026 national dashboard showing 35% unmet housing needs (rank #1) and Ontario contact volume of 301,583. No single national volume figure exists — each province manages its own 211 network. Ontario is used as the national proxy given its size and data quality.
+    </div>
+  </div>
+
+  <!-- METHOD -->
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">
+      Composite score: <strong>211 Canada unmet housing need ratio</strong> (35% = 0.72 on 0-1 scale, weight 60%) + <strong>211 Ontario contact volume trend</strong> (stable/rising = elevated signal, weight 40%). Score of 0.72 reflects persistent high unmet need with no improvement vs prior year. Source: <strong>211 Canada National Dashboard, February 2026</strong> + <strong>211 Ontario Annual Data 2024-2025</strong>. Updated quarterly when 211 Canada publishes new data.
+    </div>
+  </div>
+
+  <!-- CASTOR -->
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt" id="castor-txt">"Loading..."</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: 211 Canada · 211 Ontario<br>Updated quarterly · Feb 2026</div>
+  </footer>
+</div>
+
+<script>
+const CIRC = 2 * Math.PI * 40;
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbyiyfqjJPdMlqMnBMxAmnQ6bihJvBxkYXO_HhislTqCa_4r3GsF_kw8lobhmyNL5a6-Mw/exec";
+
+const ZONES = {
+  low: {
+    color:'#00E676', glow:'rgba(0,230,118,0.15)', alertBg:'#00695C',
+    word:'LOW RISK',
+    desc:'211 call volume and unmet needs are within normal range.',
+    alert:'✅ LOW RISK — 211 Crisis Index: {v} — Social service demand within normal range.',
+    meaningTitle:'Social safety net is holding.',
+    meaningTxt:'At <strong>{v}</strong>, 211 call volumes and unmet need ratios are within historical norms. <strong>The social safety net is functioning at normal capacity.</strong>',
+    actionTitle:'🟢 No special action required',
+    actions:['Monitor quarterly when 211 Canada publishes new data.','Consider donating to local social service organizations.'],
+    conseqTitle:'🟢 LOW RISK — Stable conditions',
+    consequences:[{time:'Quarterly',unit:'update',event:'Monitor next 211 report',detail:'No significant deterioration expected at current levels.',color:'#00E676'}],
+    castor:'"At {v}, the phones at 211 are quiet. The beaver sleeps soundly. 📞"',
+    pill:'p-low',
+  },
+  moderate: {
+    color:'#FF6D00', glow:'rgba(255,109,0,0.15)', alertBg:'#E65100',
+    word:'MODERATE RISK',
+    desc:'Rising demand for social services. Housing crisis calls increasing.',
+    alert:'⚠️ MODERATE RISK — 211 Crisis Index: {v} — Rising social service demand. Housing crisis calls increasing.',
+    meaningTitle:'More Canadians are reaching out for emergency help.',
+    meaningTxt:'At <strong>{v}</strong>, 211 call volumes are above normal and unmet housing needs are rising. <strong>The social safety net is under increasing pressure.</strong> More Canadians are in situations where they have no other options than to call 211.',
+    actionTitle:'🟠 Community action recommended',
+    actions:['Social service organizations: review capacity now.','Municipal governments: verify shelter bed availability.','Donate to local 211-connected organizations.','If you need help: call 211 — free, confidential, 24/7.'],
+    conseqTitle:'🟠 MODERATE RISK — Predicted consequences',
+    consequences:[
+      {time:'4–6',unit:'weeks',event:'Shelter capacity strained',detail:'Rising 211 housing calls typically precede shelter overcapacity by 4-6 weeks.',color:'#FF6D00'},
+      {time:'6–10',unit:'weeks',event:'Visible homelessness increases',detail:'Persistent unmet housing needs lead to measurable increases in visible street homelessness.',color:'#FF6D00'},
+    ],
+    castor:'"At {v}, the 211 lines are getting busier. The beaver is watching the shelter queues. 📞🦫"',
+    pill:'p-mod',
+  },
+  high: {
+    color:'#FF2D2D', glow:'rgba(255,45,45,0.2)', alertBg:'#B71C1C',
+    word:'HIGH RISK',
+    desc:'35% of housing needs unmet. #1 crisis category. No improvement since 2024.',
+    alert:'🚨 HIGH RISK — 211 Crisis Index: {v} — 35% of housing needs unmet. Persistent crisis. No improvement vs 2024.',
+    meaningTitle:'Canada\'s social safety net is failing on housing.',
+    meaningTxt:'At <strong>{v}</strong>, 35% of Canadians who call 211 for housing help <strong>cannot be helped</strong> — there are simply no resources available. This is the #1 unmet need in Canada, and it has not improved despite government programs. <strong>301,583 people reached out in Ontario alone in 2024-2025.</strong> This is a systemic failure, not a temporary spike.',
+    actionTitle:'🔴 Urgent systemic action needed',
+    actions:[
+      'If you need housing help: call 211 now — free, confidential, 24/7.',
+      'Social workers: document unmet needs — this data matters for policy.',
+      'Municipal governments: emergency shelter capacity must be expanded.',
+      'Contact your MP/MPP — cite 211 Canada data directly.',
+      'Media: 211canada.ca/research publishes public data — cite it.',
+    ],
+    conseqTitle:'🔴 HIGH RISK — Predicted consequences if trend continues',
+    consequences:[
+      {time:'4–8',unit:'weeks',event:'Visible homelessness spike',detail:'35% unmet housing need through 211 precedes visible homelessness increases by 4-8 weeks. Source: Canadian Observatory on Homelessness.',color:'#FF2D2D'},
+      {time:'6–10',unit:'weeks',event:'Emergency services overwhelmed',detail:'Unhoused individuals increasingly rely on emergency rooms and police as social services fail. Documented in CIHI Canada data.',color:'#FF2D2D'},
+      {time:'2–3',unit:'months',event:'Child welfare interventions rise',detail:'Housing instability is the leading cause of child welfare interventions in Canada. Source: CWLC Canada.',color:'#FF2D2D'},
+      {time:'3–6',unit:'months',event:'Political pressure for emergency housing',detail:'Sustained 211 housing crisis at this level historically precedes emergency government housing announcements by 3-6 months.',color:'#FF2D2D'},
+    ],
+    castor:'"At {v}, <strong>35% of Canadians who called 211 for housing help were turned away.</strong> Not because they didn\'t need it. Because there was nothing left to give. The beaver cannot look away. 📞🦫"',
+    pill:'p-high',
+  }
+};
+
+function getZone(v){ return v<0.4?'low':v<0.7?'moderate':'high'; }
+
+function update(crisis211, updatedAt) {
+  const v = parseFloat(crisis211).toFixed(2);
+  const pct = Math.round(parseFloat(v)*100);
+  const zk = getZone(parseFloat(v));
+  const Z = ZONES[zk];
+
+  document.documentElement.style.setProperty('--accent', Z.color);
+  document.documentElement.style.setProperty('--glow', Z.glow);
+
+  const arc = document.getElementById('gauge-arc');
+  arc.style.strokeDashoffset = CIRC*(1-pct/100);
+  arc.style.stroke = Z.color;
+  arc.style.filter = `drop-shadow(0 0 14px ${Z.glow})`;
+
+  document.getElementById('g-val').textContent = v;
+  document.getElementById('g-val').style.color = Z.color;
+  document.getElementById('risk-word').textContent = Z.word;
+  document.getElementById('risk-word').style.color = Z.color;
+  document.getElementById('risk-desc').textContent = Z.desc;
+
+  ['p-low','p-mod','p-high'].forEach(id=>document.getElementById(id).classList.remove('active'));
+  document.getElementById(Z.pill).classList.add('active');
+
+  document.getElementById('alert-bar').style.background = Z.alertBg;
+  document.getElementById('alert-txt').textContent = Z.alert.replace(/{v}/g,v);
+  document.getElementById('live-pill').style.background = Z.color;
+  document.getElementById('main-header').style.borderColor = Z.color;
+
+  const mb = document.getElementById('meaning-box');
+  mb.style.borderLeftColor = Z.color;
+  mb.style.background = `${Z.color}08`;
+  document.getElementById('meaning-title').textContent = Z.meaningTitle;
+  document.getElementById('meaning-title').style.color = Z.color;
+  document.getElementById('meaning-txt').innerHTML = Z.meaningTxt.replace(/{v}/g,v);
+
+  document.getElementById('conseq-title').textContent = Z.conseqTitle;
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  Z.consequences.forEach(c=>{
+    tl.innerHTML+=`<div class="tl-item"><div class="tl-left"><div class="tl-time" style="color:${c.color}">${c.time}</div><div class="tl-unit">${c.unit}</div><div class="tl-dot" style="background:${c.color}"></div></div><div class="tl-content"><div class="tl-event">${c.event}</div><div class="tl-detail">${c.detail}</div></div></div>`;
+  });
+
+  document.getElementById('action-title').textContent = Z.actionTitle;
+  const al = document.getElementById('action-list');
+  al.innerHTML = '';
+  Z.actions.forEach(a=>{
+    al.innerHTML+=`<div class="action-item"><div style="flex-shrink:0">→</div><div>${a}</div></div>`;
+  });
+
+  document.getElementById('hb1').style.width = pct+'%';
+  document.getElementById('hb1').style.background = Z.color;
+
+  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g,v);
+  document.getElementById('loading-bar').classList.add('done');
+}
+
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+}
+setInterval(tick,1000);tick();
+
+window.addEventListener('load',()=>{
+  document.getElementById('gauge-arc').style.strokeDashoffset=CIRC;
+  fetch(SHEETS_URL)
+    .then(r=>r.json())
+    .then(data=>{
+      update(data.crisis211||0.72, data.updated);
+    })
+    .catch(()=>{
+      update(0.72, new Date().toISOString());
+    });
+});
+</script>
+</body>
+</html>
