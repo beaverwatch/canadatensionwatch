@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔭 Long-Term Indicators — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+.alert{width:100%;background:var(--orange);padding:11px 28px;display:flex;align-items:center;gap:12px;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.7rem;opacity:0.7;}
+
+header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--orange);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:8px 18px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+
+.wrapper{max-width:1000px;margin:0 auto;padding:0 32px 48px;}
+
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+.page-hero{padding:28px 0 0;}
+.page-eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.page-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.page-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.page-desc{font-size:0.85rem;color:var(--muted);line-height:1.8;max-width:600px;}
+
+/* LT SCORE */
+.lt-score-block{background:var(--s1);border-left:4px solid var(--orange);padding:24px 28px;margin-top:24px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;}
+.ltsb-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.ltsb-bar{width:100%;height:6px;background:var(--faint);margin-top:8px;}
+.ltsb-bar-fill{height:100%;background:var(--orange);transition:width 2.5s ease;}
+.ltsb-desc{font-size:0.65rem;color:var(--muted);margin-top:6px;}
+.ltsb-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:2px;line-height:1;color:var(--orange);}
+.ltsb-status{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--orange);text-align:right;}
+
+/* SUMMARY */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin-top:1px;}
+.sum-block{background:var(--s1);padding:18px;display:flex;flex-direction:column;gap:5px;}
+.sum-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;}
+.sum-lbl{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* CONTEXT */
+.context-box{background:rgba(255,109,0,0.05);border-left:4px solid var(--orange);padding:20px 24px;margin-top:1px;}
+.context-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+.context-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.context-txt strong{font-weight:700;}
+
+/* SECTION DIVIDER */
+.sec-div{display:flex;align-items:center;gap:16px;margin:32px 0 16px;}
+.sec-div-title{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:4px;color:var(--muted);white-space:nowrap;}
+.sec-div-line{flex:1;height:1px;background:var(--s3);}
+
+/* INDICATOR ROWS */
+.ind-list{display:flex;flex-direction:column;gap:1px;background:var(--s3);}
+
+.ind-row{background:var(--s1);padding:22px 24px;position:relative;display:flex;flex-direction:column;gap:10px;}
+.ind-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.ind-row.red::before{background:var(--red);}
+.ind-row.orange::before{background:var(--orange);}
+.ind-row.yellow::before{background:var(--yellow);}
+
+.ind-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;}
+.ind-left{display:flex;align-items:flex-start;gap:14px;flex:1;}
+.ind-icon{font-size:1.8rem;flex-shrink:0;line-height:1;}
+.ind-info{display:flex;flex-direction:column;gap:4px;}
+.ind-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;line-height:1.1;}
+.ind-sub{font-size:0.65rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.ind-right{text-align:right;flex-shrink:0;}
+.ind-val{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;line-height:1;}
+.ind-badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid;margin-top:4px;display:inline-block;}
+.badge-r{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.badge-o{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.badge-y{color:var(--yellow);border-color:rgba(255,214,0,0.4);background:rgba(255,214,0,0.08);}
+
+/* IMPACT BOX */
+.ind-impact{background:var(--s2);padding:14px 16px;display:flex;flex-direction:column;gap:6px;}
+.impact-label{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:2px;}
+.impact-txt{font-size:0.78rem;line-height:1.8;color:var(--text);}
+.impact-txt strong{font-weight:700;}
+
+/* PROGRESS */
+.ind-bar-row{display:flex;align-items:center;gap:12px;}
+.ind-bar{flex:1;height:4px;background:var(--faint);}
+.ind-bar-fill{height:100%;transition:width 1.5s ease;}
+.ind-source{font-size:0.58rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;}
+
+/* NOTE */
+.note-box{background:rgba(255,214,0,0.04);border-left:3px solid var(--yellow);padding:16px 20px;margin-top:24px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+
+footer{margin:28px 0 0;padding:20px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+
+@media(max-width:700px){
+  .ind-top{flex-direction:column;}
+  .ind-right{text-align:left;}
+  .summary{grid-template-columns:1fr;}
+  .wrapper{padding:0 18px 48px;}
+  header{padding:16px 18px;}
+  .lt-score-block{grid-template-columns:1fr;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔭 Long-Term Score: 68/100 — 8 of 11 indicators in red or orange zone. Structural crisis building.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<header>
+  <a href="index.html" class="logo">
+    🦫 <div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div>
+  </a>
+  <div class="live-pill"><div class="a-dot"></div>ANNUAL</div>
+</header>
+
+<div class="wrapper">
+  <a href="index.html" class="back-link">← Back to Dashboard</a>
+
+  <div class="page-hero">
+    <div class="page-eyebrow">🔭 Structural Indicators — Canada</div>
+    <div class="page-title">All Long-Term<br>Indicators</div>
+    <div class="page-desc">These indicators predict social and economic upheaval 5 to 20 years ahead. Selected based on patterns observed in societies that experienced major structural crises. Updated annually from official Canadian sources.</div>
+  </div>
+
+  <!-- LT SCORE -->
+  <div class="lt-score-block">
+    <div>
+      <div class="ltsb-label">🔭 Long-Term Structural Score</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;color:var(--orange);">⚡ MODERATE — Structural stress building</div>
+      <div class="ltsb-bar"><div class="ltsb-bar-fill" style="width:68%"></div></div>
+      <div class="ltsb-desc">Based on 11 structural indicators · Updated annually · Sources: StatCan, CMHC, Leger, CCPA</div>
+    </div>
+    <div style="text-align:right;">
+      <div class="ltsb-num">68</div>
+      <div class="ltsb-status">/ 100</div>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--red)">7</div>
+      <div class="sum-lbl">🔴 Critical indicators</div>
+    </div>
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--orange)">2</div>
+      <div class="sum-lbl">🟠 High indicators</div>
+    </div>
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--yellow)">2</div>
+      <div class="sum-lbl">🟡 Watch indicators</div>
+    </div>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="context-box">
+    <div class="context-title">📊 Why These Indicators</div>
+    <div class="context-txt">Selected based on historical evidence: in societies that experienced major social upheaval — including the USSR collapse, post-war Europe, and Latin American crises of the 1980s — <strong>these demographic and economic signals appeared years before the crisis became visible.</strong> No ideology. No political agenda. Just patterns that have repeated across history. We track them because <strong>Canada is showing several of these signals simultaneously — for the first time.</strong></div>
+  </div>
+
+  <!-- ═══ DEMOGRAPHIC ═══ -->
+  <div class="sec-div">
+    <div class="sec-div-title">👶 Demographics</div>
+    <div class="sec-div-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <!-- FERTILITY -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🍼</div>
+          <div class="ind-info">
+            <div class="ind-name">Total Fertility Rate</div>
+            <div class="ind-sub">"Canada is no longer reproducing itself."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:90%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">StatCan · Demographic Statistics 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">1.25</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 10–20 years</div>
+        <div class="impact-txt">At 1.25 children per woman — well below the 2.1 replacement rate — Canada cannot sustain its population without immigration. <strong>Pension systems, healthcare and social programs all depend on a growing working-age population.</strong> This is the most structurally dangerous indicator on this dashboard. Every society that has sustained a fertility rate below 1.3 for more than 10 years has experienced serious economic and social disruption within 15–20 years.</div>
+      </div>
+    </div>
+
+    <!-- INFANT MORTALITY -->
+    <div class="ind-row yellow">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">👶</div>
+          <div class="ind-info">
+            <div class="ind-name">Infant Mortality Rate</div>
+            <div class="ind-sub">"A plateau where decline should continue."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:45%;background:var(--yellow)"></div></div>
+            </div>
+            <div class="ind-source">StatCan · Vital Statistics 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--yellow)">4.8</div>
+          <div class="ind-badge badge-y">🟡 WATCH</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–15 years</div>
+        <div class="impact-txt">4.8 per 1,000 births. The rate has plateaued since 2018 — it is no longer improving. <strong>In all societies studied, when infant mortality stops declining, it signals rising stress in vulnerable populations</strong> — poverty, inadequate healthcare access and social inequality. Not a crisis alone, but a warning signal when combined with other indicators.</div>
+      </div>
+    </div>
+
+    <!-- EXOGENOUS BIRTH -->
+    <div class="ind-row orange">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🌍</div>
+          <div class="ind-info">
+            <div class="ind-name">Exogenous Birth Rate</div>
+            <div class="ind-sub">"42.3% of births from immigration-origin families."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:55%;background:var(--orange)"></div></div>
+            </div>
+            <div class="ind-source">StatCan · Census 2024</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--orange)">42.3%</div>
+          <div class="ind-badge badge-o">🟠 SHIFTING</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 10–20 years</div>
+        <div class="impact-txt">42.3% of births in Canada are from families of immigrant origin. This is not inherently negative — <strong>but the speed of the shift matters.</strong> When demographic composition changes faster than social integration systems can absorb, historical evidence shows increased social tension, identity conflict and political polarization. Integration policy quality will determine the outcome.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ EDUCATION & GENDER ═══ -->
+  <div class="sec-div">
+    <div class="sec-div-title">🎓 Education & Gender</div>
+    <div class="sec-div-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <!-- GENDER ED GAP -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🎓</div>
+          <div class="ind-info">
+            <div class="ind-name">Gender Education Gap</div>
+            <div class="ind-sub">"Women 71% vs Men 57% of university graduates."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:85%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">StatCan · Education Indicators 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">71/57</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–15 years</div>
+        <div class="impact-txt">Women now represent 71% of university graduates vs 57% for men — a gap that is widening every year. <strong>Men without post-secondary education earn 40% less than women with degrees.</strong> Historical evidence from other countries shows this produces: rising male unemployment, delayed marriage, lower birth rates, and increased political radicalization among young men. This is not a women's issue — it is a structural social stability issue.</div>
+      </div>
+    </div>
+
+    <!-- MALE SUICIDE -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">💀</div>
+          <div class="ind-info">
+            <div class="ind-name">Male Suicide Rate Gap</div>
+            <div class="ind-sub">"Men die by suicide 3x more than women — and the gap is widening."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:75%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">StatCan · Causes of Death 2024</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">3x</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–10 years</div>
+        <div class="impact-txt">Canadian men die by suicide at 3 times the rate of women — and the gap has been widening since 2019. <strong>This is one of the most reliable leading indicators of male social marginalization.</strong> Societies where this gap exceeds 3:1 consistently show rising male criminality, political extremism and social withdrawal within 5–10 years. This signal was present in the USSR before its collapse and in several Latin American economies before major social crises.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ ECONOMY ═══ -->
+  <div class="sec-div">
+    <div class="sec-div-title">💰 Economy & Inequality</div>
+    <div class="sec-div-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <!-- HOUSING -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🏠</div>
+          <div class="ind-info">
+            <div class="ind-name">Housing Affordability Ratio</div>
+            <div class="ind-sub">"Home price exceeds 9x annual median income in major cities."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:80%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">CMHC · Housing Market Assessment 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">>9x</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–15 years</div>
+        <div class="impact-txt">A home in Toronto or Vancouver now costs more than 9 times the median annual income. The historical danger threshold is 5x — Canada crossed it years ago and keeps climbing. <strong>When housing becomes inaccessible to the middle class, wealth becomes locked in the hands of existing property owners — dramatically widening the gap between rich and poor.</strong> Young Canadians who cannot buy property will never build the same wealth as their parents. This creates a permanent two-tier society: owners and renters. Historically, when this ratio exceeds 8x for more than 5 years, societies experience: <strong>mass emigration of young talent, collapsing birth rates, rising political populism, and eventual housing market crashes that devastate the middle class.</strong></div>
+      </div>
+    </div>
+
+    <!-- CEO WAGE -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">👔</div>
+          <div class="ind-info">
+            <div class="ind-name">CEO vs Median Wage Ratio</div>
+            <div class="ind-sub">"Canadian CEOs earn 250x the average worker."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:78%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">CCPA / StatCan · Executive Compensation 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">250x</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–15 years</div>
+        <div class="impact-txt">The average Canadian CEO earns 250 times the median worker's salary — up from 40x in 1995. <strong>This ratio is one of the strongest predictors of social unrest ever documented.</strong> When workers perceive the economic system as fundamentally unfair, trust in institutions collapses, populist movements surge, and social contracts break down. Combined with the Housing Affordability crisis, this produces a compounding inequality trap: <strong>those who own assets get richer from inflation; those who don't fall further behind every year.</strong></div>
+      </div>
+    </div>
+
+    <!-- BNPL -->
+    <div class="ind-row orange">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">💳</div>
+          <div class="ind-info">
+            <div class="ind-name">BNPL Market Growth</div>
+            <div class="ind-sub">"Buy Now Pay Later — growing 16.5% annually."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:55%;background:var(--orange)"></div></div>
+            </div>
+            <div class="ind-source">ResearchAndMarkets · Canadian BNPL Report 2026</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--orange)">+16.5%</div>
+          <div class="ind-badge badge-o">🟠 HIGH</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 3–10 years</div>
+        <div class="impact-txt">The Canadian BNPL (Buy Now Pay Later) market is growing at 16.5% per year and is now worth $9.5 billion. <strong>BNPL is the new payday loan for the middle class</strong> — it normalizes debt for everyday purchases. When a society routinely finances groceries, clothing and small electronics on credit, it signals that wages are no longer sufficient for normal life. Historically, rapid BNPL growth precedes consumer debt crises within 5–8 years.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SOCIETY ═══ -->
+  <div class="sec-div">
+    <div class="sec-div-title">🏛️ Society & Institutions</div>
+    <div class="sec-div-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <!-- NATIONAL IDENTITY -->
+    <div class="ind-row red">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🍁</div>
+          <div class="ind-info">
+            <div class="ind-name">National Identity Disaffiliation</div>
+            <div class="ind-sub">"Only 40% of Canadians aged 18–34 say they are proud to be Canadian."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:85%;background:var(--red)"></div></div>
+            </div>
+            <div class="ind-source">Leger / Environics Institute 2024</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--red)">40%</div>
+          <div class="ind-badge badge-r">🔴 CRITICAL</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–15 years</div>
+        <div class="impact-txt">Only 40% of Canadians aged 18–34 say they are proud to be Canadian — compared to 78% of those aged 65+. <strong>National identity is the invisible glue that holds collective sacrifice together</strong> — taxes, military service, social programs all require a shared sense of "we." When young generations abandon this identity, the political will to maintain collective institutions collapses. This is not a patriotism question. It is a social cohesion question.</div>
+      </div>
+    </div>
+
+    <!-- RELIGIOUS CONFIDENCE -->
+    <div class="ind-row yellow">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">⛪</div>
+          <div class="ind-info">
+            <div class="ind-name">Religious Confidence Index</div>
+            <div class="ind-sub">"Only 25% of Canadians say religion is very important — at the threshold."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:48%;background:var(--yellow)"></div></div>
+            </div>
+            <div class="ind-source">Cardus / General Social Survey 2024</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--yellow)">25%</div>
+          <div class="ind-badge badge-y">🟡 WATCH</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 10–20 years</div>
+        <div class="impact-txt">25% of Canadians say religion is very important — exactly at the historical warning threshold of 25–30%. <strong>Religion is not tracked here for theological reasons — it is tracked as a social cohesion proxy.</strong> Societies where religious participation collapses rapidly tend to experience an ideological vacuum that is filled by secular extremisms of various kinds — political, ideological or identity-based. The speed of decline matters more than the absolute level.</div>
+      </div>
+    </div>
+
+    <!-- POLITICAL DONATIONS -->
+    <div class="ind-row orange">
+      <div class="ind-top">
+        <div class="ind-left">
+          <div class="ind-icon">🗳️</div>
+          <div class="ind-info">
+            <div class="ind-name">Political Donation Surge</div>
+            <div class="ind-sub">"Political donations up +50% in 5 years."</div>
+            <div class="ind-bar-row" style="margin-top:8px;">
+              <div class="ind-bar"><div class="ind-bar-fill" style="width:52%;background:var(--orange)"></div></div>
+            </div>
+            <div class="ind-source">Elections Canada · Political Finance Reports 2025</div>
+          </div>
+        </div>
+        <div class="ind-right">
+          <div class="ind-val" style="color:var(--orange)">+50%</div>
+          <div class="ind-badge badge-o">🟠 HIGH</div>
+        </div>
+      </div>
+      <div class="ind-impact">
+        <div class="impact-label">⏱️ Predicted Impact — 5–10 years</div>
+        <div class="impact-txt">Total political donations in Canada have increased by more than 50% in 5 years. <strong>When political donations surge, it typically signals one of two things: rising political engagement OR rising capture of political institutions by economic interests.</strong> Combined with the CEO wage ratio and housing crisis, this pattern suggests that political power is increasingly concentrated among those with economic resources — a historically reliable precursor to democratic erosion and populist backlash.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box">
+    <div class="note-title">⚠️ Transparency & Limitations</div>
+    <div class="note-txt">
+      Long-term indicators are updated annually when official data is published. Scores represent our assessment of structural risk based on historical patterns — they are not predictions of specific events. No indicator alone is determinative. The danger signal comes from multiple indicators moving simultaneously in the same direction — which is what we are observing in Canada in 2026. Sources: StatCan, CMHC, Elections Canada, CCPA, Leger, Environics Institute, Cardus, ResearchAndMarkets. Contact: tensionsgeopolitiques@gmail.com
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Independent · Public data · Canada<br>📧 tensionsgeopolitiques@gmail.com</div>
+  </footer>
+
+</div>
+
+<script>
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
