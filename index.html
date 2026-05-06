@@ -277,10 +277,10 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   <a class="see-all" href="all-indicators.html">
     <div>
       <div class="see-all-title">See All Short-Term Indicators</div>
-      <div class="see-all-sub">School Lunch Deficit · Haircut Index · Canadian Tire Flyer · Couch Surf Index · and more coming soon</div>
+      <div class="see-all-sub">School Lunch Deficit · Haircut Index · Canadian Tire Flyer · 211 Crisis Index · and more coming soon</div>
       <div class="see-all-badges">
-        <div class="sab" style="color:var(--red);border-color:rgba(255,45,45,0.3);" id="red-count">3 🔴 CRITICAL</div>
-        <div class="sab" style="color:var(--orange);border-color:rgba(255,109,0,0.3);" id="orange-count">1 🟠 HIGH</div>
+        <div class="sab" style="color:var(--red);border-color:rgba(255,45,45,0.3);" id="red-count">5 🔴 CRITICAL</div>
+        <div class="sab" style="color:var(--orange);border-color:rgba(255,109,0,0.3);" id="orange-count">0 🟠 HIGH</div>
         <div class="sab" style="color:var(--green);border-color:rgba(0,230,118,0.3);" id="green-count">2 🟢 STABLE</div>
       </div>
     </div>
@@ -463,7 +463,7 @@ function animCount(el,target,dur){
 }
 
 window.addEventListener('load',()=>{
-  fetch(SHEETS_URL)
+  fetch(SHEETS_URL + '&t=' + Date.now())
     .then(r=>r.json())
     .then(data=>{
 
