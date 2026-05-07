@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍼 Total Fertility Rate — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+  --accent:#FF2D2D;--glow:rgba(255,45,45,0.2);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+
+/* GAUGE */
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:141.9;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1);filter:drop-shadow(0 0 12px rgba(255,45,45,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;}
+
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+/* KEY STATS */
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+
+/* TIMELINE */
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+
+/* CHAIN */
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+
+/* HISTORY */
+.hrow{display:grid;grid-template-columns:80px 1fr 54px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+
+/* GLOBAL COMPARISON */
+.comparison{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--s3);}
+.cmp-item{background:var(--s1);padding:14px 16px;}
+.cmp-country{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.cmp-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.cmp-bar{width:100%;height:3px;background:var(--faint);margin-top:6px;}
+.cmp-fill{height:100%;}
+
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+
+@media(max-width:480px){
+  .gauge-section{flex-direction:column;align-items:flex-start;}
+  .gauge-wrap{width:160px;height:160px;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITICAL — Total Fertility Rate: 1.25 — Record low. Canada cannot sustain its population without immigration.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<header>
+  <a href="index.html" class="logo">
+    <span>🦫</span>
+    <div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div>
+  </a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #01 — CASTOR.WATCH</div>
+    <div class="hero-title">Total Fertility<br>Rate</div>
+    <div class="hero-tagline">"Canada is no longer reproducing itself."</div>
+  </div>
+
+  <!-- GAUGE -->
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🍼</div>
+        <div class="gc-val">1.25</div>
+        <div class="gc-lbl">Children / Woman</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITICAL</div>
+      <div class="risk-desc">Well below the 2.1 replacement rate. Canada has never recorded a fertility rate this low.</div>
+      <div class="lt-badge" style="color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);">🔴 LONG-TERM CRITICAL</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 10–20 years ahead · Updated annually</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- KEY STATS -->
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — StatCan 2025</div>
+    <div class="key-stats">
+      <div class="ks">
+        <div class="ks-val" style="color:var(--red)">1.25</div>
+        <div class="ks-lbl">Children per woman — record low 2025</div>
+      </div>
+      <div class="ks">
+        <div class="ks-val" style="color:var(--orange)">2.1</div>
+        <div class="ks-lbl">Replacement rate needed to sustain population</div>
+      </div>
+      <div class="ks">
+        <div class="ks-val" style="color:var(--red)">-40%</div>
+        <div class="ks-lbl">Below replacement — the structural gap</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MEANING -->
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">What this means for Canada</div>
+    <div class="meaning-box">
+      <div class="meaning-title">Canada cannot replace its own population.</div>
+      <div class="meaning-txt">At <strong>1.25 children per woman</strong> — far below the 2.1 replacement rate — Canada's population would shrink by approximately <strong>40% within three generations</strong> without immigration. This is not a future projection. It is happening now. Every social program Canada has built — <strong>pensions, healthcare, education, social housing</strong> — was designed around a growing population. A shrinking native-born population creates a structural funding crisis that no political party is currently equipped to solve.</div>
+    </div>
+  </div>
+
+  <!-- CONSEQUENCES -->
+  <div class="section">
+    <div class="sec-label">⏱️ Predicted consequences if trend continues</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🔴 Long-Term Cascade — 10 to 30 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">CPP / OAS funding crisis</div><div class="tl-detail">Fewer workers supporting more retirees. The Canada Pension Plan was designed around a 4:1 worker-to-retiree ratio. We are approaching 2:1. Source: Office of the Chief Actuary of Canada.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–15</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Healthcare system collapse pressure</div><div class="tl-detail">An aging population with fewer young workers means healthcare demand rises while the tax base shrinks. Provincial health systems will face unprecedented funding gaps.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Mass immigration dependency — social tension</div><div class="tl-detail">Canada will require 400,000–500,000 immigrants per year just to maintain economic stability. The speed of demographic change will outpace integration capacity — historically a trigger for social conflict.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">15–25</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Economic contraction</div><div class="tl-detail">Japan sustained a fertility rate of 1.2–1.3 for 30 years. The result: two lost decades of economic growth, a debt-to-GDP ratio of 260%, and a society unable to fund its own future. Canada is 15 years behind Japan on this curve.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CAUSAL CHAIN -->
+  <div class="section">
+    <div class="sec-label">🔗 Why fertility is falling</div>
+    <div>
+      <div class="chain-item">
+        <div class="chain-n">01</div>
+        <div class="chain-t"><strong>Housing unaffordability</strong> — young Canadians cannot afford the space needed for a family. A 2-bedroom apartment in Toronto averages $3,200/month. Many couples delay or abandon having children due to housing costs.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">02</div>
+        <div class="chain-t"><strong>Student debt burden</strong> — average Canadian university graduate carries $28,000 in student debt. Debt delays family formation by an average of 4.2 years. Source: StatCan Survey of Financial Security.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">03</div>
+        <div class="chain-t"><strong>Cultural shift</strong> — a growing proportion of young Canadians are choosing to remain childfree. This is documented across all G7 countries and appears to be a permanent, not temporary, demographic shift.</div>
+      </div>
+      <div class="chain-item">
+        <div class="chain-n">04</div>
+        <div class="chain-t"><strong>Economic anxiety</strong> — Canadians cite economic insecurity as the #1 reason for having fewer children than desired. Source: Angus Reid Institute 2024.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- HISTORY -->
+  <div class="section">
+    <div class="sec-label">📈 Canada Fertility Rate — Historical</div>
+    <div class="hrow"><div class="hl">1960</div><div class="ht"><div class="hf" style="width:95%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">3.90</div></div>
+    <div class="hrow"><div class="hl">1975</div><div class="ht"><div class="hf" style="width:65%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">2.00</div></div>
+    <div class="hrow"><div class="hl">1990</div><div class="ht"><div class="hf" style="width:52%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">1.71</div></div>
+    <div class="hrow"><div class="hl">2000</div><div class="ht"><div class="hf" style="width:48%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">1.52</div></div>
+    <div class="hrow"><div class="hl">2010</div><div class="ht"><div class="hf" style="width:52%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">1.63</div></div>
+    <div class="hrow"><div class="hl">2019</div><div class="ht"><div class="hf" style="width:47%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">1.47</div></div>
+    <div class="hrow"><div class="hl">2022</div><div class="ht"><div class="hf" style="width:43%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">1.33</div></div>
+    <div class="hrow"><div class="hl">2025</div><div class="ht"><div class="hf" style="width:40%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">1.25</div></div>
+  </div>
+
+  <!-- GLOBAL COMPARISON -->
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">🌍 Global Comparison — G7 + Key Countries</div>
+    <div class="comparison">
+      <div class="cmp-item">
+        <div class="cmp-country">🇨🇦 Canada (2025)</div>
+        <div class="cmp-val" style="color:var(--red)">1.25</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:32%;background:var(--red)"></div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="cmp-country">🇯🇵 Japan (2023)</div>
+        <div class="cmp-val" style="color:var(--red)">1.20</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:30%;background:var(--red)"></div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="cmp-country">🇩🇪 Germany (2023)</div>
+        <div class="cmp-val" style="color:var(--orange)">1.36</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:35%;background:var(--orange)"></div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="cmp-country">🇺🇸 USA (2023)</div>
+        <div class="cmp-val" style="color:var(--orange)">1.62</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:42%;background:var(--orange)"></div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="cmp-country">🇫🇷 France (2023)</div>
+        <div class="cmp-val" style="color:var(--yellow)">1.68</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:44%;background:var(--yellow)"></div></div>
+      </div>
+      <div class="cmp-item">
+        <div class="cmp-country">🌍 Replacement Rate</div>
+        <div class="cmp-val" style="color:var(--green)">2.10</div>
+        <div class="cmp-bar"><div class="cmp-fill" style="width:54%;background:var(--green)"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTE -->
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">Fertility rate of 1.25 is from Statistics Canada preliminary estimates for 2025. Historical data from StatCan Table 13-10-0418-01. Global comparison from World Bank and OECD 2023 data. This indicator is updated annually when StatCan publishes new demographic statistics.</div>
+  </div>
+
+  <!-- METHOD -->
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">The Total Fertility Rate (TFR) measures the average number of children a woman would have over her lifetime given current age-specific fertility rates. A TFR of <strong>2.1 is the replacement rate</strong> — the level needed to maintain population size without immigration. Canada's TFR of 1.25 is among the lowest ever recorded for a major economy. Score conversion: TFR 2.1+ = 0.0 (no risk). TFR 1.8 = 0.30. TFR 1.5 = 0.60. TFR 1.25 = 0.90 (critical). Linear interpolation between thresholds.</div>
+  </div>
+
+  <!-- CASTOR -->
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"At 1.25, Canada is not replacing itself. <strong>The newspapers will notice in 20 years. The Beaver is noticing now.</strong> 🍼🦫"</div>
+    </div>
+  </div>
+
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: StatCan · Table 13-10-0418-01<br>Updated annually · 2025 data</div>
+  </footer>
+</div>
+
+<script>
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
