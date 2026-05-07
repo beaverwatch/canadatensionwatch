@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎓 Gender Education Gap — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:75.4;filter:drop-shadow(0 0 12px rgba(255,45,45,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.2rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+/* VISUAL GAP */
+.gap-visual{background:var(--s1);padding:20px;border:1px solid var(--s3);}
+.gap-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.gap-row:last-child{margin-bottom:0;}
+.gap-label{font-size:0.72rem;color:var(--text);width:60px;flex-shrink:0;}
+.gap-bar-wrap{flex:1;height:28px;background:var(--faint);position:relative;}
+.gap-bar-fill{position:absolute;left:0;top:0;bottom:0;display:flex;align-items:center;padding-left:8px;}
+.gap-bar-txt{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:#fff;}
+.gap-note{font-size:0.62rem;color:var(--muted);margin-top:8px;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 54px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;align-items:flex-start;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITICAL — Gender Education Gap: Women 71% vs Men 57% of university graduates. Gap widening every year.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #02 — CASTOR.WATCH</div>
+    <div class="hero-title">Gender<br>Education Gap</div>
+    <div class="hero-tagline">"The most underdiscussed structural crisis in Canada."</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🎓</div>
+        <div class="gc-val">71/57</div>
+        <div class="gc-lbl">W% vs M% graduates</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITICAL</div>
+      <div class="risk-desc">Women are 71% of university graduates. Men are 57%. A 14-point gap — and widening.</div>
+      <div class="lt-badge">🔴 LONG-TERM CRITICAL</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 5–15 years ahead · Updated annually</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — StatCan 2025</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">71%</div><div class="ks-lbl">Women among university graduates</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">57%</div><div class="ks-lbl">Men among university graduates</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">+14pt</div><div class="ks-lbl">Gap — and growing every year</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">📊 The Gap — Visualized</div>
+    <div class="gap-visual">
+      <div class="gap-row">
+        <div class="gap-label" style="color:var(--red)">Women</div>
+        <div class="gap-bar-wrap"><div class="gap-bar-fill" style="width:71%;background:var(--red);"><div class="gap-bar-txt">71%</div></div></div>
+      </div>
+      <div class="gap-row">
+        <div class="gap-label" style="color:var(--orange)">Men</div>
+        <div class="gap-bar-wrap"><div class="gap-bar-fill" style="width:57%;background:var(--orange);"><div class="gap-bar-txt">57%</div></div></div>
+      </div>
+      <div class="gap-note">Source: StatCan Education Indicators in Canada 2025. Gap has grown from 4 points in 1990 to 14 points in 2025.</div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">What this means for Canada</div>
+    <div class="meaning-box">
+      <div class="meaning-title">This is not a women's success story alone — it is a men's crisis.</div>
+      <div class="meaning-txt">Women's gains in education are real and important. But the other side of this gap is that <strong>a growing proportion of Canadian men are leaving education without credentials</strong> — and entering a labour market that increasingly requires them. Men without post-secondary education earn 40% less than women with degrees. <strong>This produces economic frustration, delayed family formation, political radicalization, and a workforce skills gap that no policy is currently addressing.</strong></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Predicted consequences if gap continues widening</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🔴 Long-Term Cascade — 5 to 20 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–8</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Male wage collapse in knowledge economy</div><div class="tl-detail">Men without degrees earn 40% less in a credential-driven economy. This gap will widen further as AI eliminates low-skill jobs first. Source: OECD Skills Outlook 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Marriage and birth rate collapse accelerates</div><div class="tl-detail">In every country where this gap has exceeded 10 points, marriage rates fell within 5 years. Women who are highly educated delay or avoid marriage with less-educated men. Birth rates follow. Source: Pew Research 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">8–12</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Male political radicalization</div><div class="tl-detail">Economically marginalized young men are the primary recruitment pool for political extremism — left and right. South Korea, UK, USA: all show a direct correlation between education gap and male political radicalization. Source: V-Dem Institute 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–15</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Skills shortage in trades and technical sectors</div><div class="tl-detail">Ironically, men leaving academia are not replacing the trades workforce either. Canada faces a projected shortage of 250,000 skilled tradespeople by 2030. Source: BuildForce Canada 2024.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Why men are leaving education</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Education systems designed for female learning styles</strong> — structured, collaborative, verbal. Boys who learn differently are disproportionately diagnosed with ADHD and streamed out of academic tracks.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Economic returns on education feel lower for men</strong> — many young men see trades or entrepreneurship as faster paths to income. The credential premium is less visible to them.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Social media and gaming</strong> — platforms are specifically engineered to retain young male attention. Time spent on screens directly correlates with reduced academic performance. Source: Journal of Youth Studies 2023.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>No policy response</strong> — unlike the gender gap of the 1970s (women underrepresented in education), the current gap receives almost no policy attention. This is a documented blind spot in Canadian education policy.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 The Gap Over Time — Canada</div>
+    <div class="hrow"><div class="hl">1990</div><div class="ht"><div class="hf" style="width:8%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">4pt</div></div>
+    <div class="hrow"><div class="hl">2000</div><div class="ht"><div class="hf" style="width:14%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">7pt</div></div>
+    <div class="hrow"><div class="hl">2010</div><div class="ht"><div class="hf" style="width:20%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">10pt</div></div>
+    <div class="hrow"><div class="hl">2019</div><div class="ht"><div class="hf" style="width:24%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">12pt</div></div>
+    <div class="hrow"><div class="hl">2025</div><div class="ht"><div class="hf" style="width:28%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">14pt</div></div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">Women 71% / Men 57% of university graduates from StatCan Education Indicators in Canada 2025. Historical gap data from StatCan CANSIM Table 37-10-0163-01. This indicator is updated annually.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">Score based on size and trajectory of the gender education gap. Gap of 0 points = score 0.0. Gap of 5 points = 0.30. Gap of 10 points = 0.65. Gap of 14+ points = 0.85 (critical). Trajectory (widening vs. stable) adds 0.05–0.10 to base score. Current score: <strong>0.85 — Critical, widening.</strong></div>
+  </div>
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"71% of Canadian university graduates are women. The beaver is proud of them. <strong>But 43% of young men have no post-secondary credential. That beaver is worried about them.</strong> 🎓🦫"</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: StatCan · Education Indicators 2025<br>Updated annually</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
