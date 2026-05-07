@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Housing Affordability — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:100.5;filter:drop-shadow(0 0 12px rgba(255,45,45,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+/* CITY COMPARISON */
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);}
+.city-card{background:var(--s1);padding:16px;}
+.city-name{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.city-ratio{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;}
+.city-price{font-size:0.68rem;color:var(--muted);margin-top:2px;}
+.city-bar{width:100%;height:4px;background:var(--faint);margin-top:8px;}
+.city-bar-fill{height:100%;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 54px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+/* INEQUALITY BOX */
+.inequality-box{background:rgba(255,45,45,0.05);border-left:3px solid var(--red);padding:18px 20px;}
+.ineq-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.ineq-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.ineq-txt strong{font-weight:700;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;align-items:flex-start;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITICAL — Housing Affordability: >9x income ratio. Rich-poor gap accelerating. Middle class locked out permanently.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #03 — CASTOR.WATCH</div>
+    <div class="hero-title">Housing<br>Affordability<br>Ratio</div>
+    <div class="hero-tagline">"A home now costs more than 9 years of full salary."</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🏠</div>
+        <div class="gc-val">>9x</div>
+        <div class="gc-lbl">Price / Income</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITICAL</div>
+      <div class="risk-desc">Home prices exceed 9 times annual median income in major Canadian cities. The historical danger threshold is 5x.</div>
+      <div class="lt-badge">🔴 LONG-TERM CRITICAL</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 5–15 years ahead · Updated annually</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — CMHC 2025</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">>9x</div><div class="ks-lbl">Avg home price vs median annual income — major cities</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--green)">5x</div><div class="ks-lbl">Historical danger threshold — Canada crossed it in 2005</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">3.2x</div><div class="ks-lbl">Ratio in 1990 — what a healthy market looks like</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">🏙️ By City — Price-to-Income Ratio 2025</div>
+    <div class="city-grid">
+      <div class="city-card">
+        <div class="city-name">🏙️ Vancouver</div>
+        <div class="city-ratio" style="color:var(--red)">13.8x</div>
+        <div class="city-price">Avg home: $1.2M · Median income: $87K</div>
+        <div class="city-bar"><div class="city-bar-fill" style="width:95%;background:var(--red)"></div></div>
+      </div>
+      <div class="city-card">
+        <div class="city-name">🏙️ Toronto</div>
+        <div class="city-ratio" style="color:var(--red)">12.1x</div>
+        <div class="city-price">Avg home: $1.1M · Median income: $91K</div>
+        <div class="city-bar"><div class="city-bar-fill" style="width:88%;background:var(--red)"></div></div>
+      </div>
+      <div class="city-card">
+        <div class="city-name">🏙️ Montréal</div>
+        <div class="city-ratio" style="color:var(--orange)">7.2x</div>
+        <div class="city-price">Avg home: $580K · Median income: $80K</div>
+        <div class="city-bar"><div class="city-bar-fill" style="width:65%;background:var(--orange)"></div></div>
+      </div>
+      <div class="city-card">
+        <div class="city-name">🏙️ Calgary</div>
+        <div class="city-ratio" style="color:var(--orange)">6.8x</div>
+        <div class="city-price">Avg home: $620K · Median income: $91K</div>
+        <div class="city-bar"><div class="city-bar-fill" style="width:60%;background:var(--orange)"></div></div>
+      </div>
+    </div>
+  </div>
+  <!-- INEQUALITY -->
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">📈 The Rich-Poor Gap — How Housing Creates It</div>
+    <div class="inequality-box">
+      <div class="ineq-title">🔴 Housing is the #1 driver of wealth inequality in Canada</div>
+      <div class="ineq-txt">
+        When homes cost more than 9x income, <strong>wealth becomes permanently locked in the hands of those who already own property.</strong><br><br>
+        <strong>The math is brutal:</strong><br>
+        → A Toronto homeowner who bought in 2010 for $500K now holds an asset worth $1.1M — a $600K gain they did nothing to earn.<br>
+        → A renter who earned the same salary over the same period has zero housing wealth.<br><br>
+        <strong>This creates a permanent two-tier Canada:</strong><br>
+        → Owners: wealth compounds through real estate inflation regardless of income<br>
+        → Renters: income stagnates, rent rises, wealth accumulation becomes impossible<br><br>
+        <strong>Result:</strong> The richest 20% of Canadians own 67% of all real estate wealth. The bottom 40% own less than 3%. This gap is accelerating — not stabilizing. Source: Statistics Canada Survey of Financial Security 2025.
+      </div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">⏱️ Predicted consequences if ratio stays above 8x</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🔴 Long-Term Cascade — 5 to 20 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">3–5</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Young talent exodus accelerates</div><div class="tl-detail">When housing is unaffordable, young educated Canadians leave for lower-cost countries. Already documented: Canada lost a record number of 25–34 year olds to emigration in 2024. Source: StatCan.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Birth rate continues to fall</div><div class="tl-detail">Housing cost is the #1 reason cited by Canadians for having fewer children than desired. At >9x income ratio, family formation becomes financially impossible for the median earner. Source: Angus Reid 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–15</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Permanent wealth stratification</div><div class="tl-detail">A generation that cannot buy property will never accumulate the same wealth as their parents. This creates a hereditary wealth class — those who inherited property — and a permanent renter class. This is the end of social mobility as Canada has known it.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Political rupture</div><div class="tl-detail">Every society where housing has been inaccessible for more than 10 years has seen a major political rupture. New Zealand 2023, UK 2024: housing affordability was the primary driver of government change. Canada is 3–5 years behind on this curve.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Why the ratio keeps rising</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Supply constraint</strong> — Canada builds fewer homes per capita than any other G7 country. Zoning laws, NIMBYism and construction costs keep supply chronically below demand.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Investment demand</strong> — Canadian homes are treated as investment vehicles, not shelter. Institutional investors, REITs and foreign buyers compete with first-time buyers, driving prices beyond what wages can sustain.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Immigration without housing</strong> — Canada adds 400,000+ immigrants per year to a housing stock that grows by 200,000 units. The structural gap compounds every year.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Political inaction</strong> — homeowners vote more than renters. Politicians whose voters own property have no incentive to reduce home values. This structural conflict of interest has prevented meaningful reform for 20 years.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 National Price-to-Income Ratio — Historical</div>
+    <div class="hrow"><div class="hl">1990</div><div class="ht"><div class="hf" style="width:25%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">3.2x</div></div>
+    <div class="hrow"><div class="hl">2000</div><div class="ht"><div class="hf" style="width:28%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">3.8x</div></div>
+    <div class="hrow"><div class="hl">2005</div><div class="ht"><div class="hf" style="width:38%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">5.2x</div></div>
+    <div class="hrow"><div class="hl">2010</div><div class="ht"><div class="hf" style="width:48%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">6.4x</div></div>
+    <div class="hrow"><div class="hl">2015</div><div class="ht"><div class="hf" style="width:58%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">7.8x</div></div>
+    <div class="hrow"><div class="hl">2020</div><div class="ht"><div class="hf" style="width:68%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">8.5x</div></div>
+    <div class="hrow"><div class="hl">2025</div><div class="ht"><div class="hf" style="width:80%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">>9x</div></div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">Price-to-income ratio calculated using CMHC average home prices and StatCan median household income by city. National average weighted by population. City-level data from CMHC Housing Market Assessment Q4 2025. Historical ratios from CMHC Housing in Canada Online database. Inequality data from StatCan Survey of Financial Security 2025.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">Score based on national average price-to-income ratio. Ratio 3x = 0.0. Ratio 5x = 0.30 (historical warning threshold). Ratio 7x = 0.60. Ratio 9x = 0.80. Ratio 12x+ = 1.0. Current national average >9x = <strong>score 0.80 — Critical.</strong> Vancouver and Toronto individually would score 0.95+.</div>
+  </div>
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"The beaver's dam cost 3x his annual salary in 1990. Today it would cost 9x. <strong>The beaver is renting now. And the beaver who bought in 2010 is a millionaire. Same river. Two different Canadas.</strong> 🏠🦫"</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: CMHC · StatCan · Survey of Financial Security 2025<br>Updated annually</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
