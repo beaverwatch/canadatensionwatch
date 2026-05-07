@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💳 BNPL Market Growth — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--orange);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--orange);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:225.6;filter:drop-shadow(0 0 12px rgba(255,109,0,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.5rem;font-weight:900;line-height:1;color:var(--orange);}
+.gc-lbl{font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--orange);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--orange);background:rgba(255,109,0,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--orange);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--orange);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--orange);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;align-items:flex-start;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🟠 HIGH — BNPL Market: +16.5% growth. $9.5B. The new payday loan for the middle class.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #07 — CASTOR.WATCH</div>
+    <div class="hero-title">BNPL Market<br>Growth</div>
+    <div class="hero-tagline">"Buy Now Pay Later — the debt Canadians don't see coming."</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--orange)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">💳</div>
+        <div class="gc-val">+16.5%</div>
+        <div class="gc-lbl">Annual growth 2026</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word" style="color:var(--orange)">HIGH</div>
+      <div class="risk-desc">The Canadian BNPL market grows 16.5% annually and is now worth $9.5 billion. Canadians are financing daily purchases with deferred debt.</div>
+      <div class="lt-badge">🟠 LONG-TERM HIGH</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 3–10 years ahead · Updated annually</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — ResearchAndMarkets 2026</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">$9.5B</div><div class="ks-lbl">Canadian BNPL market size 2026</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">+16.5%</div><div class="ks-lbl">Annual growth rate 2026</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">40%</div><div class="ks-lbl">Canadian adults who have used BNPL at least once</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">What this means</div>
+    <div class="meaning-box">
+      <div class="meaning-title">BNPL is the new payday loan — but for the middle class.</div>
+      <div class="meaning-txt">Buy Now Pay Later platforms (Klarna, Afterpay, PayBright) let Canadians split purchases into installments — often with no visible interest. <strong>When a society routinely finances groceries, clothing and electronics on deferred debt, it signals that wages are no longer sufficient for normal life.</strong> BNPL debt is largely invisible to credit bureaus, meaning the real level of Canadian consumer indebtedness is significantly underestimated.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Predicted consequences</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🟠 HIGH — Predicted cascade 3 to 10 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">2–4</div><div class="tl-unit">years</div><div class="tl-dot" style="background:var(--orange)"></div></div>
+        <div><div class="tl-event">Hidden consumer debt crisis</div><div class="tl-detail">BNPL debt does not appear on standard credit reports. When interest rates rise or income drops, this invisible debt becomes unserviceable — creating a sudden credit crisis that regulators will not have seen coming.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">3–7</div><div class="tl-unit">years</div><div class="tl-dot" style="background:var(--orange)"></div></div>
+        <div><div class="tl-event">Retail sector distortion</div><div class="tl-detail">BNPL artificially inflates consumer spending by deferring payment. When BNPL platforms tighten lending standards (as they did in USA 2023–2024), retail sales drop sharply as the borrowed demand disappears.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot" style="background:var(--orange)"></div></div>
+        <div><div class="tl-event">Generational debt normalization</div><div class="tl-detail">Young Canadians who grow up using BNPL develop normalized relationship with deferred debt. This behavioral pattern compounds over a lifetime — historically associated with higher rates of financial distress and bankruptcy.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">BNPL market size and growth from ResearchAndMarkets Canada BNPL Market Report 2026. BNPL user penetration from FCAC (Financial Consumer Agency of Canada) Consumer Survey 2025. This is a relatively new market and data quality is improving annually.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">Score based on annual BNPL market growth rate AND market penetration. Growth under 8% = 0.20. Growth 8–12% = 0.35. Growth 12–16% = 0.50. Growth 16%+ = 0.55. Current +16.5% with 40% adult penetration = <strong>score 0.55 — High.</strong></div>
+  </div>
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"The beaver used to save before buying. Now Canadians buy and pay later. <strong>$9.5 billion of later. The beaver knows that later always comes.</strong> 💳🦫"</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: ResearchAndMarkets · FCAC 2026<br>Updated annually</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
