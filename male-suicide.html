@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💀 Male Suicide Rate Gap — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:125.6;filter:drop-shadow(0 0 12px rgba(255,45,45,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 54px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.crisis-box{background:rgba(255,45,45,0.05);border-left:3px solid var(--red);padding:18px 20px;}
+.crisis-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:10px;}
+.crisis-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.crisis-txt strong{font-weight:700;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+.resources-box{background:var(--s1);border:1px solid var(--s3);padding:20px;margin-top:0;}
+.resources-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--green);margin-bottom:12px;}
+.resource-item{display:flex;align-items:flex-start;gap:12px;font-size:0.8rem;color:var(--text);line-height:1.7;margin-bottom:8px;}
+.resource-item:last-child{margin-bottom:0;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;align-items:flex-start;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITICAL — Male Suicide Rate Gap: Men die 3x more than women. Gap widening since 2019.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #04 — CASTOR.WATCH</div>
+    <div class="hero-title">Male Suicide<br>Rate Gap</div>
+    <div class="hero-tagline">"The crisis no one talks about."</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">💀</div>
+        <div class="gc-val">3x</div>
+        <div class="gc-lbl">Male vs Female rate</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITICAL</div>
+      <div class="risk-desc">Canadian men die by suicide 3 times more than women. The gap has been widening since 2019.</div>
+      <div class="lt-badge">🔴 LONG-TERM CRITICAL</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 5–10 years ahead · Updated annually</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — StatCan Causes of Death 2024</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">3x</div><div class="ks-lbl">Men die by suicide vs women — consistently</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">~4,500</div><div class="ks-lbl">Canadian men who died by suicide in 2023</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">↑ 2019</div><div class="ks-lbl">Gap has been widening since 2019</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">What this means for Canada</div>
+    <div class="meaning-box">
+      <div class="meaning-title">This is the most underdiscussed public health crisis in Canada.</div>
+      <div class="meaning-txt">Approximately <strong>4,500 Canadian men</strong> die by suicide every year — more than three times the number of women. This gap has existed for decades, but it has been <strong>widening since 2019</strong>. It is not a random statistic. It is a signal of <strong>deep male social marginalization</strong> — economic precarity, social isolation, loss of purpose, and a healthcare system that systematically under-serves men's mental health needs.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Predicted consequences if gap continues widening</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🔴 Long-Term Cascade — 5 to 15 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">3–5</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Rising male criminality</div><div class="tl-detail">Societies where male suicide rates are high consistently show parallel rises in male violent crime. Despair and violence share the same root causes. Source: Journal of Epidemiology & Community Health 2023.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Political radicalization among young men</div><div class="tl-detail">Men who feel economically and socially excluded are the primary recruitment pool for political extremism. This is documented across Western democracies since 2015. Source: V-Dem Institute 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–15</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Healthcare system cost surge</div><div class="tl-detail">Each suicide costs the Canadian healthcare and economy an estimated $849,000 in direct and indirect costs. 4,500 male suicides per year = $3.8B annual economic loss. Source: PHAC 2024.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Root causes</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Economic marginalization</strong> — men without post-secondary credentials face a shrinking job market. Loss of traditional male economic roles without replacement creates deep identity crisis.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Social isolation</strong> — Canadian men report significantly fewer close friendships than women. Male social networks are often built around work or family — when these disappear, isolation follows.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Healthcare avoidance</strong> — men are 50% less likely than women to seek mental health support. Cultural norms and a system designed around female help-seeking patterns create a structural barrier.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Policy blind spot</strong> — gender-based health policy in Canada focuses overwhelmingly on women's health. Male-specific mental health programs receive a fraction of the funding. Source: CIHR 2024.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 Male Suicide Rate Trend — Canada</div>
+    <div class="hrow"><div class="hl">2015</div><div class="ht"><div class="hf" style="width:55%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">2.8x</div></div>
+    <div class="hrow"><div class="hl">2017</div><div class="ht"><div class="hf" style="width:58%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">2.9x</div></div>
+    <div class="hrow"><div class="hl">2019</div><div class="ht"><div class="hf" style="width:60%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">3.0x</div></div>
+    <div class="hrow"><div class="hl">2021</div><div class="ht"><div class="hf" style="width:65%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">3.1x</div></div>
+    <div class="hrow"><div class="hl">2023</div><div class="ht"><div class="hf" style="width:75%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">3x+</div></div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">🆘 If you or someone you know needs help</div>
+    <div class="resources-box">
+      <div class="resources-title">🟢 Canadian Crisis Resources</div>
+      <div class="resource-item">→ <strong>Talk Suicide Canada:</strong> 1-833-456-4566 · 24/7 · Free · Confidential</div>
+      <div class="resource-item">→ <strong>Crisis Services Canada:</strong> text 45645</div>
+      <div class="resource-item">→ <strong>Kids Help Phone:</strong> 1-800-668-6868</div>
+      <div class="resource-item">→ This dashboard tracks this indicator because the data matters. The people behind the data matter more.</div>
+    </div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">Suicide rates from StatCan Causes of Death, Table 13-10-0394-01. Male/female ratio consistently ~3:1. Economic cost estimate from Public Health Agency of Canada (PHAC) 2024 report on mental health economic burden. This indicator is updated annually.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">Score based on male-to-female suicide rate ratio and trend direction. Ratio 1.5x = 0.20. Ratio 2x = 0.40. Ratio 2.5x = 0.60. Ratio 3x = 0.75. Ratio 3x + widening trend = <strong>0.75 — Critical.</strong> Source: StatCan Table 13-10-0394-01.</div>
+  </div>
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"~4,500 Canadian men died by suicide last year. The newspapers barely mentioned it. <strong>The Beaver is mentioning it now. Because silence is part of the problem.</strong> 🦫"</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: StatCan · Causes of Death 2024<br>Crisis line: 1-833-456-4566</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
