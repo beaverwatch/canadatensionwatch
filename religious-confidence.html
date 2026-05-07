@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⛪ Religious Confidence — CASTOR.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:#7A6000;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--yellow);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--orange);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:261.2;filter:drop-shadow(0 0 12px rgba(255,214,0,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--yellow);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--yellow);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.lt-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--yellow);border-color:rgba(255,214,0,0.4);background:rgba(255,214,0,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--yellow);background:rgba(255,214,0,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--yellow);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--yellow);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--yellow);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 54px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.castor-icon{font-size:1.8rem;flex-shrink:0;}
+.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.castor-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;align-items:flex-start;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🟡 WATCH — Religious Confidence: 25% say religion very important. At the historical warning threshold.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lt-pill">🔭 LONG-TERM</div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term.html" class="back-link">← All Long-Term Indicators</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Long-Term Indicator #08 — CASTOR.WATCH</div>
+    <div class="hero-title">Religious<br>Confidence<br>Index</div>
+    <div class="hero-tagline">"We don't track faith. We track social cohesion."</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--yellow)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">⛪</div>
+        <div class="gc-val">25%</div>
+        <div class="gc-lbl">Say religion important</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">WATCH</div>
+      <div class="risk-desc">25% of Canadians say religion is very important — exactly at the historical warning threshold of 25–30%.</div>
+      <div class="lt-badge">🟡 LONG-TERM WATCH</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:4px;">Predicts 10–20 years ahead · Updated annually</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Verified Numbers — Cardus / GSS 2024</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--yellow)">25%</div><div class="ks-lbl">Canadians who say religion is very important to them</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">-22pt</div><div class="ks-lbl">Drop from 47% in 1985 — 40 years of decline</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">11%</div><div class="ks-lbl">Canadians aged 18–34 who say religion is important</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Why we track this — and why it is NOT about theology</div>
+    <div class="meaning-box">
+      <div class="meaning-title">Religion is tracked as a social cohesion proxy — not a theological judgment.</div>
+      <div class="meaning-txt">This indicator has nothing to do with whether religion is true, good or desirable. <strong>It is tracked because historically, religious institutions have provided social infrastructure</strong> — community networks, mutual aid, shared moral frameworks, meaning and purpose. When this infrastructure collapses rapidly, it creates a vacuum. <strong>That vacuum is always filled by something</strong> — sometimes secular equivalents, sometimes political ideologies, sometimes destructive movements. The speed of decline matters more than the level.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Predicted consequences if decline continues</div>
+    <div class="conseq-box">
+      <div class="conseq-title">🟡 WATCH — Predicted cascade 10 to 20 years</div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Community infrastructure loss</div><div class="tl-detail">Religious organizations provide 35% of Canada's social services — food banks, shelters, seniors care, addiction recovery. As congregations shrink, this infrastructure disappears without secular replacement. Source: Cardus Social Economics Project 2024.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–15</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Ideological vacuum fills with substitutes</div><div class="tl-detail">When traditional meaning-making structures disappear, people seek replacements — political ideologies, wellness cults, online communities, conspiracy movements. This is documented in every post-religious society studied. Source: Pew Research Global Religion 2023.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">years</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Mental health system overwhelmed</div><div class="tl-detail">Religious participation is one of the strongest protective factors against depression and suicide across all demographic groups. As it declines, demand on secular mental health systems increases beyond capacity. Source: American Journal of Psychiatry meta-analysis 2023.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 Religious importance — Canada historical</div>
+    <div class="hrow"><div class="hl">1985</div><div class="ht"><div class="hf" style="width:94%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">47%</div></div>
+    <div class="hrow"><div class="hl">1995</div><div class="ht"><div class="hf" style="width:80%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">40%</div></div>
+    <div class="hrow"><div class="hl">2005</div><div class="ht"><div class="hf" style="width:68%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">34%</div></div>
+    <div class="hrow"><div class="hl">2015</div><div class="ht"><div class="hf" style="width:56%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">28%</div></div>
+    <div class="hrow"><div class="hl">2024</div><div class="ht"><div class="hf" style="width:50%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">25%</div></div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Data Transparency</div>
+    <div class="note-txt">Data from Cardus Religious Economy Project and Statistics Canada General Social Survey (GSS) 2024. Question wording: "How important is religion to you personally?" — "Very important" responses. Historical data from GSS cycles 1985–2024. Youth figure (11%) from Angus Reid Institute Survey on Faith 2024.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Methodology</div>
+    <div class="method-txt">Score based on % saying religion is very important AND rate of decline. 45%+ = 0.10. 35% = 0.25. 25% = 0.48 (warning threshold). Below 20% = 0.65. Trajectory (declining) adds 0.05. Current 25% + rapid decline = <strong>score 0.48 — Watch.</strong></div>
+  </div>
+  <div class="castor-box">
+    <div class="castor-icon">🦫</div>
+    <div>
+      <div class="castor-lbl">The Beaver Says</div>
+      <div class="castor-txt">"The beaver does not have a religion. <strong>But the beaver has studied history. And history shows that when the old structures collapse faster than new ones are built — the vacuum is never empty for long.</strong> ⛪🦫"</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-meta">Source: Cardus / StatCan GSS 2024<br>Updated annually</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
