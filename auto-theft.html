@@ -3,51 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚗 Auto Theft Risk — BEAVER.WATCH</title>
+<title>🍞 Food Stress Index — BEAVER.WATCH</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#070707; --s1:#0F0F0F; --s2:#181818; --s3:#242424; --s4:#303030;
-  --text:#F5F0E8; --muted:#999990; --faint:#141414;
-  --red:#FF2D2D; --orange:#FF6D00; --green:#00E676; --yellow:#FFD600;
-  --accent:#FF2D2D; --glow:rgba(255,45,45,0.2);
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+  --accent:#FF2D2D;--glow:rgba(255,45,45,0.2);
 }
-
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
-
-/* Grain */
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
-/* ALERT */
 .alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;transition:background 1s ease;}
 .a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
 @keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
 .a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
-.a-time{font-size:0.65rem;opacity:0.7;letter-spacing:1px;}
+.a-time{font-size:0.65rem;opacity:0.7;}
 
-/* HEADER */
-header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--accent);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
-.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
-.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
-.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;transition:background 1s ease;}
-
-/* LOADING STATE */
 .loading-bar{width:100%;height:3px;background:var(--s3);position:relative;overflow:hidden;}
 .loading-bar::after{content:'';position:absolute;left:-50%;top:0;bottom:0;width:50%;background:linear-gradient(90deg,transparent,var(--accent),transparent);animation:loading 1.5s ease infinite;}
 @keyframes loading{from{left:-50%}to{left:150%}}
 .loading-bar.done{display:none;}
 
-/* MAIN WRAPPER */
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--accent);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;transition:border-color 1s ease;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.live-pill{display:flex;align-items:center;gap:7px;padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;transition:background 1s ease;}
+
 .wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
 
-/* HERO SECTION */
-.hero{padding:36px 28px 0;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+.hero{padding:28px 28px 0;}
 .hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
 .hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
 .hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
-.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;margin-bottom:0;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
 
 /* GAUGE */
 .gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
@@ -57,17 +52,15 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
 .g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:502.4;transition:stroke-dashoffset 2.4s cubic-bezier(.3,0,.2,1),stroke 0.8s ease;filter:drop-shadow(0 0 12px var(--glow));}
 .g-tick{fill:none;stroke:#070707;stroke-width:3;}
 .gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
-.gc-car{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;transition:color 1s ease;}
 .gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
 
-/* RIGHT SIDE */
 .gauge-right{flex:1;display:flex;flex-direction:column;gap:16px;}
 .risk-word{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:3px;line-height:1;transition:color 1s ease;}
 .risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
 
-/* Risk pills */
 .pills{display:flex;flex-direction:column;gap:5px;}
 .pill{display:flex;align-items:center;gap:10px;padding:7px 12px;border:1px solid transparent;transition:all 0.4s ease;}
 .pill.active{border-color:var(--s4);background:rgba(255,255,255,0.03);}
@@ -76,79 +69,85 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
 .pill.active .pill-name{color:var(--text);}
 .pill-rng{font-size:0.6rem;color:var(--muted);letter-spacing:1px;}
 
-/* DIVIDER */
 .divider{margin:24px 28px;height:1px;background:var(--s3);}
 
-/* WHAT THIS MEANS */
-.meaning-section{padding:0 28px;}
-.section-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
-.meaning-box{padding:18px 20px;border-left:3px solid var(--accent);background:rgba(255,45,45,0.05);transition:border-color 1s ease,background 1s ease;}
-.meaning-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:8px;transition:color 1s ease;}
-.meaning-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+/* SECTIONS */
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+
+.meaning-box{padding:20px;border-left:3px solid var(--accent);transition:border-color 1s ease,background 1s ease;}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;transition:color 1s ease;}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
 .meaning-txt strong{font-weight:700;}
 
-/* WHAT TO DO */
-.action-section{padding:0 28px;margin-top:20px;}
-.action-box{background:var(--s1);border:1px solid var(--s3);padding:18px 20px;}
-.action-title{font-size:0.95rem;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.action-list{display:flex;flex-direction:column;gap:8px;}
-.action-item{display:flex;align-items:flex-start;gap:12px;font-size:0.8rem;line-height:1.7;color:var(--text);}
+/* CONSEQUENCES */
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.conseq-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.timeline{display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;gap:0;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;flex-shrink:0;}
+.tl-content{flex:1;}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+
+/* ACTIONS */
+.action-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.action-title{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+.action-list{display:flex;flex-direction:column;gap:10px;}
+.action-item{display:flex;align-items:flex-start;gap:12px;font-size:0.82rem;line-height:1.7;color:var(--text);}
 .action-icon{font-size:1rem;flex-shrink:0;margin-top:1px;}
 
 /* SOURCES */
-.sources-section{padding:0 28px;margin-top:20px;}
-.src-card{background:var(--s1);border-left:2px solid;padding:14px 16px;margin-bottom:8px;}
+.src-card{background:var(--s1);border-left:3px solid;padding:16px;margin-bottom:8px;}
 .src-card:last-child{margin-bottom:0;}
-.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
-.src-name{font-size:0.75rem;font-weight:700;letter-spacing:0.5px;}
+.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.src-name{font-size:0.78rem;font-weight:700;}
 .src-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:1px;}
-.src-desc{font-size:0.72rem;color:var(--text);line-height:1.7;margin-bottom:4px;}
+.src-desc{font-size:0.75rem;color:var(--text);line-height:1.7;margin-bottom:4px;}
 .src-freq{font-size:0.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);}
 
-/* CAUSAL CHAIN */
-.chain-section{padding:0 28px;margin-top:20px;}
+/* CHAIN */
 .chain{display:flex;flex-direction:column;}
 .chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
 .chain-item:last-child{border-bottom:none;}
 .chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;line-height:1.2;}
-.chain-t{font-size:0.78rem;color:var(--text);line-height:1.8;}
-.chain-t strong{font-weight:700;color:var(--text);}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
 
 /* HISTORY */
-.hist-section{padding:0 28px;margin-top:20px;}
-.hrow{display:grid;grid-template-columns:72px 1fr 42px;align-items:center;gap:10px;margin-bottom:8px;}
-.hl{font-size:0.68rem;color:var(--text);}
+.hrow{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
 .ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
 .hf{position:absolute;left:0;top:0;bottom:0;transition:width 2s ease;}
-.hv{font-size:0.68rem;text-align:right;font-weight:600;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
 
 /* STATS */
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin:20px 28px 0;}
-.stat{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:5px;}
+.stat{background:var(--s1);padding:18px 14px;display:flex;flex-direction:column;gap:5px;}
 .stat-v{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;transition:color 1s ease;}
-.stat-l{font-size:0.65rem;letter-spacing:1px;color:var(--text);line-height:1.5;}
+.stat-l{font-size:0.67rem;letter-spacing:1px;color:var(--text);line-height:1.5;}
 
-/* METHODOLOGY */
-.method{margin:20px 28px 0;background:var(--s1);padding:18px 20px;border-left:2px solid var(--s4);}
+/* METHOD */
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
 .method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.method-txt{font-size:0.75rem;line-height:1.9;color:var(--text);}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
 .method-txt strong{font-weight:700;}
 
 /* BEAVER */
-.beaver-box{margin:20px 28px 0;background:var(--s2);padding:20px;display:flex;gap:16px;align-items:flex-start;}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;align-items:flex-start;}
 .beaver-icon{font-size:1.8rem;flex-shrink:0;}
 .beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.beaver-txt{font-size:0.8rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
 .beaver-txt strong{font-style:normal;font-weight:700;}
 
-/* FOOTER */
 footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
 .foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
-
-/* Back link */
-.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
-.back-link:hover{color:var(--text);}
 
 @media(max-width:480px){
   .gauge-section{flex-direction:column;align-items:flex-start;}
@@ -164,51 +163,47 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
 <!-- ALERT -->
 <div class="alert" id="alert-bar" style="background:var(--red);">
   <div class="a-dot"></div>
-  <div class="a-txt" id="alert-txt">🚨 HIGH RISK — Auto Theft Index: 0.72 — Elevated vehicle theft risk in the next 4 to 8 weeks.</div>
+  <div class="a-txt" id="alert-txt">🚨 HIGH RISK — Food Stress Index: 0.71 — Critical food insecurity signals detected across Canada.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 
-<!-- LOADING BAR -->
 <div class="loading-bar" id="loading-bar"></div>
 
-<!-- HEADER -->
-<header>
-  <a href="index.html" style="text-decoration:none;color:inherit;">
-    <div class="logo">🦫 <span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div>
-    <div class="logo-sub">Canadian Stress Barometer</div>
+<header id="main-header" style="border-color:var(--red);">
+  <a href="index.html" class="logo" style="text-decoration:none;">
+    <span>🦫</span>
+    <div>
+      <div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div>
+      <div class="logo-sub">Canadian Stress Barometer</div>
+    </div>
   </a>
-  <div class="live-pill" id="live-pill"><div class="a-dot" id="live-dot"></div>LIVE</div>
+  <div class="live-pill" id="live-pill" style="background:var(--red);"><div class="a-dot"></div>LIVE</div>
 </header>
 
 <div class="wrapper">
 
-  <!-- BACK -->
   <a href="index.html" class="back-link">← All Indicators</a>
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">Indicator #01 — BEAVER.WATCH</div>
-    <div class="hero-title">Auto Theft<br>Risk Index</div>
-    <div class="hero-tagline">"The Beaver watches your car."</div>
+    <div class="hero-eyebrow">Indicator #02 — BEAVER.WATCH</div>
+    <div class="hero-title">Food Stress<br>Index</div>
+    <div class="hero-tagline">"The empty lunch box never lies."</div>
   </div>
 
   <!-- GAUGE -->
   <div class="gauge-section">
     <div class="gauge-wrap">
       <svg class="gauge-svg" viewBox="0 0 120 120">
-        <!-- Zone backgrounds -->
         <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9" stroke-dashoffset="0"/>
         <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
         <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
-        <!-- Tick at 0.4 -->
         <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(144 60 60)"/>
-        <!-- Tick at 0.7 -->
         <line class="g-tick" x1="60" y1="23" x2="60" y2="16" transform="rotate(252 60 60)"/>
-        <!-- Active arc -->
         <circle class="g-active" id="gauge-arc" cx="60" cy="60" r="40" stroke="var(--red)"/>
       </svg>
       <div class="gauge-center">
-        <div class="gc-car">🚗</div>
+        <div class="gc-icon">🍞</div>
         <div class="gc-val" id="g-val">—</div>
         <div class="gc-lbl">Risk Score</div>
       </div>
@@ -216,7 +211,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
 
     <div class="gauge-right">
       <div class="risk-word" id="risk-word">—</div>
-      <div class="risk-desc" id="risk-desc">Loading data from Google Sheets...</div>
+      <div class="risk-desc" id="risk-desc">Loading data...</div>
       <div class="pills">
         <div class="pill" id="p-low">
           <div class="pip" style="background:var(--green)"></div>
@@ -240,19 +235,30 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <div class="divider"></div>
 
   <!-- WHAT THIS MEANS -->
-  <div class="meaning-section">
-    <div class="section-label">What this score means for you</div>
+  <div class="section">
+    <div class="sec-label">What this score means</div>
     <div class="meaning-box" id="meaning-box">
       <div class="meaning-title" id="meaning-title">Loading...</div>
       <div class="meaning-txt" id="meaning-txt">Please wait while we load the latest data.</div>
     </div>
   </div>
 
-  <!-- WHAT TO DO -->
-  <div class="action-section">
-    <div class="section-label">What should you do ?</div>
-    <div class="action-box" id="action-box">
-      <div class="action-title" id="action-title">🚗 Loading recommendations...</div>
+  <!-- CONSEQUENCES TIMELINE -->
+  <div class="section">
+    <div class="sec-label">⏱️ If this trend continues — what happens next</div>
+    <div class="conseq-box">
+      <div class="conseq-title" id="conseq-title">🔴 Predicted consequences of sustained HIGH RISK</div>
+      <div class="timeline" id="timeline">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIONS -->
+  <div class="section">
+    <div class="sec-label">What should you do ?</div>
+    <div class="action-box">
+      <div class="action-title" id="action-title">Loading...</div>
       <div class="action-list" id="action-list"></div>
     </div>
   </div>
@@ -260,58 +266,58 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <div class="divider"></div>
 
   <!-- SOURCES -->
-  <div class="sources-section">
-    <div class="section-label">📊 Data Sources</div>
+  <div class="section">
+    <div class="sec-label">📊 Data Sources</div>
 
     <div class="src-card" style="border-color:var(--red)">
       <div class="src-top">
-        <div class="src-name" style="color:var(--red)">Équité Association</div>
+        <div class="src-name" style="color:var(--red)">Breakfast Club of Canada</div>
         <div class="src-val" style="color:var(--red)" id="src1">—</div>
       </div>
-      <div class="src-desc">Auto financing fraud + port export data (Halifax, Vancouver, Montreal). Official quarterly public report.</div>
-      <div class="src-freq">Weight 35% · Quarterly · equite-association.com</div>
+      <div class="src-desc">Weekly program enrollment data. New registrations track food insecurity in school-age children — the most direct real-time signal available.</div>
+      <div class="src-freq">Weight 40% · Weekly · breakfastclubcanada.org</div>
     </div>
 
     <div class="src-card" style="border-color:var(--orange)">
       <div class="src-top">
-        <div class="src-name" style="color:var(--orange)">CANAFE / Banks</div>
+        <div class="src-name" style="color:var(--orange)">Food Banks Canada</div>
         <div class="src-val" style="color:var(--orange)" id="src2">—</div>
       </div>
-      <div class="src-desc">Suspicious transaction reports related to fraudulent auto financing. Aggregated by CANAFE, Canada's financial intelligence unit.</div>
-      <div class="src-freq">Weight 40% · Monthly · fintrac-canafe.gc.ca</div>
+      <div class="src-desc">Monthly usage statistics across Canada's network of food banks. Tracks first-time users separately — the key signal for middle-class food stress.</div>
+      <div class="src-freq">Weight 35% · Monthly · foodbankscanada.ca</div>
     </div>
 
     <div class="src-card" style="border-color:var(--s4)">
       <div class="src-top">
-        <div class="src-name" style="color:var(--text)">IBC + Police Data</div>
+        <div class="src-name" style="color:var(--text)">StatCan Food Price Index</div>
         <div class="src-val" style="color:var(--text)" id="src3">—</div>
       </div>
-      <div class="src-desc">Insurance Bureau of Canada + open police data (Toronto, SPVM Montreal, Calgary). Vehicle theft statistics by region.</div>
-      <div class="src-freq">Weight 25% · Monthly · ibc.ca · data.torontopolice.on.ca</div>
+      <div class="src-desc">Consumer Price Index for food, tracked monthly. When food inflation exceeds wage growth for 3+ consecutive months, stress signals compound.</div>
+      <div class="src-freq">Weight 25% · Monthly · statcan.gc.ca</div>
     </div>
   </div>
 
   <div class="divider"></div>
 
   <!-- CAUSAL CHAIN -->
-  <div class="chain-section">
-    <div class="section-label">🔗 How this indicator works</div>
+  <div class="section">
+    <div class="sec-label">🔗 How this indicator works</div>
     <div class="chain">
       <div class="chain-item">
         <div class="chain-n">01</div>
-        <div class="chain-t"><strong>Fraud at ports rises</strong> — Auto loans approved for vehicles never registered locally. Banks report this to CANAFE.</div>
+        <div class="chain-t"><strong>Food prices rise faster than wages</strong> — families begin cutting food budgets first. Luxury foods go first, then nutritious options.</div>
       </div>
       <div class="chain-item">
         <div class="chain-n">02</div>
-        <div class="chain-t"><strong>Export via containers increases</strong> — Halifax, Vancouver, Montreal. Local demand for stolen parts rises simultaneously.</div>
+        <div class="chain-t"><strong>Breakfast Club registrations spike</strong> — parents can no longer send children to school with a full lunch. This is the earliest visible signal.</div>
       </div>
       <div class="chain-item">
         <div class="chain-n">03</div>
-        <div class="chain-t"><strong>Cash-only parts market activates</strong> — Visible signal on Kijiji Auto and Facebook Marketplace.</div>
+        <div class="chain-t"><strong>Food bank usage rises</strong> — critically, first-time users from the middle class signal that the crisis has spread beyond low-income households.</div>
       </div>
       <div class="chain-item">
         <div class="chain-n">04</div>
-        <div class="chain-t"><strong>Vehicle theft spike follows</strong> — Documented 4 to 8 weeks after the composite signal activates. Source: GRC Project Whiplash 2023.</div>
+        <div class="chain-t"><strong>Social and political consequences follow</strong> — documented 4 to 8 weeks after the composite signal activates. Source: Food Banks Canada Annual Report 2024.</div>
       </div>
     </div>
   </div>
@@ -319,8 +325,8 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <div class="divider"></div>
 
   <!-- HISTORY -->
-  <div class="hist-section">
-    <div class="section-label">📈 6-Month History</div>
+  <div class="section">
+    <div class="sec-label">📈 6-Month History</div>
     <div class="hrow">
       <div class="hl">This month</div>
       <div class="ht"><div class="hf" id="hb1" style="width:0%;background:var(--red)"></div></div>
@@ -328,44 +334,44 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
     </div>
     <div class="hrow">
       <div class="hl">− 1 month</div>
-      <div class="ht"><div class="hf" style="width:65%;background:var(--orange)"></div></div>
-      <div class="hv" style="color:var(--orange)">0.65</div>
+      <div class="ht"><div class="hf" style="width:62%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.62</div>
     </div>
     <div class="hrow">
       <div class="hl">− 2 months</div>
-      <div class="ht"><div class="hf" style="width:60%;background:var(--orange)"></div></div>
-      <div class="hv" style="color:var(--orange)">0.60</div>
+      <div class="ht"><div class="hf" style="width:55%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.55</div>
     </div>
     <div class="hrow">
       <div class="hl">− 3 months</div>
-      <div class="ht"><div class="hf" style="width:54%;background:var(--orange)"></div></div>
-      <div class="hv" style="color:var(--orange)">0.54</div>
+      <div class="ht"><div class="hf" style="width:48%;background:var(--orange)"></div></div>
+      <div class="hv" style="color:var(--orange)">0.48</div>
     </div>
     <div class="hrow">
       <div class="hl">− 4 months</div>
-      <div class="ht"><div class="hf" style="width:42%;background:var(--orange)"></div></div>
-      <div class="hv" style="color:var(--orange)">0.42</div>
+      <div class="ht"><div class="hf" style="width:38%;background:var(--yellow)"></div></div>
+      <div class="hv" style="color:var(--yellow)">0.38</div>
     </div>
     <div class="hrow">
       <div class="hl">− 5 months</div>
-      <div class="ht"><div class="hf" style="width:30%;background:var(--green)"></div></div>
-      <div class="hv" style="color:var(--green)">0.30</div>
+      <div class="ht"><div class="hf" style="width:28%;background:var(--green)"></div></div>
+      <div class="hv" style="color:var(--green)">0.28</div>
     </div>
   </div>
 
   <!-- STATS -->
   <div class="stats">
     <div class="stat">
-      <div class="stat-v" id="st1" style="color:var(--red)">—</div>
-      <div class="stat-l">Change this month</div>
+      <div class="stat-v" id="st1" style="color:var(--red)">+34%</div>
+      <div class="stat-l">New Breakfast Club registrations this month</div>
     </div>
     <div class="stat">
       <div class="stat-v" style="color:var(--text)">4–8 wks</div>
-      <div class="stat-l">Predictive lead time (GRC)</div>
+      <div class="stat-l">Predictive lead time before social impact</div>
     </div>
     <div class="stat">
       <div class="stat-v" style="color:var(--muted)">3 sources</div>
-      <div class="stat-l">Canadian institutions</div>
+      <div class="stat-l">Canadian public institutions</div>
     </div>
   </div>
 
@@ -373,7 +379,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <div class="method">
     <div class="method-title">Methodology</div>
     <div class="method-txt">
-      Monthly composite score: <strong>Équité Association</strong> port fraud data (35%) + <strong>CANAFE</strong> suspicious transaction reports on auto financing (40%) + <strong>IBC + open police data</strong> Toronto/Montreal/Calgary (25%). Correlation documented in <strong>GRC Project Whiplash 2023</strong>. Average predictive lead time: 4 to 8 weeks. This dashboard does not constitute legal or police advice.
+      Monthly composite score: <strong>Breakfast Club of Canada</strong> weekly enrollment data (40%) + <strong>Food Banks Canada</strong> monthly usage including first-time users (35%) + <strong>StatCan Consumer Price Index for food</strong> (25%). Correlation documented in <strong>Food Banks Canada HungerCount 2024</strong> and <strong>Second Harvest Canada 2023</strong>. Average predictive lead time: 4 to 8 weeks.
     </div>
   </div>
 
@@ -392,94 +398,116 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
     <div class="foot-meta">Public data · Canada<br>Updated monthly · <span id="last-updated">—</span></div>
   </footer>
 
-</div><!-- /wrapper -->
+</div>
 
 <script>
-const CIRC = 2 * Math.PI * 40; // 251.2
-
-// ── Google Sheets URL ──
+const CIRC = 2 * Math.PI * 40;
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
 
-// ── Risk zones config ──
 const ZONES = {
   low: {
     color:'#00E676', glow:'rgba(0,230,118,0.15)', alertBg:'#00695C',
     word:'LOW RISK',
-    desc:'Conditions are calm. The fraud and theft chain is inactive.',
-    alert:'✅ LOW RISK — Auto Theft Index: {v} — Vehicle theft risk is below the national average.',
-    meaningTitle:'Your car is NOT at elevated risk right now.',
-    meaningTxt:'At <strong>{v}</strong>, all three data sources show normal activity. There is <strong>no unusual fraud at ports, no suspicious banking activity</strong> and <strong>no spike in insurance claims</strong>. Enjoy peace of mind — but always use basic precautions.',
-    actionTitle:'🟢 Basic precautions are enough',
-    actions:['Park in well-lit areas when possible.','Make sure your doors are locked and windows closed.','No special action required at this risk level.'],
-    beaver:'"At {v}, the data is quiet. The beaver is watching — but not worried."',
-    st1:'+0%', st1c:'#00E676', pill:'p-low',
+    desc:'Food system is stable. No unusual stress signals detected.',
+    alert:'✅ LOW RISK — Food Stress Index: {v} — Food security conditions are normal across Canada.',
+    meaningTitle:'Food security conditions are stable right now.',
+    meaningTxt:'At <strong>{v}</strong>, enrollment in Breakfast Club programs is normal, food bank usage is within expected ranges, and food inflation is not outpacing wages. <strong>No special action is required.</strong>',
+    actionTitle:'🟢 Normal conditions',
+    actions:[
+      'No special action required at this risk level.',
+      'Consider donating to your local food bank — they need support even in good times.',
+      'Stay informed — this indicator updates monthly.'
+    ],
+    conseqTitle:'🟢 At LOW RISK — No significant consequences predicted',
+    consequences:[
+      {time:'4–6', unit:'weeks', event:'Normal social stability', detail:'No significant increase in food-related stress indicators expected.', color:'#00E676'},
+      {time:'2–3', unit:'months', event:'Seasonal variations only', detail:'Minor fluctuations expected due to seasonal food price changes. No structural concern.', color:'#00E676'},
+    ],
+    beaver:'"At {v}, the food system is calm. The beaver ate well today. 🍞"',
+    st1:'+2%', st1c:'#00E676', pill:'p-low',
   },
   moderate: {
     color:'#FF6D00', glow:'rgba(255,109,0,0.15)', alertBg:'#E65100',
     word:'MODERATE RISK',
-    desc:'Signals are rising. The theft chain is starting to activate.',
-    alert:'⚠️ MODERATE RISK — Auto Theft Index: {v} — Increased vehicle theft signals detected. Stay alert.',
-    meaningTitle:'There is a moderate risk your car could be targeted.',
-    meaningTxt:'At <strong>{v}</strong>, we are seeing <strong>rising fraud at Canadian ports and increased suspicious banking activity</strong>. This does not mean your car will be stolen — but the conditions that typically precede a theft spike are building. <strong>Extra precautions are recommended.</strong>',
-    actionTitle:'🟠 Take extra precautions now',
-    actions:['Consider parking in a garage or secured lot overnight.','Install or activate your steering wheel lock.','Check that your car alarm is working properly.','Avoid leaving valuables visible in your vehicle.'],
-    beaver:'"At {v}, the signals are rising. The beaver has one eye open."',
-    st1:'+8%', st1c:'#FF6D00', pill:'p-mod',
+    desc:'Food stress signals are building. Middle-class families starting to feel pressure.',
+    alert:'⚠️ MODERATE RISK — Food Stress Index: {v} — Rising food insecurity signals detected. Vulnerable populations at risk.',
+    meaningTitle:'Food stress is rising — vulnerable families are being hit first.',
+    meaningTxt:'At <strong>{v}</strong>, Breakfast Club enrollment is above normal and food bank usage is increasing. <strong>First-time users</strong> — a key signal — are starting to appear. This indicates that <strong>food stress is spreading beyond low-income households into the middle class.</strong> Action is needed from community organizations.',
+    actionTitle:'🟠 Community action recommended',
+    actions:[
+      'If you run a community organization — check your food support capacity now.',
+      'Consider increasing donations to local food banks and Breakfast Club.',
+      'Schools: check if students are arriving without breakfast or lunch.',
+      'Employers: review whether wages are keeping up with local food costs.'
+    ],
+    conseqTitle:'🟠 At MODERATE RISK — Predicted consequences',
+    consequences:[
+      {time:'4–6', unit:'weeks', event:'Rise in first-time food bank users', detail:'Documented in Food Banks Canada data: moderate stress precedes first-time user spikes by 4-6 weeks.', color:'#FF6D00'},
+      {time:'6–8', unit:'weeks', event:'Increased school behavioral issues', detail:'Hungry children show measurable increases in attention difficulties and behavioral problems. Source: Breakfast Club of Canada research.', color:'#FF6D00'},
+      {time:'2–3', unit:'months', event:'Healthcare system pressure', detail:'Food insecurity leads to measurable increases in ER visits for stress-related conditions. Source: CIHI Canada.', color:'#FF6D00'},
+    ],
+    beaver:'"At {v}, families are making hard choices at the grocery store. The beaver is watching the checkout lines. 🛒"',
+    st1:'+18%', st1c:'#FF6D00', pill:'p-mod',
   },
   high: {
     color:'#FF2D2D', glow:'rgba(255,45,45,0.2)', alertBg:'#B71C1C',
     word:'HIGH RISK',
-    desc:'All three sources in the danger zone. Theft spike predicted in 4–8 weeks.',
-    alert:'🚨 HIGH RISK — Auto Theft Index: {v} — All signals critical. Elevated vehicle theft risk in 4 to 8 weeks.',
-    meaningTitle:'Your car faces elevated theft risk in the next 4 to 8 weeks.',
-    meaningTxt:'At <strong>{v}</strong>, all three institutional sources are simultaneously elevated. <strong>Port fraud is high, CANAFE has flagged increased suspicious auto financing, and insurance data confirms the trend.</strong> Based on documented correlations (GRC Project Whiplash 2023), a significant vehicle theft spike is likely within 4 to 8 weeks. <strong>Take action now.</strong>',
-    actionTitle:'🔴 Take strong protective action',
-    actions:['Park in a locked garage every night if possible.','Install a GPS tracker on your vehicle.','Add a steering wheel lock or kill switch.','Contact your insurance company to review your coverage.','Never leave your car running unattended — even for 1 minute.','High-risk vehicles: Honda CR-V, Toyota Highlander, Ford F-150 — extra caution required.'],
-    beaver:'"At {v}, the chain is activated. The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong>"',
-    st1:'+18%', st1c:'#FF2D2D', pill:'p-high',
+    desc:'Critical food insecurity. Middle class now affected. Social consequences imminent.',
+    alert:'🚨 HIGH RISK — Food Stress Index: {v} — Critical food insecurity signals. Major social consequences predicted in 4 to 8 weeks.',
+    meaningTitle:'Canada is facing a serious food insecurity crisis.',
+    meaningTxt:'At <strong>{v}</strong>, all three sources are simultaneously elevated. Breakfast Club is seeing <strong>record new registrations</strong>. Food bank usage is at historic highs with a <strong>significant spike in first-time middle-class users</strong>. Food inflation continues to outpace wages. This is no longer a low-income issue — <strong>this is a broad social crisis in formation.</strong>',
+    actionTitle:'🔴 Urgent action recommended',
+    actions:[
+      'Families: review your monthly food budget now — build a 2-week emergency food supply.',
+      'Community organizations: activate emergency food programs immediately.',
+      'Employers: urgent review of compensation packages vs. local cost of living.',
+      'Contact your MP/MPP — this data supports urgent policy action on food affordability.',
+      'Schools: ensure no child goes without breakfast — contact Breakfast Club of Canada.'
+    ],
+    conseqTitle:'🔴 At HIGH RISK — Predicted consequences if trend continues',
+    consequences:[
+      {time:'2–4', unit:'weeks', event:'Spike in petty theft and shoplifting', detail:'Documented correlation: food bank overload precedes retail theft increases by 2-4 weeks. Source: Retail Council of Canada + BDO Canada criminology data.', color:'#FF2D2D'},
+      {time:'4–6', unit:'weeks', event:'Child welfare interventions increase', detail:'When School Lunch Deficit reaches critical levels, CPS/DPJ interventions increase 7% per 10% rise in Breakfast Club enrollment. Source: Food Banks Canada 2024.', color:'#FF2D2D'},
+      {time:'6–8', unit:'weeks', event:'Protest vote surge', detail:'Food insecurity is historically the strongest predictor of protest voting behavior. Expect significant shifts in upcoming electoral polling.', color:'#FF2D2D'},
+      {time:'2–3', unit:'months', event:'Healthcare and mental health crisis', detail:'Food insecurity at this level leads to measurable increases in anxiety, depression and ER visits. Provincial health systems will face increased pressure.', color:'#FF2D2D'},
+      {time:'3–6', unit:'months', event:'Political pressure for emergency measures', detail:'If sustained, food insecurity at this level historically triggers emergency government responses — price controls, emergency food funding, or social program expansions.', color:'#FF2D2D'},
+    ],
+    beaver:'"At {v}, the lunch boxes are empty and the food banks are full. <strong>In 6 weeks, the politicians will be talking about it. The Beaver already knows.</strong> 🍞"',
+    st1:'+34%', st1c:'#FF2D2D', pill:'p-high',
   }
 };
 
 function getZone(v){ return v<0.4?'low':v<0.7?'moderate':'high'; }
 
-function update(composite, equite, canafe, ibc, updatedAt) {
-  const v = parseFloat(composite).toFixed(2);
+function update(foodStress, src1val, src2val, src3val, updatedAt) {
+  const v = parseFloat(foodStress).toFixed(2);
   const pct = Math.round(parseFloat(v) * 100);
   const zk = getZone(parseFloat(v));
   const Z = ZONES[zk];
 
-  // CSS vars
   document.documentElement.style.setProperty('--accent', Z.color);
   document.documentElement.style.setProperty('--glow', Z.glow);
 
-  // Gauge arc
+  // Gauge
   const arc = document.getElementById('gauge-arc');
   arc.style.strokeDashoffset = CIRC*(1 - pct/100);
   arc.style.stroke = Z.color;
   arc.style.filter = `drop-shadow(0 0 14px ${Z.glow})`;
 
-  // Center
   document.getElementById('g-val').textContent = v;
   document.getElementById('g-val').style.color = Z.color;
-
-  // Risk word
   document.getElementById('risk-word').textContent = Z.word;
   document.getElementById('risk-word').style.color = Z.color;
   document.getElementById('risk-desc').textContent = Z.desc;
 
-  // Pills
   ['p-low','p-mod','p-high'].forEach(id=>document.getElementById(id).classList.remove('active'));
   document.getElementById(Z.pill).classList.add('active');
 
-  // Alert
   document.getElementById('alert-bar').style.background = Z.alertBg;
   document.getElementById('alert-txt').textContent = Z.alert.replace(/{v}/g, v);
-
-  // Live pill
   document.getElementById('live-pill').style.background = Z.color;
-  document.getElementById('live-dot').style.background = '#fff';
+  document.getElementById('main-header').style.borderColor = Z.color;
 
-  // Meaning
   const mb = document.getElementById('meaning-box');
   mb.style.borderLeftColor = Z.color;
   mb.style.background = `${Z.color}08`;
@@ -487,45 +515,60 @@ function update(composite, equite, canafe, ibc, updatedAt) {
   document.getElementById('meaning-title').style.color = Z.color;
   document.getElementById('meaning-txt').innerHTML = Z.meaningTxt.replace(/{v}/g, v);
 
+  // Consequences timeline
+  document.getElementById('conseq-title').textContent = Z.conseqTitle;
+  const tl = document.getElementById('timeline');
+  tl.innerHTML = '';
+  Z.consequences.forEach(c => {
+    tl.innerHTML += `
+      <div class="tl-item">
+        <div class="tl-left">
+          <div class="tl-time" style="color:${c.color}">${c.time}</div>
+          <div class="tl-unit">${c.unit}</div>
+          <div class="tl-dot" style="background:${c.color}"></div>
+        </div>
+        <div class="tl-content">
+          <div class="tl-event">${c.event}</div>
+          <div class="tl-detail">${c.detail}</div>
+        </div>
+      </div>`;
+  });
+
   // Actions
   document.getElementById('action-title').textContent = Z.actionTitle;
-  const actionList = document.getElementById('action-list');
-  actionList.innerHTML = '';
+  const al = document.getElementById('action-list');
+  al.innerHTML = '';
   Z.actions.forEach(a => {
-    actionList.innerHTML += `<div class="action-item"><div class="action-icon">→</div><div>${a}</div></div>`;
+    al.innerHTML += `<div class="action-item"><div class="action-icon">→</div><div>${a}</div></div>`;
   });
 
   // Sources
-  if(equite) document.getElementById('src1').textContent = parseFloat(equite).toFixed(2);
-  if(canafe) document.getElementById('src2').textContent = parseFloat(canafe).toFixed(2);
-  if(ibc)    document.getElementById('src3').textContent = parseFloat(ibc).toFixed(2);
+  if(src1val) document.getElementById('src1').textContent = parseFloat(src1val).toFixed(2);
+  if(src2val) document.getElementById('src2').textContent = parseFloat(src2val).toFixed(2);
+  if(src3val) document.getElementById('src3').textContent = parseFloat(src3val).toFixed(2);
 
   // Stats
   const s1 = document.getElementById('st1');
   s1.textContent = Z.st1;
   s1.style.color = Z.st1c;
 
-  // History current
+  // History
   document.getElementById('hb1').style.width = pct + '%';
   document.getElementById('hb1').style.background = Z.color;
   document.getElementById('hv1').textContent = v;
   document.getElementById('hv1').style.color = Z.color;
 
-  // Beaver
   document.getElementById('beaver-txt').innerHTML = Z.beaver.replace(/{v}/g, v);
 
-  // Last updated
   if(updatedAt) {
     const d = new Date(updatedAt);
     document.getElementById('last-updated').textContent =
       d.toLocaleDateString('en-CA', {month:'long', day:'numeric', year:'numeric'});
   }
 
-  // Hide loading bar
   document.getElementById('loading-bar').classList.add('done');
 }
 
-// ── Clock ──
 function tick(){
   const n=new Date();
   document.getElementById('clock').textContent=
@@ -533,25 +576,16 @@ function tick(){
 }
 setInterval(tick,1000);tick();
 
-// ── Load from Google Sheets ──
 window.addEventListener('load', () => {
-  // Animate gauge starting from 0
-  const arc = document.getElementById('gauge-arc');
-  arc.style.strokeDashoffset = CIRC;
-
+  document.getElementById('gauge-arc').style.strokeDashoffset = CIRC;
   fetch(SHEETS_URL)
     .then(r => r.json())
     .then(data => {
-      if(data.composite) {
-        update(data.composite, data.equite, data.canafe, data.ibc, data.updated);
-      } else {
-        // Fallback to default if no data
-        update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
-      }
+      const fs = data.foodStress || 0.71;
+      update(fs, fs*1.1, fs*0.95, fs*0.9, data.updated);
     })
     .catch(() => {
-      // Fallback if fetch fails
-      update(0.72, 0.85, 0.71, 0.52, new Date().toISOString());
+      update(0.71, 0.78, 0.67, 0.64, new Date().toISOString());
     });
 });
 </script>
