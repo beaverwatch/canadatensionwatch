@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✂️ Haircut Frequency Index — CASTOR.WATCH</title>
+<title>✂️ Haircut Frequency Index — BEAVER.WATCH</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -124,11 +124,11 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
 .method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
 .method-txt strong{font-weight:700;}
 
-.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
-.castor-icon{font-size:1.8rem;flex-shrink:0;}
-.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
-.castor-txt strong{font-style:normal;font-weight:700;}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
 
 /* HOW TO UPDATE */
 .update-box{margin:20px 28px 0;background:var(--s1);border:1px solid var(--s3);padding:20px;}
@@ -163,7 +163,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <a href="index.html" class="logo">
     <span>🦫</span>
     <div>
-      <div><span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
+      <div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div>
       <div class="logo-sub">Canadian Stress Barometer</div>
     </div>
   </a>
@@ -174,7 +174,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <a href="index.html" class="back-link">← All Indicators</a>
 
   <div class="hero">
-    <div class="hero-eyebrow">Indicator #05 — CASTOR.WATCH</div>
+    <div class="hero-eyebrow">Indicator #05 — BEAVER.WATCH</div>
     <div class="hero-title">Haircut<br>Frequency Index</div>
     <div class="hero-tagline">"When Canadians cut their own hair, the economy needs a trim too."</div>
   </div>
@@ -361,24 +361,24 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
     <div class="update-step"><div class="update-n">6</div><div>Enter result in <strong>Google Sheets B7</strong></div></div>
   </div>
 
-  <!-- CASTOR -->
-  <div class="castor-box">
-    <div class="castor-icon">🦫</div>
+  <!-- BEAVER -->
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
     <div>
-      <div class="castor-lbl">The Beaver Says</div>
-      <div class="castor-txt" id="castor-txt">"Loading..."</div>
+      <div class="beaver-lbl">The Beaver Says</div>
+      <div class="beaver-txt" id="beaver-txt">"Loading..."</div>
     </div>
   </div>
 
   <footer>
-    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
     <div class="foot-meta">Source: Google Trends · Canada<br>Verified May 2026 · Monthly updates</div>
   </footer>
 </div>
 
 <script>
 const CIRC = 2 * Math.PI * 40;
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
 
 const ZONES = {
   low: {
@@ -398,7 +398,7 @@ const ZONES = {
     consequences:[
       {time:'Monthly',unit:'check',event:'Continue monitoring',detail:'No significant economic signal detected from this indicator at current levels.',color:'#00E676'},
     ],
-    castor:'"At {v}, the barbershops are busy. The beaver just got a fresh trim. ✂️"',
+    beaver:'"At {v}, the barbershops are busy. The beaver just got a fresh trim. ✂️"',
     pill:'p-low',
   },
   moderate: {
@@ -412,14 +412,14 @@ const ZONES = {
     actions:[
       'Monitor other discretionary spending indicators.',
       'If you own a hair salon — prepare for potential slower months ahead.',
-      'This signal alone is not alarming — watch for corroboration from other CASTOR.WATCH indicators.'
+      'This signal alone is not alarming — watch for corroboration from other BEAVER.WATCH indicators.'
     ],
     conseqTitle:'🟠 RISING SIGNAL — Watch for these developments',
     consequences:[
       {time:'4–6',unit:'weeks',event:'Restaurant and entertainment spending drops',detail:'Personal care cuts typically precede broader discretionary spending reductions by 4-6 weeks.',color:'#FF6D00'},
       {time:'6–10',unit:'weeks',event:'Retail sector feels impact',detail:'Clothing and non-essential retail typically follow personal care spending compression.',color:'#FF6D00'},
     ],
-    castor:'"At {v}, some Canadians are picking up the scissors. The beaver is watching the barbershop queues. ✂️🦫"',
+    beaver:'"At {v}, some Canadians are picking up the scissors. The beaver is watching the barbershop queues. ✂️🦫"',
     pill:'p-mod',
   },
   high: {
@@ -431,7 +431,7 @@ const ZONES = {
     meaningTxt:'At <strong>{v}</strong>, searches for DIY haircut tutorials are at levels typically seen only during major economic stress (comparable to COVID lockdown periods). <strong>Men, women AND children\'s haircut searches are all rising simultaneously</strong> — indicating broad household budget compression across all demographics.',
     actionTitle:'🔴 Broad economic stress signal',
     actions:[
-      'Corroborate with other CASTOR.WATCH indicators — this signal is strongest when combined.',
+      'Corroborate with other BEAVER.WATCH indicators — this signal is strongest when combined.',
       'Hair salon owners: this is a leading indicator for your business.',
       'Retailers of personal care products: DIY product demand likely rising.',
       'Note: This indicator has important limitations — see methodology below.'
@@ -442,7 +442,7 @@ const ZONES = {
       {time:'4–8',unit:'weeks',event:'Discretionary retail contraction',detail:'Clothing, entertainment and non-essential spending typically follow personal care budget cuts within 4-8 weeks.',color:'#FF2D2D'},
       {time:'6–10',unit:'weeks',event:'Food budget compression begins',detail:'At this signal level, household budget cuts typically cascade from discretionary to semi-essential spending.',color:'#FF2D2D'},
     ],
-    castor:'"At {v}, <strong>Canadians are cutting their own hair — men, women and children.</strong> The beaver put away the scissors in 2021. They\'re coming back out. ✂️🦫"',
+    beaver:'"At {v}, <strong>Canadians are cutting their own hair — men, women and children.</strong> The beaver put away the scissors in 2021. They\'re coming back out. ✂️🦫"',
     pill:'p-high',
   }
 };
@@ -503,7 +503,7 @@ function update(haircut, updatedAt) {
   document.getElementById('hv1').textContent = v;
   document.getElementById('hv1').style.color = Z.color;
 
-  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g,v);
+  document.getElementById('beaver-txt').innerHTML = Z.beaver.replace(/{v}/g,v);
   document.getElementById('loading-bar').classList.add('done');
 }
 
