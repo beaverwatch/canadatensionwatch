@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🚗 Auto Theft Risk — CASTOR.WATCH</title>
+<title>🚗 Auto Theft Risk — BEAVER.WATCH</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -134,12 +134,12 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
 .method-txt{font-size:0.75rem;line-height:1.9;color:var(--text);}
 .method-txt strong{font-weight:700;}
 
-/* CASTOR */
-.castor-box{margin:20px 28px 0;background:var(--s2);padding:20px;display:flex;gap:16px;align-items:flex-start;}
-.castor-icon{font-size:1.8rem;flex-shrink:0;}
-.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.castor-txt{font-size:0.8rem;line-height:1.9;color:var(--text);font-style:italic;}
-.castor-txt strong{font-style:normal;font-weight:700;}
+/* BEAVER */
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:20px;display:flex;gap:16px;align-items:flex-start;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.8rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
 
 /* FOOTER */
 footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
@@ -187,9 +187,9 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow">Indicator #01 — CASTOR.WATCH</div>
+    <div class="hero-eyebrow">Indicator #01 — BEAVER.WATCH</div>
     <div class="hero-title">Auto Theft<br>Risk Index</div>
-    <div class="hero-tagline">"The beaver watches your car."</div>
+    <div class="hero-tagline">"The Beaver watches your car."</div>
   </div>
 
   <!-- GAUGE -->
@@ -377,18 +377,18 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
     </div>
   </div>
 
-  <!-- CASTOR -->
-  <div class="castor-box">
-    <div class="castor-icon">🦫</div>
+  <!-- BEAVER -->
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
     <div>
-      <div class="castor-lbl">The Beaver Says</div>
-      <div class="castor-txt" id="castor-txt">"Loading..."</div>
+      <div class="beaver-lbl">The Beaver Says</div>
+      <div class="beaver-txt" id="beaver-txt">"Loading..."</div>
     </div>
   </div>
 
   <!-- FOOTER -->
   <footer>
-    <div class="foot-brand">🦫 CASTOR.WATCH</div>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
     <div class="foot-meta">Public data · Canada<br>Updated monthly · <span id="last-updated">—</span></div>
   </footer>
 
@@ -398,7 +398,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
 const CIRC = 2 * Math.PI * 40; // 251.2
 
 // ── Google Sheets URL ──
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
 
 // ── Risk zones config ──
 const ZONES = {
@@ -411,7 +411,7 @@ const ZONES = {
     meaningTxt:'At <strong>{v}</strong>, all three data sources show normal activity. There is <strong>no unusual fraud at ports, no suspicious banking activity</strong> and <strong>no spike in insurance claims</strong>. Enjoy peace of mind — but always use basic precautions.',
     actionTitle:'🟢 Basic precautions are enough',
     actions:['Park in well-lit areas when possible.','Make sure your doors are locked and windows closed.','No special action required at this risk level.'],
-    castor:'"At {v}, the data is quiet. The beaver is watching — but not worried."',
+    beaver:'"At {v}, the data is quiet. The beaver is watching — but not worried."',
     st1:'+0%', st1c:'#00E676', pill:'p-low',
   },
   moderate: {
@@ -423,7 +423,7 @@ const ZONES = {
     meaningTxt:'At <strong>{v}</strong>, we are seeing <strong>rising fraud at Canadian ports and increased suspicious banking activity</strong>. This does not mean your car will be stolen — but the conditions that typically precede a theft spike are building. <strong>Extra precautions are recommended.</strong>',
     actionTitle:'🟠 Take extra precautions now',
     actions:['Consider parking in a garage or secured lot overnight.','Install or activate your steering wheel lock.','Check that your car alarm is working properly.','Avoid leaving valuables visible in your vehicle.'],
-    castor:'"At {v}, the signals are rising. The beaver has one eye open."',
+    beaver:'"At {v}, the signals are rising. The beaver has one eye open."',
     st1:'+8%', st1c:'#FF6D00', pill:'p-mod',
   },
   high: {
@@ -435,7 +435,7 @@ const ZONES = {
     meaningTxt:'At <strong>{v}</strong>, all three institutional sources are simultaneously elevated. <strong>Port fraud is high, CANAFE has flagged increased suspicious auto financing, and insurance data confirms the trend.</strong> Based on documented correlations (GRC Project Whiplash 2023), a significant vehicle theft spike is likely within 4 to 8 weeks. <strong>Take action now.</strong>',
     actionTitle:'🔴 Take strong protective action',
     actions:['Park in a locked garage every night if possible.','Install a GPS tracker on your vehicle.','Add a steering wheel lock or kill switch.','Contact your insurance company to review your coverage.','Never leave your car running unattended — even for 1 minute.','High-risk vehicles: Honda CR-V, Toyota Highlander, Ford F-150 — extra caution required.'],
-    castor:'"At {v}, the chain is activated. The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong>"',
+    beaver:'"At {v}, the chain is activated. The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong>"',
     st1:'+18%', st1c:'#FF2D2D', pill:'p-high',
   }
 };
@@ -511,8 +511,8 @@ function update(composite, equite, canafe, ibc, updatedAt) {
   document.getElementById('hv1').textContent = v;
   document.getElementById('hv1').style.color = Z.color;
 
-  // Castor
-  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g, v);
+  // Beaver
+  document.getElementById('beaver-txt').innerHTML = Z.beaver.replace(/{v}/g, v);
 
   // Last updated
   if(updatedAt) {
