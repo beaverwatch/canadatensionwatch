@@ -126,11 +126,11 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
 .method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
 .method-txt strong{font-weight:700;}
 
-.castor-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
-.castor-icon{font-size:1.8rem;flex-shrink:0;}
-.castor-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.castor-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
-.castor-txt strong{font-style:normal;font-weight:700;}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
 
 /* NOTE BOX */
 .note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
@@ -175,7 +175,7 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <a href="index.html" class="back-link">← All Indicators</a>
 
   <div class="hero">
-    <div class="hero-eyebrow">Indicator #04 — CASTOR.WATCH</div>
+    <div class="hero-eyebrow">Indicator #04 — BEAVER.WATCH</div>
     <div class="hero-title">School Lunch<br>Deficit</div>
     <div class="hero-tagline">"The empty lunch box never lies."</div>
   </div>
@@ -376,28 +376,28 @@ footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:
   <div class="method">
     <div class="method-title">Methodology</div>
     <div class="method-txt">
-      Composite score based on: <strong>Breakfast Club of Canada</strong> — 880,000 children served, +30% demand increase (50%) + <strong>Food Banks Canada HungerCount 2024</strong> — 2.5M children in food insecure households (30%) + <strong>Google Trends</strong> proxy "school breakfast program canada" (20%). Correlation documented: <strong>Food Banks Canada 2024</strong> — +7% CPS/DPJ interventions per +10% enrollment increase. This is the strongest predictive indicator on CASTOR.WATCH for child welfare outcomes.
+      Composite score based on: <strong>Breakfast Club of Canada</strong> — 880,000 children served, +30% demand increase (50%) + <strong>Food Banks Canada HungerCount 2024</strong> — 2.5M children in food insecure households (30%) + <strong>Google Trends</strong> proxy "school breakfast program canada" (20%). Correlation documented: <strong>Food Banks Canada 2024</strong> — +7% CPS/DPJ interventions per +10% enrollment increase. This is the strongest predictive indicator on BEAVER.WATCH for child welfare outcomes.
     </div>
   </div>
 
-  <!-- CASTOR -->
-  <div class="castor-box">
-    <div class="castor-icon">🦫</div>
+  <!-- BEAVER -->
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
     <div>
-      <div class="castor-lbl">The Beaver Says</div>
-      <div class="castor-txt" id="castor-txt">"Loading..."</div>
+      <div class="beaver-lbl">The Beaver Says</div>
+      <div class="beaver-txt" id="beaver-txt">"Loading..."</div>
     </div>
   </div>
 
   <footer>
-    <div class="foot-brand">🦫BEAVER.WATCH</div>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
     <div class="foot-meta">Source: Breakfast Club of Canada 2025<br>Food Banks Canada HungerCount 2024</div>
   </footer>
 </div>
 
 <script>
 const CIRC = 2 * Math.PI * 40;
-const SHEETS_URL = "https://script.google.com/macros/s/AKfycbxNWuDhs4_E2lWziYAczEfkOpMNA_culI2gwnpgerkxHEUhP0YhgQpmA7OD363gSjMRtQ/exec";
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
 
 const ZONES = {
   low: {
@@ -417,7 +417,7 @@ const ZONES = {
     consequences:[
       {time:'Annual',unit:'update',event:'Normal school food security levels',detail:'No significant increase in child food insecurity expected.',color:'#00E676'},
     ],
-    castor:'"At {v}, the lunch boxes are full. The beaver is relieved. 🥪"',
+    beaver:'"At {v}, the lunch boxes are full. The beaver is relieved. 🥪"',
     pill:'p-low',
   },
   moderate: {
@@ -440,7 +440,7 @@ const ZONES = {
       {time:'6–10',unit:'weeks',event:'Increased school absenteeism',detail:'Food insecure children miss school more often — documented in Canadian pediatric health research.',color:'#FF6D00'},
       {time:'2–3',unit:'months',event:'Child welfare referrals rise',detail:'+7% CPS/DPJ interventions per +10% Breakfast Club enrollment increase. Source: Food Banks Canada 2024.',color:'#FF6D00'},
     ],
-    castor:'"At {v}, too many lunch boxes are empty. The beaver is watching the schoolyards. 🥪"',
+    beaver:'"At {v}, too many lunch boxes are empty. The beaver is watching the schoolyards. 🥪"',
     pill:'p-mod',
   },
   high: {
@@ -466,7 +466,7 @@ const ZONES = {
       {time:'2–3',unit:'months',event:'Long-term developmental impacts',detail:'Sustained childhood food insecurity has documented long-term effects on cognitive development, mental health and future earnings. Source: CIHI Canada.',color:'#FF2D2D'},
       {time:'3–6',unit:'months',event:'Political pressure for national program',detail:'Canada remains one of the few G7 countries without a national school food program. Sustained crisis at this level historically triggers legislative action.',color:'#FF2D2D'},
     ],
-    castor:'"At {v}, <strong>1 in 3 Canadian children arrived at school hungry this morning.</strong> The beaver cannot look away. 🥪🦫"',
+    beaver:'"At {v}, <strong>1 in 3 Canadian children arrived at school hungry this morning.</strong> The beaver cannot look away. 🥪🦫"',
     pill:'p-high',
   }
 };
@@ -527,7 +527,7 @@ function update(schoolLunch, updatedAt) {
   document.getElementById('hv1').textContent = v;
   document.getElementById('hv1').style.color = Z.color;
 
-  document.getElementById('castor-txt').innerHTML = Z.castor.replace(/{v}/g,v);
+  document.getElementById('beaver-txt').innerHTML = Z.beaver.replace(/{v}/g,v);
   document.getElementById('loading-bar').classList.add('done');
 }
 
