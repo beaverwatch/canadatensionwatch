@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>✂️ Indice Coupe de Cheveux — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--green);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#000;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;color:#000;}
+.a-time{font-size:0.65rem;opacity:0.7;color:#000;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--green);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--green);color:#000;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.stable-pill{display:flex;align-items:center;gap:7px;background:var(--green);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;color:#000;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:331.6;filter:drop-shadow(0 0 12px rgba(0,230,118,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--green);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--green);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.risk-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--green);border-color:rgba(0,230,118,0.4);background:rgba(0,230,118,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.good-box{padding:20px;border-left:3px solid var(--green);background:rgba(0,230,118,0.05);}
+.good-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--green);}
+.good-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.good-txt strong{font-weight:700;}
+.method-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.method-title-lg{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:12px;}
+.method-item{display:flex;align-items:flex-start;gap:14px;padding:10px 0;border-bottom:1px solid var(--faint);}
+.method-item:last-child{border-bottom:none;}
+.method-icon{font-size:1.2rem;flex-shrink:0;width:24px;text-align:center;}
+.method-txt-item{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.method-txt-item strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.validate-box{padding:20px;border-left:3px solid var(--yellow);background:rgba(255,214,0,0.05);}
+.validate-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.validate-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.validate-txt strong{font-weight:700;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">✅ STABLE — Indice Coupe de Cheveux : 0.34 — Les Canadiens se font encore couper les cheveux. Signal positif dans un tableau de bord majoritairement rouge.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <a class="lang-btn" href="haircut.html">🇬🇧 EN</a>
+      <span class="lang-btn active">🇫🇷 FR</span>
+    </div>
+    <div class="stable-pill">✅ STABLE</div>
+  </div>
+</header>
+<div class="wrapper">
+  <a href="all-short-term-fr.html" class="back-link">← Tous les indicateurs court terme</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Indicateur Court Terme #05 — BEAVER.WATCH</div>
+    <div class="hero-title">Indice Coupe<br>de Cheveux</div>
+    <div class="hero-tagline">« Quand les Canadiens se coupent eux-mêmes les cheveux — c'est sérieux. »</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--green)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">✂️</div>
+        <div class="gc-val">0.34</div>
+        <div class="gc-lbl">Score de Risque</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">STABLE</div>
+      <div class="risk-desc">Les Canadiens continuent de fréquenter les salons de coiffure à une fréquence normale. Les recherches DIY de coupe à domicile ne sont pas en hausse significative. Signal positif.</div>
+      <div class="risk-badge">🟢 STABLE</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:6px;">Prédit 4–8 semaines à l'avance · Mis à jour mensuellement</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Chiffres Vérifiés — Mai 2026</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--green)">0.34</div><div class="ks-lbl">Score indice coupe de cheveux — stable</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--green)">-2%</div><div class="ks-lbl">Légère baisse recherches « couper cheveux maison » vs 2024</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--green)">Norm.</div><div class="ks-lbl">Fréquentation des salons — dans la moyenne historique</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Pourquoi un indicateur vert dans un tableau rouge</div>
+    <div class="good-box">
+      <div class="good-title">C'est exactement pour ça que cet indicateur existe.</div>
+      <div class="good-txt">Si TOUS les indicateurs étaient rouges en permanence, BEAVER.WATCH ne voudrait rien dire. <strong>L'Indice Coupe de Cheveux à 0.34 (STABLE) valide la méthodologie du tableau de bord.</strong> Ça confirme que les indicateurs rouges ne sont pas des artefacts du système — ils reflètent une détérioration réelle et sélective. Les Canadiens ont encore les moyens de se faire couper les cheveux. Ce qu'ils n'ont plus les moyens de faire : manger correctement, rembourser leurs dettes, et garder leur voiture dans l'entrée.</div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">🔍 Comment fonctionne cet indicateur</div>
+    <div class="method-box">
+      <div class="method-title-lg">La théorie de la coupe de cheveux comme baromètre économique</div>
+      <div class="method-item">
+        <div class="method-icon">📈</div>
+        <div class="method-txt-item"><strong>En période de stress économique léger</strong> : les gens réduisent d'abord les dépenses discrétionnaires secondaires — restaurants, vêtements, loisirs. La coupe de cheveux chez le coiffeur tient encore.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-icon">⚠️</div>
+        <div class="method-txt-item"><strong>En période de stress économique modéré</strong> : les recherches Google « comment couper ses cheveux » et « couper cheveux à la maison » augmentent. Les ventes de tondeuses à domicile montent. La fréquentation des salons baisse de 15–25%.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-icon">🔴</div>
+        <div class="method-txt-item"><strong>En période de crise économique sévère</strong> : les salons de coiffure ferment massivement. Les recherches DIY explosent. Les ventes de tondeuses atteignent des records. C'est ce qui s'est passé en 2009 et en 2020.</div>
+      </div>
+      <div class="method-item">
+        <div class="method-icon">🟢</div>
+        <div class="method-txt-item"><strong>Actuellement (0.34)</strong> : la fréquentation des salons est normale. Les recherches DIY sont légèrement en baisse vs 2024. <strong>Les Canadiens se font encore couper les cheveux chez le coiffeur.</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 Historique — Score Indice Coupe de Cheveux</div>
+    <div class="hrow"><div class="hl">2019</div><div class="ht"><div class="hf" style="width:22%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">0.22</div></div>
+    <div class="hrow"><div class="hl">2020</div><div class="ht"><div class="hf" style="width:78%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">0.78</div></div>
+    <div class="hrow"><div class="hl">2021</div><div class="ht"><div class="hf" style="width:45%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">0.45</div></div>
+    <div class="hrow"><div class="hl">2022</div><div class="ht"><div class="hf" style="width:30%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">0.30</div></div>
+    <div class="hrow"><div class="hl">2024</div><div class="ht"><div class="hf" style="width:36%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">0.36</div></div>
+    <div class="hrow"><div class="hl">Mai 2026</div><div class="ht"><div class="hf" style="width:34%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">0.34</div></div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Ce que cet indicateur nous dit sur les autres</div>
+    <div class="validate-box">
+      <div class="validate-title">🟡 Pourquoi c'est important que cet indicateur soit vert</div>
+      <div class="validate-txt">En 2019, <strong>tous les indicateurs de BEAVER.WATCH étaient verts ou jaunes.</strong> Le fait que l'Indice Coupe de Cheveux reste stable en 2026 pendant que 5 autres indicateurs sont rouges confirme deux choses : (1) la méthodologie fonctionne — elle capte des stress réels et sélectifs, pas un bruit de fond généralisé, et (2) la situation n'est pas encore une crise totale. Les Canadiens souffrent dans certains domaines spécifiques — dettes, alimentation, criminalité, identité — mais pas encore dans tous les domaines simultanément. C'est la fenêtre d'intervention. Quand l'Indice Coupe de Cheveux passera à l'orange, ce sera différent.</div>
+    </div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Note de Transparence</div>
+    <div class="note-txt">Score basé sur : tendances Google Trends Canada pour les recherches liées aux coupes de cheveux maison, données de ventes de tondeuses à domicile (Amazon.ca, Canadian Tire), et données de fréquentation des salons de coiffure (Statistique Canada données sur le commerce de détail de services). Mis à jour mensuellement.</div>
+  </div>
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">Le Castor Dit</div>
+      <div class="beaver-txt">« Le Castor est content que vous alliez encore chez le coiffeur. <strong>Vraiment. Parce que le jour où tout le monde se coupe les cheveux tout seul — le Castor va savoir que c'est vraiment sérieux.</strong> ✂️🦫 »</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Source : Google Trends Web + YouTube · Canada · Mensuel<br>Mis à jour mensuellement · Mai 2026</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
