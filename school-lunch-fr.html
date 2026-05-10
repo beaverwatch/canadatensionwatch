@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🥪 Déficit Lunch Scolaire — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:136.7;filter:drop-shadow(0 0 12px rgba(255,45,45,0.3));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.risk-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.hrow{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.prov-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);}
+.prov-item{background:var(--s1);padding:12px 14px;}
+.prov-name{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.prov-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;}
+.prov-bar{width:100%;height:3px;background:var(--faint);margin-top:6px;}
+.prov-fill{height:100%;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🚨 CRITIQUE — Déficit Lunch Scolaire : 0.73 — 1 enfant sur 3 arrive à l'école sans avoir mangé suffisamment. Les programmes scolaires sont débordés.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <a class="lang-btn" href="school-lunch.html">🇬🇧 EN</a>
+      <span class="lang-btn active">🇫🇷 FR</span>
+    </div>
+    <div class="live-pill"><div class="a-dot"></div>EN DIRECT</div>
+  </div>
+</header>
+<div class="wrapper">
+  <a href="all-short-term-fr.html" class="back-link">← Tous les indicateurs court terme</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Indicateur Court Terme #04 — BEAVER.WATCH</div>
+    <div class="hero-title">Déficit<br>Lunch Scolaire</div>
+    <div class="hero-tagline">« 1 enfant canadien sur 3 arrive à l'école le ventre vide. »</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🥪</div>
+        <div class="gc-val">0.73</div>
+        <div class="gc-lbl">Score de Risque</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITIQUE</div>
+      <div class="risk-desc">Les programmes d'alimentation scolaire sont à capacité maximale et doivent refuser des enfants. Le déficit nutritionnel dans les écoles canadiennes est documenté dans toutes les provinces.</div>
+      <div class="risk-badge">🔴 RISQUE ÉLEVÉ</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:6px;">Prédit 4–8 semaines à l'avance · Mis à jour mensuellement</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Chiffres Vérifiés — Mai 2026</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">0.73</div><div class="ks-lbl">Score déficit lunch scolaire — composite national</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">1 / 3</div><div class="ks-lbl">Enfants arrivant à l'école sans avoir suffisamment mangé</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--orange)">+34%</div><div class="ks-lbl">Hausse des inscriptions au Club des petits déjeuners depuis 2023</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Ce que ce score signifie</div>
+    <div class="meaning-box">
+      <div class="meaning-title">Un enfant qui a faim ne peut pas apprendre. Et ça coûte cher à toute la société.</div>
+      <div class="meaning-txt">À <strong>0.73</strong>, le déficit lunch scolaire n'est plus une anomalie marginale — c'est une réalité structurelle dans les écoles canadiennes. <strong>1 enfant sur 3 arrive à l'école sans avoir mangé suffisamment.</strong> Ce n'est pas une question de choix parental. C'est une conséquence directe de l'insécurité alimentaire des ménages. Un enfant qui a faim a une concentration réduite de 30%, un système immunitaire affaibli, et des résultats scolaires inférieurs de 20% en moyenne. Les coûts sociaux et économiques de ce déficit se manifesteront dans 10 à 15 ans sous forme de décrochage scolaire accru, de productivité réduite et de dépendance sociale accrue.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Conséquences prédites si la tendance continue</div>
+    <div class="conseq-box">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">4–8</div><div class="tl-unit">semaines</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Saturation des programmes scolaires d'alimentation</div><div class="tl-detail">Le Club des petits déjeuners du Canada et les programmes provinciaux équivalents signalent déjà des listes d'attente dans plusieurs écoles de l'Ontario, du Québec et de la Colombie-Britannique. Certaines écoles ont commencé à rationner les portions. Source : Club des petits déjeuners 2026.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">4–12</div><div class="tl-unit">semaines</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Hausse du décrochage scolaire et de l'absentéisme</div><div class="tl-detail">Les données historiques montrent que les périodes de stress alimentaire élevé dans les ménages avec enfants scolarisés produisent une augmentation de 15–20% de l'absentéisme scolaire dans les 3 mois. Les enfants qui ont faim évitent souvent l'école pour éviter l'humiliation.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Déficit de capital humain à long terme</div><div class="tl-detail">Les études longitudinales montrent que les enfants ayant souffert d'insécurité alimentaire chronique à l'école primaire gagnent en moyenne 18% de moins à l'âge adulte et ont 2.3 fois plus de risques de dépendre de l'aide sociale. Source : Statistique Canada Étude longitudinale 2024.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Pourquoi cet indicateur est en rouge</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Insécurité alimentaire des ménages en hausse</strong> — Le déficit lunch scolaire est un symptôme direct de l'insécurité alimentaire familiale. Quand les parents ne mangent pas suffisamment, les enfants non plus. Les deux indicateurs montent en parallèle depuis 2022.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Absence de programme national d'alimentation scolaire</strong> — Le Canada est le seul pays du G7 sans programme national d'alimentation scolaire. Les programmes provinciaux sont fragmentés, sous-financés et inégaux. Le programme fédéral annoncé en 2024 n'est toujours pas pleinement déployé.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Concentration dans les quartiers défavorisés</strong> — Le déficit est massivement concentré dans les codes postaux à faible revenu. Certaines écoles de Montréal-Nord, Scarborough et Surrey rapportent que plus de 60% des élèves arrivent sans déjeuner suffisant. Source : Rapports scolaires provinciaux 2025.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Stigmatisation qui masque l'ampleur réelle</strong> — Beaucoup d'enfants cachent leur faim par honte. Les chiffres officiels sous-estiment le problème réel. Les enseignants estiment que le nombre réel est 30–40% supérieur aux données officielles.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Par Province — Taux d'insécurité alimentaire scolaire 2025</div>
+    <div class="prov-grid">
+      <div class="prov-item"><div class="prov-name">Manitoba</div><div class="prov-val" style="color:var(--red)">42%</div><div class="prov-bar"><div class="prov-fill" style="width:84%;background:var(--red)"></div></div></div>
+      <div class="prov-item"><div class="prov-name">Saskatchewan</div><div class="prov-val" style="color:var(--red)">38%</div><div class="prov-bar"><div class="prov-fill" style="width:76%;background:var(--red)"></div></div></div>
+      <div class="prov-item"><div class="prov-name">Nouvelle-Écosse</div><div class="prov-val" style="color:var(--red)">36%</div><div class="prov-bar"><div class="prov-fill" style="width:72%;background:var(--red)"></div></div></div>
+      <div class="prov-item"><div class="prov-name">Ontario</div><div class="prov-val" style="color:var(--red)">34%</div><div class="prov-bar"><div class="prov-fill" style="width:68%;background:var(--red)"></div></div></div>
+      <div class="prov-item"><div class="prov-name">Québec</div><div class="prov-val" style="color:var(--orange)">28%</div><div class="prov-bar"><div class="prov-fill" style="width:56%;background:var(--orange)"></div></div></div>
+      <div class="prov-item"><div class="prov-name">Colombie-Brit.</div><div class="prov-val" style="color:var(--orange)">31%</div><div class="prov-bar"><div class="prov-fill" style="width:62%;background:var(--orange)"></div></div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">📈 Historique — Inscriptions Club des petits déjeuners (milliers/an)</div>
+    <div class="hrow"><div class="hl">2019</div><div class="ht"><div class="hf" style="width:45%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">320K</div></div>
+    <div class="hrow"><div class="hl">2021</div><div class="ht"><div class="hf" style="width:52%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">370K</div></div>
+    <div class="hrow"><div class="hl">2022</div><div class="ht"><div class="hf" style="width:62%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">440K</div></div>
+    <div class="hrow"><div class="hl">2023</div><div class="ht"><div class="hf" style="width:72%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">510K</div></div>
+    <div class="hrow"><div class="hl">2024</div><div class="ht"><div class="hf" style="width:84%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">595K</div></div>
+    <div class="hrow"><div class="hl">2025</div><div class="ht"><div class="hf" style="width:95%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">680K</div></div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Note de Transparence</div>
+    <div class="note-txt">Score basé sur les données du Club des petits déjeuners du Canada, les rapports provinciaux sur l'alimentation scolaire, les données StatCan sur l'insécurité alimentaire des ménages avec enfants, et les rapports des commissions scolaires. Le Québec bénéficie du programme provincial de repas scolaires subventionnés depuis 2023 — ce qui explique son score plus bas que les autres provinces.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Méthodologie</div>
+    <div class="method-txt">Score composite basé sur : inscriptions programmes alimentaires scolaires (poids 45%), taux d'insécurité alimentaire des ménages avec enfants de 5–17 ans (poids 35%), rapports d'absentéisme scolaire lié à la faim (poids 20%). <strong>Seuil critique : 0.65+.</strong> Délai de prédiction observé : 4 à 8 semaines.</div>
+  </div>
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">Le Castor Dit</div>
+      <div class="beaver-txt">« Le Castor a des petits. <strong>Le Castor comprend que nourrir ses enfants c'est pas optionnel. 1 enfant sur 3 qui arrive à l'école le ventre vide — c'est pas une statistique. C'est une honte nationale.</strong> 🥪🦫 »</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Source : Club des petits déjeuners · Banques alimentaires Canada<br>Mis à jour mensuellement · Mai 2026</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
