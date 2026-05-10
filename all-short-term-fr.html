@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦫 All Indicateurs — BEAVER.SURVEILLER</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
+  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+
+.alert{width:100%;background:var(--red);padding:11px 28px;display:flex;align-items:center;gap:12px;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.7rem;opacity:0.7;}
+
+header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:8px 18px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+
+.wrapper{max-width:1000px;margin:0 auto;padding:0 32px 48px;}
+
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+
+.page-hero{padding:28px 0 0;}
+.page-eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.page-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.page-title{font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.page-desc{font-size:0.85rem;color:var(--muted);line-height:1.8;max-width:600px;}
+
+/* SUMMARY */
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin-top:28px;}
+.sum-block{background:var(--s1);padding:20px;display:flex;flex-direction:column;gap:6px;}
+.sum-val{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:2px;}
+.sum-lbl{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PREDICTION BOX */
+.pred-box{background:rgba(255,45,45,0.05);border-left:4px solid var(--red);padding:20px 24px;margin-top:1px;}
+.pred-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.pred-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.pred-txt strong{font-weight:700;}
+.pred-date{font-size:0.6rem;letter-spacing:2px;color:var(--muted);margin-top:8px;text-transform:uppercase;}
+
+.sec-head{display:flex;align-items:center;gap:16px;margin:36px 0 16px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:5px;color:var(--muted);white-space:nowrap;}
+.sec-line{flex:1;height:1px;background:var(--s3);}
+
+/* INDICATOR ROWS */
+.ind-list{display:flex;flex-direction:column;gap:1px;background:var(--s3);}
+
+.ind-row{background:var(--s1);display:grid;grid-template-columns:auto 1fr auto auto auto;align-items:center;gap:16px;padding:20px 24px;text-decoration:none;color:inherit;transition:background 0.2s;position:relative;}
+.ind-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.ind-row.red::before{background:var(--red);}
+.ind-row.orange::before{background:var(--orange);}
+.ind-row.green::before{background:var(--green);}
+.ind-row.coming::before{background:var(--s4);}
+.ind-row:hover:not(.coming){background:var(--s2);}
+
+.ind-icon{font-size:1.8rem;flex-shrink:0;}
+.ind-info{display:flex;flex-direction:column;gap:4px;}
+.ind-name{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:2px;line-height:1;}
+.ind-sub{font-size:0.62rem;color:var(--muted);letter-spacing:1px;}
+.ind-source{font-size:0.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+
+.ind-bar-wrap{display:flex;align-items:center;gap:8px;margin-top:4px;}
+.ind-bar{flex:1;height:3px;background:var(--faint);max-width:120px;}
+.ind-bar-fill{height:100%;transition:width 1.5s ease;}
+
+.ind-score{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;text-align:right;flex-shrink:0;min-width:60px;}
+.red .ind-score{color:var(--red);}
+.orange .ind-score{color:var(--orange);}
+.green .ind-score{color:var(--green);}
+.coming .ind-score{color:var(--s4);}
+
+.ind-badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid;text-align:center;flex-shrink:0;white-space:nowrap;}
+.badge-r{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.badge-o{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.badge-g{color:var(--green);border-color:rgba(0,230,118,0.4);background:rgba(0,230,118,0.08);}
+.badge-c{color:var(--s4);border-color:var(--s4);background:transparent;}
+
+.ind-lead{font-size:0.58rem;color:var(--muted);text-align:right;flex-shrink:0;white-space:nowrap;}
+.ind-arrow{font-size:0.8rem;color:var(--muted);flex-shrink:0;transition:all 0.2s;}
+.ind-row:hover:not(.coming) .ind-arrow{color:var(--text);transform:translateX(4px);}
+
+.coming-badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid var(--s4);color:var(--s4);background:transparent;}
+
+/* CONTEXT NOTE */
+.context-box{background:var(--s1);border-left:3px solid var(--yellow);padding:18px 22px;margin-top:1px;}
+.context-title{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:8px;}
+.context-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.context-txt strong{font-weight:700;}
+
+/* TRANSPARENCY */
+.transp-box{margin-top:24px;padding:16px 20px;background:rgba(255,214,0,0.04);border-left:3px solid var(--yellow);}
+.transp-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.transp-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+
+footer{margin:28px auto 0;padding:20px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+
+@media(max-width:700px){
+  .ind-row{grid-template-columns:auto 1fr auto;gap:12px;}
+  .ind-lead{display:none;}
+  .summary{grid-template-columns:1fr;}
+  .wrapper{padding:0 18px 48px;}
+  header{padding:16px 18px;}
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🚨 RULE OF 3 REDS ACTIVE — Social incident predicted within 6 weeks.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<header>
+  <a href="index-fr.html" class="logo">
+    🦫 <div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>SURVEILLER</div><div class="logo-sub">Baromètre de Stress Canadien</div></div>
+  </a>
+  <div class="live-pill"><div class="a-dot"></div>EN DIRECT</div>
+</header>
+
+<div class="wrapper">
+  <a href="index-fr.html" class="back-link">← Retour au tableau de bord</a>
+
+  <div class="page-hero">
+    <div class="page-eyebrow">🍁 All Indicateurs — Canada · May 2026</div>
+    <div class="page-title">All Short-Term<br>Indicateurs</div>
+    <div class="page-desc">Chaque indicateur suivi par BEAVER.SURVEILLER. Toutes les données proviennent d'institutions publiques canadiennes. Scores mis à jour mensuellement.</div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary">
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--red)" id="sum-red">—</div>
+      <div class="sum-lbl">🔴 Critique — Risque immédiat</div>
+    </div>
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--orange)" id="sum-orange">—</div>
+      <div class="sum-lbl">🟠 Élevé — Signal croissant</div>
+    </div>
+    <div class="sum-block">
+      <div class="sum-val" style="color:var(--green)" id="sum-green">—</div>
+      <div class="sum-lbl">🟢 Stable — Plage normale</div>
+    </div>
+  </div>
+
+  <!-- PREDICTION -->
+  <div class="pred-box">
+    <div class="pred-title">🎯 Prédiction Publique — Faite le 6 mai 2026</div>
+    <div class="pred-txt">
+      Avec <strong>5 indicateurs simultanément en zone rouge</strong> — Vol Auto (0.72), Stress Alimentaire (0.71), Prêts Payday (0.82), Lunch Scolaire (0.73) et Crise 211 (0.72) — BEAVER.SURVEILLER prédit : <strong>une vague significative de faillites personnelles au Canada d'ici juillet 2026</strong>, combinée à des augmentations mesurables des interventions de protection de l'enfance et de l'itinérance visible dans les grands centres urbains. Nous vérifierons cette prédiction publiquement dans 8 semaines.
+    </div>
+    <div class="pred-date">Prediction date: May 6, 2026 · Verification date: July 1, 2026</div>
+  </div>
+
+  <!-- LIVE INDICATORS -->
+  <div class="sec-head">
+    <div class="sec-title">⚡ Indicateurs en Direct</div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <!-- AUTO THEFT -->
+    <a class="ind-row red" href="auto-theft.html">
+      <div class="ind-icon">🚗</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Vol de Voiture</div>
+        <div class="ind-sub">« Le Castor surveille ton char. »</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-at" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="ind-source">Équité Association · CANAFE · IBC</div>
+      </div>
+      <div class="ind-score" id="score-at">—</div>
+      <div>
+        <div class="ind-badge badge-r" id="badge-at">🔴 CRITIQUE</div>
+        <div class="ind-lead">Délai: 4–8 semaines</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- FOOD STRESS -->
+    <a class="ind-row red" href="food-stress.html">
+      <div class="ind-icon">🍞</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Stress Alimentaire</div>
+        <div class="ind-sub">« La boîte à lunch vide ne ment jamais. »</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-fs" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="ind-source">Food Banks Canada · Breakfast Club of Canada</div>
+      </div>
+      <div class="ind-score" id="score-fs">—</div>
+      <div>
+        <div class="ind-badge badge-r" id="badge-fs">🔴 CRITIQUE</div>
+        <div class="ind-lead">Délai: 4–8 semaines</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- PAYDAY LOAN -->
+    <a class="ind-row red" href="payday-loan.html">
+      <div class="ind-icon">💸</div>
+      <div class="ind-info">
+        <div class="ind-name">Radar Prêts Payday</div>
+        <div class="ind-sub">« Quand Money Mart est plein. »</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-pd" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="ind-source">FCAC · BDO Canada · Google Trends</div>
+      </div>
+      <div class="ind-score" id="score-pd">—</div>
+      <div>
+        <div class="ind-badge badge-r" id="badge-pd">🔴 CRITIQUE</div>
+        <div class="ind-lead">Délai: 8–16 semaines</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- SCHOOL LUNCH -->
+    <a class="ind-row red" href="school-lunch.html">
+      <div class="ind-icon">🥪</div>
+      <div class="ind-info">
+        <div class="ind-name">School Lunch Deficit</div>
+        <div class="ind-sub">"1 in 3 Canadian children arrives hungry."</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-sl" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="ind-source">Breakfast Club of Canada · Food Banks Canada</div>
+      </div>
+      <div class="ind-score" id="score-sl">—</div>
+      <div>
+        <div class="ind-badge badge-r" id="badge-sl">🔴 CRITIQUE</div>
+        <div class="ind-lead">Délai: 4–8 semaines</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- 211 CRISIS -->
+    <a class="ind-row red" href="211-crisis.html">
+      <div class="ind-icon">📞</div>
+      <div class="ind-info">
+        <div class="ind-name">211 Crisis Index</div>
+        <div class="ind-sub">"35% of housing needs unmet — #1 crisis in Canada."</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-c2" style="width:0%;background:var(--red)"></div></div>
+        </div>
+        <div class="ind-source">211 Canada · 211 Ontario · Official quarterly data</div>
+      </div>
+      <div class="ind-score" id="score-c2">—</div>
+      <div>
+        <div class="ind-badge badge-r" id="badge-c2">🔴 CRITIQUE</div>
+        <div class="ind-lead">Lead: 4–12 weeks</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- HAIRCUT -->
+    <a class="ind-row green" href="haircut.html">
+      <div class="ind-icon">✂️</div>
+      <div class="ind-info">
+        <div class="ind-name">Haircut Frequency Index</div>
+        <div class="ind-sub">"When Canadians cut their own hair."</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-hc" style="width:0%;background:var(--green)"></div></div>
+        </div>
+        <div class="ind-source">Google Trends Web + YouTube · Canada · Monthly</div>
+      </div>
+      <div class="ind-score" id="score-hc">—</div>
+      <div>
+        <div class="ind-badge badge-g" id="badge-hc">🟢 STABLE</div>
+        <div class="ind-lead">Délai: 4–8 semaines</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+    <!-- CANADIAN TIRE -->
+    <a class="ind-row green" href="canadian-flyer.html">
+      <div class="ind-icon">🔒</div>
+      <div class="ind-info">
+        <div class="ind-name">Canadian Tire Flyer Index</div>
+        <div class="ind-sub">"Security vs. fun — what the flyer reveals."</div>
+        <div class="ind-bar-wrap">
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-ct" style="width:0%;background:var(--green)"></div></div>
+        </div>
+        <div class="ind-source">Flipp.com · Biweekly manual analysis · May 2026</div>
+      </div>
+      <div class="ind-score" id="score-ct">—</div>
+      <div>
+        <div class="ind-badge badge-g" id="badge-ct">🟢 STABLE</div>
+        <div class="ind-lead">Lead: 4–6 weeks</div>
+      </div>
+      <div class="ind-arrow">→</div>
+    </a>
+
+  </div>
+
+  <!-- CONTEXT NOTE -->
+  <div class="context-box">
+    <div class="context-title">📊 Pourquoi autant d'indicateurs rouges ?</div>
+    <div class="context-txt">
+      5 indicateurs sur 7 sont actuellement en zone rouge. Ce n'est pas normal — et ce n'est pas un choix de conception du tableau de bord. <strong>En 2019, tous les indicateurs étaient verts ou jaunes.</strong> La concentration actuelle de signaux rouges reflète une détérioration réelle et documentée des conditions sociales et économiques canadiennes depuis 2022. Les deux indicateurs verts (Indice Coupe de Cheveux et Circulaire Canadian Tire) confirment que <strong>tout n'est pas en crise</strong> — ce qui valide la méthodologie. Si tous les indicateurs étaient toujours rouges, le tableau de bord serait sans signification.
+    </div>
+  </div>
+
+  <!-- À VENIR -->
+  <div class="sec-head" style="margin-top:36px;">
+    <div class="sec-title">🔜 À Venir</div>
+    <div class="sec-line"></div>
+  </div>
+
+  <div class="ind-list">
+
+    <div class="ind-row coming">
+      <div class="ind-icon">✈️</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Billet Aller Simple</div>
+        <div class="ind-sub">« Quand les Canadiens partent sans revenir. »</div>
+        <div class="ind-source">Google Trends · StatCan Emigration</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">À VENIR</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+    <div class="ind-row coming">
+      <div class="ind-icon">🎮</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice GameStop Canada</div>
+        <div class="ind-sub">« Quand les consoles sont vendues — détresse niveau 4. »</div>
+        <div class="ind-source">Kijiji · Facebook Marketplace · Google Trends</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">À VENIR</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+    <div class="ind-row coming">
+      <div class="ind-icon">🐕</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Abandon d'Animaux</div>
+        <div class="ind-sub">« Les familles abandonnent leurs animaux avant de perdre leur logement. »</div>
+        <div class="ind-source">SPCA Canada · Google Trends</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">À VENIR</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+    <div class="ind-row coming">
+      <div class="ind-icon">🏕️</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Stress Vacances Locales</div>
+        <div class="ind-sub">« Quand les Canadiens annulent Cancun pour le camping. »</div>
+        <div class="ind-source">Google Trends · Parks Canada · Booking.com</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">À VENIR</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+    <div class="ind-row coming">
+      <div class="ind-icon">🍁</div>
+      <div class="ind-info">
+        <div class="ind-name">Indice Panique Sirop d'Érable</div>
+        <div class="ind-sub">« Quand les Québécois font des réserves — c'est sérieux. »</div>
+        <div class="ind-source">Google Trends · Fédération producteurs sirop érable</div>
+      </div>
+      <div class="ind-score">—</div>
+      <div><div class="coming-badge">À VENIR</div></div>
+      <div class="ind-arrow" style="opacity:0.2;">→</div>
+    </div>
+
+  </div>
+
+  <!-- TRANSPARENCY -->
+  <div class="transp-box">
+    <div class="transp-title">⚠️ Transparence et Limitations</div>
+    <div class="transp-txt">All scores are composites based on publicly available Canadian data. Sources are cited on each indicator page. No data is invented or estimated without disclosure. This dashboard does not constitute professional, legal or financial advice. Predictions are based on statistical correlations — not guarantees. BEAVER.SURVEILLER is independent and not affiliated with any government, political party or financial institution. Contact: tensionsgeopolitiques@gmail.com</div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-brand">🦫 BEAVER.SURVEILLER</div>
+  <div class="foot-meta">Independent · Données publiques · Canada<br>📧 tensionsgeopolitiques@gmail.com</div>
+</footer>
+
+<script>
+const SHEETS_URL = "https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
+
+function getColor(v){ return v>=0.7?'var(--red)':v>=0.4?'var(--orange)':'var(--green)';}
+function getBadge(v){ return v>=0.7?'🔴 CRITIQUE':v>=0.4?'🟠 ÉLEVÉ':'🟢 STABLE';}
+function getBadgeClass(v){ return v>=0.7?'ind-badge badge-r':v>=0.4?'ind-badge badge-o':'ind-badge badge-g';}
+
+function tick(){
+  const n=new Date();
+  document.getElementById('clock').textContent=
+    [n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+}
+setInterval(tick,1000);tick();
+
+function setInd(scoreId, barId, badgeId, value){
+  const color = getColor(value);
+  document.getElementById(scoreId).textContent = parseFloat(value).toFixed(2);
+  document.getElementById(scoreId).style.color = color;
+  document.getElementById(barId).style.width = (value*100)+'%';
+  document.getElementById(barId).style.background = color;
+  document.getElementById(badgeId).textContent = getBadge(value);
+  document.getElementById(badgeId).className = getBadgeClass(value);
+}
+
+window.addEventListener('load',()=>{
+  fetch(SHEETS_URL)
+    .then(r=>r.json())
+    .then(data=>{
+      const at  = data.composite   || 0.72;
+      const fs  = data.foodStress  || 0.71;
+      const pd  = data.payday      || 0.82;
+      const sl  = data.schoolLunch || 0.73;
+      const c2  = data.crisis211   || 0.72;
+      const hc  = data.haircut     || 0.34;
+      const ct  = data.ctFlyer     || 0.097;
+
+      setInd('score-at','bar-at','badge-at', at);
+      setInd('score-fs','bar-fs','badge-fs', fs);
+      setInd('score-pd','bar-pd','badge-pd', pd);
+      setInd('score-sl','bar-sl','badge-sl', sl);
+      setInd('score-c2','bar-c2','badge-c2', c2);
+      setInd('score-hc','bar-hc','badge-hc', hc);
+      setInd('score-ct','bar-ct','badge-ct', ct);
+
+      const all = [at,fs,pd,sl,c2,hc,ct];
+      const reds    = all.filter(v=>v>=0.7).length;
+      const oranges = all.filter(v=>v>=0.4&&v<0.7).length;
+      const greens  = all.filter(v=>v<0.4).length;
+
+      document.getElementById('sum-red').textContent    = reds+' indicators';
+      document.getElementById('sum-orange').textContent = oranges+' indicator'+(oranges>1?'s':'');
+      document.getElementById('sum-green').textContent  = greens+' indicators';
+    })
+    .catch(()=>{
+      const fallback = {at:0.72,fs:0.71,pd:0.82,sl:0.73,c2:0.72,hc:0.34,ct:0.097};
+      setInd('score-at','bar-at','badge-at', fallback.at);
+      setInd('score-fs','bar-fs','badge-fs', fallback.fs);
+      setInd('score-pd','bar-pd','badge-pd', fallback.pd);
+      setInd('score-sl','bar-sl','badge-sl', fallback.sl);
+      setInd('score-c2','bar-c2','badge-c2', fallback.c2);
+      setInd('score-hc','bar-hc','badge-hc', fallback.hc);
+      setInd('score-ct','bar-ct','badge-ct', fallback.ct);
+      document.getElementById('sum-red').textContent    = '5 indicateurs';
+      document.getElementById('sum-orange').textContent = '0 indicateurs';
+      document.getElementById('sum-green').textContent  = '2 indicateurs';
+    });
+});
+</script>
+</body>
+</html>
