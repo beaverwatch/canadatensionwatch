@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🍁 Désaffiliation Identité Nationale — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:100.5;filter:drop-shadow(0 0 12px rgba(255,45,45,0.4));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.risk-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.gen-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);}
+.gen-item{background:var(--s1);padding:14px 16px;}
+.gen-name{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.gen-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.gen-bar{width:100%;height:3px;background:var(--faint);margin-top:6px;}
+.gen-fill{height:100%;}
+.hrow{display:grid;grid-template-columns:80px 1fr 44px;align-items:center;gap:10px;margin-bottom:8px;}
+.hl{font-size:0.7rem;color:var(--text);}
+.ht{height:5px;background:var(--faint);position:relative;overflow:hidden;}
+.hf{position:absolute;left:0;top:0;bottom:0;}
+.hv{font-size:0.7rem;text-align:right;font-weight:600;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.method{margin:20px 28px 0;background:var(--s1);padding:20px;border-left:2px solid var(--s4);}
+.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.method-txt{font-size:0.78rem;line-height:1.9;color:var(--text);}
+.method-txt strong{font-weight:700;}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITIQUE — Identité nationale : seulement 40% des 18–34 ans se disent fiers d'être Canadiens. Chute de 34 points en 10 ans.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <a class="lang-btn" href="national-identity.html">🇬🇧 EN</a>
+      <span class="lang-btn active">🇫🇷 FR</span>
+    </div>
+    <div class="lt-pill">🔭 LONG TERME</div>
+  </div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term-fr.html" class="back-link">← Tous les indicateurs long terme</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Indicateur Long Terme #05 — BEAVER.WATCH</div>
+    <div class="hero-title">Désaffiliation<br>Identité<br>Nationale</div>
+    <div class="hero-tagline">« Seulement 40% des 18–34 ans fiers d'être Canadiens — en baisse de 74% en 2014. »</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🍁</div>
+        <div class="gc-val">40%</div>
+        <div class="gc-lbl">18–34 ans fiers<br>d'être Canadiens</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITIQUE</div>
+      <div class="risk-desc">40% des jeunes Canadiens de 18–34 ans se disent fiers d'être Canadiens en 2024 — en chute de 74% en 2014. Une baisse de 34 points en 10 ans. Sans précédent dans l'histoire canadienne.</div>
+      <div class="risk-badge">🔴 LONG TERME CRITIQUE</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:6px;">Prédit 10–25 ans à l'avance · Mis à jour annuellement</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Chiffres Vérifiés — Leger 2024</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">40%</div><div class="ks-lbl">18–34 ans se disent fiers d'être Canadiens — 2024</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--green)">74%</div><div class="ks-lbl">Même groupe d'âge en 2014 — il y a 10 ans seulement</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">-34pts</div><div class="ks-lbl">Chute en points de pourcentage en une décennie — sans précédent</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Ce que cette chute signifie</div>
+    <div class="meaning-box">
+      <div class="meaning-title">Quand la prochaine génération ne se reconnaît plus dans son pays — quelque chose a fondamentalement changé.</div>
+      <div class="meaning-txt">La fierté nationale n'est pas du nationalisme aveugle. C'est le liant social qui permet à des gens différents de partager des institutions, des compromis et un avenir commun. <strong>Quand 60% des jeunes Canadiens ne se disent pas fiers d'être Canadiens, c'est le contrat social lui-même qui est en crise.</strong> Historiquement, les sociétés qui ont vu une chute aussi rapide du sentiment d'appartenance nationale ont traversé des périodes de fragmentation politique intense, de montée des identités alternatives (régionales, ethniques, idéologiques) et de difficultés croissantes à maintenir des politiques publiques cohérentes. Ce n'est pas une question d'amour du drapeau. C'est une question de cohésion sociale fonctionnelle.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">📊 Par Génération — % fiers d'être Canadiens 2024</div>
+    <div class="gen-grid">
+      <div class="gen-item"><div class="gen-name">Baby-boomers (60+)</div><div class="gen-val" style="color:var(--green)">79%</div><div class="gen-bar"><div class="gen-fill" style="width:79%;background:var(--green)"></div></div></div>
+      <div class="gen-item"><div class="gen-name">Génération X (45–59)</div><div class="gen-val" style="color:var(--yellow)">68%</div><div class="gen-bar"><div class="gen-fill" style="width:68%;background:var(--yellow)"></div></div></div>
+      <div class="gen-item"><div class="gen-name">Millennials (35–44)</div><div class="gen-val" style="color:var(--orange)">54%</div><div class="gen-bar"><div class="gen-fill" style="width:54%;background:var(--orange)"></div></div></div>
+      <div class="gen-item"><div class="gen-name">Génération Z (18–34)</div><div class="gen-val" style="color:var(--red)">40%</div><div class="gen-bar"><div class="gen-fill" style="width:40%;background:var(--red)"></div></div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">⏱️ Conséquences prédites si la tendance continue</div>
+    <div class="conseq-box">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Fragmentation politique et montée des identités alternatives</div><div class="tl-detail">Quand l'identité nationale faiblit, les identités régionales, ethniques, religieuses et idéologiques prennent sa place. Les données électorales canadiennes 2021–2025 montrent déjà une polarisation géographique et démographique croissante. Les partis qui capitalisent sur des identités sous-nationales gagnent des points. Source : Étude électorale canadienne 2025.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Difficulté croissante à maintenir des politiques nationales</div><div class="tl-detail">Les programmes sociaux — assurance-maladie, pensions, péréquation — requièrent un sentiment de solidarité nationale pour être politiquement soutenables. Quand les jeunes ne se sentent pas Canadiens, ils soutiennent moins les transferts vers d'autres régions ou groupes. La viabilité politique du modèle social canadien dépend de cette cohésion.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–25</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Pressions souverainistes et sécessionnistes amplifiées</div><div class="tl-detail">Les mouvements souverainistes au Québec et les sentiments d'alienation en Alberta prospèrent quand le sentiment d'appartenance au Canada s'érode. Si la génération Z arrive au pouvoir politique avec 40% de fierté nationale, les débats sur l'unité canadienne reprennent une intensité que le Canada n'a pas connue depuis les années 1990.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Pourquoi les jeunes Canadiens se désaffilient</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Exclusion économique de la génération Z</strong> — La génération qui ne peut plus acheter une maison, qui croule sous les dettes étudiantes et qui fait face à des perspectives d'emploi précaires a peu de raisons de célébrer le Canada tel qu'il leur a été remis. La désaffiliation identitaire reflète une désillusion économique réelle.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Remise en question du récit national</strong> — La reconnaissance des crimes historiques envers les peuples autochtones, les débats sur le racisme systémique et la déconstruction du récit fondateur ont créé une ambivalence identitaire légitime chez les jeunes Canadiens. L'histoire est plus complexe qu'on leur avait enseigné.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Identités globales et numériques concurrentes</strong> — La génération Z s'identifie à des communautés mondiales (gaming, culture K-pop, activisme climatique, idéologies politiques globales) qui transcendent les frontières nationales. L'identité nationale est une option parmi d'autres, pas la base de référence.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Déception face aux institutions</strong> — Les jeunes Canadiens qui ont grandi pendant les scandales politiques, la crise du logement et la pandémie mal gérée ont développé une méfiance profonde envers les institutions canadiennes. La fierté nationale est difficile à maintenir quand les institutions nationales déçoivent systématiquement.</div></div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📈 % Fiers d'être Canadiens (18–34 ans) — Historique</div>
+    <div class="hrow"><div class="hl">2005</div><div class="ht"><div class="hf" style="width:82%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">82%</div></div>
+    <div class="hrow"><div class="hl">2010</div><div class="ht"><div class="hf" style="width:78%;background:var(--green)"></div></div><div class="hv" style="color:var(--green)">78%</div></div>
+    <div class="hrow"><div class="hl">2014</div><div class="ht"><div class="hf" style="width:74%;background:var(--yellow)"></div></div><div class="hv" style="color:var(--yellow)">74%</div></div>
+    <div class="hrow"><div class="hl">2018</div><div class="ht"><div class="hf" style="width:63%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">63%</div></div>
+    <div class="hrow"><div class="hl">2021</div><div class="ht"><div class="hf" style="width:52%;background:var(--orange)"></div></div><div class="hv" style="color:var(--orange)">52%</div></div>
+    <div class="hrow"><div class="hl">2024</div><div class="ht"><div class="hf" style="width:40%;background:var(--red)"></div></div><div class="hv" style="color:var(--red)">40%</div></div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Note de Transparence</div>
+    <div class="note-txt">Données du sondage Leger sur l'identité nationale canadienne 2024, échantillon de 1 524 Canadiens, marge d'erreur ±2.5%, 19 fois sur 20. Question posée : « Êtes-vous fier(e) d'être Canadien(ne) ? » Réponses « très fier » et « assez fier » combinées. Données historiques de la série longitudinale Environics Institute Values Study 2005–2024.</div>
+  </div>
+  <div class="method">
+    <div class="method-title">Méthodologie</div>
+    <div class="method-txt">Score basé sur le % de 18–34 ans se disant fiers d'être Canadiens, inversé (100% - valeur) et normalisé. Fierté ≥75% = score 0.15. 65–75% = 0.30. 55–65% = 0.50. 45–55% = 0.65. &lt;45% = 0.85. <strong>À 40% — score 0.85 — CRITIQUE.</strong></div>
+  </div>
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">Le Castor Dit</div>
+      <div class="beaver-txt">« Le Castor est Canadien depuis avant que le Canada existe. <strong>Seulement 40% des jeunes Canadiens ressentent la même chose. Le Castor ne juge pas. Le Castor regarde ce qui vient ensuite.</strong> 🍁🦫 »</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Source : Leger · Sondage identité nationale 2024<br>Mis à jour annuellement</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
