@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Ratio Accessibilité Logement — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.lt-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:7px 16px;font-size:0.62rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+.wrapper{max-width:600px;margin:0 auto;padding:0 0 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 28px 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:28px 28px 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-tagline{font-size:0.78rem;color:var(--muted);font-style:italic;letter-spacing:1px;}
+.gauge-section{padding:28px 28px 0;display:flex;align-items:center;gap:28px;}
+.gauge-wrap{width:200px;height:200px;position:relative;flex-shrink:0;}
+.gauge-svg{width:100%;height:100%;transform:rotate(-90deg);}
+.g-zone{fill:none;stroke-width:18;stroke-linecap:butt;}
+.g-active{fill:none;stroke-width:18;stroke-linecap:butt;stroke-dasharray:502.4;stroke-dashoffset:100.5;filter:drop-shadow(0 0 12px rgba(255,45,45,0.4));}
+.gauge-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.gc-icon{font-size:2.6rem;animation:bob 3s ease-in-out infinite;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.gc-val{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:900;line-height:1;color:var(--red);}
+.gc-lbl{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.gauge-right{flex:1;display:flex;flex-direction:column;gap:14px;}
+.risk-word{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:3px;line-height:1;color:var(--red);}
+.risk-desc{font-size:0.8rem;line-height:1.8;color:var(--text);}
+.risk-badge{font-size:0.6rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid;display:inline-block;color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.divider{margin:24px 28px;height:1px;background:var(--s3);}
+.section{padding:0 28px;}
+.section+.section{margin-top:20px;}
+.sec-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.key-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.ks{background:var(--s1);padding:16px 14px;display:flex;flex-direction:column;gap:4px;}
+.ks-val{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:2px;line-height:1;}
+.ks-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--muted);line-height:1.5;}
+.meaning-box{padding:20px;border-left:3px solid var(--red);background:rgba(255,45,45,0.05);}
+.meaning-title{font-size:1.1rem;font-weight:700;margin-bottom:10px;color:var(--red);}
+.meaning-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.meaning-txt strong{font-weight:700;}
+.conseq-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.tl-item{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--s3);}
+.tl-item:last-child{border-bottom:none;}
+.tl-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:80px;}
+.tl-time{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;line-height:1;text-align:center;color:var(--red);}
+.tl-unit{font-size:0.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-align:center;}
+.tl-dot{width:10px;height:10px;border-radius:50%;margin-top:8px;background:var(--red);}
+.tl-event{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:4px;}
+.tl-detail{font-size:0.75rem;color:var(--muted);line-height:1.7;}
+.chain-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.8rem;color:var(--text);line-height:1.8;}
+.chain-t strong{font-weight:700;}
+.city-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);}
+.city-item{background:var(--s1);padding:14px 16px;}
+.city-name{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-bottom:4px;}
+.city-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.city-bar{width:100%;height:3px;background:var(--faint);margin-top:6px;}
+.city-fill{height:100%;}
+.gap-box{background:var(--s1);border:1px solid var(--s3);padding:20px;}
+.gap-title{font-size:0.9rem;font-weight:700;color:var(--text);margin-bottom:14px;}
+.gap-row-item{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--faint);}
+.gap-row-item:last-child{border-bottom:none;}
+.gap-icon-s{font-size:1.2rem;flex-shrink:0;}
+.gap-desc{font-size:0.78rem;color:var(--text);line-height:1.7;flex:1;}
+.gap-desc strong{font-weight:700;}
+.note-box{margin:20px 28px 0;background:rgba(255,214,0,0.05);border-left:3px solid var(--yellow);padding:16px 20px;}
+.note-title{font-size:0.55rem;letter-spacing:3px;text-transform:uppercase;color:var(--yellow);margin-bottom:6px;}
+.note-txt{font-size:0.72rem;line-height:1.8;color:var(--muted);}
+.beaver-box{margin:20px 28px 0;background:var(--s2);padding:22px;display:flex;gap:16px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+footer{margin:24px 28px 0;padding:16px 0;border-top:1px solid var(--s3);display:flex;justify-content:space-between;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;letter-spacing:1.5px;color:var(--muted);text-align:right;line-height:2;text-transform:uppercase;}
+@media(max-width:480px){.gauge-section{flex-direction:column;}.gauge-wrap{width:160px;height:160px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert">
+  <div class="a-dot"></div>
+  <div class="a-txt">🔴 CRITIQUE — Ratio Logement : prix > 9x le revenu médian annuel. Le Canada est le marché immobilier le moins abordable du G7.</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <a class="lang-btn" href="housing-ratio.html">🇬🇧 EN</a>
+      <span class="lang-btn active">🇫🇷 FR</span>
+    </div>
+    <div class="lt-pill">🔭 LONG TERME</div>
+  </div>
+</header>
+<div class="wrapper">
+  <a href="all-long-term-fr.html" class="back-link">← Tous les indicateurs long terme</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Indicateur Long Terme #03 — BEAVER.WATCH</div>
+    <div class="hero-title">Ratio<br>Accessibilité<br>Logement</div>
+    <div class="hero-tagline">« Le barrage du Castor coûtait 3x son salaire en 1990. Aujourd'hui : 9x. »</div>
+  </div>
+  <div class="gauge-section">
+    <div class="gauge-wrap">
+      <svg class="gauge-svg" viewBox="0 0 120 120">
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#00E676" stroke-opacity="0.12" stroke-dasharray="100.5 401.9"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF6D00" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-100.5"/>
+        <circle class="g-zone" cx="60" cy="60" r="40" stroke="#FF2D2D" stroke-opacity="0.12" stroke-dasharray="75.4 426.9" stroke-dashoffset="-175.9"/>
+        <circle class="g-active" cx="60" cy="60" r="40" stroke="var(--red)"/>
+      </svg>
+      <div class="gauge-center">
+        <div class="gc-icon">🏠</div>
+        <div class="gc-val">>9x</div>
+        <div class="gc-lbl">Prix / Revenu<br>médian annuel</div>
+      </div>
+    </div>
+    <div class="gauge-right">
+      <div class="risk-word">CRITIQUE</div>
+      <div class="risk-desc">Le prix médian d'une maison au Canada dépasse 9 fois le revenu médian annuel. Le seuil d'inabordabilité critique est de 5x. Le Canada est au double du seuil de crise.</div>
+      <div class="risk-badge">🔴 LONG TERME CRITIQUE</div>
+      <div style="font-size:0.62rem;color:var(--muted);margin-top:6px;">Prédit 5–15 ans à l'avance · Mis à jour annuellement</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">📊 Chiffres Vérifiés — SCHL 2025</div>
+    <div class="key-stats">
+      <div class="ks"><div class="ks-val" style="color:var(--red)">>9x</div><div class="ks-lbl">Ratio prix médian national / revenu médian annuel 2025</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--green)">3x</div><div class="ks-lbl">Ratio acceptable selon les standards internationaux (OCDE)</div></div>
+      <div class="ks"><div class="ks-val" style="color:var(--red)">3.5M</div><div class="ks-lbl">Déficit de logements au Canada selon la SCHL 2024</div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">Ce que le ratio 9x signifie concrètement</div>
+    <div class="meaning-box">
+      <div class="meaning-title">Un Canadien moyen doit travailler 9 ans sans dépenser un centime pour acheter une maison.</div>
+      <div class="meaning-txt">Le ratio prix/revenu est la mesure la plus directe de l'accessibilité au logement. <strong>À 9x, une personne gagnant le revenu médian canadien de 57 000$/an fait face à une maison médiane qui coûte plus de 513 000$.</strong> Les banques exigent généralement que le ratio d'endettement ne dépasse pas 32% du revenu brut — ce qui signifie qu'à des taux de 5–6%, la mise de fonds requise pour que le paiement mensuel soit supportable dépasse 200 000$ dans la plupart des marchés. <strong>Une génération entière de Canadiens est structurellement exclue de la propriété.</strong> Ce n'est pas un cycle de marché. C'est une transformation permanente de la structure sociale.</div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="sec-label">⏱️ Conséquences prédites si le ratio reste élevé</div>
+    <div class="conseq-box">
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–10</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Génération entière locataire permanente</div><div class="tl-detail">Les Canadiens de 25–40 ans qui ne possèdent pas encore de propriété ont une probabilité inférieure à 15% d'en acquérir une dans les marchés majeurs sans héritage familial significatif. La propriété devient un privilège transmis par héritage, pas accessible au mérite. Source : SCHL Rapport sur l'accession à la propriété 2025.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">5–15</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Exode des cerveaux vers des marchés plus abordables</div><div class="tl-detail">Les travailleurs qualifiés mobiles quittent Vancouver, Toronto et Montréal pour des villes secondaires ou d'autres pays. Déjà documenté : 180 000 Canadiens ont quitté pour les États-Unis en 2024 — record depuis 1971. Le logement est le facteur #1 cité. Source : StatCan migrations 2025.</div></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-left"><div class="tl-time">10–20</div><div class="tl-unit">ans</div><div class="tl-dot"></div></div>
+        <div><div class="tl-event">Polarisation extrême richesse-pauvreté</div><div class="tl-detail">Les propriétaires qui ont acheté avant 2015 ont vu leur patrimoine multiplié par 2.5–4x. Les locataires n'ont accumulé aucun patrimoine. Ce fossé de patrimoine produit une société à deux vitesses aussi profonde que les inégalités de revenus — mais beaucoup plus difficile à corriger fiscalement.</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🏙️ Par Ville — Ratio Prix/Revenu 2025</div>
+    <div class="city-grid">
+      <div class="city-item"><div class="city-name">Vancouver</div><div class="city-val" style="color:var(--red)">13.5x</div><div class="city-bar"><div class="city-fill" style="width:100%;background:var(--red)"></div></div></div>
+      <div class="city-item"><div class="city-name">Toronto</div><div class="city-val" style="color:var(--red)">11.2x</div><div class="city-bar"><div class="city-fill" style="width:83%;background:var(--red)"></div></div></div>
+      <div class="city-item"><div class="city-name">Montréal</div><div class="city-val" style="color:var(--red)">8.4x</div><div class="city-bar"><div class="city-fill" style="width:62%;background:var(--red)"></div></div></div>
+      <div class="city-item"><div class="city-name">Ottawa</div><div class="city-val" style="color:var(--red)">7.8x</div><div class="city-bar"><div class="city-fill" style="width:58%;background:var(--red)"></div></div></div>
+      <div class="city-item"><div class="city-name">Calgary</div><div class="city-val" style="color:var(--orange)">6.2x</div><div class="city-bar"><div class="city-fill" style="width:46%;background:var(--orange)"></div></div></div>
+      <div class="city-item"><div class="city-name">Winnipeg</div><div class="city-val" style="color:var(--orange)">5.1x</div><div class="city-bar"><div class="city-fill" style="width:38%;background:var(--orange)"></div></div></div>
+    </div>
+  </div>
+  <div class="section" style="margin-top:20px;">
+    <div class="sec-label">📈 L'Écart Riche-Pauvre — Comment le Logement le Crée</div>
+    <div class="gap-box">
+      <div class="gap-title">Même rivière. Deux Canada différents.</div>
+      <div class="gap-row-item">
+        <div class="gap-icon-s">🏠</div>
+        <div class="gap-desc"><strong>Propriétaire acheté en 2010 :</strong> Maison à 350 000$ → vaut 900 000$ en 2025. Gain de patrimoine : 550 000$. Sans effort. Sans mérite particulier. Juste d'avoir acheté au bon moment.</div>
+      </div>
+      <div class="gap-row-item">
+        <div class="gap-icon-s">🏢</div>
+        <div class="gap-desc"><strong>Locataire depuis 2010 :</strong> A payé environ 300 000$ en loyers cumulés. Patrimoine immobilier accumulé : 0$. Même travail. Même revenu. Trajectoire de vie radicalement différente.</div>
+      </div>
+      <div class="gap-row-item">
+        <div class="gap-icon-s">📊</div>
+        <div class="gap-desc"><strong>L'écart de patrimoine :</strong> Entre ces deux personnes, l'écart de patrimoine est de 550 000$ — soit environ 10 années de revenu médian canadien. <strong>Cet écart ne peut pas être comblé par le travail ou l'épargne seuls.</strong></div>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="sec-label">🔗 Pourquoi le ratio reste si élevé</div>
+    <div>
+      <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Déficit structurel de construction depuis 30 ans</strong> — Le Canada construit environ 200 000 logements par an alors que la demande dépasse 400 000 unités (en comptant la croissance démographique par immigration). Ce déficit cumulatif de 3.5 millions d'unités selon la SCHL ne peut pas être résorbé rapidement.</div></div>
+      <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Investissement spéculatif massif</strong> — Entre 20 et 30% des propriétés résidentielles canadiennes sont détenues par des investisseurs plutôt que des occupants. La propriété comme classe d'actifs a compété directement avec la propriété comme logement — et l'investisseur a gagné.</div></div>
+      <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Zonage restrictif et opposition locale</strong> — La majorité des quartiers résidentiels canadiens sont zonés exclusivement pour des maisons unifamiliales. Construire de la densité nécessite des modifications de zonage que les propriétaires existants s'opposent systématiquement. Le changement est structurellement bloqué politiquement.</div></div>
+      <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Immigration record sans logements correspondants</strong> — 465 000 résidents permanents admis en 2023, 485 000 en 2024 — sans construction de logements équivalente. Chaque nouvel arrivant a besoin d'un toit. La demande a dépassé l'offre à une vitesse sans précédent depuis 2022.</div></div>
+    </div>
+  </div>
+  <div class="note-box">
+    <div class="note-title">⚠️ Note de Transparence</div>
+    <div class="note-txt">Ratio calculé : Prix médian national des maisons (SCHL / CREA 2025) divisé par revenu médian des ménages (StatCan Enquête sur les finances des consommateurs 2025). Le ratio national de 9x masque des disparités régionales importantes — Vancouver (13.5x) vs Winnipeg (5.1x). BEAVER.WATCH utilise le chiffre national comme indicateur de tendance macro.</div>
+  </div>
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">Le Castor Dit</div>
+      <div class="beaver-txt">« Le barrage du Castor coûtait 3x son salaire annuel en 1990. Aujourd'hui ça coûterait 9x. <strong>Le Castor loue maintenant. Et le Castor qui a acheté en 2010 est millionnaire. Même rivière. Deux Canada différents.</strong> 🏠🦫 »</div>
+    </div>
+  </div>
+  <footer>
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Source : SCHL · CREA · StatCan · Évaluation du marché 2025<br>Mis à jour annuellement</div>
+  </footer>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+</script>
+</body>
+</html>
