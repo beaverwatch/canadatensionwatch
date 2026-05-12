@@ -320,13 +320,13 @@ footer{margin:28px auto 0;padding:20px 0;border-top:1px solid var(--s3);display:
         <div class="ind-name">Kijiji Stress Index <span style="font-size:0.55rem;background:var(--yellow);color:#000;padding:2px 7px;letter-spacing:1px;font-weight:700;margin-left:6px;">NEW</span></div>
         <div class="ind-sub">"When Canadians sell their tools — the Beaver notices first."</div>
         <div class="ind-bar-wrap">
-          <div class="ind-bar"><div class="ind-bar-fill" style="width:52%;background:var(--orange)"></div></div>
+          <div class="ind-bar"><div class="ind-bar-fill" id="bar-kijiji" style="width:52%;background:var(--orange)"></div></div>
         </div>
         <div class="ind-source">Kijiji.ca · Montréal + Toronto + Vancouver · Daily</div>
       </div>
-      <div class="ind-score" style="color:var(--orange)">52</div>
+      <div class="ind-score" id="score-kijiji" style="color:var(--orange)">52</div>
       <div>
-        <div class="ind-badge badge-o">🟠 TENSION</div>
+        <div class="ind-badge badge-o" id="badge-kijiji">🟠 TENSION</div>
         <div class="ind-lead">Behavioural signal</div>
       </div>
       <div class="ind-arrow">→</div>
@@ -469,14 +469,36 @@ window.addEventListener('load',()=>{
       setInd('score-hc','bar-hc','badge-hc', hc);
       setInd('score-ct','bar-ct','badge-ct', ct);
 
-      const all = [at,fs,pd,sl,c2,hc,ct];
-      const reds    = all.filter(v=>v>=0.7).length;
-      const oranges = all.filter(v=>v>=0.4&&v<0.7).length;
-      const greens  = all.filter(v=>v<0.4).length;
+      // Load Kijiji score dynamically
+      fetch('kijiji_data.json?t='+Date.now())
+        .then(r=>r.json())
+        .then(kd=>{
+          const kScore = kd.national_score || 0.52;
+          const kEl = document.getElementById('score-kijiji');
+          const kBadge = document.getElementById('badge-kijiji');
+          const kBar = document.getElementById('bar-kijiji');
+          if(kEl) kEl.textContent = Math.round(kScore*100);
+          if(kEl) kEl.style.color = getColor(kScore);
+          if(kBadge){ kBadge.textContent = getBadge(kScore); kBadge.className = getBadgeClass(kScore); }
+          if(kBar){ kBar.style.width=(kScore*100)+'%'; kBar.style.background=getColor(kScore); }
 
-      document.getElementById('sum-red').textContent    = reds+' indicators';
-      document.getElementById('sum-orange').textContent = oranges+' indicator'+(oranges>1?'s':'');
-      document.getElementById('sum-green').textContent  = greens+' indicators';
+          const all = [at,fs,pd,sl,c2,hc,ct,kScore];
+          const reds    = all.filter(v=>v>=0.7).length;
+          const oranges = all.filter(v=>v>=0.4&&v<0.7).length;
+          const greens  = all.filter(v=>v<0.4).length;
+          document.getElementById('sum-red').textContent    = reds+' indicators';
+          document.getElementById('sum-orange').textContent = oranges+' indicator'+(oranges!==1?'s':'');
+          document.getElementById('sum-green').textContent  = greens+' indicators';
+        })
+        .catch(()=>{
+          const all = [at,fs,pd,sl,c2,hc,ct,0.52];
+          const reds    = all.filter(v=>v>=0.7).length;
+          const oranges = all.filter(v=>v>=0.4&&v<0.7).length;
+          const greens  = all.filter(v=>v<0.4).length;
+          document.getElementById('sum-red').textContent    = reds+' indicators';
+          document.getElementById('sum-orange').textContent = oranges+' indicator'+(oranges!==1?'s':'');
+          document.getElementById('sum-green').textContent  = greens+' indicators';
+        });
     })
     .catch(()=>{
       const fallback = {at:0.72,fs:0.71,pd:0.82,sl:0.73,c2:0.72,hc:0.34,ct:0.097};
@@ -488,7 +510,7 @@ window.addEventListener('load',()=>{
       setInd('score-hc','bar-hc','badge-hc', fallback.hc);
       setInd('score-ct','bar-ct','badge-ct', fallback.ct);
       document.getElementById('sum-red').textContent    = '5 indicators';
-      document.getElementById('sum-orange').textContent = '0 indicators';
+      document.getElementById('sum-orange').textContent = '1 indicator';
       document.getElementById('sum-green').textContent  = '2 indicators';
     });
 });
