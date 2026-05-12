@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🦫 BEAVER.WATCH — Canadian Stress Barometer</title>
+<title>🦫 CASTOR.WATCH — Canadian Stress Barometer</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
@@ -20,13 +20,7 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
 .logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
 .logo-sub{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
-.header-right{display:flex;align-items:center;gap:12px;}
 .live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:8px 18px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
-/* LANGUAGE TOGGLE */
-.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;border-radius:2px;}
-.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
-.lang-btn.active{background:var(--red);color:#fff;}
-.lang-btn:hover:not(.active){color:var(--text);}
 .ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:11px 0;}
 .ticker-inner{display:flex;white-space:nowrap;animation:tick 40s linear infinite;width:max-content;}
 .ti{padding:0 48px;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
@@ -38,6 +32,7 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:18px;}
 .hero-title em{font-style:italic;color:var(--red);}
 .hero-desc{font-size:0.95rem;line-height:1.9;color:var(--muted);max-width:580px;}
+/* SCORE HEADER */
 .score-header{max-width:1000px;margin:48px auto 0;padding:0 32px;}
 .score-header-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;background:var(--s1);padding:24px 28px;border-left:4px solid var(--red);}
 .score-header-inner.lt{border-left-color:var(--orange);}
@@ -49,6 +44,7 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .sh-right{text-align:right;}
 .sh-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:2px;line-height:1;transition:color 1s ease;}
 .sh-status{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;transition:color 1s ease;}
+/* CARDS */
 .sec{max-width:1000px;margin:1px auto 0;padding:0 32px;}
 .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
 .card{background:var(--s1);padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;transition:background 0.2s;}
@@ -76,30 +72,35 @@ header{padding:20px 32px;display:flex;align-items:center;justify-content:space-b
 .sb:last-child{opacity:1;}
 .card-source{font-size:0.62rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:12px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .card-arrow{font-size:0.8rem;opacity:0.4;transition:all 0.2s;}
+/* SEE ALL */
 .see-all-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
 .see-all{background:var(--s2);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--text);transition:background 0.2s;border-left:4px solid var(--s4);}
 .see-all:hover{background:var(--s3);}
 .see-all-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;margin-bottom:4px;}
 .see-all-sub{font-size:0.68rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
 .see-all-cta{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--muted);white-space:nowrap;margin-left:24px;}
+/* RULE */
 .rule-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
 .rule-inner{background:rgba(255,45,45,0.05);border-left:4px solid var(--red);padding:22px 26px;display:flex;gap:16px;}
 .rule-icon{font-size:1.6rem;flex-shrink:0;}
 .rule-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
 .rule-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
 .rule-txt strong{font-weight:700;}
+/* LT INTRO */
 .lt-intro-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
 .lt-intro{background:rgba(255,109,0,0.05);border-left:4px solid var(--orange);padding:20px 24px;display:flex;gap:14px;}
 .lt-intro-icon{font-size:1.4rem;flex-shrink:0;}
 .lt-intro-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
 .lt-intro-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
 .lt-intro-txt strong{font-weight:700;}
+/* CASTOR */
 .cq-wrap{max-width:1000px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
 .cq-inner{background:var(--s1);padding:28px;display:flex;align-items:center;gap:24px;}
 .cq-b{font-size:3.5rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
 .cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--muted);line-height:1.6;}
 .cq-t strong{color:var(--text);font-style:normal;}
+/* FOOTER */
 footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 .footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
 .foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:5px;color:var(--muted);margin-bottom:6px;}
@@ -113,8 +114,17 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 .foot-bottom{margin-top:20px;padding-top:16px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
 .foot-copy{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
 .foot-disclaimer{font-size:0.6rem;color:var(--muted);text-align:right;max-width:400px;line-height:1.7;}
-@media(max-width:800px){.grid3{grid-template-columns:1fr;}.score-header-inner{grid-template-columns:1fr;}.sh-right{text-align:left;}.footer-grid{grid-template-columns:1fr;}.see-all{flex-direction:column;align-items:flex-start;gap:10px;}}
-@media(max-width:500px){header{padding:16px 18px;}.score-header,.sec,.see-all-wrap,.rule-wrap,.lt-intro-wrap,.cq-wrap,footer{padding-left:18px;padding-right:18px;}}
+@media(max-width:800px){
+  .grid3{grid-template-columns:1fr;}
+  .score-header-inner{grid-template-columns:1fr;}
+  .sh-right{text-align:left;}
+  .footer-grid{grid-template-columns:1fr;}
+  .see-all{flex-direction:column;align-items:flex-start;gap:10px;}
+}
+@media(max-width:500px){
+  header{padding:16px 18px;}
+  .score-header,.sec,.see-all-wrap,.rule-wrap,.lt-intro-wrap,.cq-wrap,footer{padding-left:18px;padding-right:18px;}
+}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 .hero{animation:fadeUp 0.4s ease both;}
 </style>
@@ -127,16 +137,10 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
 </div>
 <header>
   <div>
-    <div class="logo">🦫 <span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div>
+    <div class="logo">🦫 <span class="logo-c">CASTOR</span><span class="logo-d">.</span>WATCH</div>
     <div class="logo-sub">Canadian Stress Barometer — Predictive Signals</div>
   </div>
-  <div class="header-right">
-    <div class="lang-toggle">
-      <span class="lang-btn active">🇬🇧 EN</span>
-      <a class="lang-btn" href="index-fr.html">🇫🇷 FR</a>
-    </div>
-    <div class="live-pill"><div class="a-dot"></div>LIVE</div>
-  </div>
+  <div class="live-pill"><div class="a-dot"></div>LIVE</div>
 </header>
 <div class="ticker-outer">
   <div class="ticker-inner">
@@ -165,6 +169,8 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
   <div class="hero-title">The Canadian<br><em>Stress</em><br>Barometer</div>
   <div class="hero-desc">Predictive indicators based on real Canadian public data. Short-term tensions (weeks ahead) and long-term structural shifts (years ahead) — each with their own score.</div>
 </div>
+
+<!-- ══ SHORT-TERM SCORE ══ -->
 <div class="score-header">
   <div class="score-header-inner">
     <div>
@@ -179,15 +185,22 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </div>
   </div>
 </div>
+
+<!-- ST CARDS -->
 <div class="sec">
   <div class="grid3">
     <a class="card c-r" href="auto-theft.html">
       <div class="card-top"><div class="card-icon">🚗</div><div class="badge br" id="b1">🔴 CRITICAL</div></div>
       <div class="card-name">Auto Theft Index</div>
-      <div class="card-sub">"The Beaver watches your car."</div>
+      <div class="card-sub">"The beaver watches your car."</div>
       <div class="card-val-row"><div class="card-val" id="v1" style="color:var(--red)">—</div><div class="card-trend" style="color:var(--red)">▲ +0.07</div></div>
       <div class="card-bar"><div class="card-bar-fill" id="bar1" style="width:0%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:42%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:64%;background:var(--red)"></div><div class="sb" style="height:68%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:42%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div>
+        <div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:64%;background:var(--red)"></div>
+        <div class="sb" style="height:68%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div>
+        <div class="sb" style="height:72%;background:var(--red)"></div>
+      </div>
       <div class="card-source">Équité · CANAFE · IBC · Lead: 4–8 wks<div class="card-arrow">→</div></div>
     </a>
     <a class="card c-r" href="food-stress.html">
@@ -196,7 +209,12 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"The empty lunch box never lies."</div>
       <div class="card-val-row"><div class="card-val" id="v2" style="color:var(--red)">—</div><div class="card-trend" style="color:var(--red)">▲ +0.09</div></div>
       <div class="card-bar"><div class="card-bar-fill" id="bar2" style="width:0%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:30%;background:var(--red)"></div><div class="sb" style="height:42%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:56%;background:var(--red)"></div><div class="sb" style="height:62%;background:var(--red)"></div><div class="sb" style="height:62%;background:var(--red)"></div><div class="sb" style="height:71%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:30%;background:var(--red)"></div><div class="sb" style="height:42%;background:var(--red)"></div>
+        <div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:56%;background:var(--red)"></div>
+        <div class="sb" style="height:62%;background:var(--red)"></div><div class="sb" style="height:62%;background:var(--red)"></div>
+        <div class="sb" style="height:71%;background:var(--red)"></div>
+      </div>
       <div class="card-source">Food Banks Canada · Breakfast Club · Lead: 4–8 wks<div class="card-arrow">→</div></div>
     </a>
     <a class="card c-r" href="payday-loan.html">
@@ -205,13 +223,19 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"When Money Mart is packed."</div>
       <div class="card-val-row"><div class="card-val" id="v3" style="color:var(--red)">—</div><div class="card-trend" style="color:var(--red)">▲ +0.08</div></div>
       <div class="card-bar"><div class="card-bar-fill" id="bar3" style="width:0%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:38%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:61%;background:var(--red)"></div><div class="sb" style="height:68%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:75%;background:var(--red)"></div><div class="sb" style="height:82%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:38%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div>
+        <div class="sb" style="height:61%;background:var(--red)"></div><div class="sb" style="height:68%;background:var(--red)"></div>
+        <div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:75%;background:var(--red)"></div>
+        <div class="sb" style="height:82%;background:var(--red)"></div>
+      </div>
       <div class="card-source">FCAC · BDO Canada · Google Trends · Lead: 8–16 wks<div class="card-arrow">→</div></div>
     </a>
   </div>
 </div>
+
 <div class="see-all-wrap">
-  <a class="see-all" href="all-short-term.html">
+  <a class="see-all" href="all-indicators.html">
     <div>
       <div class="see-all-title">See All Short-Term Indicators</div>
       <div class="see-all-sub">School Lunch · 211 Crisis · Haircut Index · Canadian Tire Flyer · and more coming soon</div>
@@ -219,6 +243,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     <div class="see-all-cta">VIEW ALL →</div>
   </a>
 </div>
+
 <div class="rule-wrap">
   <div class="rule-inner">
     <div class="rule-icon">⚠️</div>
@@ -228,6 +253,8 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </div>
   </div>
 </div>
+
+<!-- ══ LONG-TERM SCORE ══ -->
 <div class="score-header" style="margin-top:56px;">
   <div class="score-header-inner lt">
     <div>
@@ -242,6 +269,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </div>
   </div>
 </div>
+
 <div class="lt-intro-wrap">
   <div class="lt-intro">
     <div class="lt-intro-icon">📊</div>
@@ -251,6 +279,8 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </div>
   </div>
 </div>
+
+<!-- LT CARDS -->
 <div class="sec" style="margin-top:1px;">
   <div class="grid3">
     <a class="card c-r" href="fertility.html">
@@ -259,7 +289,12 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"Canada is no longer reproducing itself."</div>
       <div class="card-val-row"><div class="card-val" style="color:var(--red)">1.25</div><div class="card-trend" style="color:var(--red)">▼ Record low</div></div>
       <div class="card-bar"><div class="card-bar-fill" style="width:90%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:70%;background:var(--red)"></div><div class="sb" style="height:60%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:40%;background:var(--red)"></div><div class="sb" style="height:30%;background:var(--red)"></div><div class="sb" style="height:22%;background:var(--red)"></div><div class="sb" style="height:15%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:70%;background:var(--red)"></div><div class="sb" style="height:60%;background:var(--red)"></div>
+        <div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:40%;background:var(--red)"></div>
+        <div class="sb" style="height:30%;background:var(--red)"></div><div class="sb" style="height:22%;background:var(--red)"></div>
+        <div class="sb" style="height:15%;background:var(--red)"></div>
+      </div>
       <div class="card-source">StatCan · Demographic Statistics 2025<div class="card-arrow">→</div></div>
     </a>
     <a class="card c-r" href="gender-gap.html">
@@ -268,7 +303,12 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"Women 71% vs Men 57% of graduates."</div>
       <div class="card-val-row"><div class="card-val" style="color:var(--red)">71/57</div><div class="card-trend" style="color:var(--red)">▼ Gap widening</div></div>
       <div class="card-bar"><div class="card-bar-fill" style="width:85%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:40%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:78%;background:var(--red)"></div><div class="sb" style="height:85%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:40%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div>
+        <div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div>
+        <div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:78%;background:var(--red)"></div>
+        <div class="sb" style="height:85%;background:var(--red)"></div>
+      </div>
       <div class="card-source">StatCan · Education Indicators 2025<div class="card-arrow">→</div></div>
     </a>
     <a class="card c-r" href="housing-ratio.html">
@@ -277,11 +317,17 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
       <div class="card-sub">"Price > 9x annual median income."</div>
       <div class="card-val-row"><div class="card-val" style="color:var(--red)">>9x</div><div class="card-trend" style="color:var(--red)">▼ Major cities</div></div>
       <div class="card-bar"><div class="card-bar-fill" style="width:80%;background:var(--red)"></div></div>
-      <div class="spark"><div class="sb" style="height:20%;background:var(--red)"></div><div class="sb" style="height:32%;background:var(--red)"></div><div class="sb" style="height:44%;background:var(--red)"></div><div class="sb" style="height:56%;background:var(--red)"></div><div class="sb" style="height:64%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:80%;background:var(--red)"></div></div>
+      <div class="spark">
+        <div class="sb" style="height:20%;background:var(--red)"></div><div class="sb" style="height:32%;background:var(--red)"></div>
+        <div class="sb" style="height:44%;background:var(--red)"></div><div class="sb" style="height:56%;background:var(--red)"></div>
+        <div class="sb" style="height:64%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div>
+        <div class="sb" style="height:80%;background:var(--red)"></div>
+      </div>
       <div class="card-source">CMHC · Housing Market Assessment 2025<div class="card-arrow">→</div></div>
     </a>
   </div>
 </div>
+
 <div class="see-all-wrap">
   <a class="see-all" href="all-long-term.html">
     <div>
@@ -291,16 +337,18 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     <div class="see-all-cta">VIEW ALL →</div>
   </a>
 </div>
+
 <div class="cq-wrap">
   <div class="cq-inner">
     <div class="cq-b">🦫</div>
     <div class="cq-t">"The newspapers will cover it in 6 weeks.<br><strong>The Beaver knows it now.</strong>"</div>
   </div>
 </div>
+
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="foot-brand">🦫 BEAVER.WATCH</div>
+      <div class="foot-brand">🦫 CASTOR.WATCH</div>
       <div class="foot-desc">Independent Canadian predictive dashboard. Public data only. Not affiliated with any government or political party.</div>
     </div>
     <div>
@@ -309,7 +357,7 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
         <a href="auto-theft.html" class="foot-link">🚗 Auto Theft Index</a>
         <a href="food-stress.html" class="foot-link">🍞 Food Stress Index</a>
         <a href="payday-loan.html" class="foot-link">💸 Payday Loan Radar</a>
-        <a href="all-short-term.html" class="foot-link">→ All short-term</a>
+        <a href="all-indicators.html" class="foot-link">→ All short-term</a>
         <a href="all-long-term.html" class="foot-link">→ All long-term</a>
       </div>
     </div>
@@ -322,10 +370,11 @@ footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
     </div>
   </div>
   <div class="foot-bottom">
-    <div class="foot-copy">© 2026 BEAVER.WATCH · Public data · Canada</div>
+    <div class="foot-copy">© 2026 CASTOR.WATCH · Public data · Canada</div>
     <div class="foot-disclaimer">For informational purposes only. Predictions based on statistical correlations — not guarantees.</div>
   </div>
 </footer>
+
 <script>
 const SHEETS_URL="https://script.google.com/macros/s/AKfycbw0S5p2Z6zli_2FRfQtvohOofLw6F_GiEvC0JNqvMelHt870ipwTB8OmkJMEsorLssYoA/exec";
 function getColor(v){return v>=0.7?'var(--red)':v>=0.4?'var(--orange)':'var(--green)';}
@@ -361,7 +410,7 @@ window.addEventListener('load',()=>{
       document.getElementById('t4').textContent=parseFloat(sl).toFixed(2)+' '+getEmoji(sl);
       document.getElementById('t5').textContent=parseFloat(c2).toFixed(2)+' '+getEmoji(c2);
       document.getElementById('t6').textContent=parseFloat(hc).toFixed(2)+' '+getEmoji(hc);
-      const stAvg=data.shortTermScore||([at,fs,pd,sl,c2,hc,ct].reduce((a,b)=>a+b,0)/7);
+      const stAvg=data.shortTermScore||(([at,fs,pd,sl,c2,hc,ct].reduce((a,b)=>a+b,0)/7));
       const ltAvg=data.longTermScore||0.68;
       setScore('st-num','st-status','st-bar',Math.round(stAvg*100));
       setScore('lt-num','lt-status','lt-bar',Math.round(ltAvg*100));
