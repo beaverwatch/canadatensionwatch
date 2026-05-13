@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📋 Rapport Mensuel Kijiji — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert-bar{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--orange);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;border-bottom:2px solid var(--orange);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--orange);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.wrapper{max-width:620px;margin:0 auto;padding:0 24px 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:24px 0 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:var(--orange);}
+.hero-desc{font-size:0.82rem;line-height:1.9;color:var(--muted);margin-top:10px;}
+/* Waiting box */
+.waiting-box{background:var(--s1);border-left:4px solid var(--orange);padding:24px;margin:24px 0 0;}
+.wb-icon{font-size:2.5rem;margin-bottom:12px;}
+.wb-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:3px;color:var(--orange);margin-bottom:8px;}
+.wb-desc{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.wb-desc strong{font-weight:700;}
+/* Report card */
+.report-card{background:var(--s1);border-left:5px solid var(--orange);padding:24px;margin:24px 0 0;display:none;}
+.rc-month{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.rc-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:3px;margin-bottom:4px;}
+.rc-generated{font-size:0.62rem;color:var(--muted);margin-bottom:20px;}
+.rc-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin-bottom:20px;}
+.rc-stat{background:var(--s2);padding:14px;text-align:center;}
+.rc-stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:2px;line-height:1;}
+.rc-stat-lbl{font-size:0.55rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;line-height:1.5;}
+.rc-interp{background:rgba(255,109,0,0.05);border-left:3px solid var(--orange);padding:16px 18px;margin-bottom:16px;}
+.rc-interp-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.rc-cities{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.rc-city{background:var(--s2);padding:14px;text-align:center;}
+.rc-city-name{font-size:0.6rem;color:var(--muted);letter-spacing:1px;margin-bottom:6px;}
+.rc-city-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+/* History timeline */
+.timeline{margin:24px 0 0;}
+.tl-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.tl-month{background:var(--s1);border:1px solid var(--s3);padding:18px;margin-bottom:2px;display:flex;align-items:center;gap:16px;cursor:pointer;transition:background 0.2s;}
+.tl-month:hover{background:var(--s2);}
+.tl-month-name{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;flex:1;}
+.tl-month-score{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.tl-month-trend{font-size:0.7rem;color:var(--muted);}
+.tl-month-bar{width:80px;height:4px;background:var(--faint);position:relative;}
+.tl-month-fill{position:absolute;left:0;top:0;bottom:0;}
+/* Accumulating */
+.accum-box{background:var(--s1);border:1px solid var(--s3);padding:20px;margin:24px 0 0;}
+.accum-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.accum-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--faint);}
+.accum-row:last-child{border-bottom:none;}
+.accum-date{font-size:0.65rem;color:var(--muted);width:80px;flex-shrink:0;}
+.accum-period{font-size:0.6rem;width:90px;flex-shrink:0;}
+.accum-bar-wrap{flex:1;height:4px;background:var(--faint);position:relative;}
+.accum-bar-fill{position:absolute;left:0;top:0;bottom:0;}
+.accum-score{font-family:'Bebas Neue',sans-serif;font-size:1rem;width:36px;text-align:right;flex-shrink:0;}
+/* Share box */
+.share-box{background:rgba(255,109,0,0.05);border-left:3px solid var(--orange);padding:18px 20px;margin-top:24px;}
+.share-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.share-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.share-txt strong{font-weight:700;}
+/* Beaver */
+.beaver-box{background:var(--s2);padding:22px;display:flex;gap:16px;margin-top:24px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+.footer-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--s3);margin-top:24px;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;color:var(--muted);text-align:right;line-height:2;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+<div class="alert-bar">
+  <div class="a-dot"></div>
+  <div class="a-txt">📋 Rapport Mensuel Kijiji — Publié le 1er de chaque mois · beaver.watch 🦫</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+<header>
+  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <span class="lang-btn active">🇫🇷 FR</span>
+      <a class="lang-btn" href="kijiji-monthly-report-en.html">🇬🇧 EN</a>
+    </div>
+  </div>
+</header>
+<div class="wrapper">
+  <a href="kijiji-stress-index.html" class="back-link">← Kijiji Stress Index</a>
+  <div class="hero">
+    <div class="hero-eyebrow">Kijiji Stress Index — Rapport Mensuel</div>
+    <div class="hero-title">Rapport<br><em>Mensuel</em></div>
+    <div class="hero-desc">Publié automatiquement le 1er de chaque mois. Le seul rapport canadien basé sur le comportement réel des vendeurs Kijiji. Citable par les médias. Gratuit.</div>
+  </div>
+
+  <!-- Waiting for first report -->
+  <div class="waiting-box" id="waiting-box">
+    <div class="wb-icon">⏳</div>
+    <div class="wb-title">Premier rapport : 1er Juin 2026</div>
+    <div class="wb-desc">Le Castor accumule les données depuis le <strong>13 mai 2026</strong>. Le premier rapport mensuel complet sera publié automatiquement le <strong>1er juin 2026</strong>. Il inclura : score moyen du mois, ville la plus stressée, tendance hausse/baisse, et prédiction pour juillet 2026.</div>
+  </div>
+
+  <!-- Report card (shown when report exists) -->
+  <div class="report-card" id="report-card">
+    <div class="rc-month" id="rc-month">—</div>
+    <div class="rc-title" id="rc-title">—</div>
+    <div class="rc-generated" id="rc-generated">—</div>
+    <div class="rc-stats">
+      <div class="rc-stat">
+        <div class="rc-stat-val" id="rc-avg" style="color:var(--orange)">—</div>
+        <div class="rc-stat-lbl">Score<br>Moyen</div>
+      </div>
+      <div class="rc-stat">
+        <div class="rc-stat-val" id="rc-max" style="color:var(--red)">—</div>
+        <div class="rc-stat-lbl">Score<br>Maximum</div>
+      </div>
+      <div class="rc-stat">
+        <div class="rc-stat-val" id="rc-min" style="color:var(--green)">—</div>
+        <div class="rc-stat-lbl">Score<br>Minimum</div>
+      </div>
+    </div>
+    <div class="rc-interp">
+      <div class="rc-interp-txt" id="rc-interp">—</div>
+    </div>
+    <div class="rc-cities" id="rc-cities"></div>
+  </div>
+
+  <!-- Daily accumulation -->
+  <div class="accum-box">
+    <div class="accum-label">📊 Données en Accumulation — Chaque jour compte</div>
+    <div id="accum-container">
+      <div style="color:var(--muted);font-size:0.78rem;padding:8px 0;">Le Castor collecte les données chaque matin. L'historique s'accumule ici. 🦫</div>
+    </div>
+  </div>
+
+  <!-- Timeline of past reports -->
+  <div class="timeline" id="timeline-section" style="display:none;">
+    <div class="tl-label">📅 Rapports Précédents</div>
+    <div id="timeline-container"></div>
+  </div>
+
+  <div class="share-box">
+    <div class="share-title">📢 Pour les Journalistes et Chercheurs</div>
+    <div class="share-txt">Ce rapport est <strong>100% public et citable</strong>. Basé sur des données comportementales réelles de Kijiji.ca. Méthodologie complète disponible sur la page Kijiji Stress Index. Contact : <strong>tensionsgeopolitiques@gmail.com</strong></div>
+  </div>
+
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">Le Castor Dit</div>
+      <div class="beaver-txt">« Statistique Canada publie ses rapports avec 6 mois de délai. <strong>Le Castor publie le sien le 1er de chaque mois. Basé sur ce que les Canadiens font vraiment — pas ce qu'ils disent.</strong> 📋🦫 »</div>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Publié le 1er de chaque mois<br>Source : Kijiji.ca · Données quotidiennes</div>
+  </div>
+</div>
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+
+function getColor(s){return s>=0.65?'var(--red)':s>=0.40?'var(--orange)':'var(--green)';}
+
+// Load daily history
+fetch('kijiji_history.json?t='+Date.now())
+  .then(r=>r.json())
+  .then(history=>{
+    const container=document.getElementById('accum-container');
+    const entries=Object.entries(history).slice(-30).reverse();
+    if(entries.length===0){return;}
+    container.innerHTML='';
+    entries.forEach(([date,data])=>{
+      const score=data.national_score||0;
+      const color=getColor(score);
+      const period=data.pay_period==='avant-paye'?'🟠 Avant paye':'🟢 Après paye';
+      const row=document.createElement('div');
+      row.className='accum-row';
+      row.innerHTML=`
+        <div class="accum-date">${date}</div>
+        <div class="accum-period" style="color:${data.pay_period==='avant-paye'?'var(--orange)':'var(--green)'}">${period}</div>
+        <div class="accum-bar-wrap"><div class="accum-bar-fill" style="width:${score*100}%;background:${color}"></div></div>
+        <div class="accum-score" style="color:${color}">${Math.round(score*100)}</div>
+      `;
+      container.appendChild(row);
+    });
+  })
+  .catch(()=>{});
+
+// Load monthly reports
+fetch('kijiji_monthly_reports.json?t='+Date.now())
+  .then(r=>r.json())
+  .then(reports=>{
+    const months=Object.keys(reports).sort().reverse();
+    if(months.length===0){return;}
+
+    // Show latest report
+    const latest=reports[months[0]];
+    document.getElementById('waiting-box').style.display='none';
+    const card=document.getElementById('report-card');
+    card.style.display='block';
+    const color=getColor(latest.avg_score);
+    card.style.borderColor=color;
+    document.getElementById('rc-month').textContent='📋 Rapport — '+latest.month_label_fr;
+    document.getElementById('rc-title').textContent=(latest.avg_score>=0.65?'MOIS DE CRISE':latest.avg_score>=0.40?'MOIS DE TENSION':'MOIS NORMAL');
+    document.getElementById('rc-title').style.color=color;
+    document.getElementById('rc-generated').textContent='Généré le '+latest.generated+' · '+latest.data_points+' jours de données';
+    document.getElementById('rc-avg').textContent=Math.round(latest.avg_score*100);
+    document.getElementById('rc-max').textContent=Math.round(latest.max_score*100);
+    document.getElementById('rc-min').textContent=Math.round(latest.min_score*100);
+    document.getElementById('rc-interp').textContent=latest.interpretation_fr;
+
+    // City averages
+    const citiesEl=document.getElementById('rc-cities');
+    const cityNames={'montreal':'Montréal','toronto':'Toronto','vancouver':'Vancouver'};
+    if(latest.city_averages){
+      Object.entries(latest.city_averages).forEach(([city,score])=>{
+        const c=document.createElement('div');
+        c.className='rc-city';
+        c.innerHTML=`<div class="rc-city-name">${cityNames[city]||city}</div><div class="rc-city-val" style="color:${getColor(score)}">${Math.round(score*100)}</div>`;
+        citiesEl.appendChild(c);
+      });
+    }
+
+    // Timeline of past reports
+    if(months.length>1){
+      document.getElementById('timeline-section').style.display='block';
+      const tlContainer=document.getElementById('timeline-container');
+      months.slice(1).forEach(m=>{
+        const r=reports[m];
+        const sc=r.avg_score||0;
+        const c=getColor(sc);
+        const div=document.createElement('div');
+        div.className='tl-month';
+        div.innerHTML=`
+          <div class="tl-month-name">${r.month_label_fr}</div>
+          <div class="tl-month-bar"><div class="tl-month-fill" style="width:${sc*100}%;background:${c}"></div></div>
+          <div class="tl-month-score" style="color:${c}">${Math.round(sc*100)}</div>
+          <div class="tl-month-trend" style="color:${r.trend_fr==='hausse'?'var(--red)':'var(--green)'}">
+            ${r.trend_fr==='hausse'?'▲ Hausse':'▼ Baisse'}
+          </div>
+        `;
+        tlContainer.appendChild(div);
+      });
+    }
+  })
+  .catch(()=>{});
+</script>
+</body>
+</html>
