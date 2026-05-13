@@ -5,6 +5,9 @@ on:
     - cron: '0 11 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   scrape-kijiji:
     runs-on: ubuntu-latest
@@ -12,8 +15,6 @@ jobs:
     steps:
       - name: 📥 Checkout repo
         uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 🐍 Setup Python
         uses: actions/setup-python@v5
@@ -28,7 +29,7 @@ jobs:
 
       - name: 💾 Commit and push
         run: |
-          git config --global user.name "Beaver Bot 🦫"
+          git config --global user.name "Beaver Bot"
           git config --global user.email "beaver@beaver.watch"
           git add kijiji_data.json kijiji_baseline.json
           git diff --staged --quiet || git commit -m "🦫 Kijiji update $(date +'%Y-%m-%d')"
