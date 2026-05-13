@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 Payday Alert — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert-bar{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;border-bottom:2px solid var(--orange);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:10px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--orange);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.wrapper{max-width:620px;margin:0 auto;padding:0 24px 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:24px 0 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.6rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:var(--orange);}
+.hero-desc{font-size:0.82rem;line-height:1.9;color:var(--muted);margin-top:10px;}
+.status-box{margin:24px 0 0;padding:24px;border-left:5px solid;background:var(--s1);}
+.sb-period{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.sb-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;line-height:1;margin-bottom:8px;}
+.sb-day{font-size:0.78rem;color:var(--muted);margin-bottom:16px;}
+.sb-score-row{display:flex;align-items:flex-end;gap:16px;margin-bottom:12px;}
+.sb-score{font-family:'Playfair Display',serif;font-size:3.5rem;font-weight:900;line-height:1;}
+.sb-score-label{font-size:0.62rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;padding-bottom:8px;}
+.sb-bar{width:100%;height:8px;background:var(--faint);margin-bottom:8px;}
+.sb-fill{height:100%;transition:width 2s ease;}
+.sb-status{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;}
+.alert-box{margin:16px 0 0;padding:20px;border-left:4px solid var(--red);background:rgba(255,45,45,0.08);}
+.alert-box.inactive{border-color:var(--green);background:rgba(0,230,118,0.05);}
+.alert-icon{font-size:1.8rem;margin-bottom:8px;}
+.alert-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;margin-bottom:8px;}
+.alert-msg{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.alert-msg strong{font-weight:700;}
+.calendar-section{margin:24px 0 0;}
+.cal-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;}
+.cal-header{font-size:0.55rem;letter-spacing:1px;text-transform:uppercase;color:var(--muted);text-align:center;padding:6px 0;}
+.cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;border-radius:2px;}
+.cal-before{background:rgba(255,109,0,0.15);color:var(--orange);}
+.cal-after{background:rgba(0,230,118,0.1);color:var(--green);}
+.cal-today{outline:2px solid var(--yellow);outline-offset:1px;}
+.cal-empty{background:transparent;}
+.cal-legend{display:flex;gap:16px;margin-top:8px;}
+.cal-leg-item{display:flex;align-items:center;gap:6px;font-size:0.62rem;color:var(--muted);}
+.cal-leg-dot{width:10px;height:10px;border-radius:2px;}
+.explain-box{background:rgba(255,109,0,0.05);border-left:3px solid var(--orange);padding:18px 20px;margin-top:24px;}
+.explain-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.explain-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.explain-txt strong{font-weight:700;}
+.history-box{background:var(--s1);border:1px solid var(--s3);padding:20px;margin-top:24px;}
+.history-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.history-row{display:flex;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--faint);}
+.history-row:last-child{border-bottom:none;}
+.hist-date{font-size:0.65rem;color:var(--muted);width:80px;flex-shrink:0;}
+.hist-period{font-size:0.6rem;letter-spacing:1px;width:100px;flex-shrink:0;}
+.hist-bar{flex:1;height:4px;background:var(--faint);position:relative;}
+.hist-fill{position:absolute;left:0;top:0;bottom:0;}
+.hist-score{font-family:'Bebas Neue',sans-serif;font-size:1rem;width:36px;text-align:right;flex-shrink:0;}
+.beaver-box{background:var(--s2);padding:22px;display:flex;gap:16px;margin-top:24px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+.footer-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--s3);margin-top:24px;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;color:var(--muted);text-align:right;line-height:2;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert-bar" id="alert-bar" style="background:var(--orange);">
+  <div class="a-dot"></div>
+  <div class="a-txt" id="alert-bar-txt">💰 Payday Alert — Loading...</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="header-right">
+    <div class="lang-toggle">
+      <a class="lang-btn" href="kijiji-payday-alert.html">🇫🇷 FR</a>
+      <span class="lang-btn active">🇬🇧 EN</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrapper">
+  <a href="kijiji-stress-index-en.html" class="back-link">← Kijiji Stress Index</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Kijiji Stress Index — Exclusive Feature</div>
+    <div class="hero-title">The <em>Payday</em><br>Alert</div>
+    <div class="hero-desc">The most worrying signal isn't that Canadians are selling their belongings before payday. It's when they keep selling after.</div>
+  </div>
+
+  <!-- Status Box -->
+  <div class="status-box" id="status-box" style="border-color:var(--orange);">
+    <div class="sb-period">💰 Current Pay Period</div>
+    <div class="sb-title" id="sb-title" style="color:var(--orange)">LOADING...</div>
+    <div class="sb-day" id="sb-day">—</div>
+    <div class="sb-score-row">
+      <div class="sb-score" id="sb-score" style="color:var(--orange)">—</div>
+      <div class="sb-score-label">National<br>Kijiji Score</div>
+    </div>
+    <div class="sb-bar"><div class="sb-fill" id="sb-bar-fill" style="width:0%"></div></div>
+    <div class="sb-status" id="sb-status" style="color:var(--orange)">—</div>
+  </div>
+
+  <!-- Alert Box -->
+  <div class="alert-box inactive" id="alert-box">
+    <div class="alert-icon" id="alert-icon">🟢</div>
+    <div class="alert-title" id="alert-title">NO ACTIVE ALERT</div>
+    <div class="alert-msg" id="alert-msg">Kijiji stress is within the normal range for this time of month. The Beaver is watching.</div>
+  </div>
+
+  <!-- Calendar -->
+  <div class="calendar-section">
+    <div class="cal-label">📅 Monthly Calendar — Stress Zones</div>
+    <div class="cal-grid" id="cal-grid">
+      <div class="cal-header">Sun</div>
+      <div class="cal-header">Mon</div>
+      <div class="cal-header">Tue</div>
+      <div class="cal-header">Wed</div>
+      <div class="cal-header">Thu</div>
+      <div class="cal-header">Fri</div>
+      <div class="cal-header">Sat</div>
+    </div>
+    <div class="cal-legend">
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(255,109,0,0.4)"></div>Before payday (stress expected)</div>
+      <div class="cal-leg-item"><div class="cal-leg-dot" style="background:rgba(0,230,118,0.3)"></div>After payday (stress should drop)</div>
+    </div>
+  </div>
+
+  <!-- Explanation -->
+  <div class="explain-box">
+    <div class="explain-title">💡 Why this is unique in the world</div>
+    <div class="explain-txt">Normally Kijiji listings <strong>spike before the 15th</strong> (people need cash) and <strong>drop after the 15th</strong> (payday arrives). That's the natural cycle. But if stress <strong>stays high after payday</strong> — it means Canadians are so indebted that their paycheque no longer covers their debts. <strong>NOBODY tracks this in Canada. The Beaver has been doing it since May 11, 2026.</strong></div>
+  </div>
+
+  <!-- History -->
+  <div class="history-box">
+    <div class="history-title">📊 History — Last 14 Days</div>
+    <div id="history-container">
+      <div style="color:var(--muted);font-size:0.78rem;">Data accumulating... The Beaver builds the history every morning. 🦫</div>
+    </div>
+  </div>
+
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">The Beaver Says</div>
+      <div class="beaver-txt" id="beaver-txt">"The Beaver watches whether Canadians keep selling after payday. <strong>If they do — that's not a good sign.</strong> 💰🦫"</div>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Updated: <span id="updated-time">--</span><br>Source: Kijiji.ca · Daily data</div>
+  </div>
+</div>
+
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+
+function getColor(s){return s>=0.65?'var(--red)':s>=0.40?'var(--orange)':'var(--green)';}
+function getStatusEn(s){return s>=0.65?'🔴 CRISIS':s>=0.40?'🟠 TENSION':'🟢 NORMAL';}
+
+function buildCalendar(today){
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month+1, 0).getDate();
+  const grid = document.getElementById('cal-grid');
+  while(grid.children.length > 7) grid.removeChild(grid.lastChild);
+  for(let i=0;i<firstDay;i++){
+    const e=document.createElement('div');e.className='cal-day cal-empty';grid.appendChild(e);
+  }
+  for(let d=1;d<=daysInMonth;d++){
+    const div=document.createElement('div');
+    div.className='cal-day '+(d<=14?'cal-before':'cal-after');
+    if(d===today) div.classList.add('cal-today');
+    div.textContent=d;
+    if(d===15){div.style.borderTop='2px solid var(--green)';div.title='Payday';}
+    grid.appendChild(div);
+  }
+}
+
+function renderHistory(history){
+  const container=document.getElementById('history-container');
+  const entries=Object.entries(history).slice(-14).reverse();
+  if(entries.length===0){container.innerHTML='<div style="color:var(--muted);font-size:0.78rem;">Accumulating data... 🦫</div>';return;}
+  container.innerHTML='';
+  entries.forEach(([date,data])=>{
+    const score=data.national_score||0;
+    const color=getColor(score);
+    const period=data.pay_period==='avant-paye'?'🟠 Before payday':'🟢 After payday';
+    const row=document.createElement('div');
+    row.className='history-row';
+    row.innerHTML=`
+      <div class="hist-date">${date}</div>
+      <div class="hist-period" style="color:${data.pay_period==='avant-paye'?'var(--orange)':'var(--green)'}">${period}</div>
+      <div class="hist-bar"><div class="hist-fill" style="width:${score*100}%;background:${color}"></div></div>
+      <div class="hist-score" style="color:${color}">${Math.round(score*100)}</div>
+    `;
+    container.appendChild(row);
+  });
+}
+
+const today=new Date().getDate();
+buildCalendar(today);
+
+fetch('kijiji_history.json?t='+Date.now()).then(r=>r.json()).then(h=>renderHistory(h)).catch(()=>{});
+
+fetch('kijiji_data.json?t='+Date.now())
+  .then(r=>r.json())
+  .then(data=>{
+    document.getElementById('updated-time').textContent=data.updated||'—';
+    const ns=data.national_score||0;
+    const color=getColor(ns);
+    const pp=data.pay_period||{};
+    const alert=data.payday_alert||{};
+
+    document.getElementById('status-box').style.borderColor=color;
+    document.getElementById('sb-title').textContent=pp.label_en||'—';
+    document.getElementById('sb-title').style.color=color;
+
+    if(pp.period==='avant-paye'){
+      document.getElementById('sb-day').textContent=`Day ${pp.day_of_month} of the month — Payday in ${pp.days_until_payday} day(s)`;
+    } else {
+      document.getElementById('sb-day').textContent=`Day ${pp.day_of_month} of the month — ${pp.days_since_payday} day(s) after payday`;
+    }
+
+    document.getElementById('sb-score').textContent=Math.round(ns*100);
+    document.getElementById('sb-score').style.color=color;
+    document.getElementById('sb-bar-fill').style.width=(ns*100)+'%';
+    document.getElementById('sb-bar-fill').style.background=color;
+    document.getElementById('sb-status').textContent=getStatusEn(ns);
+    document.getElementById('sb-status').style.color=color;
+
+    const alertBox=document.getElementById('alert-box');
+    if(alert.active){
+      alertBox.className='alert-box';
+      alertBox.style.borderColor=alert.level==='CRITIQUE'?'var(--red)':'var(--orange)';
+      alertBox.style.background=alert.level==='CRITIQUE'?'rgba(255,45,45,0.08)':'rgba(255,109,0,0.08)';
+      document.getElementById('alert-icon').textContent=alert.level==='CRITIQUE'?'🚨':'⚠️';
+      document.getElementById('alert-title').textContent=`${alert.level} ALERT — AFTER PAYDAY`;
+      document.getElementById('alert-msg').innerHTML=alert.message_en||'';
+      document.getElementById('alert-bar').style.background=alert.level==='CRITIQUE'?'var(--red)':'var(--orange)';
+      document.getElementById('alert-bar-txt').textContent=alert.message_en||'';
+      document.getElementById('beaver-txt').innerHTML=`"${alert.days_since_payday} days after payday and stress remains high. <strong>Canadians are so indebted their paycheque no longer helps. The Beaver predicted this.</strong> 💰🦫"`;
+    } else {
+      alertBox.className='alert-box inactive';
+      if(pp.period==='avant-paye'){
+        document.getElementById('alert-icon').textContent='📉';
+        document.getElementById('alert-title').textContent='BEFORE PAYDAY — NORMAL';
+        document.getElementById('alert-msg').innerHTML=`Current Kijiji stress: <strong>${Math.round(ns*100)}/100</strong>. The Beaver is watching whether stress drops after the 15th. That's where it all shows.`;
+        document.getElementById('alert-bar').style.background='var(--orange)';
+        document.getElementById('alert-bar-txt').textContent=`💰 Before Payday — Day ${pp.day_of_month}. Kijiji Score: ${Math.round(ns*100)}/100. The Beaver is watching.`;
+      } else {
+        document.getElementById('alert-icon').textContent='✅';
+        document.getElementById('alert-title').textContent='AFTER PAYDAY — NO ALERT';
+        document.getElementById('alert-msg').innerHTML=`Kijiji stress dropped after payday. <strong>This is normal behaviour.</strong> The Beaver continues monitoring the coming days.`;
+        document.getElementById('alert-bar').style.background='var(--green)';
+        document.getElementById('alert-bar-txt').textContent=`✅ After Payday — No alert. Kijiji Score: ${Math.round(ns*100)}/100. Normal behaviour.`;
+        document.getElementById('alert-bar-txt').style.color='#000';
+        document.getElementById('alert-bar').querySelector('.a-dot').style.background='#000';
+      }
+    }
+  })
+  .catch(()=>{
+    document.getElementById('alert-bar-txt').textContent='💰 Payday Alert — Data temporarily unavailable';
+  });
+</script>
+</body>
+</html>
