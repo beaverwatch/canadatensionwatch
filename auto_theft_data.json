@@ -1,19 +1,19 @@
 {
-  "updated": "2026-05-14 19:49",
+  "updated": "2026-05-14 20:01",
   "source": "Google Trends + IBC + CANAFE + PORT",
   "sheets_data": {
-    "ibc": 0.65,
+    "ibc": 0.55,
     "canafe": 0.75,
     "port": null,
-    "composite": 0.71
+    "composite": 0.69
   },
   "keywords": {
     "vol_auto": {
       "label_fr": "Vol d'Auto",
       "label_en": "Auto Theft",
       "emoji": "🚗",
-      "raw_score": 6.4,
-      "stress_score": 0.09,
+      "raw_score": 5.4,
+      "stress_score": 0.08,
       "status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -26,13 +26,13 @@
       "label_fr": "Réclamations Assurance",
       "label_en": "Insurance Claims",
       "emoji": "📋",
-      "raw_score": 0.4,
-      "stress_score": 0.05,
+      "raw_score": null,
+      "stress_score": null,
       "status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
       },
       "weight": 0.25
     },
@@ -40,7 +40,7 @@
       "label_fr": "Sécurité Auto",
       "label_en": "Car Security",
       "emoji": "🔒",
-      "raw_score": 0.3,
+      "raw_score": 0.5,
       "stress_score": 0.05,
       "status": {
         "label_fr": "Normal",
@@ -55,7 +55,7 @@
     "canada": {
       "name_fr": "Canada",
       "name_en": "Canada",
-      "composite_score": 0.09,
+      "composite_score": 0.08,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -66,23 +66,23 @@
     "ontario": {
       "name_fr": "Ontario",
       "name_en": "Ontario",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "quebec": {
       "name_fr": "Québec",
       "name_en": "Quebec",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "bc": {
@@ -116,14 +116,14 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score composite de vol auto atteint 0.71 aujourd'hui, porté principalement par des signaux institutionnels élevés de l'IBC (0.65) et du CANAFE (0.75), contrastant fortement avec un score comportemental Google Trends très bas (0.07). Cette divergence suggère une activité criminelle organisée opérant discrètement, sans susciter d'inquiétude publique notable. L'historique limité à 30 jours montre une légère tendance à la baisse (-0.01) sur le plan des recherches en ligne. La Colombie-Britannique et l'Alberta se démarquent comme régions actives avec des scores Google Trends de 0.05, tandis que l'Ontario et le Québec ne génèrent pas de signal mesurable.",
-    "analyse_en": "Today's composite auto theft score reaches 0.71, driven primarily by elevated institutional signals from IBC (0.65) and CANAFE (0.75), sharply contrasting with a very low Google Trends behavioural score (0.07). This divergence suggests organized criminal activity operating quietly, without generating notable public concern. The 30-day history shows a slight downward trend (-0.01) in online search behaviour. British Columbia and Alberta stand out as active regions with Google Trends scores of 0.05, while Ontario and Quebec produce no measurable signal.",
-    "prediction_fr": "La persistance de signaux financiers et assurantiels élevés laisse anticiper une pression soutenue sur le score composite dans les 4 à 8 prochaines semaines, possiblement accompagnée d'une remontée des recherches publiques si des incidents médiatisés surviennent. Le score pourrait se stabiliser autour de 0.68 à 0.74 si aucune intervention ciblée n'est déployée.",
-    "prediction_en": "The persistence of elevated financial and insurance signals suggests sustained pressure on the composite score over the next 4 to 8 weeks, potentially accompanied by a rise in public searches should high-profile incidents emerge. The score is expected to stabilize around 0.68 to 0.74 absent any targeted law enforcement intervention.",
-    "region_risque": "Colombie-Britannique",
-    "signal_dominant": "Transactions financières suspectes CANAFE",
+    "analyse_fr": "Le score composite actuel de 0.69 révèle une divergence notable entre les signaux comportementaux et officiels : le score Google Trends est très faible à 0.07, suggérant peu d'inquiétude publique, tandis que les données CANAFE (0.75) et IBC (0.55) indiquent une activité suspecte et des réclamations d'assurance élevées. L'historique des 30 derniers jours est limité à une seule entrée sans tendance historique mesurable, ce qui rend la comparaison temporelle difficile. Toutes les régions affichent des scores Google Trends uniformément bas (0.05), à l'exception du Canada global à 0.08, suggérant que le phénomène n'est pas encore médiatisé régionalement. La pression CANAFE reste le signal dominant et pointe vers des réseaux organisés plutôt que vers une criminalité opportuniste visible.",
+    "analyse_en": "The current composite score of 0.69 reveals a notable divergence between behavioral and official signals: the Google Trends score is very low at 0.07, suggesting little public concern, while CANAFE (0.75) and IBC (0.55) data indicate elevated suspicious activity and insurance claims. The 30-day historical record contains only a single data point with no measurable trend, making temporal comparison limited. All regions show uniformly low Google Trends scores (0.05), except Canada overall at 0.08, suggesting the phenomenon has not yet gained regional media traction. The CANAFE signal remains dominant and points toward organized networks rather than visible opportunistic crime.",
+    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le vol automobile organisé devrait maintenir une pression élevée au Canada, particulièrement en Ontario, si les signaux CANAFE ne se résorbent pas. Une hausse progressive du score composite vers 0.72-0.78 est probable à mesure que les données IBC et les incidents portuaires viendront potentiellement confirmer les transactions suspectes détectées.",
+    "prediction_en": "Over the next 4 to 8 weeks, organized auto theft is expected to maintain elevated pressure across Canada, particularly in Ontario, if CANAFE signals do not ease. A gradual rise in the composite score toward 0.72-0.78 is likely as IBC data and potential port incidents may confirm the suspicious transactions already detected.",
+    "region_risque": "Ontario urbain",
+    "signal_dominant": "Transactions CANAFE suspectes élevées",
     "niveau_alerte": "TENSION",
-    "score_predit_4_semaines": 0.68
+    "score_predit_4_semaines": 0.74
   },
-  "trend": -0.01
+  "trend": 0.0
 }
