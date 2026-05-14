@@ -242,37 +242,6 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
     <div class="method-txt">Automated Python script via GitHub Actions — runs every morning at 7:00 AM. Counts active listings per category on Kijiji.ca for Montréal, Toronto and Vancouver. <strong>Measures the change vs the launch baseline (May 11, 2026).</strong> Score = normalized variation on a 0–1 scale. A script collects the data. The public JSON is updated automatically. No personal data collected.</div>
   </div>
 
-  <!-- Navigation to other Kijiji pages -->
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);margin-top:24px;">
-    <a href="kijiji-payday-alert-en.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
-      <div style="font-size:1.4rem;">💰</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Payday Alert</div>
-      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Does stress drop after payday? If not — red alert.</div>
-      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">View →</div>
-    </a>
-    <a href="kijiji-monthly-report-en.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
-      <div style="font-size:1.4rem;">📋</div>
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Monthly Report</div>
-      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Published on the 1st of each month. Citable by media.</div>
-      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">View →</div>
-    </a>
-  </div>
-
-  <!-- Claude Analysis Section -->
-  <div id="claude-section" style="display:none;margin-top:24px;">
-    <div style="background:var(--s1);border-left:4px solid var(--orange);padding:22px;">
-      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">🤖 AI ANALYSIS — UPDATED THIS MORNING</div>
-      <div id="claude-analyse" style="font-size:0.85rem;line-height:1.9;color:var(--text);margin-bottom:16px;"></div>
-      <div style="height:1px;background:var(--s3);margin-bottom:16px;"></div>
-      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🔮 PREDICTION — 4 TO 8 WEEKS</div>
-      <div id="claude-prediction" style="font-size:0.82rem;line-height:1.9;color:var(--text);margin-bottom:12px;"></div>
-      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
-        <div id="claude-signal" style="font-size:0.62rem;letter-spacing:2px;padding:5px 12px;font-weight:700;text-transform:uppercase;border:1px solid rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);color:var(--orange);"></div>
-        <div id="claude-score-predit" style="font-size:0.62rem;color:var(--muted);"></div>
-      </div>
-    </div>
-  </div>
-
   <div class="beaver-box">
     <div class="beaver-icon">🦫</div>
     <div>
@@ -390,21 +359,6 @@ fetch('kijiji_data.json?t=' + Date.now())
 
       if (city.categories) renderCats(cityKey, city.categories);
     });
-
-    // Claude Analysis
-    if (data.claude_analysis) {
-      const ca = data.claude_analysis;
-      document.getElementById('claude-section').style.display = 'block';
-      document.getElementById('claude-analyse').textContent = ca.analyse_en || '';
-      document.getElementById('claude-prediction').textContent = ca.prediction_en || '';
-      document.getElementById('claude-signal').textContent = '⚡ ' + (ca.signal_dominant || '');
-      if (ca.score_predit_4_semaines !== undefined && ca.score_predit_4_semaines !== null) {
-        const sp = Math.round(ca.score_predit_4_semaines * 100);
-        const spColor = sp >= 65 ? 'var(--red)' : sp >= 40 ? 'var(--orange)' : 'var(--green)';
-        document.getElementById('claude-score-predit').innerHTML =
-          'Predicted score in 4 weeks: <strong style="color:' + spColor + '">' + sp + '/100</strong>';
-      }
-    }
   })
   .catch(() => {
     document.getElementById('alert-txt').textContent = '📦 Kijiji Stress Index — Data temporarily unavailable';
