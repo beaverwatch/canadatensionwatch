@@ -251,6 +251,58 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
     <div class="method-txt">Script Python automatisé via GitHub Actions — s'exécute chaque matin à 7h00. Compte le nombre d'annonces actives par catégorie sur Kijiji.ca pour Montréal, Toronto et Vancouver. <strong>Mesure la variation par rapport à la baseline de lancement (11 mai 2026)</strong>. Score = variation normalisée sur échelle 0–1. Un script collecte les données. Le JSON public est mis à jour automatiquement. Aucune donnée personnelle collectée.</div>
   </div>
 
+  <!-- Navigation vers les autres pages Kijiji -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);margin-top:24px;">
+    <a href="kijiji-payday-alert.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+      <div style="font-size:1.4rem;">💰</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Alerte Avant-Paye</div>
+      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Le stress baisse-t-il après la paye ? Sinon — alerte rouge.</div>
+      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">Voir →</div>
+    </a>
+    <a href="kijiji-monthly-report.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+      <div style="font-size:1.4rem;">📋</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Rapport Mensuel</div>
+      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Publié le 1er de chaque mois. Citable par les médias.</div>
+      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">Voir →</div>
+    </a>
+  </div>
+
+  <!-- Section Analyse Claude -->
+  <!-- Section Analyse Claude — REDESIGN -->
+  <div id="claude-section" style="display:none;margin-top:32px;">
+
+    <div style="font-size:0.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+      <div style="width:24px;height:1px;background:var(--muted);"></div>
+      🤖 ANALYSE IA — BEAVER.WATCH
+    </div>
+
+    <!-- Grand score prédit -->
+    <div style="background:var(--s1);padding:28px;margin-bottom:4px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;">
+      <div>
+        <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🔮 SCORE PRÉDIT — 4 SEMAINES</div>
+        <div id="claude-score-predit" style="font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:4px;line-height:1;color:var(--orange);">—</div>
+        <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;">sur 100</div>
+      </div>
+      <div style="text-align:right;">
+        <div id="claude-niveau" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--orange);">—</div>
+        <div id="claude-signal" style="font-size:0.6rem;letter-spacing:1px;color:var(--muted);margin-top:6px;max-width:140px;text-align:right;line-height:1.5;"></div>
+      </div>
+    </div>
+
+    <!-- Analyse -->
+    <div style="background:var(--s1);padding:22px;margin-bottom:4px;border-left:3px solid var(--orange);">
+      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">📊 ANALYSE</div>
+      <div id="claude-analyse" style="font-size:0.88rem;line-height:2;color:var(--text);"></div>
+    </div>
+
+    <!-- Prédiction -->
+    <div style="background:rgba(255,109,0,0.05);padding:22px;border-left:3px solid rgba(255,109,0,0.3);">
+      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🔭 CE QUE LE CASTOR PRÉDIT</div>
+      <div id="claude-prediction" style="font-size:0.88rem;line-height:2;color:var(--text);font-style:italic;"></div>
+    </div>
+
+  </div>
+
   <div class="beaver-box">
     <div class="beaver-icon">🦫</div>
     <div>
@@ -366,6 +418,26 @@ fetch('kijiji_data.json?t=' + Date.now())
       
       if (city.categories) renderCats(cityKey, city.categories);
     });
+
+    // Analyse Claude
+    if (data.claude_analysis) {
+      const ca = data.claude_analysis;
+      document.getElementById('claude-section').style.display = 'block';
+      document.getElementById('claude-analyse').textContent = ca.analyse_fr || '';
+      document.getElementById('claude-prediction').textContent = ca.prediction_fr || '';
+      document.getElementById('claude-signal').textContent = '⚡ ' + (ca.signal_dominant || '');
+      if (ca.score_predit_4_semaines !== undefined && ca.score_predit_4_semaines !== null) {
+        const sp = Math.round(ca.score_predit_4_semaines * 100);
+        const spColor = sp >= 65 ? 'var(--red)' : sp >= 40 ? 'var(--orange)' : 'var(--green)';
+        document.getElementById('claude-score-predit').textContent = sp;
+        document.getElementById('claude-score-predit').style.color = spColor;
+      }
+      if (ca.niveau_alerte) {
+        document.getElementById('claude-niveau').textContent = ca.niveau_alerte;
+        const nc = ca.niveau_alerte === 'CRISE' ? 'var(--red)' : ca.niveau_alerte === 'TENSION' ? 'var(--orange)' : 'var(--green)';
+        document.getElementById('claude-niveau').style.color = nc;
+      }
+    }
   })
   .catch(() => {
     document.getElementById('alert-txt').textContent = '📦 Kijiji Stress Index — Données temporairement indisponibles';
