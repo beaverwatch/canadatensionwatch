@@ -79,7 +79,7 @@ def get_trend_score(terms, geo="CA"):
     try:
         from pytrends.request import TrendReq
         pytrends = TrendReq(hl='en-CA', tz=-300, timeout=(10,25), retries=2)
-        time.sleep(random.uniform(3, 6))
+        time.sleep(random.uniform(10, 15))
         pytrends.build_payload(
             terms[:5], cat=0,
             timeframe='now 7-d', geo=geo, gprop=''
