@@ -1,377 +1,396 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📦 Kijiji Stress Index — BEAVER.WATCH</title>
+<title>🦫 BEAVER.WATCH — Canadian Stress Barometer</title>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
-.alert{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--orange);}
+.alert{width:100%;background:var(--red);padding:11px 28px;display:flex;align-items:center;gap:12px;}
 .a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
 @keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
-.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
-.a-time{font-size:0.65rem;opacity:0.7;}
-header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--orange);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.a-txt{font-size:0.8rem;letter-spacing:1px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.7rem;opacity:0.7;}
+header{padding:20px 32px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;}
 .logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
-.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
-.header-right{display:flex;align-items:center;gap:10px;}
-.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.logo-sub{font-size:0.65rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
+.header-right{display:flex;align-items:center;gap:12px;}
+.live-pill{display:flex;align-items:center;gap:7px;background:var(--red);padding:8px 18px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;}
+/* LANGUAGE TOGGLE */
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;border-radius:2px;}
 .lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
-.lang-btn.active{background:var(--orange);color:#fff;}
-.new-pill{background:var(--yellow);color:#000;padding:5px 12px;font-size:0.6rem;letter-spacing:2px;font-weight:700;text-transform:uppercase;}
-.wrapper{max-width:720px;margin:0 auto;padding:0 24px 48px;}
-.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
-.back-link:hover{color:var(--text);}
-.hero{padding:24px 0 0;}
-.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
-.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
-.hero-title em{font-style:italic;color:var(--orange);}
-.hero-desc{font-size:0.85rem;line-height:1.9;color:var(--muted);margin-top:12px;max-width:580px;}
-/* National Score */
-.national-box{background:var(--s1);border-left:4px solid var(--orange);padding:24px 28px;margin:28px 0 0;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;}
-.nb-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.nb-title{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;margin-bottom:4px;}
-.nb-sub{font-size:0.65rem;color:var(--muted);letter-spacing:1px;}
-.nb-bar{width:100%;height:6px;background:var(--faint);margin-top:12px;}
-.nb-fill{height:100%;transition:width 2s ease;}
-.nb-right{text-align:right;}
-.nb-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;letter-spacing:2px;line-height:1;}
-.nb-status{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:3px;}
-/* How it works */
-.how-box{background:rgba(255,109,0,0.05);border-left:3px solid var(--orange);padding:18px 20px;margin:20px 0 0;}
-.how-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
-.how-txt{font-size:0.8rem;line-height:1.9;color:var(--text);}
-.how-txt strong{font-weight:700;}
-/* Scale */
-.scale-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin:20px 0 0;}
-.scale-item{background:var(--s1);padding:14px 16px;text-align:center;}
-.scale-icon{font-size:1.4rem;margin-bottom:6px;}
-.scale-pct{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;margin-bottom:4px;}
-.scale-lbl{font-size:0.62rem;color:var(--muted);line-height:1.5;}
-/* City tabs */
-.city-tabs{display:flex;gap:1px;background:var(--s3);margin:32px 0 0;}
-.city-tab{flex:1;padding:12px;text-align:center;cursor:pointer;background:var(--s1);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);transition:all 0.2s;border:none;font-family:'Inter',sans-serif;}
-.city-tab:hover{background:var(--s2);color:var(--text);}
-.city-tab.active{background:var(--s2);color:var(--orange);border-bottom:2px solid var(--orange);}
-/* City panel */
-.city-panel{display:none;}
-.city-panel.active{display:block;}
-.city-score-row{background:var(--s2);padding:16px 20px;display:flex;justify-content:space-between;align-items:center;border-left:4px solid var(--orange);}
-.csr-label{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
-.csr-val{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:2px;}
-.csr-status{font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:2px;}
-/* Category cards */
-.cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);margin-top:1px;}
-.cat-card{background:var(--s1);padding:20px;display:flex;flex-direction:column;gap:10px;}
-.cat-top{display:flex;justify-content:space-between;align-items:flex-start;}
-.cat-icon{font-size:1.8rem;}
-.cat-badge{font-size:0.55rem;letter-spacing:2px;padding:4px 10px;font-weight:700;text-transform:uppercase;border:1px solid;}
-.badge-r{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
-.badge-o{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
-.badge-g{color:var(--green);border-color:rgba(0,230,118,0.4);background:rgba(0,230,118,0.08);}
-.cat-name{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:2px;line-height:1.1;}
-.cat-signal{font-size:0.62rem;color:var(--muted);font-style:italic;}
-.cat-counts{display:flex;gap:12px;align-items:flex-end;}
-.cat-count{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;line-height:1;}
-.cat-change{font-size:0.72rem;font-weight:700;padding-bottom:4px;}
-.cat-bar{width:100%;height:4px;background:var(--faint);}
-.cat-fill{height:100%;transition:width 2s ease;}
-.cat-baseline{font-size:0.58rem;color:var(--muted);letter-spacing:1px;}
-/* Explanation box */
-.explain-box{background:var(--s1);border:1px solid var(--s3);padding:20px;margin-top:1px;}
-.explain-title{font-size:0.82rem;font-weight:700;color:var(--text);margin-bottom:12px;}
-.explain-row{display:flex;gap:12px;padding:8px 0;border-bottom:1px solid var(--faint);align-items:flex-start;}
-.explain-row:last-child{border-bottom:none;}
-.explain-emoji{font-size:1.1rem;flex-shrink:0;width:24px;text-align:center;}
-.explain-txt{font-size:0.78rem;color:var(--text);line-height:1.7;}
-.explain-txt strong{font-weight:700;}
-/* Method */
-.method-box{background:var(--s1);border-left:3px solid var(--s4);padding:18px 20px;margin-top:24px;}
-.method-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.method-txt{font-size:0.75rem;line-height:1.9;color:var(--text);}
-.method-txt strong{font-weight:700;}
-/* Beaver quote */
-.beaver-box{background:var(--s2);padding:22px;display:flex;gap:16px;margin-top:24px;}
-.beaver-icon{font-size:1.8rem;flex-shrink:0;}
-.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
-.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
-.beaver-txt strong{font-style:normal;font-weight:700;}
-/* Updated */
-.updated-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--s3);margin-top:24px;}
-.updated-lbl{font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
-.updated-val{font-size:0.68rem;color:var(--muted);}
-.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
-@media(max-width:500px){.cat-grid{grid-template-columns:1fr;}.national-box{grid-template-columns:1fr;}.scale-grid{grid-template-columns:1fr;}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-.wrapper{animation:fadeUp 0.4s ease both;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.lang-btn:hover:not(.active){color:var(--text);}
+.ticker-outer{background:var(--s1);border-bottom:1px solid var(--s3);overflow:hidden;padding:11px 0;}
+.ticker-inner{display:flex;white-space:nowrap;animation:tick 40s linear infinite;width:max-content;}
+.ti{padding:0 48px;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.ti em{color:var(--red);font-style:normal;font-weight:700;}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero{max-width:1000px;margin:0 auto;padding:52px 32px 0;}
+.eyebrow{font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:12px;}
+.eyebrow::before{content:'';width:28px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(3rem,6vw,5.5rem);font-weight:900;line-height:0.95;letter-spacing:-1px;margin-bottom:18px;}
+.hero-title em{font-style:italic;color:var(--red);}
+.hero-desc{font-size:0.95rem;line-height:1.9;color:var(--muted);max-width:580px;}
+.score-header{max-width:1000px;margin:48px auto 0;padding:0 32px;}
+.score-header-inner{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;background:var(--s1);padding:24px 28px;border-left:4px solid var(--red);}
+.score-header-inner.lt{border-left-color:var(--orange);}
+.sh-label{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;}
+.sh-title{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:4px;}
+.sh-sub{font-size:0.65rem;color:var(--muted);letter-spacing:1px;margin-top:4px;}
+.sh-bar{width:100%;height:6px;background:var(--faint);margin-top:12px;}
+.sh-bar-fill{height:100%;transition:width 2.5s ease;}
+.sh-right{text-align:right;}
+.sh-num{font-family:'Bebas Neue',sans-serif;font-size:5rem;letter-spacing:2px;line-height:1;transition:color 1s ease;}
+.sh-status{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;transition:color 1s ease;}
+.sec{max-width:1000px;margin:1px auto 0;padding:0 32px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);}
+.card{background:var(--s1);padding:28px;position:relative;overflow:hidden;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:inherit;transition:background 0.2s;}
+.card:hover{background:var(--s2);}
+.card:hover .card-arrow{opacity:1;transform:translateX(5px);}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;}
+.c-r::before{background:var(--red);}
+.c-o::before{background:var(--orange);}
+.c-g::before{background:var(--green);}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;}
+.card-icon{font-size:2rem;line-height:1;}
+.badge{font-size:0.6rem;letter-spacing:2px;padding:5px 11px;font-weight:700;text-transform:uppercase;border:1px solid;}
+.br{color:var(--red);border-color:rgba(255,45,45,0.4);background:rgba(255,45,45,0.08);}
+.bo{color:var(--orange);border-color:rgba(255,109,0,0.4);background:rgba(255,109,0,0.08);}
+.bg{color:var(--green);border-color:rgba(0,230,118,0.4);background:rgba(0,230,118,0.08);}
+.card-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;line-height:1.1;}
+.card-sub{font-size:0.68rem;letter-spacing:1px;color:var(--muted);font-style:italic;margin-top:-6px;}
+.card-val-row{display:flex;align-items:flex-end;gap:12px;}
+.card-val{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;line-height:1;}
+.card-trend{font-size:0.72rem;font-weight:700;padding-bottom:6px;}
+.card-bar{width:100%;height:5px;background:var(--faint);}
+.card-bar-fill{height:100%;}
+.spark{display:flex;align-items:flex-end;gap:3px;height:32px;}
+.sb{flex:1;border-radius:1px;opacity:0.3;}
+.sb:last-child{opacity:1;}
+.card-source{font-size:0.62rem;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-top:auto;padding-top:12px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.card-arrow{font-size:0.8rem;opacity:0.4;transition:all 0.2s;}
+.see-all-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.see-all{background:var(--s2);padding:20px 26px;display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:var(--text);transition:background 0.2s;border-left:4px solid var(--s4);}
+.see-all:hover{background:var(--s3);}
+.see-all-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;margin-bottom:4px;}
+.see-all-sub{font-size:0.68rem;color:var(--muted);letter-spacing:1px;line-height:1.6;}
+.see-all-cta{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--muted);white-space:nowrap;margin-left:24px;}
+.rule-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.rule-inner{background:rgba(255,45,45,0.05);border-left:4px solid var(--red);padding:22px 26px;display:flex;gap:16px;}
+.rule-icon{font-size:1.6rem;flex-shrink:0;}
+.rule-title{font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;color:var(--red);margin-bottom:8px;}
+.rule-txt{font-size:0.85rem;line-height:1.9;color:var(--text);}
+.rule-txt strong{font-weight:700;}
+.lt-intro-wrap{max-width:1000px;margin:1px auto 0;padding:0 32px;background:var(--s3);}
+.lt-intro{background:rgba(255,109,0,0.05);border-left:4px solid var(--orange);padding:20px 24px;display:flex;gap:14px;}
+.lt-intro-icon{font-size:1.4rem;flex-shrink:0;}
+.lt-intro-title{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:6px;}
+.lt-intro-txt{font-size:0.82rem;line-height:1.9;color:var(--text);}
+.lt-intro-txt strong{font-weight:700;}
+.cq-wrap{max-width:1000px;margin:1px auto 0;background:var(--s3);padding:0 32px;}
+.cq-inner{background:var(--s1);padding:28px;display:flex;align-items:center;gap:24px;}
+.cq-b{font-size:3.5rem;animation:bob 3s ease-in-out infinite;flex-shrink:0;}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.cq-t{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,3vw,1.7rem);color:var(--muted);line-height:1.6;}
+.cq-t strong{color:var(--text);font-style:normal;}
+footer{max-width:1000px;margin:28px auto 0;padding:22px 32px;}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:5px;color:var(--muted);margin-bottom:6px;}
+.foot-desc{font-size:0.68rem;color:var(--muted);line-height:1.8;}
+.foot-col-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--s4);margin-bottom:10px;}
+.foot-links{display:flex;flex-direction:column;gap:8px;}
+.foot-link{font-size:0.7rem;color:var(--muted);text-decoration:none;letter-spacing:1px;transition:color 0.2s;}
+.foot-link:hover{color:var(--text);}
+.foot-email a{color:var(--muted);text-decoration:none;font-size:0.72rem;}
+.foot-email a:hover{color:var(--text);}
+.foot-bottom{margin-top:20px;padding-top:16px;border-top:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;}
+.foot-copy{font-size:0.6rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;}
+.foot-disclaimer{font-size:0.6rem;color:var(--muted);text-align:right;max-width:400px;line-height:1.7;}
+@media(max-width:800px){.grid3{grid-template-columns:1fr;}.score-header-inner{grid-template-columns:1fr;}.sh-right{text-align:left;}.footer-grid{grid-template-columns:1fr;}.see-all{flex-direction:column;align-items:flex-start;gap:10px;}}
+@media(max-width:500px){header{padding:16px 18px;}.score-header,.sec,.see-all-wrap,.rule-wrap,.lt-intro-wrap,.cq-wrap,footer{padding-left:18px;padding-right:18px;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero{animation:fadeUp 0.4s ease both;}
 </style>
 </head>
 <body>
 <div class="alert">
   <div class="a-dot"></div>
-  <div class="a-txt" id="alert-txt">📦 Kijiji Stress Index — Chargement des données en cours...</div>
+  <div class="a-txt">🚨 5 INDICATORS IN RED — Rule of 3 Reds activated. Social incident predicted within 6 weeks.</div>
   <div class="a-time" id="clock">--:--:--</div>
 </div>
 <header>
-  <a href="index-fr.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Baromètre de Stress Canadien</div></div></a>
+  <div>
+    <div class="logo">🦫 <span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div>
+    <div class="logo-sub">Canadian Stress Barometer — Predictive Signals</div>
+  </div>
   <div class="header-right">
     <div class="lang-toggle">
-      <span class="lang-btn active">🇫🇷 FR</span>
-      <a class="lang-btn" href="kijiji-stress-index-en.html">🇬🇧 EN</a>
+      <span class="lang-btn active">🇬🇧 EN</span>
+      <a class="lang-btn" href="index-fr.html">🇫🇷 FR</a>
     </div>
-    <div class="new-pill">✨ NOUVEAU</div>
+    <div class="live-pill"><div class="a-dot"></div>LIVE</div>
   </div>
 </header>
-
-<div class="wrapper">
-  <a href="all-short-term-fr.html" class="back-link">← Tous les indicateurs court terme</a>
-  
-  <div class="hero">
-    <div class="hero-eyebrow">Indicateur Comportemental — BEAVER.WATCH</div>
-    <div class="hero-title">Kijiji<br><em>Stress</em> Index</div>
-    <div class="hero-desc">Statistique Canada met 6 mois à compiler ce que le Castor voit en 24h. Quand les Canadiens vendent leurs outils, leurs consoles et leurs bijoux — c'est que quelque chose a changé. Avant les manchettes. Avant les rapports officiels.</div>
-  </div>
-
-  <!-- National Score -->
-  <div class="national-box" id="national-box">
-    <div>
-      <div class="nb-label">Score National</div>
-      <div class="nb-title" id="national-title" style="color:var(--orange)">⚡ Kijiji Stress Index</div>
-      <div class="nb-sub">Montréal + Toronto + Vancouver · Mis à jour quotidiennement</div>
-      <div class="nb-bar"><div class="nb-fill" id="national-bar" style="width:0%;background:var(--orange)"></div></div>
-    </div>
-    <div class="nb-right">
-      <div class="nb-num" id="national-num" style="color:var(--orange)">—</div>
-      <div class="nb-status" id="national-status" style="color:var(--orange)">CHARGEMENT</div>
-    </div>
-  </div>
-
-  <div class="how-box">
-    <div class="how-title">💡 Pourquoi cet indicateur est unique au monde</div>
-    <div class="how-txt">Le Kijiji Stress Index mesure le <strong>comportement réel</strong> des Canadiens — pas ce qu'ils déclarent dans les sondages. Quand les annonces d'outils augmentent de 30% à Montréal ET Toronto simultanément, c'est une <strong>alerte nationale de détresse économique</strong> que personne d'autre ne capte en temps réel. La variation (pas le chiffre absolu) est le signal.</div>
-  </div>
-
-  <div class="scale-grid">
-    <div class="scale-item">
-      <div class="scale-icon">🟢</div>
-      <div class="scale-pct" style="color:var(--green)">0% – +5%</div>
-      <div class="scale-lbl">Normal<br>Le Castor dort tranquille</div>
-    </div>
-    <div class="scale-item">
-      <div class="scale-icon">🟠</div>
-      <div class="scale-pct" style="color:var(--orange)">+5% – +15%</div>
-      <div class="scale-lbl">Tension<br>Le Castor fait des réserves</div>
-    </div>
-    <div class="scale-item">
-      <div class="scale-icon">🔴</div>
-      <div class="scale-pct" style="color:var(--red)">+15% et plus</div>
-      <div class="scale-lbl">CRISE<br>Le Castor sonne l'alarme</div>
-    </div>
-  </div>
-
-  <!-- City Tabs -->
-  <div class="city-tabs">
-    <button class="city-tab active" onclick="showCity('montreal', this)">📍 Montréal</button>
-    <button class="city-tab" onclick="showCity('toronto', this)">📍 Toronto</button>
-    <button class="city-tab" onclick="showCity('vancouver', this)">📍 Vancouver</button>
-  </div>
-
-  <!-- Montreal Panel -->
-  <div class="city-panel active" id="panel-montreal">
-    <div class="city-score-row" id="score-montreal">
-      <div>
-        <div class="csr-label">Score Stress — Montréal</div>
-        <div class="csr-status" id="status-montreal" style="color:var(--orange)">CHARGEMENT...</div>
-      </div>
-      <div class="csr-val" id="val-montreal" style="color:var(--orange)">—</div>
-    </div>
-    <div class="cat-grid" id="cats-montreal">
-      <div class="cat-card"><div style="color:var(--muted);font-size:0.8rem;">Chargement...</div></div>
-    </div>
-  </div>
-
-  <!-- Toronto Panel -->
-  <div class="city-panel" id="panel-toronto">
-    <div class="city-score-row" id="score-toronto">
-      <div>
-        <div class="csr-label">Score Stress — Toronto</div>
-        <div class="csr-status" id="status-toronto" style="color:var(--orange)">CHARGEMENT...</div>
-      </div>
-      <div class="csr-val" id="val-toronto" style="color:var(--orange)">—</div>
-    </div>
-    <div class="cat-grid" id="cats-toronto">
-      <div class="cat-card"><div style="color:var(--muted);font-size:0.8rem;">Chargement...</div></div>
-    </div>
-  </div>
-
-  <!-- Vancouver Panel -->
-  <div class="city-panel" id="panel-vancouver">
-    <div class="city-score-row" id="score-vancouver">
-      <div>
-        <div class="csr-label">Score Stress — Vancouver</div>
-        <div class="csr-status" id="status-vancouver" style="color:var(--orange)">CHARGEMENT...</div>
-      </div>
-      <div class="csr-val" id="val-vancouver" style="color:var(--orange)">—</div>
-    </div>
-    <div class="cat-grid" id="cats-vancouver">
-      <div class="cat-card"><div style="color:var(--muted);font-size:0.8rem;">Chargement...</div></div>
-    </div>
-  </div>
-
-  <!-- What it means -->
-  <div class="explain-box">
-    <div class="explain-title">Pourquoi ces 4 catégories ?</div>
-    <div class="explain-row">
-      <div class="explain-emoji">🔧</div>
-      <div class="explain-txt"><strong>Outils & Équipement</strong> — Quand les entrepreneurs ferment boutique ou réduisent leurs activités, ils liquident d'abord leur équipement. C'est le signal le plus précoce d'une récession dans les PME canadiennes.</div>
-    </div>
-    <div class="explain-row">
-      <div class="explain-emoji">🎮</div>
-      <div class="explain-txt"><strong>Consoles & Électronique</strong> — Les consoles et électronique sont les premiers biens non essentiels que les ménages en détresse vendent pour obtenir du cash rapidement. Signal de liquidité des ménages.</div>
-    </div>
-    <div class="explain-row">
-      <div class="explain-emoji">🏠</div>
-      <div class="explain-txt"><strong>Transferts de Bail</strong> — Le nombre de Canadiens qui cherchent à sortir de leur bail est le signal le plus direct de la crise du logement. Une hausse = des ménages qui ne peuvent plus payer leur loyer.</div>
-    </div>
-    <div class="explain-row">
-      <div class="explain-emoji">💍</div>
-      <div class="explain-txt"><strong>Bijoux & Montres</strong> — Les bijoux sont les derniers biens vendus — ils ont une valeur sentimentale. Quand les ventes de bijoux augmentent, c'est la détresse financière à son niveau le plus profond.</div>
-    </div>
-  </div>
-
-  <div class="method-box">
-    <div class="method-title">Méthodologie</div>
-    <div class="method-txt">Script Python automatisé via GitHub Actions — s'exécute chaque matin à 7h00. Compte le nombre d'annonces actives par catégorie sur Kijiji.ca pour Montréal, Toronto et Vancouver. <strong>Mesure la variation par rapport à la baseline de lancement (11 mai 2026)</strong>. Score = variation normalisée sur échelle 0–1. Un script collecte les données. Le JSON public est mis à jour automatiquement. Aucune donnée personnelle collectée.</div>
-  </div>
-
-  <div class="beaver-box">
-    <div class="beaver-icon">🦫</div>
-    <div>
-      <div class="beaver-lbl">Le Castor Dit</div>
-      <div class="beaver-txt">« Statistique Canada va publier les chiffres dans 6 mois. <strong>Le Castor les voit ce matin. Sur Kijiji. Parce que quand les gens vendent leurs scies circulaires — c'est pas bon signe.</strong> 📦🦫 »</div>
-    </div>
-  </div>
-
-  <div class="updated-row">
-    <div class="foot-brand">🦫 BEAVER.WATCH</div>
-    <div class="updated-val">Mis à jour : <span id="updated-time">--</span> · Source : Kijiji.ca</div>
+<div class="ticker-outer">
+  <div class="ticker-inner">
+    <span class="ti">🚗 Auto Theft <em id="t1">0.72 🔴</em> ///</span>
+    <span class="ti">📦 Kijiji Stress <em id="t2">52 🟠</em> ///</span>
+    <span class="ti">💸 Payday Loan <em id="t3">0.82 🔴</em> ///</span>
+    <span class="ti">🥪 School Lunch <em id="t4">0.73 🔴</em> ///</span>
+    <span class="ti">📞 211 Crisis <em id="t5">0.72 🔴</em> ///</span>
+    <span class="ti">✂️ Haircut <em id="t6">0.34 🟢</em> ///</span>
+    <span class="ti">🍼 Fertility <em>1.25 🔴</em> ///</span>
+    <span class="ti">🎓 Gender Ed Gap <em>71% vs 57% 🔴</em> ///</span>
+    <span class="ti">🏠 Housing Ratio <em>>9x 🔴</em> ///</span>
+    <span class="ti">🚗 Auto Theft <em>0.72 🔴</em> ///</span>
+    <span class="ti">📦 Kijiji Stress <em>52 🟠</em> ///</span>
+    <span class="ti">💸 Payday Loan <em>0.82 🔴</em> ///</span>
+    <span class="ti">🥪 School Lunch <em>0.73 🔴</em> ///</span>
+    <span class="ti">📞 211 Crisis <em>0.72 🔴</em> ///</span>
+    <span class="ti">✂️ Haircut <em>0.34 🟢</em> ///</span>
+    <span class="ti">🍼 Fertility <em>1.25 🔴</em> ///</span>
+    <span class="ti">🎓 Gender Ed Gap <em>71% vs 57% 🔴</em> ///</span>
+    <span class="ti">🏠 Housing Ratio <em>>9x 🔴</em> ///</span>
   </div>
 </div>
-
+<div class="hero">
+  <div class="eyebrow">🍁 National Dashboard — Canada · May 2026</div>
+  <div class="hero-title">The Canadian<br><em>Stress</em><br>Barometer</div>
+  <div class="hero-desc">Predictive indicators based on real Canadian public data. Short-term tensions (weeks ahead) and long-term structural shifts (years ahead) — each with their own score.</div>
+</div>
+<div class="score-header">
+  <div class="score-header-inner">
+    <div>
+      <div class="sh-label">Score</div>
+      <div class="sh-title" style="color:var(--red)">⚡ Short-Term</div>
+      <div class="sh-sub">Predicts 4–16 weeks ahead · 7 indicators · Updated monthly</div>
+      <div class="sh-bar"><div class="sh-bar-fill" id="st-bar" style="width:0%;background:var(--red)"></div></div>
+    </div>
+    <div class="sh-right">
+      <div class="sh-num" id="st-num" style="color:var(--red)">—</div>
+      <div class="sh-status" id="st-status" style="color:var(--red)">LOADING</div>
+    </div>
+  </div>
+</div>
+<div class="sec">
+  <div class="grid3">
+    <a class="card c-r" href="auto-theft.html">
+      <div class="card-top"><div class="card-icon">🚗</div><div class="badge br" id="b1">🔴 CRITICAL</div></div>
+      <div class="card-name">Auto Theft Index</div>
+      <div class="card-sub">"The Beaver watches your car."</div>
+      <div class="card-val-row"><div class="card-val" id="v1" style="color:var(--red)">—</div><div class="card-trend" style="color:var(--red)">▲ +0.07</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar1" style="width:0%;background:var(--red)"></div></div>
+      <div class="spark"><div class="sb" style="height:42%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:64%;background:var(--red)"></div><div class="sb" style="height:68%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div></div>
+      <div class="card-source">Équité · CANAFE · IBC · Lead: 4–8 wks<div class="card-arrow">→</div></div>
+    </a>
+    <a class="card c-o" href="kijiji-stress-index-en.html">
+      <div class="card-top"><div class="card-icon">📦</div><div class="badge bo" id="b2">🟠 TENSION</div></div>
+      <div class="card-name">Kijiji Stress Index</div>
+      <div class="card-sub">"When Canadians sell their tools."</div>
+      <div class="card-val-row"><div class="card-val" id="v2" style="color:var(--orange)">52</div><div class="card-trend" style="color:var(--yellow)">✨ NEW</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar2" style="width:52%;background:var(--orange)"></div></div>
+      <div class="spark"><div class="sb" style="height:30%;background:var(--orange)"></div><div class="sb" style="height:38%;background:var(--orange)"></div><div class="sb" style="height:44%;background:var(--orange)"></div><div class="sb" style="height:48%;background:var(--orange)"></div><div class="sb" style="height:50%;background:var(--orange)"></div><div class="sb" style="height:51%;background:var(--orange)"></div><div class="sb" style="height:52%;background:var(--orange)"></div></div>
+      <div class="card-source">Kijiji.ca · MTL + YYZ + YVR · Daily<div class="card-arrow">→</div></div>
+    </a>
+    <a class="card c-r" href="payday-loan.html">
+      <div class="card-top"><div class="card-icon">💸</div><div class="badge br" id="b3">🔴 CRITICAL</div></div>
+      <div class="card-name">Payday Loan Radar</div>
+      <div class="card-sub">"When Money Mart is packed."</div>
+      <div class="card-val-row"><div class="card-val" id="v3" style="color:var(--red)">—</div><div class="card-trend" style="color:var(--red)">▲ +0.08</div></div>
+      <div class="card-bar"><div class="card-bar-fill" id="bar3" style="width:0%;background:var(--red)"></div></div>
+      <div class="spark"><div class="sb" style="height:38%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:61%;background:var(--red)"></div><div class="sb" style="height:68%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:75%;background:var(--red)"></div><div class="sb" style="height:82%;background:var(--red)"></div></div>
+      <div class="card-source">FCAC · BDO Canada · Google Trends · Lead: 8–16 wks<div class="card-arrow">→</div></div>
+    </a>
+  </div>
+</div>
+<div class="see-all-wrap">
+  <a class="see-all" href="all-short-term.html">
+    <div>
+      <div class="see-all-title">See All Short-Term Indicators</div>
+      <div class="see-all-sub">School Lunch · 211 Crisis · Haircut Index · Canadian Tire Flyer · and more coming soon</div>
+    </div>
+    <div class="see-all-cta">VIEW ALL →</div>
+  </a>
+</div>
+<div class="rule-wrap">
+  <div class="rule-inner">
+    <div class="rule-icon">⚠️</div>
+    <div>
+      <div class="rule-title">Rule of 3 Reds — Active This Week</div>
+      <div class="rule-txt"><strong>5 indicators simultaneously in the red zone.</strong> Auto Theft + Payday Loan + School Lunch + 211 Crisis + Kijiji Stress. Payday Loan at 0.82 is the strongest signal — <strong>a personal bankruptcy wave is predicted in 8 to 16 weeks.</strong></div>
+    </div>
+  </div>
+</div>
+<div class="score-header" style="margin-top:56px;">
+  <div class="score-header-inner lt">
+    <div>
+      <div class="sh-label">Score</div>
+      <div class="sh-title" style="color:var(--orange)">🔭 Long-Term</div>
+      <div class="sh-sub">Predicts 5–20 years ahead · 11 indicators · Updated annually</div>
+      <div class="sh-bar"><div class="sh-bar-fill" id="lt-bar" style="width:0%;background:var(--orange)"></div></div>
+    </div>
+    <div class="sh-right">
+      <div class="sh-num" id="lt-num" style="color:var(--orange)">—</div>
+      <div class="sh-status" id="lt-status" style="color:var(--orange)">LOADING</div>
+    </div>
+  </div>
+</div>
+<div class="lt-intro-wrap">
+  <div class="lt-intro">
+    <div class="lt-intro-icon">📊</div>
+    <div>
+      <div class="lt-intro-title">Why These Indicators</div>
+      <div class="lt-intro-txt">Selected based on historical evidence: in societies that experienced major social upheaval — including the USSR collapse, post-war Europe, and Latin American crises of the 1980s — <strong>these signals appeared years before the crisis became visible.</strong> No ideology. No agenda. Just patterns that have repeated across history.</div>
+    </div>
+  </div>
+</div>
+<div class="sec" style="margin-top:1px;">
+  <div class="grid3">
+    <a class="card c-r" href="fertility.html">
+      <div class="card-top"><div class="card-icon">🍼</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Total Fertility Rate</div>
+      <div class="card-sub">"Canada is no longer reproducing itself."</div>
+      <div class="card-val-row"><div class="card-val" style="color:var(--red)">1.25</div><div class="card-trend" style="color:var(--red)">▼ Record low</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:90%;background:var(--red)"></div></div>
+      <div class="spark"><div class="sb" style="height:70%;background:var(--red)"></div><div class="sb" style="height:60%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:40%;background:var(--red)"></div><div class="sb" style="height:30%;background:var(--red)"></div><div class="sb" style="height:22%;background:var(--red)"></div><div class="sb" style="height:15%;background:var(--red)"></div></div>
+      <div class="card-source">StatCan · Demographic Statistics 2025<div class="card-arrow">→</div></div>
+    </a>
+    <a class="card c-r" href="gender-gap.html">
+      <div class="card-top"><div class="card-icon">🎓</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Gender Education Gap</div>
+      <div class="card-sub">"Women 71% vs Men 57% of graduates."</div>
+      <div class="card-val-row"><div class="card-val" style="color:var(--red)">71/57</div><div class="card-trend" style="color:var(--red)">▼ Gap widening</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:85%;background:var(--red)"></div></div>
+      <div class="spark"><div class="sb" style="height:40%;background:var(--red)"></div><div class="sb" style="height:50%;background:var(--red)"></div><div class="sb" style="height:58%;background:var(--red)"></div><div class="sb" style="height:65%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:78%;background:var(--red)"></div><div class="sb" style="height:85%;background:var(--red)"></div></div>
+      <div class="card-source">StatCan · Education Indicators 2025<div class="card-arrow">→</div></div>
+    </a>
+    <a class="card c-r" href="housing-ratio.html">
+      <div class="card-top"><div class="card-icon">🏠</div><div class="badge br">🔴 CRITICAL</div></div>
+      <div class="card-name">Housing Affordability</div>
+      <div class="card-sub">"Price > 9x annual median income."</div>
+      <div class="card-val-row"><div class="card-val" style="color:var(--red)">>9x</div><div class="card-trend" style="color:var(--red)">▼ Major cities</div></div>
+      <div class="card-bar"><div class="card-bar-fill" style="width:80%;background:var(--red)"></div></div>
+      <div class="spark"><div class="sb" style="height:20%;background:var(--red)"></div><div class="sb" style="height:32%;background:var(--red)"></div><div class="sb" style="height:44%;background:var(--red)"></div><div class="sb" style="height:56%;background:var(--red)"></div><div class="sb" style="height:64%;background:var(--red)"></div><div class="sb" style="height:72%;background:var(--red)"></div><div class="sb" style="height:80%;background:var(--red)"></div></div>
+      <div class="card-source">CMHC · Housing Market Assessment 2025<div class="card-arrow">→</div></div>
+    </a>
+  </div>
+</div>
+<div class="see-all-wrap">
+  <a class="see-all" href="all-long-term.html">
+    <div>
+      <div class="see-all-title">See All Long-Term Indicators</div>
+      <div class="see-all-sub">Male Suicide Gap · National Identity · CEO Wage Ratio · BNPL Growth · Religious Confidence · and more</div>
+    </div>
+    <div class="see-all-cta">VIEW ALL →</div>
+  </a>
+</div>
+<div class="cq-wrap">
+  <div class="cq-inner">
+    <div class="cq-b">🦫</div>
+    <div class="cq-t">"The newspapers will cover it in 6 weeks.<br><strong>The Beaver knows it now.</strong>"</div>
+  </div>
+</div>
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="foot-brand">🦫 BEAVER.WATCH</div>
+      <div class="foot-desc">Independent Canadian predictive dashboard. Public data only. Not affiliated with any government or political party.</div>
+    </div>
+    <div>
+      <div class="foot-col-title">Indicators</div>
+      <div class="foot-links">
+        <a href="auto-theft.html" class="foot-link">🚗 Auto Theft Index</a>
+        <a href="kijiji-stress-index-en.html" class="foot-link">📦 Kijiji Stress Index</a>
+        <a href="payday-loan.html" class="foot-link">💸 Payday Loan Radar</a>
+        <a href="all-short-term.html" class="foot-link">→ All short-term</a>
+        <a href="all-long-term.html" class="foot-link">→ All long-term</a>
+      </div>
+    </div>
+    <div>
+      <div class="foot-col-title">Contact</div>
+      <div>
+        <div class="foot-email">📧 <a href="mailto:tensionsgeopolitiques@gmail.com">tensionsgeopolitiques@gmail.com</a></div>
+        <div class="foot-desc" style="margin-top:8px;">Media inquiries, data partnerships and collaborations welcome.</div>
+      </div>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <div class="foot-copy">© 2026 BEAVER.WATCH · Public data · Canada</div>
+    <div class="foot-disclaimer">For informational purposes only. Predictions based on statistical correlations — not guarantees.</div>
+  </div>
+</footer>
 <script>
-// Clock
+const SHEETS_URL="https://script.google.com/macros/s/AKfycbw0S5p2Z6zli_2FRfQtvohOofLw6F_GiEvC0JNqvMelHt870ipwTB8OmkJMEsorLssYoA/exec";
+function getColor(v){return v>=0.7?'var(--red)':v>=0.4?'var(--orange)':'var(--green)';}
+function getBadge(v){return v>=0.7?'🔴 CRITICAL':v>=0.4?'🟠 HIGH':'🟢 STABLE';}
+function getBadgeClass(v){return v>=0.7?'badge br':v>=0.4?'badge bo':'badge bg';}
+function getEmoji(v){return v>=0.7?'🔴':v>=0.4?'🟠':'🟢';}
+function setScore(numId,statusId,barId,s100){
+  const c=s100>=70?'var(--red)':s100>=40?'var(--orange)':'var(--green)';
+  const t=s100>=70?'⚠️ HIGH TENSION':s100>=40?'⚡ MODERATE':'✅ STABLE';
+  document.getElementById(numId).textContent=s100;
+  document.getElementById(numId).style.color=c;
+  document.getElementById(statusId).textContent=t;
+  document.getElementById(statusId).style.color=c;
+  setTimeout(()=>{document.getElementById(barId).style.width=s100+'%';document.getElementById(barId).style.background=c;},300);
+}
 function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
 setInterval(tick,1000);tick();
+window.addEventListener('load',()=>{
+  // Show fallback scores IMMEDIATELY
+  setScore('st-num','st-status','st-bar',59);
+  setScore('lt-num','lt-status','lt-bar',66);
+  document.getElementById('v1').textContent='0.72';document.getElementById('v1').style.color='var(--red)';
+  document.getElementById('bar1').style.width='72%';document.getElementById('bar1').style.background='var(--red)';
+  document.getElementById('b1').textContent='🔴 CRITICAL';document.getElementById('b1').className='badge br';
+  document.getElementById('v2').textContent='52';document.getElementById('v2').style.color='var(--orange)';
+  document.getElementById('bar2').style.width='52%';document.getElementById('bar2').style.background='var(--orange)';
+  document.getElementById('b2').textContent='🟠 TENSION';document.getElementById('b2').className='badge bo';
+  document.getElementById('v3').textContent='0.82';document.getElementById('v3').style.color='var(--red)';
+  document.getElementById('bar3').style.width='82%';document.getElementById('bar3').style.background='var(--red)';
+  document.getElementById('b3').textContent='🔴 CRITICAL';document.getElementById('b3').className='badge br';
 
-// City tab switching
-function showCity(city, btn) {
-  document.querySelectorAll('.city-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.city-tab').forEach(t => t.classList.remove('active'));
-  document.getElementById('panel-' + city).classList.add('active');
-  btn.classList.add('active');
-}
+  // Load Kijiji dynamically
+  fetch('kijiji_data.json?t='+Date.now()).then(r=>r.json()).then(kd=>{
+    const ks=kd.national_score||0.52;
+    document.getElementById('v2').textContent=Math.round(ks*100);
+    document.getElementById('v2').style.color=getColor(ks);
+    document.getElementById('bar2').style.width=(ks*100)+'%';
+    document.getElementById('bar2').style.background=getColor(ks);
+    document.getElementById('b2').textContent=getBadge(ks);
+    document.getElementById('b2').className=getBadgeClass(ks);
+  }).catch(()=>{});
 
-// Color helpers
-function getColor(score) {
-  if (score >= 0.7) return 'var(--red)';
-  if (score >= 0.4) return 'var(--orange)';
-  return 'var(--green)';
-}
-function getBadgeClass(color) {
-  if (color === 'red') return 'cat-badge badge-r';
-  if (color === 'orange') return 'cat-badge badge-o';
-  return 'cat-badge badge-g';
-}
-
-// Render category cards for a city
-function renderCats(cityKey, categories) {
-  const container = document.getElementById('cats-' + cityKey);
-  container.innerHTML = '';
-  
-  Object.entries(categories).forEach(([catKey, cat]) => {
-    const score = cat.score ?? 0;
-    const color = getColor(score);
-    const changePct = cat.change_pct;
-    const changeStr = changePct !== null 
-      ? (changePct >= 0 ? `▲ +${changePct}%` : `▼ ${changePct}%`)
-      : 'Baseline';
-    const changeColor = changePct >= 15 ? 'var(--red)' : changePct >= 5 ? 'var(--orange)' : 'var(--green)';
-    
-    const card = document.createElement('div');
-    card.className = 'cat-card';
-    card.innerHTML = `
-      <div class="cat-top">
-        <div class="cat-icon">${cat.emoji}</div>
-        <div class="${getBadgeClass(cat.status?.color ?? 'green')}">${cat.status?.emoji ?? '🟢'} ${cat.status?.label_fr ?? 'Normal'}</div>
-      </div>
-      <div class="cat-name">${cat.label_fr}</div>
-      <div class="cat-signal">${cat.signal ?? ''}</div>
-      <div class="cat-counts">
-        <div class="cat-count" style="color:${color}">${cat.count !== null ? cat.count.toLocaleString('fr-CA') : '—'}</div>
-        <div class="cat-change" style="color:${changeColor}">${changeStr}</div>
-      </div>
-      <div class="cat-bar"><div class="cat-fill" style="width:${Math.min(score*100, 100)}%;background:${color}"></div></div>
-      <div class="cat-baseline">Baseline : ${cat.baseline !== null ? cat.baseline.toLocaleString('fr-CA') : 'Premier relevé'} annonces</div>
-    `;
-    container.appendChild(card);
-  });
-}
-
-// Load data
-fetch('kijiji_data.json?t=' + Date.now())
-  .then(r => r.json())
-  .then(data => {
-    // Update timestamp
-    document.getElementById('updated-time').textContent = data.updated || '—';
-    
-    // National score
-    const ns = data.national_score ?? 0;
-    const nsColor = getColor(ns);
-    document.getElementById('national-num').textContent = Math.round(ns * 100);
-    document.getElementById('national-num').style.color = nsColor;
-    document.getElementById('national-title').style.color = nsColor;
-    document.getElementById('national-status').textContent = data.national_status?.label_fr ?? '—';
-    document.getElementById('national-status').style.color = nsColor;
-    document.getElementById('national-box').style.borderLeftColor = nsColor;
-    setTimeout(() => {
-      document.getElementById('national-bar').style.width = (ns * 100) + '%';
-      document.getElementById('national-bar').style.background = nsColor;
-    }, 300);
-    
-    // Alert bar
-    const statusFr = data.national_status?.label_fr ?? 'Inconnu';
-    document.getElementById('alert-txt').textContent = 
-      `📦 Kijiji Stress Index — Score national : ${Math.round(ns*100)}/100 — ${statusFr} · Montréal, Toronto, Vancouver`;
-    
-    // Cities
-    Object.entries(data.cities).forEach(([cityKey, city]) => {
-      const cs = city.composite_score ?? 0;
-      const csColor = getColor(cs);
-      
-      const scoreEl = document.getElementById('score-' + cityKey);
-      if (scoreEl) scoreEl.style.borderLeftColor = csColor;
-      
-      const valEl = document.getElementById('val-' + cityKey);
-      if (valEl) { valEl.textContent = Math.round(cs * 100); valEl.style.color = csColor; }
-      
-      const statusEl = document.getElementById('status-' + cityKey);
-      if (statusEl) { statusEl.textContent = city.composite_status?.label_fr ?? '—'; statusEl.style.color = csColor; }
-      
-      if (city.categories) renderCats(cityKey, city.categories);
-    });
-  })
-  .catch(() => {
-    document.getElementById('alert-txt').textContent = '📦 Kijiji Stress Index — Données temporairement indisponibles';
-    document.getElementById('national-num').textContent = '?';
-    document.getElementById('national-status').textContent = 'INDISPONIBLE';
-  });
+  // Try Google Sheets for live data
+  fetch(SHEETS_URL+'&t='+Date.now())
+    .then(r=>r.json())
+    .then(data=>{
+      const at=data.composite||0.72,pd=data.payday||0.82;
+      const sl=data.schoolLunch||0.73,c2=data.crisis211||0.72,hc=data.haircut||0.34,ct=data.ctFlyer||0.097;
+      document.getElementById('v1').textContent=parseFloat(at).toFixed(2);document.getElementById('v1').style.color=getColor(at);
+      document.getElementById('bar1').style.width=(at*100)+'%';document.getElementById('b1').textContent=getBadge(at);document.getElementById('b1').className=getBadgeClass(at);
+      document.getElementById('v3').textContent=parseFloat(pd).toFixed(2);document.getElementById('v3').style.color=getColor(pd);
+      document.getElementById('bar3').style.width=(pd*100)+'%';document.getElementById('b3').textContent=getBadge(pd);document.getElementById('b3').className=getBadgeClass(pd);
+      document.getElementById('t1').textContent=parseFloat(at).toFixed(2)+' '+getEmoji(at);
+      document.getElementById('t2').textContent='52 🟠';
+      document.getElementById('t3').textContent=parseFloat(pd).toFixed(2)+' '+getEmoji(pd);
+      document.getElementById('t4').textContent=parseFloat(sl).toFixed(2)+' '+getEmoji(sl);
+      document.getElementById('t5').textContent=parseFloat(c2).toFixed(2)+' '+getEmoji(c2);
+      document.getElementById('t6').textContent=parseFloat(hc).toFixed(2)+' '+getEmoji(hc);
+      const stAvg=data.shortTermScore||0.59;
+      const ltAvg=data.longTermScore||0.66;
+      setScore('st-num','st-status','st-bar',Math.round(stAvg*100));
+      setScore('lt-num','lt-status','lt-bar',Math.round(ltAvg*100));
+    })
+    .catch(()=>{});
+});
 </script>
 </body>
 </html>
