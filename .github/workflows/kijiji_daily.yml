@@ -46,7 +46,7 @@ jobs:
           git stash
           git pull origin main
           git stash pop
-          git add kijiji_data.json kijiji_baseline.json kijiji_history.json trends_data.json auto_theft_data.json auto_theft_history.json
+          git add kijiji_data.json kijiji_baseline.json kijiji_history.json trends_data.json auto_theft_data.json auto_theft_history.json kijiji_predictions.json auto_theft_predictions.json
           git diff --staged --quiet || git commit -m "🦫 Daily update $(date +'%Y-%m-%d') — Kijiji + Trends + Auto Theft + Claude"
           git push
         env:
