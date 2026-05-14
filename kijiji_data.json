@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 16:19",
+  "updated": "2026-05-14 18:51",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -27,7 +27,7 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 595,
+          "count": 596,
           "baseline": 2840,
           "change_pct": -79.0,
           "score": 0.05,
@@ -43,9 +43,9 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 576,
+          "count": 575,
           "baseline": 576,
-          "change_pct": 0.0,
+          "change_pct": -0.2,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
@@ -75,10 +75,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 503,
+          "count": 501,
           "baseline": 502,
-          "change_pct": 0.2,
-          "score": 0.16,
+          "change_pct": -0.2,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -104,15 +104,15 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12544,
+          "count": 0,
           "baseline": 4200,
-          "change_pct": 198.7,
-          "score": 1.0,
+          "change_pct": -100.0,
+          "score": 0.05,
           "status": {
-            "label_fr": "CRISE",
-            "label_en": "CRISIS",
-            "color": "red",
-            "emoji": "🔴"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.35
         },
@@ -120,10 +120,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 0,
+          "count": 6265,
           "baseline": 6267,
-          "change_pct": -100.0,
-          "score": 0.05,
+          "change_pct": -0.0,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -136,9 +136,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 139,
+          "count": 141,
           "baseline": 610,
-          "change_pct": -77.2,
+          "change_pct": -76.9,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -152,10 +152,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 4404,
+          "count": 0,
           "baseline": 4402,
-          "change_pct": 0.0,
-          "score": 0.15,
+          "change_pct": -100.0,
+          "score": 0.05,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -165,12 +165,12 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.4,
+      "composite_score": 0.07,
       "composite_status": {
-        "label_fr": "Tension",
-        "label_en": "Tension",
-        "color": "orange",
-        "emoji": "🟠"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "vancouver": {
@@ -181,9 +181,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 0,
+          "count": 79,
           "baseline": 2100,
-          "change_pct": -100.0,
+          "change_pct": -96.2,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -229,10 +229,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 81,
+          "count": 82,
           "baseline": 81,
-          "change_pct": 0.0,
-          "score": 0.15,
+          "change_pct": 1.2,
+          "score": 0.2,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -242,7 +242,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.08,
+      "composite_score": 0.1,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -251,7 +251,7 @@
       }
     }
   },
-  "national_score": 0.19,
+  "national_score": 0.09,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
@@ -259,12 +259,12 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score national Kijiji s'établit à 0.19/1.0 aujourd'hui, un niveau modéré-bas indiquant peu de stress économique généralisé en cette période d'avant-paye. Toronto se démarque nettement avec un score de 0.40, porté par une hausse spectaculaire de 198.7% des annonces d'outils, signal classique de ménages qui liquident des actifs. Montréal et Vancouver restent très calmes avec des scores de 0.09 et 0.08 respectivement, les transferts de bail en chute à Montréal (-88.7%) suggérant un marché locatif temporairement stabilisé. L'historique sur 30 jours est encore limité à une seule entrée, ce qui restreint la comparaison longitudinale.",
-    "analyse_en": "The national Kijiji score stands at 0.19/1.0 today, a low-to-moderate level indicating little widespread economic stress during this pre-payday period. Toronto stands out significantly with a score of 0.40, driven by a spectacular 198.7% surge in tool listings, a classic signal of households liquidating assets. Montreal and Vancouver remain very calm at 0.09 and 0.08 respectively, with Montreal's sharp drop in lease transfers (-88.7%) suggesting a temporarily stabilized rental market. The 30-day historical record is still limited to a single data point, which restricts longitudinal comparison.",
-    "prediction_fr": "Si la tendance torontoise de liquidation d'outils se maintient, le score national pourrait grimper vers 0.28-0.32 d'ici 4 à 8 semaines, surtout si la période post-paye ne soulage pas la pression observée. Surveiller de près les transferts de bail à Toronto comme indicateur avancé d'une détérioration potentielle.",
-    "prediction_en": "If Toronto's tool liquidation trend persists, the national score could climb toward 0.28-0.32 within 4 to 8 weeks, especially if the post-payday period fails to relieve the observed pressure. Lease transfer listings in Toronto should be closely monitored as a leading indicator of potential deterioration.",
-    "signal_dominant": "Liquidation d'outils Toronto",
+    "analyse_fr": "Le score national Kijiji s'établit à 0.09/1.0 ce 14 mai 2026, un niveau très bas indiquant une pression économique minimale sur les ménages canadiens. Les baisses marquées dans les catégories outils et transferts de bail à Montréal (-79% et -88.7%) ainsi qu'à Toronto (-100% et -76.9%) suggèrent un net recul des comportements de liquidation d'actifs. La période 'avant-paye' du jour pourrait légèrement comprimer l'activité, mais le signal global reste résolument calme à travers les trois grandes métropoles.",
+    "analyse_en": "The national Kijiji score stands at 0.09/1.0 on May 14, 2026, reflecting very low economic stress among Canadian households. Sharp declines in tools and lease-transfer listings in Montreal (-79% and -88.7%) and Toronto (-100% and -76.9%) point to a clear pullback in asset-liquidation behaviour. The current 'pre-payday' period may modestly suppress activity, but the overall signal remains firmly calm across all three major cities.",
+    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le score devrait se maintenir dans une fourchette basse entre 0.08 et 0.14, avec une légère hausse possible en juin si les renouvellements de loyers ou les pressions saisonnières de fin de mois s'intensifient. Aucun signal précurseur de crise n'est détecté à ce stade.",
+    "prediction_en": "Over the next 4 to 8 weeks, the score is expected to remain in a low range between 0.08 and 0.14, with a modest uptick possible in June if lease renewals or seasonal end-of-month pressures intensify. No precursor signals of economic stress are detected at this stage.",
+    "signal_dominant": "Liquidations d'actifs en chute",
     "niveau_alerte": "NORMAL",
-    "score_predit_4_semaines": 0.27
+    "score_predit_4_semaines": 0.12
   }
 }

@@ -1,0 +1,109 @@
+{
+  "updated": "2026-05-14 18:54",
+  "source": "Google Trends",
+  "keywords": {
+    "vol_auto": {
+      "label_fr": "Vol d'Auto",
+      "label_en": "Auto Theft",
+      "emoji": "🚗",
+      "raw_score": null,
+      "stress_score": null,
+      "status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      },
+      "weight": 0.5
+    },
+    "assurance_auto": {
+      "label_fr": "Réclamations Assurance",
+      "label_en": "Insurance Claims",
+      "emoji": "📋",
+      "raw_score": null,
+      "stress_score": null,
+      "status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      },
+      "weight": 0.25
+    },
+    "securite_auto": {
+      "label_fr": "Sécurité Auto",
+      "label_en": "Car Security",
+      "emoji": "🔒",
+      "raw_score": null,
+      "stress_score": null,
+      "status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      },
+      "weight": 0.25
+    }
+  },
+  "regions": {
+    "canada": {
+      "name_fr": "Canada",
+      "name_en": "Canada",
+      "composite_score": null,
+      "composite_status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      }
+    },
+    "ontario": {
+      "name_fr": "Ontario",
+      "name_en": "Ontario",
+      "composite_score": null,
+      "composite_status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      }
+    },
+    "quebec": {
+      "name_fr": "Québec",
+      "name_en": "Quebec",
+      "composite_score": null,
+      "composite_status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      }
+    },
+    "bc": {
+      "name_fr": "C.-B.",
+      "name_en": "BC",
+      "composite_score": null,
+      "composite_status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      }
+    },
+    "alberta": {
+      "name_fr": "Alberta",
+      "name_en": "Alberta",
+      "composite_score": null,
+      "composite_status": {
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
+      }
+    }
+  },
+  "national_score": null,
+  "national_status": null,
+  "claude_analysis": null,
+  "trend": null
+}
