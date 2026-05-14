@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 14:29",
+  "updated": "2026-05-14 15:56",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -43,10 +43,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 578,
+          "count": 576,
           "baseline": 576,
-          "change_pct": 0.3,
-          "score": 0.16,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -59,9 +59,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 42,
+          "count": 43,
           "baseline": 380,
-          "change_pct": -88.9,
+          "change_pct": -88.7,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -75,10 +75,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 501,
+          "count": 503,
           "baseline": 502,
-          "change_pct": -0.2,
-          "score": 0.15,
+          "change_pct": 0.2,
+          "score": 0.16,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -104,7 +104,7 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12554,
+          "count": 12553,
           "baseline": 4200,
           "change_pct": 198.9,
           "score": 1.0,
@@ -120,7 +120,7 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 6271,
+          "count": 6273,
           "baseline": 6267,
           "change_pct": 0.1,
           "score": 0.15,
@@ -136,9 +136,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 0,
+          "count": 139,
           "baseline": 610,
-          "change_pct": -100.0,
+          "change_pct": -77.2,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -152,9 +152,9 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 4401,
+          "count": 4404,
           "baseline": 4402,
-          "change_pct": -0.0,
+          "change_pct": 0.0,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
@@ -181,15 +181,15 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": null,
+          "count": 0,
           "baseline": 2100,
-          "change_pct": null,
-          "score": null,
+          "change_pct": -100.0,
+          "score": 0.05,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.35
         },
@@ -229,24 +229,29 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": null,
-          "baseline": null,
-          "change_pct": null,
-          "score": null,
+          "count": 81,
+          "baseline": 81,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.15
         }
       },
-      "composite_score": null,
-      "composite_status": null
+      "composite_score": 0.08,
+      "composite_status": {
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
+      }
     }
   },
-  "national_score": 0.26,
+  "national_score": 0.2,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
@@ -254,12 +259,12 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le baromètre national affiche un score de 0.26, un niveau modéré qui suggère une tension économique contenue mais réelle. Toronto se démarque nettement avec un score de 0.42, porté par une explosion des annonces d'outils (+198.9%), signal classique de ménages qui liquident des actifs non essentiels. Montréal demeure calme à 0.09, avec une chute marquée des transferts de bail (-88.9%) et des annonces d'outils (-79%), possiblement liée à une saisonnalité ou à un creux de publication. Les données de Vancouver sont indisponibles, ce qui limite l'interprétation nationale; la période 'avant-paye' accentue typiquement les comportements de vente rapide.",
-    "analyse_en": "The national barometer sits at 0.26, a moderate level indicating contained but real economic stress. Toronto stands out with a score of 0.42, driven by a surge in tool listings (+198.9%), a classic signal of households liquidating non-essential assets. Montreal remains quiet at 0.09, with sharp drops in lease transfers (-88.9%) and tool listings (-79%), likely reflecting a seasonal lull or publication trough. Vancouver data is unavailable, limiting national interpretation; the 'pre-payday' period typically amplifies quick-sale behaviours.",
-    "prediction_fr": "Si la tendance de Toronto se maintient et que Vancouver revient en ligne, le score national devrait grimper vers 0.35–0.40 d'ici 4 à 8 semaines, surtout si des pressions inflationnistes ou des hausses de loyers se confirment en été. Une vigilance particulière s'impose sur les transferts de bail à l'approche du 1er juillet, date charnière du marché locatif canadien.",
-    "prediction_en": "If Toronto's trend holds and Vancouver data comes back online, the national score is likely to rise toward 0.35–0.40 over the next 4 to 8 weeks, particularly if inflationary pressures or rent hikes materialize heading into summer. Close attention should be paid to lease transfer activity ahead of July 1st, the key date in Canada's rental market.",
-    "signal_dominant": "Toronto liquide actifs non essentiels",
-    "niveau_alerte": "TENSION",
-    "score_predit_4_semaines": 0.37
+    "analyse_fr": "Le score national Kijiji s'établit à 0.2/1.0 aujourd'hui, un niveau modéré qui ne signale pas de détresse économique généralisée au Canada. Toronto se démarque nettement avec un score de 0.42, porté notamment par une hausse spectaculaire de 198.9% des annonces d'outils, ce qui suggère une pression financière localisée dans ce marché. Montréal et Vancouver restent très calmes avec des scores de 0.09 et 0.08 respectivement, les transferts de bail étant en forte baisse dans les deux villes. Le contexte de période avant-paye peut légèrement amplifier les signaux de vente observés aujourd'hui.",
+    "analyse_en": "The national Kijiji score stands at 0.2/1.0 today, a moderate level that does not signal widespread economic distress across Canada. Toronto stands out with a score of 0.42, driven notably by a spectacular 198.9% surge in tool listings, suggesting localized financial pressure in that market. Montreal and Vancouver remain very calm at 0.09 and 0.08 respectively, with lease transfers declining sharply in both cities. The pre-payday context may be slightly amplifying the selling signals observed today.",
+    "prediction_fr": "Au cours des 4 à 8 prochaines semaines, le score national devrait rester dans la zone basse à modérée, autour de 0.25 à 0.30, sauf si les pressions sur le marché torontois s'intensifient ou se propagent aux autres grandes villes. La hausse des annonces d'outils à Toronto mérite une surveillance étroite comme indicateur avancé de stress des ménages.",
+    "prediction_en": "Over the next 4 to 8 weeks, the national score should remain in the low-to-moderate range, around 0.25 to 0.30, unless pressures in the Toronto market intensify or spread to other major cities. The surge in tool listings in Toronto warrants close monitoring as a leading indicator of household stress.",
+    "signal_dominant": "Toronto outils en hausse",
+    "niveau_alerte": "NORMAL",
+    "score_predit_4_semaines": 0.27
   }
 }
