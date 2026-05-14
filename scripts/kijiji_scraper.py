@@ -67,7 +67,7 @@ CATEGORIES = {
 CITIES = {
     "montreal": {"id": "1700281", "name": "Montréal"},
     "toronto":  {"id": "1700272", "name": "Toronto"},
-    "vancouver": {"id": "1700254", "name": "Vancouver"},
+    "vancouver": {"id": "1700287", "name": "Vancouver"},
 }
 
 USER_AGENTS = [
