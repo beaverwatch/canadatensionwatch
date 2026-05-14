@@ -22,7 +22,7 @@ jobs:
           python-version: '3.11'
 
       - name: 📦 Install dependencies
-        run: pip install requests beautifulsoup4 pytrends
+        run: pip install requests beautifulsoup4 pytrends urllib3==1.26.15
 
       - name: 🦫 Run Kijiji Scraper
         run: python scripts/kijiji_scraper.py
@@ -47,7 +47,7 @@ jobs:
           git pull origin main
           git stash pop
           git add kijiji_data.json kijiji_baseline.json kijiji_history.json trends_data.json auto_theft_data.json auto_theft_history.json
-          git diff --staged --quiet || git commit -m "🦫 Daily update $(date +'%Y-%m-%d') — Kijiji + Trends + Claude"
+          git diff --staged --quiet || git commit -m "🦫 Daily update $(date +'%Y-%m-%d') — Kijiji + Trends + Auto Theft + Claude"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
