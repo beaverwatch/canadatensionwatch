@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 19:58",
+  "updated": "2026-05-14 23:16",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -27,9 +27,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 596,
+          "count": 0,
           "baseline": 2840,
-          "change_pct": -79.0,
+          "change_pct": -100.0,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -75,10 +75,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 502,
+          "count": 509,
           "baseline": 502,
-          "change_pct": 0.0,
-          "score": 0.15,
+          "change_pct": 1.4,
+          "score": 0.21,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -88,7 +88,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.09,
+      "composite_score": 0.1,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -104,9 +104,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12525,
+          "count": 12509,
           "baseline": 4200,
-          "change_pct": 198.2,
+          "change_pct": 197.8,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -136,9 +136,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 141,
+          "count": 0,
           "baseline": 610,
-          "change_pct": -76.9,
+          "change_pct": -100.0,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -152,7 +152,7 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 4404,
+          "count": 4403,
           "baseline": 4402,
           "change_pct": 0.0,
           "score": 0.15,
@@ -181,15 +181,15 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 79,
+          "count": null,
           "baseline": 2100,
-          "change_pct": -96.2,
-          "score": 0.05,
+          "change_pct": null,
+          "score": null,
           "status": {
-            "label_fr": "Normal",
-            "label_en": "Normal",
-            "color": "green",
-            "emoji": "🟢"
+            "label_fr": "N/A",
+            "label_en": "N/A",
+            "color": "gray",
+            "emoji": "?"
           },
           "weight": 0.35
         },
@@ -229,42 +229,29 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 82,
+          "count": null,
           "baseline": 81,
-          "change_pct": 1.2,
-          "score": 0.2,
+          "change_pct": null,
+          "score": null,
           "status": {
-            "label_fr": "Normal",
-            "label_en": "Normal",
-            "color": "green",
-            "emoji": "🟢"
+            "label_fr": "N/A",
+            "label_en": "N/A",
+            "color": "gray",
+            "emoji": "?"
           },
           "weight": 0.15
         }
       },
-      "composite_score": 0.1,
-      "composite_status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
-      }
+      "composite_score": null,
+      "composite_status": null
     }
   },
-  "national_score": 0.2,
+  "national_score": 0.26,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
     "color": "green",
     "emoji": "🟢"
   },
-  "claude_analysis": {
-    "analyse_fr": "Le score national Kijiji s'établit à 0.2/1.0 aujourd'hui, un niveau modéré indiquant une pression économique limitée à l'échelle du pays. Toronto se distingue nettement avec un score de 0.42, porté par une hausse explosive de 198% des annonces d'outils, signal classique de ménages qui liquident des actifs non essentiels. Montréal et Vancouver affichent des scores très bas (0.09 et 0.10), avec des effondrements marqués dans les transferts de bail et les outils, suggérant une activité de revente en repli plutôt qu'une montée du stress. La période 'avant-paye' coïncide avec ce snapshot, ce qui peut amplifier légèrement les comportements de vente à court terme.",
-    "analyse_en": "The national Kijiji score stands at 0.2/1.0 today, reflecting a moderate and contained level of economic stress across Canada. Toronto stands out with a score of 0.42, driven by a sharp 198% spike in tool listings — a classic signal of households liquidating non-essential assets. Montreal and Vancouver post very low scores (0.09 and 0.10), with sharp declines in lease transfers and tool listings suggesting reduced resale activity rather than rising distress. The 'pre-payday' period coincides with this snapshot, which may slightly amplify short-term selling behavior.",
-    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le score national devrait légèrement progresser vers 0.28–0.32, porté par la pression saisonnière de fin de mois et la persistance du stress à Toronto. Si la dynamique des outils à Toronto se maintient, cette ville pourrait devenir un signal précurseur d'une tension plus large.",
-    "prediction_en": "Over the next 4 to 8 weeks, the national score is expected to inch upward toward 0.28–0.32, driven by end-of-month financial pressure and the ongoing stress signal in Toronto. If the tools listing surge in Toronto persists, it could serve as an early indicator of broader economic tension.",
-    "signal_dominant": "Toronto: liquidation outils +198%",
-    "niveau_alerte": "NORMAL",
-    "score_predit_4_semaines": 0.29
-  }
+  "claude_analysis": null
 }

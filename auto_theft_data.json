@@ -1,19 +1,13 @@
 {
-  "updated": "2026-05-14 20:01",
-  "source": "Google Trends + IBC + CANAFE + PORT",
-  "sheets_data": {
-    "ibc": 0.55,
-    "canafe": 0.75,
-    "port": null,
-    "composite": 0.69
-  },
+  "updated": "2026-05-14 23:18",
+  "source": "Google Trends",
   "keywords": {
     "vol_auto": {
       "label_fr": "Vol d'Auto",
       "label_en": "Auto Theft",
       "emoji": "🚗",
-      "raw_score": 5.4,
-      "stress_score": 0.08,
+      "raw_score": 6.2,
+      "stress_score": 0.09,
       "status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -26,13 +20,13 @@
       "label_fr": "Réclamations Assurance",
       "label_en": "Insurance Claims",
       "emoji": "📋",
-      "raw_score": null,
-      "stress_score": null,
+      "raw_score": 0.3,
+      "stress_score": 0.05,
       "status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       },
       "weight": 0.25
     },
@@ -55,7 +49,7 @@
     "canada": {
       "name_fr": "Canada",
       "name_en": "Canada",
-      "composite_score": 0.08,
+      "composite_score": 0.09,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -116,14 +110,14 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score composite actuel de 0.69 révèle une divergence notable entre les signaux comportementaux et officiels : le score Google Trends est très faible à 0.07, suggérant peu d'inquiétude publique, tandis que les données CANAFE (0.75) et IBC (0.55) indiquent une activité suspecte et des réclamations d'assurance élevées. L'historique des 30 derniers jours est limité à une seule entrée sans tendance historique mesurable, ce qui rend la comparaison temporelle difficile. Toutes les régions affichent des scores Google Trends uniformément bas (0.05), à l'exception du Canada global à 0.08, suggérant que le phénomène n'est pas encore médiatisé régionalement. La pression CANAFE reste le signal dominant et pointe vers des réseaux organisés plutôt que vers une criminalité opportuniste visible.",
-    "analyse_en": "The current composite score of 0.69 reveals a notable divergence between behavioral and official signals: the Google Trends score is very low at 0.07, suggesting little public concern, while CANAFE (0.75) and IBC (0.55) data indicate elevated suspicious activity and insurance claims. The 30-day historical record contains only a single data point with no measurable trend, making temporal comparison limited. All regions show uniformly low Google Trends scores (0.05), except Canada overall at 0.08, suggesting the phenomenon has not yet gained regional media traction. The CANAFE signal remains dominant and points toward organized networks rather than visible opportunistic crime.",
-    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le vol automobile organisé devrait maintenir une pression élevée au Canada, particulièrement en Ontario, si les signaux CANAFE ne se résorbent pas. Une hausse progressive du score composite vers 0.72-0.78 est probable à mesure que les données IBC et les incidents portuaires viendront potentiellement confirmer les transactions suspectes détectées.",
-    "prediction_en": "Over the next 4 to 8 weeks, organized auto theft is expected to maintain elevated pressure across Canada, particularly in Ontario, if CANAFE signals do not ease. A gradual rise in the composite score toward 0.72-0.78 is likely as IBC data and potential port incidents may confirm the suspicious transactions already detected.",
-    "region_risque": "Ontario urbain",
-    "signal_dominant": "Transactions CANAFE suspectes élevées",
-    "niveau_alerte": "TENSION",
-    "score_predit_4_semaines": 0.74
+    "analyse_fr": "Le score national de stress lié au vol d'auto s'établit à 0,07 sur 1,0 aujourd'hui, ce qui représente un niveau très faible d'intérêt de recherche sur le sujet. Les données régionales sont homogènes, toutes les provinces affichant un score de 0,05, sauf le Canada global à 0,09, sans région particulièrement saillante. L'historique sur 30 jours est minimal avec une tendance plate à 0,0, indiquant une stabilité complète du signal. Le niveau de stress demeure bien en dessous des seuils d'alerte habituels pour cette catégorie.",
+    "analyse_en": "The national stress score related to auto theft stands at 0.07 out of 1.0 today, representing a very low level of search interest on the topic. Regional data is uniform, with all provinces showing a score of 0.05 except the national Canada aggregate at 0.09, with no particularly prominent region. The 30-day history is minimal with a flat trend of 0.0, indicating complete signal stability. The stress level remains well below the usual alert thresholds for this category.",
+    "prediction_fr": "Avec l'arrivée de la saison estivale et les déplacements accrus, une légère hausse des recherches liées au vol d'auto est anticipée d'ici 4 à 8 semaines, particulièrement dans les grands centres urbains comme Toronto et Montréal. Le score devrait rester en zone normale, mais pourrait progresser modestement vers 0,15 si des incidents médiatisés surviennent.",
+    "prediction_en": "With the arrival of the summer season and increased travel activity, a slight uptick in auto theft-related searches is anticipated over the next 4 to 8 weeks, particularly in major urban centres like Toronto and Montreal. The score should remain in the normal zone but could modestly rise toward 0.15 if high-profile incidents receive media coverage.",
+    "region_risque": "Canada national",
+    "signal_dominant": "Activité de recherche minimale",
+    "niveau_alerte": "NORMAL",
+    "score_predit_4_semaines": 0.13
   },
   "trend": 0.0
 }
