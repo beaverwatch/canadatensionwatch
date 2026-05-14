@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 23:28",
+  "updated": "2026-05-14 23:37",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -27,9 +27,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 0,
+          "count": 611,
           "baseline": 2840,
-          "change_pct": -100.0,
+          "change_pct": -78.5,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -104,9 +104,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12509,
+          "count": 12511,
           "baseline": 4200,
-          "change_pct": 197.8,
+          "change_pct": 197.9,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -181,15 +181,15 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": null,
+          "count": 477,
           "baseline": 2100,
-          "change_pct": null,
-          "score": null,
+          "change_pct": -77.3,
+          "score": 0.05,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.35
         },
@@ -197,15 +197,15 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": null,
-          "baseline": null,
-          "change_pct": null,
-          "score": null,
+          "count": 477,
+          "baseline": 477,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.25
         },
@@ -213,15 +213,15 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": null,
+          "count": 477,
           "baseline": 290,
-          "change_pct": null,
-          "score": null,
+          "change_pct": 64.5,
+          "score": 0.97,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "CRISE",
+            "label_en": "CRISIS",
+            "color": "red",
+            "emoji": "🔴"
           },
           "weight": 0.25
         },
@@ -229,29 +229,43 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": null,
+          "count": 477,
           "baseline": 81,
-          "change_pct": null,
-          "score": null,
+          "change_pct": 488.9,
+          "score": 1.0,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "?"
+            "label_fr": "CRISE",
+            "label_en": "CRISIS",
+            "color": "red",
+            "emoji": "🔴"
           },
           "weight": 0.15
         }
       },
-      "composite_score": null,
-      "composite_status": null
+      "composite_score": 0.45,
+      "composite_status": {
+        "label_fr": "Tension",
+        "label_en": "Tension",
+        "color": "orange",
+        "emoji": "🟠"
+      }
     }
   },
-  "national_score": 0.26,
+  "national_score": 0.32,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
     "color": "green",
     "emoji": "🟢"
   },
-  "claude_analysis": null
+  "claude_analysis": {
+    "analyse_fr": "Le score national Kijiji s'établit à 0.32/1.0 en cette période d'avant-paye, ce qui indique un stress économique modéré à l'échelle canadienne. Vancouver se démarque avec un score de 0.45, porté notamment par une explosion des annonces de bijoux (+488.9%) et une hausse des transferts de bail (+64.5%), signaux classiques de liquidation d'actifs sous pression financière. Toronto affiche également une tension notable (0.42) avec une forte hausse des outils (+197.9%), suggérant des travailleurs autonomes ou des ménages qui se délestent de capital productif. Montréal reste étonnamment calme (0.10) avec des baisses marquées dans les outils et les transferts de bail, possiblement un décalage temporel ou un effet de composition du marché local.",
+    "analyse_en": "The national Kijiji score stands at 0.32/1.0 during this pre-payday period, indicating moderate economic stress at the national level. Vancouver stands out with a score of 0.45, driven notably by a surge in jewelry listings (+488.9%) and rising lease transfers (+64.5%), classic signals of asset liquidation under financial pressure. Toronto also shows notable tension (0.42) with a sharp increase in tool listings (+197.9%), suggesting self-employed workers or households offloading productive capital. Montreal remains surprisingly calm (0.10) with significant drops in tools and lease transfers, possibly reflecting a temporal lag or local market composition effect.",
+    "prediction_fr": "Dans les 4 à 8 prochaines semaines, si la tendance vancouvéroise de liquidation de bijoux et les pressions torontoises se maintiennent, le score national devrait monter vers 0.41 à 0.46, surtout si les cycles d'avant-paye coïncident avec des renouvellements de loyers estivaux. Une stabilisation est possible si les ménages absorbent le choc post-paye, mais Vancouver reste le point de vigilance prioritaire.",
+    "prediction_en": "Over the next 4 to 8 weeks, if Vancouver's jewelry liquidation trend and Toronto's pressures persist, the national score should climb toward 0.41 to 0.46, especially if pre-payday cycles coincide with summer lease renewals. Stabilization is possible if households absorb the post-payday shock, but Vancouver remains the primary watchpoint.",
+    "signal_dominant": "Liquidation actifs Vancouver",
+    "niveau_alerte": "TENSION",
+    "score_predit_4_semaines": 0.43
+  },
+  "prochaine_verification": "2026-06-11"
 }
