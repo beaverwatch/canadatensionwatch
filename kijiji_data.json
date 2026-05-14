@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 13:52",
+  "updated": "2026-05-14 14:06",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -43,9 +43,9 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 577,
+          "count": 578,
           "baseline": 576,
-          "change_pct": 0.2,
+          "change_pct": 0.3,
           "score": 0.16,
           "status": {
             "label_fr": "Normal",
@@ -59,9 +59,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 41,
+          "count": 42,
           "baseline": 380,
-          "change_pct": -89.2,
+          "change_pct": -88.9,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -75,9 +75,9 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 502,
+          "count": 501,
           "baseline": 502,
-          "change_pct": 0.0,
+          "change_pct": -0.2,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
@@ -104,9 +104,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12555,
+          "count": 12557,
           "baseline": 4200,
-          "change_pct": 198.9,
+          "change_pct": 199.0,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -120,7 +120,7 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 6267,
+          "count": 6268,
           "baseline": 6267,
           "change_pct": 0.0,
           "score": 0.15,
