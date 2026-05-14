@@ -12,31 +12,6 @@ from datetime import datetime
 # ============================================
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-SHEETS_URL = "https://script.google.com/macros/s/AKfycbwlPgsaPTgk7VphgxYGlzGA065yoe-uTeNJmsxlWXMHBMfvV_loz_klmgLxwAOcK1pm6A/exec"
-
-def get_sheets_data():
-    """
-    Fetches IBC + PORT + CANAFE data from Google Sheets.
-    """
-    try:
-        response = requests.get(SHEETS_URL, timeout=10)
-        if response.status_code == 200:
-            data = response.json()
-            print(f"✅ Sheets data loaded")
-            return {
-                "ibc":    data.get("ibc", None),
-                "canafe": data.get("canafe", None),
-                "port":   data.get("port", None),
-                "composite": data.get("composite", None),
-            }
-        else:
-            print(f"⚠️ Sheets error: {response.status_code}")
-            return None
-    except Exception as e:
-        print(f"⚠️ Sheets fetch error: {e}")
-        return None
-
-
 
 # Google Trends keywords
 KEYWORDS = {
@@ -79,7 +54,7 @@ def get_trend_score(terms, geo="CA"):
     try:
         from pytrends.request import TrendReq
         pytrends = TrendReq(hl='en-CA', tz=-300, timeout=(10,25), retries=2)
-        time.sleep(random.uniform(10, 15))
+        time.sleep(random.uniform(3, 6))
         pytrends.build_payload(
             terms[:5], cat=0,
             timeframe='now 7-d', geo=geo, gprop=''
@@ -135,20 +110,15 @@ def analyze_with_claude(today_data, history):
         k: v.get("stress_score")
         for k, v in today_data.get("keywords", {}).items()
     }
-    sheets = today_data.get("sheets_data") or {}
 
     prompt = (
         "Tu es l'analyste de BEAVER.WATCH, barometre de stress canadien.\n\n"
         f"DONNEES VOL AUTO AUJOURD'HUI ({datetime.now().strftime('%Y-%m-%d')}) :\n"
-        f"Score Google Trends : {national} / 1.0\n"
-        f"IBC (assureurs) : {sheets.get('ibc', 'N/A')}\n"
-        f"CANAFE (transactions suspectes) : {sheets.get('canafe', 'N/A')}\n"
-        f"PORT (exports illegaux) : {sheets.get('port', 'N/A')}\n"
-        f"Score composite officiel : {sheets.get('composite', 'N/A')}\n"
-        f"Par region Google Trends : {json.dumps(regions, ensure_ascii=False)}\n"
+        f"Score national : {national} / 1.0\n"
+        f"Par region : {json.dumps(regions, ensure_ascii=False)}\n"
         f"Par categorie : {json.dumps(keywords, ensure_ascii=False)}\n\n"
         f"HISTORIQUE 30 JOURS :\n{json.dumps(history_summary, ensure_ascii=False)}\n\n"
-        "Sources : Google Trends (comportemental) + IBC + CANAFE + PORT (officiels).\n\n"
+        "Ces donnees viennent de Google Trends sur les recherches liees au vol d'auto au Canada.\n\n"
         "Genere UNIQUEMENT ce JSON sans backticks ni markdown:\n"
         "{\n"
         '  "analyse_fr": "3-4 phrases. Analyse le score, compare historique, identifie la region la plus a risque.",\n'
@@ -219,14 +189,9 @@ def run():
         history = {}
         print("No history — starting fresh")
 
-    # Fetch Google Sheets data (IBC + CANAFE + PORT)
-    print("\n📋 Fetching Google Sheets data (IBC + CANAFE + PORT)...")
-    sheets_data = get_sheets_data()
-
     output = {
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "source": "Google Trends + IBC + CANAFE + PORT",
-        "sheets_data": sheets_data,
+        "source": "Google Trends",
         "keywords": {},
         "regions": {},
         "national_score": None,
