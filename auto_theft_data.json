@@ -1,18 +1,18 @@
 {
-  "updated": "2026-05-14 18:54",
+  "updated": "2026-05-14 19:05",
   "source": "Google Trends",
   "keywords": {
     "vol_auto": {
       "label_fr": "Vol d'Auto",
       "label_en": "Auto Theft",
       "emoji": "🚗",
-      "raw_score": null,
-      "stress_score": null,
+      "raw_score": 6.1,
+      "stress_score": 0.09,
       "status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       },
       "weight": 0.5
     },
@@ -20,13 +20,13 @@
       "label_fr": "Réclamations Assurance",
       "label_en": "Insurance Claims",
       "emoji": "📋",
-      "raw_score": null,
-      "stress_score": null,
+      "raw_score": 0.3,
+      "stress_score": 0.05,
       "status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       },
       "weight": 0.25
     },
@@ -49,61 +49,75 @@
     "canada": {
       "name_fr": "Canada",
       "name_en": "Canada",
-      "composite_score": null,
+      "composite_score": 0.09,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "ontario": {
       "name_fr": "Ontario",
       "name_en": "Ontario",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "quebec": {
       "name_fr": "Québec",
       "name_en": "Quebec",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "bc": {
       "name_fr": "C.-B.",
       "name_en": "BC",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     },
     "alberta": {
       "name_fr": "Alberta",
       "name_en": "Alberta",
-      "composite_score": null,
+      "composite_score": 0.05,
       "composite_status": {
-        "label_fr": "N/A",
-        "label_en": "N/A",
-        "color": "gray",
-        "emoji": "❓"
+        "label_fr": "Normal",
+        "label_en": "Normal",
+        "color": "green",
+        "emoji": "🟢"
       }
     }
   },
-  "national_score": null,
-  "national_status": null,
-  "claude_analysis": null,
+  "national_score": 0.08,
+  "national_status": {
+    "label_fr": "Normal",
+    "label_en": "Normal",
+    "color": "green",
+    "emoji": "🟢"
+  },
+  "claude_analysis": {
+    "analyse_fr": "Le score national de stress lié au vol d'auto s'établit à 0.08/1.0 aujourd'hui, ce qui représente un niveau très faible d'inquiétude dans les recherches canadiennes. Les données régionales montrent une distribution homogène entre l'Ontario, le Québec, la Colombie-Britannique et l'Alberta, toutes à 0.05, sans concentration de risque particulière. L'historique disponible ne permet pas encore de comparaison tendancielle sur 30 jours, mais le signal actuel suggère une période de calme relatif. La catégorie assurance auto confirme ce faible niveau d'anxiété collective avec un score identique de 0.05.",
+    "analyse_en": "The national stress score related to auto theft sits at 0.08/1.0 today, reflecting a very low level of concern in Canadian search activity. Regional data shows a uniform distribution across Ontario, Quebec, British Columbia and Alberta, all at 0.05, with no notable concentration of risk in any single area. The available 30-day history does not yet allow for trend comparison, but the current signal suggests a period of relative calm. The auto insurance category confirms this low level of collective anxiety with an identical score of 0.05.",
+    "prediction_fr": "Au cours des 4 à 8 prochaines semaines, le niveau de stress lié au vol d'auto devrait rester bas, bien qu'une légère hausse saisonnière soit possible avec l'arrivée de l'été, période historiquement plus active pour ce type de criminalité. Une montée vers 0.15 à 0.20 serait plausible si des incidents médiatisés surviennent dans les grands centres urbains.",
+    "prediction_en": "Over the next 4 to 8 weeks, auto theft stress levels should remain low, though a modest seasonal uptick is possible as summer approaches, historically a more active period for vehicle theft. A rise toward 0.15 to 0.20 would be plausible if high-profile incidents occur in major urban centres.",
+    "region_risque": "Canada national",
+    "signal_dominant": "Calme saisonnier pré-estival",
+    "niveau_alerte": "NORMAL",
+    "score_predit_4_semaines": 0.14
+  },
   "trend": null
 }
