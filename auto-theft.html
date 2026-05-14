@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚗 Auto Theft Risk — BEAVER.WATCH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;--text:#F5F0E8;--muted:#999990;--faint:#141414;--red:#FF2D2D;--orange:#FF6D00;--green:#00E676;--yellow:#FFD600;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;min-height:100vh;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+.alert-bar{width:100%;padding:11px 24px;display:flex;align-items:center;gap:12px;background:var(--red);}
+.a-dot{width:9px;height:9px;border-radius:50%;background:#fff;flex-shrink:0;animation:blnk 1.3s infinite;}
+@keyframes blnk{0%,100%{opacity:1}50%{opacity:0.15}}
+.a-txt{font-size:0.75rem;letter-spacing:1.5px;font-weight:700;text-transform:uppercase;flex:1;}
+.a-time{font-size:0.65rem;opacity:0.7;}
+header{padding:18px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);}
+.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.58rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
+.lang-btn{padding:5px 10px;font-size:0.65rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;transition:all 0.2s;}
+.lang-btn.active{background:var(--red);color:#fff;}
+.wrapper{max-width:640px;margin:0 auto;padding:0 24px 48px;}
+.back-link{display:inline-flex;align-items:center;gap:8px;font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:28px 0 0;transition:color 0.2s;}
+.back-link:hover{color:var(--text);}
+.hero{padding:24px 0 0;}
+.hero-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';width:24px;height:1px;background:var(--muted);}
+.hero-title{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:8px;}
+.hero-title em{font-style:italic;color:var(--red);}
+.hero-desc{font-size:0.82rem;line-height:1.9;color:var(--muted);margin-top:10px;}
+/* Score box */
+.score-box{background:var(--s1);border-left:5px solid var(--red);padding:28px;margin:24px 0 0;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;}
+.sb-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.sb-title{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--red);margin-bottom:4px;}
+.sb-sub{font-size:0.65rem;color:var(--muted);}
+.sb-bar{width:100%;height:6px;background:var(--faint);margin-top:14px;}
+.sb-fill{height:100%;transition:width 2s ease;background:var(--red);}
+.sb-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;line-height:1;color:var(--red);}
+.sb-status{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:3px;color:var(--red);margin-top:4px;text-align:right;}
+/* Risk levels */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--s3);margin:20px 0 0;}
+.risk-item{background:var(--s1);padding:14px;text-align:center;}
+.risk-icon{font-size:1.2rem;margin-bottom:6px;}
+.risk-range{font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:1px;margin-bottom:4px;}
+.risk-lbl{font-size:0.58rem;color:var(--muted);line-height:1.5;}
+/* Sources */
+.sources-box{margin:24px 0 0;}
+.sources-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+.src-card{background:var(--s1);border-left:3px solid;padding:16px 18px;margin-bottom:2px;}
+.src-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.src-name{font-size:0.78rem;font-weight:700;}
+.src-val{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:2px;}
+.src-desc{font-size:0.72rem;color:var(--muted);line-height:1.7;}
+/* Claude section */
+.claude-section{margin:32px 0 0;display:none;}
+.claude-header{font-size:0.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.claude-header::before{content:'';width:24px;height:1px;background:var(--muted);}
+.claude-prediction-box{background:var(--s1);padding:28px;margin-bottom:4px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;}
+.claude-score-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.claude-score-num{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;letter-spacing:4px;line-height:1;color:var(--orange);}
+.claude-score-sub{font-size:0.65rem;color:var(--muted);margin-top:4px;}
+.claude-niveau{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:3px;color:var(--orange);text-align:right;}
+.claude-region{font-size:0.6rem;color:var(--muted);margin-top:6px;text-align:right;line-height:1.5;}
+.claude-analysis-box{background:var(--s1);padding:22px;margin-bottom:4px;border-left:3px solid var(--orange);}
+.claude-analysis-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;}
+.claude-analysis-txt{font-size:0.88rem;line-height:2;color:var(--text);}
+.claude-pred-box{background:rgba(255,109,0,0.05);padding:22px;border-left:3px solid rgba(255,109,0,0.3);}
+.claude-pred-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.claude-pred-txt{font-size:0.88rem;line-height:2;color:var(--text);font-style:italic;}
+/* Chain */
+.chain-box{margin:24px 0 0;background:var(--s1);padding:20px;}
+.chain-title{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.chain-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--faint);}
+.chain-item:last-child{border-bottom:none;}
+.chain-n{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--s4);width:24px;flex-shrink:0;}
+.chain-t{font-size:0.78rem;line-height:1.8;color:var(--text);}
+.chain-t strong{font-weight:700;}
+/* Beaver */
+.beaver-box{background:var(--s2);padding:22px;display:flex;gap:16px;margin-top:24px;}
+.beaver-icon{font-size:1.8rem;flex-shrink:0;}
+.beaver-lbl{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.beaver-txt{font-size:0.82rem;line-height:1.9;color:var(--text);font-style:italic;}
+.beaver-txt strong{font-style:normal;font-weight:700;}
+.footer-row{display:flex;justify-content:space-between;align-items:center;padding:14px 0;border-top:1px solid var(--s3);margin-top:24px;}
+.foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
+.foot-meta{font-size:0.58rem;color:var(--muted);text-align:right;line-height:2;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.wrapper{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<div class="alert-bar" id="alert-bar">
+  <div class="a-dot"></div>
+  <div class="a-txt" id="alert-txt">🚗 Auto Theft Risk Index — Loading...</div>
+  <div class="a-time" id="clock">--:--:--</div>
+</div>
+
+<header>
+  <a href="index.html" class="logo"><span>🦫</span><div><div><span class="logo-c">BEAVER</span><span class="logo-d">.</span>WATCH</div><div class="logo-sub">Canadian Stress Barometer</div></div></a>
+  <div class="lang-toggle">
+    <span class="lang-btn active">🇬🇧 EN</span>
+    <a class="lang-btn" href="auto-theft-fr.html">🇫🇷 FR</a>
+  </div>
+</header>
+
+<div class="wrapper">
+  <a href="all-short-term.html" class="back-link">← All indicators</a>
+
+  <div class="hero">
+    <div class="hero-eyebrow">Indicator — BEAVER.WATCH</div>
+    <div class="hero-title">Auto Theft<br><em>Risk</em> Index</div>
+    <div class="hero-desc">The Beaver tracks auto theft signals 4 to 8 weeks before the newspapers do. IBC + CANAFE + Port fraud data combined.</div>
+  </div>
+
+  <!-- Score -->
+  <div class="score-box" id="score-box">
+    <div>
+      <div class="sb-label">Composite Risk Score</div>
+      <div class="sb-title" id="sb-title">⚡ AUTO THEFT RISK INDEX</div>
+      <div class="sb-sub">Équité + CANAFE + IBC · Updated monthly</div>
+      <div class="sb-bar"><div class="sb-fill" id="sb-fill" style="width:0%"></div></div>
+    </div>
+    <div>
+      <div class="sb-num" id="sb-num">—</div>
+      <div class="sb-status" id="sb-status">LOADING</div>
+    </div>
+  </div>
+
+  <!-- Risk levels -->
+  <div class="risk-grid">
+    <div class="risk-item">
+      <div class="risk-icon">🟢</div>
+      <div class="risk-range" style="color:var(--green)">0 – 39</div>
+      <div class="risk-lbl">Low Risk<br>Beaver sleeps</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon">🟠</div>
+      <div class="risk-range" style="color:var(--orange)">40 – 69</div>
+      <div class="risk-lbl">Moderate Risk<br>Beaver watches</div>
+    </div>
+    <div class="risk-item">
+      <div class="risk-icon">🔴</div>
+      <div class="risk-range" style="color:var(--red)">70 – 100</div>
+      <div class="risk-lbl">High Risk<br>Beaver sounds alarm</div>
+    </div>
+  </div>
+
+  <!-- Sources -->
+  <div class="sources-box">
+    <div class="sources-title">📊 Data Sources</div>
+
+    <div class="src-card" style="border-color:var(--red)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--red)">Équité Association</div>
+        <div class="src-val" style="color:var(--red)" id="src-equite">—</div>
+      </div>
+      <div class="src-desc">Auto financing fraud + port export data (Halifax, Vancouver, Montreal). Weight 35%</div>
+    </div>
+
+    <div class="src-card" style="border-color:var(--orange)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--orange)">CANAFE</div>
+        <div class="src-val" style="color:var(--orange)" id="src-canafe">—</div>
+      </div>
+      <div class="src-desc">Suspicious transaction reports on auto financing. Canada's financial intelligence unit. Weight 40%</div>
+    </div>
+
+    <div class="src-card" style="border-color:var(--s4)">
+      <div class="src-top">
+        <div class="src-name" style="color:var(--text)">IBC + Police Data</div>
+        <div class="src-val" style="color:var(--text)" id="src-ibc">—</div>
+      </div>
+      <div class="src-desc">Insurance Bureau of Canada + open police data. Vehicle theft statistics by region. Weight 25%</div>
+    </div>
+  </div>
+
+  <!-- Claude AI Section -->
+  <div class="claude-section" id="claude-section">
+    <div class="claude-header">🤖 AI ANALYSIS — BEAVER.WATCH</div>
+
+    <!-- Big prediction score -->
+    <div class="claude-prediction-box">
+      <div>
+        <div class="claude-score-label">🔮 PREDICTED SCORE — 4 WEEKS</div>
+        <div class="claude-score-num" id="claude-score-num">—</div>
+        <div class="claude-score-sub">out of 100</div>
+      </div>
+      <div>
+        <div class="claude-niveau" id="claude-niveau">—</div>
+        <div class="claude-region" id="claude-region"></div>
+      </div>
+    </div>
+
+    <!-- Analysis -->
+    <div class="claude-analysis-box">
+      <div class="claude-analysis-label">📊 ANALYSIS</div>
+      <div class="claude-analysis-txt" id="claude-analyse"></div>
+    </div>
+
+    <!-- Prediction -->
+    <div class="claude-pred-box">
+      <div class="claude-pred-label">🔭 WHAT THE BEAVER PREDICTS</div>
+      <div class="claude-pred-txt" id="claude-prediction"></div>
+    </div>
+  </div>
+
+  <!-- Causal chain -->
+  <div class="chain-box">
+    <div class="chain-title">🔗 How this indicator works</div>
+    <div class="chain-item"><div class="chain-n">01</div><div class="chain-t"><strong>Fraud at ports rises</strong> — Auto loans approved for vehicles never registered locally. Banks report to CANAFE.</div></div>
+    <div class="chain-item"><div class="chain-n">02</div><div class="chain-t"><strong>Export via containers increases</strong> — Halifax, Vancouver, Montreal. Local demand for stolen parts rises.</div></div>
+    <div class="chain-item"><div class="chain-n">03</div><div class="chain-t"><strong>Cash-only parts market activates</strong> — Visible signal on Kijiji Auto and Facebook Marketplace.</div></div>
+    <div class="chain-item"><div class="chain-n">04</div><div class="chain-t"><strong>Vehicle theft spike follows</strong> — Documented 4 to 8 weeks after composite signal activates. Source: GRC Project Whiplash 2023.</div></div>
+  </div>
+
+  <div class="beaver-box">
+    <div class="beaver-icon">🦫</div>
+    <div>
+      <div class="beaver-lbl">The Beaver Says</div>
+      <div class="beaver-txt" id="beaver-txt">"The banks know. The insurers know. The ports know. <strong>In 6 weeks, the newspapers will know.</strong> 🚗🦫"</div>
+    </div>
+  </div>
+
+  <div class="footer-row">
+    <div class="foot-brand">🦫 BEAVER.WATCH</div>
+    <div class="foot-meta">Updated: <span id="updated-time">—</span><br>Sources: Équité · CANAFE · IBC</div>
+  </div>
+</div>
+
+<script>
+function tick(){const n=new Date();document.getElementById('clock').textContent=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');}
+setInterval(tick,1000);tick();
+
+function getColor(v){return v>=0.70?'var(--red)':v>=0.40?'var(--orange)':'var(--green)';}
+function getStatus(v){return v>=0.70?'🔴 HIGH RISK':v>=0.40?'🟠 MODERATE RISK':'🟢 LOW RISK';}
+
+const SHEETS_URL="https://script.google.com/macros/s/AKfycbz-RYn1sNaDNJ1E3GxY5P2E4kmBizWOIGBhmm0IKAPdp_Hp4ertd5ZUghdo_xMaF4sMig/exec";
+
+window.addEventListener('load', function(){
+
+  // 1. Load Claude analysis from auto_theft_data.json
+  fetch('auto_theft_data.json?t='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(data){
+      if(data && data.claude_analysis){
+        var ca = data.claude_analysis;
+        var section = document.getElementById('claude-section');
+        section.style.display = 'block';
+
+        // Analysis text
+        var analyseEl = document.getElementById('claude-analyse');
+        if(analyseEl) analyseEl.textContent = ca.analyse_en || '';
+
+        // Prediction text
+        var predEl = document.getElementById('claude-prediction');
+        if(predEl) predEl.textContent = ca.prediction_en || '';
+
+        // Region
+        var regionEl = document.getElementById('claude-region');
+        if(regionEl) regionEl.textContent = ca.region_risque ? '📍 ' + ca.region_risque : '';
+
+        // Score prédit
+        var scoreEl = document.getElementById('claude-score-num');
+        if(scoreEl && ca.score_predit_4_semaines !== undefined && ca.score_predit_4_semaines !== null){
+          var sp = Math.round(ca.score_predit_4_semaines * 100);
+          var spColor = sp >= 65 ? 'var(--red)' : sp >= 40 ? 'var(--orange)' : 'var(--green)';
+          scoreEl.textContent = sp;
+          scoreEl.style.color = spColor;
+        }
+
+        // Niveau alerte
+        var niveauEl = document.getElementById('claude-niveau');
+        if(niveauEl && ca.niveau_alerte){
+          niveauEl.textContent = ca.niveau_alerte;
+          var nc = ca.niveau_alerte === 'CRITIQUE' ? 'var(--red)' : ca.niveau_alerte === 'TENSION' ? 'var(--orange)' : 'var(--green)';
+          niveauEl.style.color = nc;
+        }
+      }
+    })
+    .catch(function(e){ console.log('auto_theft_data error:', e); });
+
+  // 2. Load Google Sheets data
+  fetch(SHEETS_URL+'&t='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(data){
+      var composite = parseFloat(data.composite || 0.69);
+      var equite = parseFloat(data.equite || 0.72);
+      var canafe = parseFloat(data.canafe || 0.75);
+      var ibc = parseFloat(data.ibc || 0.55);
+
+      var color = getColor(composite);
+      var status = getStatus(composite);
+      var pct = Math.round(composite * 100);
+
+      // Score box
+      document.getElementById('score-box').style.borderLeftColor = color;
+      document.getElementById('sb-fill').style.width = pct + '%';
+      document.getElementById('sb-fill').style.background = color;
+      document.getElementById('sb-num').textContent = pct;
+      document.getElementById('sb-num').style.color = color;
+      document.getElementById('sb-status').textContent = status;
+      document.getElementById('sb-status').style.color = color;
+      document.getElementById('sb-title').style.color = color;
+
+      // Alert bar
+      var alertColors = {'var(--red)':'#B71C1C','var(--orange)':'#E65100','var(--green)':'#00695C'};
+      document.getElementById('alert-bar').style.background = alertColors[color] || '#B71C1C';
+      document.getElementById('alert-txt').textContent = '🚗 Auto Theft Risk Index: ' + pct + '/100 — ' + status;
+
+      // Sources
+      document.getElementById('src-equite').textContent = equite.toFixed(2);
+      document.getElementById('src-canafe').textContent = canafe.toFixed(2);
+      document.getElementById('src-ibc').textContent = ibc.toFixed(2);
+
+      // Updated
+      if(data.updated){
+        document.getElementById('updated-time').textContent = data.updated;
+      }
+    })
+    .catch(function(){
+      // Fallback
+      var pct = 69;
+      document.getElementById('sb-num').textContent = pct;
+      document.getElementById('sb-fill').style.width = pct + '%';
+      document.getElementById('sb-status').textContent = '🟠 MODERATE RISK';
+      document.getElementById('src-equite').textContent = '0.72';
+      document.getElementById('src-canafe').textContent = '0.75';
+      document.getElementById('src-ibc').textContent = '0.55';
+    });
+});
+</script>
+</body>
+</html>
