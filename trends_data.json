@@ -1,10 +1,10 @@
 {
-  "updated": "2026-05-14 14:21",
+  "updated": "2026-05-14 14:26",
   "source": "Google Trends",
-  "timeframe": "7 derniers jours",
+  "timeframe": "Last 7 days",
   "keywords": {
     "payday_loan": {
-      "label_fr": "Prêts Payday",
+      "label_fr": "Prets Payday",
       "label_en": "Payday Loans",
       "emoji": "💸",
       "raw_score": null,
@@ -13,11 +13,11 @@
         "label_fr": "N/A",
         "label_en": "N/A",
         "color": "gray",
-        "emoji": "❓"
+        "emoji": "?"
       },
       "weight": 0.3
     },
-    "aide_alimentaire": {
+    "food_bank": {
       "label_fr": "Aide Alimentaire",
       "label_en": "Food Assistance",
       "emoji": "🍞",
@@ -27,11 +27,11 @@
         "label_fr": "N/A",
         "label_en": "N/A",
         "color": "gray",
-        "emoji": "❓"
+        "emoji": "?"
       },
       "weight": 0.25
     },
-    "faillite": {
+    "bankruptcy": {
       "label_fr": "Faillite",
       "label_en": "Bankruptcy",
       "emoji": "📉",
@@ -41,11 +41,11 @@
         "label_fr": "N/A",
         "label_en": "N/A",
         "color": "gray",
-        "emoji": "❓"
+        "emoji": "?"
       },
       "weight": 0.25
     },
-    "logement_stress": {
+    "housing_stress": {
       "label_fr": "Stress Logement",
       "label_en": "Housing Stress",
       "emoji": "🏠",
@@ -55,7 +55,7 @@
         "label_fr": "N/A",
         "label_en": "N/A",
         "color": "gray",
-        "emoji": "❓"
+        "emoji": "?"
       },
       "weight": 0.2
     }

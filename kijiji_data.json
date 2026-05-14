@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 14:19",
+  "updated": "2026-05-14 14:24",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -27,9 +27,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 594,
+          "count": 595,
           "baseline": 2840,
-          "change_pct": -79.1,
+          "change_pct": -79.0,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
