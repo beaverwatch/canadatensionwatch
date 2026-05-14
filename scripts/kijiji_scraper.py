@@ -5,50 +5,69 @@ import random
 import re
 import os
 from datetime import datetime
-from calendar import monthrange
 
 # ============================================
-# BEAVER.WATCH — Kijiji Scraper v3.0
-# + Claude API Analysis intégrée
+# BEAVER.WATCH — Kijiji Scraper v3.1
+# Fixes:
+# - Bilingual keywords (FR/EN by city)
+# - Claude API header fix
 # ============================================
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
 
-CITIES = {
-    "montreal": {"id": "1700281", "name": "Montréal"},
-    "toronto":  {"id": "1700272", "name": "Toronto"},
-    "vancouver":{"id": "1700254", "name": "Vancouver"},
-}
-
+# Mots-clés par ville
+# Montréal = français, Toronto/Vancouver = anglais
 CATEGORIES = {
     "outils": {
         "label_fr": "Outils & Équipement",
         "label_en": "Tools & Equipment",
-        "signal":   "Entrepreneurs liquidating",
-        "emoji":    "🔧",
-        "weight":   0.35
+        "emoji": "🔧",
+        "weight": 0.35,
+        "keywords": {
+            "montreal": "outils",
+            "toronto": "tools",
+            "vancouver": "tools",
+        }
     },
     "electronique": {
         "label_fr": "Consoles & Électronique",
         "label_en": "Electronics & Gaming",
-        "signal":   "Households selling assets",
-        "emoji":    "🎮",
-        "weight":   0.25
+        "emoji": "🎮",
+        "weight": 0.25,
+        "keywords": {
+            "montreal": "electronique",
+            "toronto": "electronics",
+            "vancouver": "electronics",
+        }
     },
     "transfert-bail": {
         "label_fr": "Transfert de Bail",
         "label_en": "Lease Transfers",
-        "signal":   "People fleeing housing costs",
-        "emoji":    "🏠",
-        "weight":   0.25
+        "emoji": "🏠",
+        "weight": 0.25,
+        "keywords": {
+            "montreal": "transfert-bail",
+            "toronto": "lease-takeover",
+            "vancouver": "lease-takeover",
+        }
     },
-    "bijoux-montres": {
+    "bijoux": {
         "label_fr": "Bijoux & Montres",
         "label_en": "Jewelry & Watches",
-        "signal":   "Families selling valuables",
-        "emoji":    "💍",
-        "weight":   0.15
+        "emoji": "💍",
+        "weight": 0.15,
+        "keywords": {
+            "montreal": "bijoux",
+            "toronto": "jewelry",
+            "vancouver": "jewelry",
+        }
     },
+}
+
+CITIES = {
+    "montreal": {"id": "1700281", "name": "Montréal"},
+    "toronto":  {"id": "1700272", "name": "Toronto"},
+    "vancouver": {"id": "1700254", "name": "Vancouver"},
 }
 
 USER_AGENTS = [
@@ -57,9 +76,13 @@ USER_AGENTS = [
     "Mozilla/5.0 (X11; Linux x86_64; rv:125.0) Gecko/20100101 Firefox/125.0",
 ]
 
+# ============================================
+# CLAUDE API — Fixed
+# ============================================
+
 def analyze_with_claude(today_data, history):
     if not ANTHROPIC_API_KEY:
-        print("No API key — skipping Claude analysis")
+        print("No API key — skipping")
         return None
 
     print("\n🤖 Claude API analysis...")
@@ -70,43 +93,39 @@ def analyze_with_claude(today_data, history):
     }
 
     national = today_data.get("national_score", 0)
-    cities = {
-        city: {
+    cities = {}
+    for city, data in today_data.get("cities", {}).items():
+        cities[city] = {
             "score": data.get("composite_score"),
             "categories": {
-                k: {"change_pct": v.get("change_pct"), "status": v.get("status", {}).get("label_en")}
+                k: {"change_pct": v.get("change_pct")}
                 for k, v in data.get("categories", {}).items()
             }
         }
-        for city, data in today_data.get("cities", {}).items()
-    }
 
-    prompt = f"""Tu es l'analyste de BEAVER.WATCH, baromètre de stress économique canadien.
-
-AUJOURD'HUI ({datetime.now().strftime('%Y-%m-%d')}) :
-Score national Kijiji : {national} / 1.0
-Villes : {json.dumps(cities, ensure_ascii=False)}
-
-HISTORIQUE 30 JOURS :
-{json.dumps(history_summary, ensure_ascii=False)}
-
-Génère UNIQUEMENT ce JSON :
-
-{{
-  "analyse_fr": "3-4 phrases. Analyse le score, compare historique, identifie signal dominant, impact pour Canadiens.",
-  "analyse_en": "Same in English.",
-  "prediction_fr": "1-2 phrases. Prédiction concrète 4-8 semaines.",
-  "prediction_en": "Same in English.",
-  "signal_dominant": "Signal le plus fort en 5 mots max",
-  "niveau_alerte": "NORMAL ou TENSION ou CRISE",
-  "score_predit_4_semaines": 0.0
-}}"""
+    prompt = (
+        "Tu es l'analyste de BEAVER.WATCH, barometre de stress economique canadien.\n\n"
+        f"AUJOURD'HUI ({datetime.now().strftime('%Y-%m-%d')}) :\n"
+        f"Score national Kijiji : {national} / 1.0\n"
+        f"Villes : {json.dumps(cities, ensure_ascii=False)}\n\n"
+        f"HISTORIQUE 30 JOURS :\n{json.dumps(history_summary, ensure_ascii=False)}\n\n"
+        "Genere UNIQUEMENT ce JSON sans backticks:\n"
+        "{\n"
+        '  "analyse_fr": "3-4 phrases en francais sur le score du jour et impact.",\n'
+        '  "analyse_en": "Same in English.",\n'
+        '  "prediction_fr": "1-2 phrases. Prediction 4-8 semaines.",\n'
+        '  "prediction_en": "Same in English.",\n'
+        '  "signal_dominant": "Signal principal en 5 mots max",\n'
+        '  "niveau_alerte": "NORMAL ou TENSION ou CRISE",\n'
+        '  "score_predit_4_semaines": 0.0\n'
+        "}"
+    )
 
     try:
         response = requests.post(
             "https://api.anthropic.com/v1/messages",
             headers={
-                "x-api-key": ANTHROPIC_API_KEY,
+                "x-api-key": ANTHROPIC_API_KEY.strip(),
                 "anthropic-version": "2023-06-01",
                 "content-type": "application/json",
             },
@@ -120,19 +139,34 @@ Génère UNIQUEMENT ce JSON :
 
         if response.status_code == 200:
             content = response.json()["content"][0]["text"].strip()
+            # Remove any markdown if present
             if "```" in content:
-                content = content.split("```")[1]
-                if content.startswith("json"):
-                    content = content[4:]
-            analysis = json.loads(content.strip())
+                parts = content.split("```")
+                for part in parts:
+                    if "{" in part:
+                        content = part.strip()
+                        if content.startswith("json"):
+                            content = content[4:].strip()
+                        break
+            analysis = json.loads(content)
             print("✅ Claude analysis done!")
+            print(f"   Signal: {analysis.get('signal_dominant')}")
+            print(f"   Alerte: {analysis.get('niveau_alerte')}")
             return analysis
         else:
-            print(f"API error: {response.status_code}")
+            print(f"API error {response.status_code}: {response.text[:200]}")
             return None
+
+    except json.JSONDecodeError as e:
+        print(f"JSON parse error: {e}")
+        return None
     except Exception as e:
         print(f"Claude error: {e}")
         return None
+
+# ============================================
+# PAYDAY
+# ============================================
 
 def get_pay_period():
     today = datetime.now().day
@@ -145,7 +179,7 @@ def get_pay_period():
         }
     return {
         "period": "apres-paye", "period_en": "after-payday",
-        "label_fr": "Après la Paye", "label_en": "After Payday",
+        "label_fr": "Apres la Paye", "label_en": "After Payday",
         "day_of_month": today, "days_until_payday": None,
         "days_since_payday": today - 15, "emoji": "📈"
     }
@@ -155,83 +189,119 @@ def check_payday_alert(score, pay_period):
         days = pay_period["days_since_payday"]
         if days >= 3 and score >= 0.65:
             return {"active": True, "level": "CRITIQUE",
-                    "message_fr": "🚨 Score critique après la paye. Canadiens trop endettés.",
-                    "message_en": "🚨 Critical score after payday. Canadians over-indebted.",
+                    "message_fr": "ALERTE : Score critique apres la paye.",
+                    "message_en": "ALERT: Critical score after payday.",
                     "days_since_payday": days}
         elif days >= 3 and score >= 0.50:
             return {"active": True, "level": "TENSION",
-                    "message_fr": "⚠️ Stress élevé après la paye.",
-                    "message_en": "⚠️ High stress after payday.",
+                    "message_fr": "TENSION : Stress eleve apres la paye.",
+                    "message_en": "TENSION: High stress after payday.",
                     "days_since_payday": days}
-    return {"active": False, "level": None, "message_fr": None, "message_en": None, "days_since_payday": None}
+    return {"active": False, "level": None, "message_fr": None,
+            "message_en": None, "days_since_payday": None}
+
+# ============================================
+# SCRAPER
+# ============================================
 
 def get_count(keyword, city_id):
     url = f"https://www.kijiji.ca/b-{city_id}/{keyword}/k0l{city_id}"
     headers = {
         "User-Agent": random.choice(USER_AGENTS),
-        "Accept-Language": "fr-CA,fr;q=0.9,en-CA;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9,fr-CA;q=0.8",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Referer": "https://www.kijiji.ca/",
     }
     try:
         resp = requests.get(url, headers=headers, timeout=15)
         if resp.status_code != 200:
-            print(f"HTTP {resp.status_code}"); return None
-        title_match = re.search(r'<title[^>]*>(.*?)</title>', resp.text, re.IGNORECASE | re.DOTALL)
+            print(f"HTTP {resp.status_code}")
+            return None
+
+        title_match = re.search(r'<title[^>]*>(.*?)</title>',
+                                resp.text, re.IGNORECASE | re.DOTALL)
         if not title_match:
-            print("no title"); return None
+            print("no title")
+            return None
+
         title = title_match.group(1).strip()
-        print(f'"{title[:45]}"', end=" → ")
-        if any(x in title.lower() for x in ["aucune", "no ads", "0 annonce"]):
-            print("0"); return 0
+        print(f'"{title[:45]}"', end=" -> ")
+
+        if any(x in title.lower() for x in ["aucune", "no ads", "0 annonce", "0 ad"]):
+            print("0")
+            return 0
+
         for raw in re.findall(r'\d[\d\s,\.]*\d|\d', title):
             cleaned = re.sub(r'[\s,\.]', '', raw)
             if cleaned.isdigit() and int(cleaned) > 0:
-                print(int(cleaned)); return int(cleaned)
-        print("parse failed"); return None
+                print(int(cleaned))
+                return int(cleaned)
+
+        print("parse failed")
+        return None
+
     except requests.Timeout:
-        print("timeout"); return None
+        print("timeout")
+        return None
     except Exception as e:
-        print(f"error: {e}"); return None
+        print(f"error: {e}")
+        return None
 
 def calculate_score(current, baseline):
-    if baseline is None or baseline == 0 or current is None: return None
+    if baseline is None or baseline == 0 or current is None:
+        return None
     change = ((current - baseline) / baseline) * 100
-    if change <= 0: return max(0.05, round(0.15 + (change / 200), 2))
-    elif change <= 5: return round(0.15 + (change / 5) * 0.20, 2)
-    elif change <= 15: return round(0.35 + ((change - 5) / 10) * 0.30, 2)
-    elif change <= 30: return round(0.65 + ((change - 15) / 15) * 0.25, 2)
-    else: return min(1.0, round(0.90 + ((change - 30) / 50) * 0.10, 2))
+    if change <= 0:
+        return max(0.05, round(0.15 + (change / 200), 2))
+    elif change <= 5:
+        return round(0.15 + (change / 5) * 0.20, 2)
+    elif change <= 15:
+        return round(0.35 + ((change - 5) / 10) * 0.30, 2)
+    elif change <= 30:
+        return round(0.65 + ((change - 15) / 15) * 0.25, 2)
+    else:
+        return min(1.0, round(0.90 + ((change - 30) / 50) * 0.10, 2))
 
 def get_status(score):
-    if score is None: return {"label_fr": "N/A", "label_en": "N/A", "color": "gray", "emoji": "❓"}
-    if score < 0.35: return {"label_fr": "Normal", "label_en": "Normal", "color": "green", "emoji": "🟢"}
-    if score < 0.65: return {"label_fr": "Tension", "label_en": "Tension", "color": "orange", "emoji": "🟠"}
+    if score is None:
+        return {"label_fr": "N/A", "label_en": "N/A", "color": "gray", "emoji": "?"}
+    if score < 0.35:
+        return {"label_fr": "Normal", "label_en": "Normal", "color": "green", "emoji": "🟢"}
+    if score < 0.65:
+        return {"label_fr": "Tension", "label_en": "Tension", "color": "orange", "emoji": "🟠"}
     return {"label_fr": "CRISE", "label_en": "CRISIS", "color": "red", "emoji": "🔴"}
 
+# ============================================
+# MAIN
+# ============================================
+
 def run():
-    print("🦫 BEAVER.WATCH — Kijiji v3.0 + Claude API")
+    print("🦫 BEAVER.WATCH — Kijiji v3.1 + Claude API")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print("=" * 52)
 
     try:
-        with open('kijiji_baseline.json', 'r') as f: baseline = json.load(f)
+        with open('kijiji_baseline.json', 'r') as f:
+            baseline = json.load(f)
         print("✅ Baseline loaded")
     except FileNotFoundError:
-        baseline = {}; print("⚠️ No baseline")
+        baseline = {}
+        print("No baseline — creating")
 
     try:
-        with open('kijiji_history.json', 'r') as f: history = json.load(f)
-        print(f"✅ History: {len(history)} jours")
+        with open('kijiji_history.json', 'r') as f:
+            history = json.load(f)
+        print(f"✅ History: {len(history)} days")
     except FileNotFoundError:
-        history = {}; print("⚠️ No history")
+        history = {}
+        print("No history — starting fresh")
 
     pay_period = get_pay_period()
-    print(f"\n💰 {pay_period['label_fr']} — Jour {pay_period['day_of_month']}")
+    print(f"\n💰 {pay_period['label_fr']} — Day {pay_period['day_of_month']}")
 
     output = {
         "updated": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "version": "3.0",
+        "version": "3.1",
         "pay_period": pay_period,
         "payday_alert": None,
         "cities": {},
@@ -245,28 +315,50 @@ def run():
 
     for city_key, city_info in CITIES.items():
         print(f"\n📍 {city_info['name']}")
-        city_result = {"name_fr": city_info['name'], "name_en": city_info['name'],
-                       "categories": {}, "composite_score": None, "composite_status": None}
+        city_result = {
+            "name_fr": city_info['name'],
+            "name_en": city_info['name'],
+            "categories": {},
+            "composite_score": None,
+            "composite_status": None,
+        }
         weighted_scores = []
 
         for cat_key, cat_info in CATEGORIES.items():
-            delay = random.uniform(6, 14)
+            delay = random.uniform(6, 12)
             time.sleep(delay)
-            print(f"  [{delay:.0f}s] {cat_key}: ", end="", flush=True)
-            count = get_count(cat_key, city_info['id'])
+
+            # Mot-clé adapté à la ville
+            keyword = cat_info['keywords'][city_key]
+            print(f"  [{delay:.0f}s] {keyword}: ", end="", flush=True)
+
+            count = get_count(keyword, city_info['id'])
             bkey = f"{city_key}_{cat_key}"
             base_count = baseline.get(bkey)
+
             if base_count is None and count is not None:
-                baseline[bkey] = count; base_count = count
+                baseline[bkey] = count
+                base_count = count
+
             score = calculate_score(count, base_count)
-            change_pct = round(((count - base_count) / base_count) * 100, 1) if count and base_count else None
+            change_pct = None
+            if count is not None and base_count:
+                change_pct = round(((count - base_count) / base_count) * 100, 1)
+
             city_result['categories'][cat_key] = {
-                "label_fr": cat_info['label_fr'], "label_en": cat_info['label_en'],
-                "emoji": cat_info['emoji'], "signal": cat_info['signal'],
-                "count": count, "baseline": base_count, "change_pct": change_pct,
-                "score": score, "status": get_status(score), "weight": cat_info['weight'],
+                "label_fr": cat_info['label_fr'],
+                "label_en": cat_info['label_en'],
+                "emoji": cat_info['emoji'],
+                "count": count,
+                "baseline": base_count,
+                "change_pct": change_pct,
+                "score": score,
+                "status": get_status(score),
+                "weight": cat_info['weight'],
             }
-            if score is not None: weighted_scores.append((score, cat_info['weight']))
+
+            if score is not None:
+                weighted_scores.append((score, cat_info['weight']))
 
         if weighted_scores:
             total_w = sum(w for _, w in weighted_scores)
@@ -284,21 +376,23 @@ def run():
         output['national_score'] = national
         output['national_status'] = get_status(national)
         print(f"\n🍁 NATIONAL: {national} {get_status(national)['emoji']}")
+
         output['payday_alert'] = check_payday_alert(national, pay_period)
 
         date_key = datetime.now().strftime("%Y-%m-%d")
         history[date_key] = {
-            "national_score": national, "city_scores": city_composite_scores,
-            "pay_period": pay_period['period'], "date": date_key,
+            "national_score": national,
+            "city_scores": city_composite_scores,
+            "pay_period": pay_period['period'],
+            "date": date_key,
         }
 
-        # 🤖 CLAUDE ANALYSIS
+        # Claude Analysis
         claude_analysis = analyze_with_claude(output, history)
         if claude_analysis:
             output['claude_analysis'] = claude_analysis
-            print(f"\n🔮 {claude_analysis.get('signal_dominant')}")
-            print(f"📊 {claude_analysis.get('niveau_alerte')}")
 
+    # Save files
     with open('kijiji_data.json', 'w', encoding='utf-8') as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
     print("\n✅ kijiji_data.json saved")
