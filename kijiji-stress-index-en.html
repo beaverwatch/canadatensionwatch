@@ -242,6 +242,58 @@ header{padding:18px 28px;display:flex;align-items:center;justify-content:space-b
     <div class="method-txt">Automated Python script via GitHub Actions — runs every morning at 7:00 AM. Counts active listings per category on Kijiji.ca for Montréal, Toronto and Vancouver. <strong>Measures the change vs the launch baseline (May 11, 2026).</strong> Score = normalized variation on a 0–1 scale. A script collects the data. The public JSON is updated automatically. No personal data collected.</div>
   </div>
 
+  <!-- Navigation to other Kijiji pages -->
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--s3);margin-top:24px;">
+    <a href="kijiji-payday-alert-en.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+      <div style="font-size:1.4rem;">💰</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Payday Alert</div>
+      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Does stress drop after payday? If not — red alert.</div>
+      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">View →</div>
+    </a>
+    <a href="kijiji-monthly-report-en.html" style="background:var(--s1);padding:18px;text-decoration:none;display:flex;flex-direction:column;gap:6px;transition:background 0.2s;" onmouseover="this.style.background='var(--s2)'" onmouseout="this.style.background='var(--s1)'">
+      <div style="font-size:1.4rem;">📋</div>
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);">Monthly Report</div>
+      <div style="font-size:0.65rem;color:var(--muted);line-height:1.6;">Published on the 1st of each month. Citable by media.</div>
+      <div style="font-size:0.6rem;color:var(--orange);margin-top:4px;">View →</div>
+    </a>
+  </div>
+
+  <!-- Claude Analysis Section — REDESIGNED -->
+  <div id="claude-section" style="display:none;margin-top:32px;">
+
+    <!-- Header -->
+    <div style="font-size:0.58rem;letter-spacing:4px;text-transform:uppercase;color:var(--muted);margin-bottom:16px;display:flex;align-items:center;gap:10px;">
+      <div style="width:24px;height:1px;background:var(--muted);"></div>
+      🤖 AI ANALYSIS — BEAVER.WATCH
+    </div>
+
+    <!-- Big prediction score — THE STAR -->
+    <div style="background:var(--s1);padding:28px;margin-bottom:4px;display:grid;grid-template-columns:1fr auto;align-items:center;gap:20px;">
+      <div>
+        <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">🔮 PREDICTED SCORE — 4 WEEKS</div>
+        <div id="claude-score-predit" style="font-family:'Bebas Neue',sans-serif;font-size:4rem;letter-spacing:4px;line-height:1;color:var(--orange);">—</div>
+        <div style="font-size:0.65rem;color:var(--muted);margin-top:4px;">out of 100</div>
+      </div>
+      <div style="text-align:right;">
+        <div id="claude-niveau" style="font-family:'Bebas Neue',sans-serif;font-size:1.2rem;letter-spacing:3px;color:var(--orange);">—</div>
+        <div id="claude-signal" style="font-size:0.6rem;letter-spacing:1px;color:var(--muted);margin-top:6px;max-width:140px;text-align:right;line-height:1.5;"></div>
+      </div>
+    </div>
+
+    <!-- Analysis text -->
+    <div style="background:var(--s1);padding:22px;margin-bottom:4px;border-left:3px solid var(--orange);">
+      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--orange);margin-bottom:10px;">📊 ANALYSIS</div>
+      <div id="claude-analyse" style="font-size:0.88rem;line-height:2;color:var(--text);"></div>
+    </div>
+
+    <!-- Prediction text -->
+    <div style="background:rgba(255,109,0,0.05);padding:22px;border-left:3px solid rgba(255,109,0,0.3);">
+      <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">🔭 WHAT THE BEAVER PREDICTS</div>
+      <div id="claude-prediction" style="font-size:0.88rem;line-height:2;color:var(--text);font-style:italic;"></div>
+    </div>
+
+  </div>
+
   <div class="beaver-box">
     <div class="beaver-icon">🦫</div>
     <div>
@@ -359,6 +411,26 @@ fetch('kijiji_data.json?t=' + Date.now())
 
       if (city.categories) renderCats(cityKey, city.categories);
     });
+
+    // Claude Analysis
+    if (data.claude_analysis) {
+      const ca = data.claude_analysis;
+      document.getElementById('claude-section').style.display = 'block';
+      document.getElementById('claude-analyse').textContent = ca.analyse_en || '';
+      document.getElementById('claude-prediction').textContent = ca.prediction_en || '';
+      document.getElementById('claude-signal').textContent = '⚡ ' + (ca.signal_dominant || '');
+      if (ca.score_predit_4_semaines !== undefined && ca.score_predit_4_semaines !== null) {
+        const sp = Math.round(ca.score_predit_4_semaines * 100);
+        const spColor = sp >= 65 ? 'var(--red)' : sp >= 40 ? 'var(--orange)' : 'var(--green)';
+        document.getElementById('claude-score-predit').textContent = sp;
+        document.getElementById('claude-score-predit').style.color = spColor;
+      }
+      if (ca.niveau_alerte) {
+        document.getElementById('claude-niveau').textContent = ca.niveau_alerte;
+        const nc = ca.niveau_alerte === 'CRISE' ? 'var(--red)' : ca.niveau_alerte === 'TENSION' ? 'var(--orange)' : 'var(--green)';
+        document.getElementById('claude-niveau').style.color = nc;
+      }
+    }
   })
   .catch(() => {
     document.getElementById('alert-txt').textContent = '📦 Kijiji Stress Index — Data temporarily unavailable';
