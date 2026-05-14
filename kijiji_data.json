@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 14:06",
+  "updated": "2026-05-14 14:19",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -104,7 +104,7 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12557,
+          "count": 12556,
           "baseline": 4200,
           "change_pct": 199.0,
           "score": 1.0,
@@ -120,9 +120,9 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 6268,
+          "count": 6271,
           "baseline": 6267,
-          "change_pct": 0.0,
+          "change_pct": 0.1,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
@@ -152,9 +152,9 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 4402,
+          "count": 4401,
           "baseline": 4402,
-          "change_pct": 0.0,
+          "change_pct": -0.0,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
