@@ -346,7 +346,7 @@ setInterval(tick,1000);tick();
 window.addEventListener('load',()=>{
   // Show fallback scores IMMEDIATELY
   setScore('st-num','st-status','st-bar',57);
-  setScore('lt-num','lt-status','lt-bar',68);
+  setScore('lt-num','lt-status','lt-bar',64);
   document.getElementById('v1').textContent='0.72';document.getElementById('v1').style.color='var(--red)';
   document.getElementById('bar1').style.width='72%';document.getElementById('bar1').style.background='var(--red)';
   document.getElementById('b1').textContent='🔴 CRITICAL';document.getElementById('b1').className='badge br';
@@ -385,7 +385,7 @@ window.addEventListener('load',()=>{
       document.getElementById('t5').textContent=parseFloat(c2).toFixed(2)+' '+getEmoji(c2);
       document.getElementById('t6').textContent=parseFloat(hc).toFixed(2)+' '+getEmoji(hc);
       const stAvg=data.shortTermScore||0.57;
-      const ltAvg=data.longTermScore||0.68;
+      const ltAvg=data.longTermScore||0.64;
       setScore('st-num','st-status','st-bar',Math.round(stAvg*100));
       setScore('lt-num','lt-status','lt-bar',Math.round(ltAvg*100));
     })
