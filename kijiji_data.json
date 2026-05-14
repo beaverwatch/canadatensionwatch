@@ -1,5 +1,23 @@
 {
-  "updated": "2026-05-13 18:21",
+  "updated": "2026-05-14 13:52",
+  "version": "3.1",
+  "pay_period": {
+    "period": "avant-paye",
+    "period_en": "before-payday",
+    "label_fr": "Avant la Paye",
+    "label_en": "Before Payday",
+    "day_of_month": 14,
+    "days_until_payday": 1,
+    "days_since_payday": null,
+    "emoji": "📉"
+  },
+  "payday_alert": {
+    "active": false,
+    "level": null,
+    "message_fr": null,
+    "message_en": null,
+    "days_since_payday": null
+  },
   "cities": {
     "montreal": {
       "name_fr": "Montréal",
@@ -9,10 +27,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "signal": "Entrepreneurs liquidating",
-          "count": 602,
+          "count": 594,
           "baseline": 2840,
-          "change_pct": -78.8,
+          "change_pct": -79.1,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -26,11 +43,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "signal": "Households selling assets",
-          "count": 576,
+          "count": 577,
           "baseline": 576,
-          "change_pct": 0.0,
-          "score": 0.15,
+          "change_pct": 0.2,
+          "score": 0.16,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -43,10 +59,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "signal": "People fleeing housing costs",
-          "count": 39,
+          "count": 41,
           "baseline": 380,
-          "change_pct": -89.7,
+          "change_pct": -89.2,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -56,25 +71,24 @@
           },
           "weight": 0.25
         },
-        "bijoux-montres": {
+        "bijoux": {
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "signal": "Families selling valuables",
-          "count": null,
-          "baseline": 920,
-          "change_pct": null,
-          "score": null,
+          "count": 502,
+          "baseline": 502,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "❓"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.15
         }
       },
-      "composite_score": 0.08,
+      "composite_score": 0.09,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -90,16 +104,15 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "signal": "Entrepreneurs liquidating",
-          "count": null,
+          "count": 12555,
           "baseline": 4200,
-          "change_pct": null,
-          "score": null,
+          "change_pct": 198.9,
+          "score": 1.0,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "❓"
+            "label_fr": "CRISE",
+            "label_en": "CRISIS",
+            "color": "red",
+            "emoji": "🔴"
           },
           "weight": 0.35
         },
@@ -107,16 +120,15 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "signal": "Households selling assets",
-          "count": null,
-          "baseline": null,
-          "change_pct": null,
-          "score": null,
+          "count": 6267,
+          "baseline": 6267,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "❓"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.25
         },
@@ -124,39 +136,42 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "signal": "People fleeing housing costs",
-          "count": null,
+          "count": 0,
           "baseline": 610,
-          "change_pct": null,
-          "score": null,
+          "change_pct": -100.0,
+          "score": 0.05,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "❓"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.25
         },
-        "bijoux-montres": {
+        "bijoux": {
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "signal": "Families selling valuables",
-          "count": null,
-          "baseline": 1580,
-          "change_pct": null,
-          "score": null,
+          "count": 4402,
+          "baseline": 4402,
+          "change_pct": 0.0,
+          "score": 0.15,
           "status": {
-            "label_fr": "N/A",
-            "label_en": "N/A",
-            "color": "gray",
-            "emoji": "❓"
+            "label_fr": "Normal",
+            "label_en": "Normal",
+            "color": "green",
+            "emoji": "🟢"
           },
           "weight": 0.15
         }
       },
-      "composite_score": null,
-      "composite_status": null
+      "composite_score": 0.42,
+      "composite_status": {
+        "label_fr": "Tension",
+        "label_en": "Tension",
+        "color": "orange",
+        "emoji": "🟠"
+      }
     },
     "vancouver": {
       "name_fr": "Vancouver",
@@ -166,7 +181,6 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "signal": "Entrepreneurs liquidating",
           "count": null,
           "baseline": 2100,
           "change_pct": null,
@@ -175,7 +189,7 @@
             "label_fr": "N/A",
             "label_en": "N/A",
             "color": "gray",
-            "emoji": "❓"
+            "emoji": "?"
           },
           "weight": 0.35
         },
@@ -183,7 +197,6 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "signal": "Households selling assets",
           "count": null,
           "baseline": null,
           "change_pct": null,
@@ -192,7 +205,7 @@
             "label_fr": "N/A",
             "label_en": "N/A",
             "color": "gray",
-            "emoji": "❓"
+            "emoji": "?"
           },
           "weight": 0.25
         },
@@ -200,7 +213,6 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "signal": "People fleeing housing costs",
           "count": null,
           "baseline": 290,
           "change_pct": null,
@@ -209,24 +221,23 @@
             "label_fr": "N/A",
             "label_en": "N/A",
             "color": "gray",
-            "emoji": "❓"
+            "emoji": "?"
           },
           "weight": 0.25
         },
-        "bijoux-montres": {
+        "bijoux": {
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "signal": "Families selling valuables",
           "count": null,
-          "baseline": 740,
+          "baseline": null,
           "change_pct": null,
           "score": null,
           "status": {
             "label_fr": "N/A",
             "label_en": "N/A",
             "color": "gray",
-            "emoji": "❓"
+            "emoji": "?"
           },
           "weight": 0.15
         }
@@ -235,11 +246,12 @@
       "composite_status": null
     }
   },
-  "national_score": 0.08,
+  "national_score": 0.26,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
     "color": "green",
     "emoji": "🟢"
-  }
+  },
+  "claude_analysis": null
 }

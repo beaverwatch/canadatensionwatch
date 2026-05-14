@@ -1,0 +1,11 @@
+{
+  "2026-05-14": {
+    "national_score": 0.26,
+    "city_scores": {
+      "montreal": 0.09,
+      "toronto": 0.42
+    },
+    "pay_period": "avant-paye",
+    "date": "2026-05-14"
+  }
+}
