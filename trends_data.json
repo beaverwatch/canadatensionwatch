@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 23:18",
+  "updated": "2026-05-14 23:30",
   "source": "Google Trends",
   "timeframe": "Last 7 days",
   "keywords": {
@@ -7,7 +7,7 @@
       "label_fr": "Prets Payday",
       "label_en": "Payday Loans",
       "emoji": "💸",
-      "raw_score": 5.6,
+      "raw_score": 5.8,
       "stress_score": 0.07,
       "status": {
         "label_fr": "Normal",
@@ -35,7 +35,7 @@
       "label_fr": "Faillite",
       "label_en": "Bankruptcy",
       "emoji": "📉",
-      "raw_score": 2.6,
+      "raw_score": 2.7,
       "stress_score": 0.05,
       "status": {
         "label_fr": "Normal",
@@ -49,7 +49,7 @@
       "label_fr": "Stress Logement",
       "label_en": "Housing Stress",
       "emoji": "🏠",
-      "raw_score": 0.3,
+      "raw_score": 0.5,
       "stress_score": 0.05,
       "status": {
         "label_fr": "Normal",

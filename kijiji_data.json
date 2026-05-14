@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 23:16",
+  "updated": "2026-05-14 23:28",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -152,9 +152,9 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 4403,
+          "count": 4401,
           "baseline": 4402,
-          "change_pct": 0.0,
+          "change_pct": -0.0,
           "score": 0.15,
           "status": {
             "label_fr": "Normal",
