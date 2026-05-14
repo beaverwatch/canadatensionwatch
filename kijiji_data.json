@@ -1,5 +1,5 @@
 {
-  "updated": "2026-05-14 15:56",
+  "updated": "2026-05-14 16:19",
   "version": "3.1",
   "pay_period": {
     "period": "avant-paye",
@@ -104,9 +104,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12553,
+          "count": 12544,
           "baseline": 4200,
-          "change_pct": 198.9,
+          "change_pct": 198.7,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -120,10 +120,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 6273,
+          "count": 0,
           "baseline": 6267,
-          "change_pct": 0.1,
-          "score": 0.15,
+          "change_pct": -100.0,
+          "score": 0.05,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -165,7 +165,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.42,
+      "composite_score": 0.4,
       "composite_status": {
         "label_fr": "Tension",
         "label_en": "Tension",
@@ -251,7 +251,7 @@
       }
     }
   },
-  "national_score": 0.2,
+  "national_score": 0.19,
   "national_status": {
     "label_fr": "Normal",
     "label_en": "Normal",
@@ -259,11 +259,11 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score national Kijiji s'établit à 0.2/1.0 aujourd'hui, un niveau modéré qui ne signale pas de détresse économique généralisée au Canada. Toronto se démarque nettement avec un score de 0.42, porté notamment par une hausse spectaculaire de 198.9% des annonces d'outils, ce qui suggère une pression financière localisée dans ce marché. Montréal et Vancouver restent très calmes avec des scores de 0.09 et 0.08 respectivement, les transferts de bail étant en forte baisse dans les deux villes. Le contexte de période avant-paye peut légèrement amplifier les signaux de vente observés aujourd'hui.",
-    "analyse_en": "The national Kijiji score stands at 0.2/1.0 today, a moderate level that does not signal widespread economic distress across Canada. Toronto stands out with a score of 0.42, driven notably by a spectacular 198.9% surge in tool listings, suggesting localized financial pressure in that market. Montreal and Vancouver remain very calm at 0.09 and 0.08 respectively, with lease transfers declining sharply in both cities. The pre-payday context may be slightly amplifying the selling signals observed today.",
-    "prediction_fr": "Au cours des 4 à 8 prochaines semaines, le score national devrait rester dans la zone basse à modérée, autour de 0.25 à 0.30, sauf si les pressions sur le marché torontois s'intensifient ou se propagent aux autres grandes villes. La hausse des annonces d'outils à Toronto mérite une surveillance étroite comme indicateur avancé de stress des ménages.",
-    "prediction_en": "Over the next 4 to 8 weeks, the national score should remain in the low-to-moderate range, around 0.25 to 0.30, unless pressures in the Toronto market intensify or spread to other major cities. The surge in tool listings in Toronto warrants close monitoring as a leading indicator of household stress.",
-    "signal_dominant": "Toronto outils en hausse",
+    "analyse_fr": "Le score national Kijiji s'établit à 0.19/1.0 aujourd'hui, un niveau modéré-bas indiquant peu de stress économique généralisé en cette période d'avant-paye. Toronto se démarque nettement avec un score de 0.40, porté par une hausse spectaculaire de 198.7% des annonces d'outils, signal classique de ménages qui liquident des actifs. Montréal et Vancouver restent très calmes avec des scores de 0.09 et 0.08 respectivement, les transferts de bail en chute à Montréal (-88.7%) suggérant un marché locatif temporairement stabilisé. L'historique sur 30 jours est encore limité à une seule entrée, ce qui restreint la comparaison longitudinale.",
+    "analyse_en": "The national Kijiji score stands at 0.19/1.0 today, a low-to-moderate level indicating little widespread economic stress during this pre-payday period. Toronto stands out significantly with a score of 0.40, driven by a spectacular 198.7% surge in tool listings, a classic signal of households liquidating assets. Montreal and Vancouver remain very calm at 0.09 and 0.08 respectively, with Montreal's sharp drop in lease transfers (-88.7%) suggesting a temporarily stabilized rental market. The 30-day historical record is still limited to a single data point, which restricts longitudinal comparison.",
+    "prediction_fr": "Si la tendance torontoise de liquidation d'outils se maintient, le score national pourrait grimper vers 0.28-0.32 d'ici 4 à 8 semaines, surtout si la période post-paye ne soulage pas la pression observée. Surveiller de près les transferts de bail à Toronto comme indicateur avancé d'une détérioration potentielle.",
+    "prediction_en": "If Toronto's tool liquidation trend persists, the national score could climb toward 0.28-0.32 within 4 to 8 weeks, especially if the post-payday period fails to relieve the observed pressure. Lease transfer listings in Toronto should be closely monitored as a leading indicator of potential deterioration.",
+    "signal_dominant": "Liquidation d'outils Toronto",
     "niveau_alerte": "NORMAL",
     "score_predit_4_semaines": 0.27
   }
