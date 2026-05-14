@@ -109,16 +109,18 @@ def analyze_with_claude(today_data, history):
         f"Score national Kijiji : {national} / 1.0\n"
         f"Villes : {json.dumps(cities, ensure_ascii=False)}\n\n"
         f"HISTORIQUE 30 JOURS :\n{json.dumps(history_summary, ensure_ascii=False)}\n\n"
-        "Genere UNIQUEMENT ce JSON sans backticks:\n"
+        "Genere UNIQUEMENT ce JSON sans backticks ni markdown:\n"
         "{\n"
-        '  "analyse_fr": "3-4 phrases en francais sur le score du jour et impact.",\n'
-        '  "analyse_en": "Same in English.",\n'
-        '  "prediction_fr": "1-2 phrases. Prediction 4-8 semaines.",\n'
-        '  "prediction_en": "Same in English.",\n'
-        '  "signal_dominant": "Signal principal en 5 mots max",\n'
+        '  "analyse_fr": "3-4 phrases en francais. Analyse score du jour, compare historique, signal dominant.",\n'
+        '  "analyse_en": "Same 3-4 sentences in English.",\n'
+        '  "prediction_fr": "1-2 phrases. Prediction concrete 4-8 semaines.",\n'
+        '  "prediction_en": "Same prediction in English.",\n'
+        '  "signal_dominant": "Signal le plus fort en 5 mots max",\n'
         '  "niveau_alerte": "NORMAL ou TENSION ou CRISE",\n'
-        '  "score_predit_4_semaines": 0.0\n'
-        "}"
+        f'  "score_predit_4_semaines": 0.XX\n'
+        "}\n\n"
+        f"IMPORTANT: score_predit_4_semaines = nombre decimal reel entre 0.05 et 0.95. "
+        f"Score actuel={national}. Ne mets JAMAIS 0.0 — estime un vrai chiffre."
     )
 
     try:
