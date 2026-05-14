@@ -4,7 +4,7 @@ import time
 import random
 import re
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # ============================================
 # BEAVER.WATCH — Kijiji Scraper v3.1
@@ -14,6 +14,114 @@ from datetime import datetime
 # ============================================
 
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
+# ============================================
+# SYSTÈME DE PRÉDICTIONS & APPRENTISSAGE
+# ============================================
+
+def load_predictions(filename='kijiji_predictions.json'):
+    try:
+        with open(filename, 'r') as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
+
+def save_predictions(predictions, filename='kijiji_predictions.json'):
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(predictions, f, ensure_ascii=False, indent=2)
+
+def check_past_predictions(predictions, current_score):
+    """
+    Vérifie les prédictions passées dont la date est arrivée.
+    Retourne un résumé des prédictions vérifiées.
+    """
+    today = datetime.now().strftime("%Y-%m-%d")
+    verified = []
+    
+    for pred in predictions:
+        if pred.get("date_verification") == today and pred.get("score_reel") is None:
+            ecart = round(current_score - pred["score_predit"], 3)
+            ecart_pct = round((ecart / pred["score_predit"]) * 100, 1) if pred["score_predit"] else 0
+            avait_raison = abs(ecart_pct) <= 15  # ±15% = correct
+            
+            pred["score_reel"] = current_score
+            pred["ecart"] = ecart
+            pred["ecart_pct"] = ecart_pct
+            pred["claude_avait_raison"] = avait_raison
+            pred["resultat"] = "✅ CORRECT" if avait_raison else "❌ INCORRECT"
+            pred["verifie_le"] = today
+            
+            verified.append(pred)
+            print(f"\n🎯 VÉRIFICATION PRÉDICTION :")
+            print(f"   Prédit le : {pred['date_prediction']}")
+            print(f"   Score prédit : {pred['score_predit']}")
+            print(f"   Score réel : {current_score}")
+            print(f"   Écart : {ecart_pct}%")
+            print(f"   Résultat : {pred['resultat']}")
+    
+    return verified
+
+def save_new_prediction(predictions, claude_analysis, current_score):
+    """
+    Sauvegarde la nouvelle prédiction de Claude avec date de vérification.
+    """
+    if not claude_analysis or not claude_analysis.get("score_predit_4_semaines"):
+        return
+    
+    today = datetime.now()
+    verification_date = (today + timedelta(days=28)).strftime("%Y-%m-%d")
+    
+    new_pred = {
+        "indicateur": "kijiji",
+        "date_prediction": today.strftime("%Y-%m-%d"),
+        "date_verification": verification_date,
+        "score_actuel": current_score,
+        "score_predit": claude_analysis["score_predit_4_semaines"],
+        "niveau_alerte_predit": claude_analysis.get("niveau_alerte"),
+        "signal_dominant": claude_analysis.get("signal_dominant"),
+        "prediction_fr": claude_analysis.get("prediction_fr"),
+        "prediction_en": claude_analysis.get("prediction_en"),
+        "score_reel": None,
+        "ecart": None,
+        "ecart_pct": None,
+        "claude_avait_raison": None,
+        "resultat": None,
+        "verifie_le": None,
+    }
+    
+    predictions.append(new_pred)
+    print(f"\n📌 Prédiction sauvegardée :")
+    print(f"   Score prédit : {new_pred['score_predit']}")
+    print(f"   Vérification le : {verification_date}")
+
+def get_predictions_feedback(predictions):
+    """
+    Génère un résumé des prédictions passées pour que Claude apprenne.
+    """
+    verified = [p for p in predictions if p.get("score_reel") is not None]
+    if not verified:
+        return None
+    
+    recent = verified[-10:]  # 10 dernières vérifications
+    correct = sum(1 for p in recent if p.get("claude_avait_raison"))
+    taux = round((correct / len(recent)) * 100, 1)
+    
+    feedback = {
+        "total_verifications": len(verified),
+        "taux_precision": taux,
+        "recent_results": [
+            {
+                "date": p["date_prediction"],
+                "predit": p["score_predit"],
+                "reel": p["score_reel"],
+                "ecart_pct": p["ecart_pct"],
+                "correct": p["claude_avait_raison"]
+            }
+            for p in recent
+        ]
+    }
+    return feedback
+
+
 
 # Mots-clés par ville
 # Montréal = français, Toronto/Vancouver = anglais
@@ -67,7 +175,7 @@ CATEGORIES = {
 CITIES = {
     "montreal": {"id": "1700281", "name": "Montréal"},
     "toronto":  {"id": "1700272", "name": "Toronto"},
-    "vancouver": {"id": "1700254", "name": "Vancouver"},
+    "vancouver": {"id": "1700287", "name": "Vancouver"},
 }
 
 USER_AGENTS = [
@@ -86,6 +194,9 @@ def analyze_with_claude(today_data, history):
         return None
 
     print("\n🤖 Claude API analysis...")
+
+    # Get feedback from past predictions
+    feedback = get_predictions_feedback(load_predictions())
 
     history_summary = {
         date: {"score": data.get("national_score"), "period": data.get("pay_period")}
@@ -109,16 +220,18 @@ def analyze_with_claude(today_data, history):
         f"Score national Kijiji : {national} / 1.0\n"
         f"Villes : {json.dumps(cities, ensure_ascii=False)}\n\n"
         f"HISTORIQUE 30 JOURS :\n{json.dumps(history_summary, ensure_ascii=False)}\n\n"
-        "Genere UNIQUEMENT ce JSON sans backticks:\n"
+        "Genere UNIQUEMENT ce JSON sans backticks ni markdown:\n"
         "{\n"
-        '  "analyse_fr": "3-4 phrases en francais sur le score du jour et impact.",\n'
-        '  "analyse_en": "Same in English.",\n'
-        '  "prediction_fr": "1-2 phrases. Prediction 4-8 semaines.",\n'
-        '  "prediction_en": "Same in English.",\n'
-        '  "signal_dominant": "Signal principal en 5 mots max",\n'
+        '  "analyse_fr": "3-4 phrases en francais. Analyse score du jour, compare historique, signal dominant.",\n'
+        '  "analyse_en": "Same 3-4 sentences in English.",\n'
+        '  "prediction_fr": "1-2 phrases. Prediction concrete 4-8 semaines.",\n'
+        '  "prediction_en": "Same prediction in English.",\n'
+        '  "signal_dominant": "Signal le plus fort en 5 mots max",\n'
         '  "niveau_alerte": "NORMAL ou TENSION ou CRISE",\n'
-        '  "score_predit_4_semaines": 0.0\n'
-        "}"
+        f'  "score_predit_4_semaines": 0.XX\n'
+        "}\n\n"
+        f"IMPORTANT: score_predit_4_semaines = nombre decimal reel entre 0.05 et 0.95. "
+        f"Score actuel={national}. Ne mets JAMAIS 0.0 — estime un vrai chiffre."
     )
 
     try:
@@ -130,7 +243,7 @@ def analyze_with_claude(today_data, history):
                 "content-type": "application/json",
             },
             json={
-                "model": "claude-sonnet-4-20250514",
+                "model": "claude-sonnet-4-6",
                 "max_tokens": 1000,
                 "messages": [{"role": "user", "content": prompt}]
             },
@@ -205,7 +318,11 @@ def check_payday_alert(score, pay_period):
 # ============================================
 
 def get_count(keyword, city_id):
-    url = f"https://www.kijiji.ca/b-{city_id}/{keyword}/k0l{city_id}"
+    # Vancouver needs different URL format
+    if city_id == "1700287":
+        url = f"https://www.kijiji.ca/b-{keyword}/city-of-vancouver/k0l{city_id}"
+    else:
+        url = f"https://www.kijiji.ca/b-{city_id}/{keyword}/k0l{city_id}"
     headers = {
         "User-Agent": random.choice(USER_AGENTS),
         "Accept-Language": "en-CA,en;q=0.9,fr-CA;q=0.8",
@@ -387,10 +504,25 @@ def run():
             "date": date_key,
         }
 
-        # Claude Analysis
+        # Load predictions
+        predictions = load_predictions()
+        
+        # Check past predictions
+        verified = check_past_predictions(predictions, national)
+        if verified:
+            output['predictions_verifiees'] = verified
+        
+        # Claude Analysis (with learning feedback)
         claude_analysis = analyze_with_claude(output, history)
         if claude_analysis:
             output['claude_analysis'] = claude_analysis
+            
+            # Save new prediction
+            save_new_prediction(predictions, claude_analysis, national)
+            save_predictions(predictions)
+            output['prochaine_verification'] = (
+                datetime.now() + timedelta(days=28)
+            ).strftime("%Y-%m-%d")
 
     # Save files
     with open('kijiji_data.json', 'w', encoding='utf-8') as f:
@@ -405,6 +537,13 @@ def run():
         json.dump(history, f, ensure_ascii=False, indent=2)
     print("✅ kijiji_history.json saved")
 
+    # Save predictions summary in output
+    predictions = load_predictions()
+    verified_count = sum(1 for p in predictions if p.get("score_reel") is not None)
+    correct_count = sum(1 for p in predictions if p.get("claude_avait_raison"))
+    if verified_count > 0:
+        print(f"\n📊 Précision Claude: {correct_count}/{verified_count} ({round(correct_count/verified_count*100,1)}%)")
+    
     print("\n🦫 Done!")
 
 if __name__ == "__main__":
