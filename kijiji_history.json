@@ -8,5 +8,15 @@
     },
     "pay_period": "avant-paye",
     "date": "2026-05-14"
+  },
+  "2026-05-15": {
+    "national_score": 0.32,
+    "city_scores": {
+      "montreal": 0.1,
+      "toronto": 0.41,
+      "vancouver": 0.44
+    },
+    "pay_period": "apres-paye",
+    "date": "2026-05-15"
   }
 }
