@@ -1,12 +1,12 @@
 {
-  "updated": "2026-05-15 17:14",
+  "updated": "2026-05-16 14:45",
   "source": "Google Trends",
   "keywords": {
     "vol_auto": {
       "label_fr": "Vol d'Auto",
       "label_en": "Auto Theft",
       "emoji": "🚗",
-      "raw_score": 6.1,
+      "raw_score": 6.7,
       "stress_score": 0.09,
       "status": {
         "label_fr": "Normal",
@@ -34,7 +34,7 @@
       "label_fr": "Sécurité Auto",
       "label_en": "Car Security",
       "emoji": "🔒",
-      "raw_score": 0.4,
+      "raw_score": 0.3,
       "stress_score": 0.05,
       "status": {
         "label_fr": "Normal",
@@ -49,7 +49,7 @@
     "canada": {
       "name_fr": "Canada",
       "name_en": "Canada",
-      "composite_score": 0.09,
+      "composite_score": 0.1,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -60,45 +60,45 @@
     "ontario": {
       "name_fr": "Ontario",
       "name_en": "Ontario",
-      "composite_score": 0.05,
+      "composite_score": null,
       "composite_status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
       }
     },
     "quebec": {
       "name_fr": "Québec",
       "name_en": "Quebec",
-      "composite_score": 0.05,
+      "composite_score": null,
       "composite_status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
       }
     },
     "bc": {
       "name_fr": "C.-B.",
       "name_en": "BC",
-      "composite_score": 0.05,
+      "composite_score": null,
       "composite_status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
       }
     },
     "alberta": {
       "name_fr": "Alberta",
       "name_en": "Alberta",
-      "composite_score": 0.05,
+      "composite_score": null,
       "composite_status": {
-        "label_fr": "Normal",
-        "label_en": "Normal",
-        "color": "green",
-        "emoji": "🟢"
+        "label_fr": "N/A",
+        "label_en": "N/A",
+        "color": "gray",
+        "emoji": "❓"
       }
     }
   },
@@ -110,14 +110,14 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score national de vol auto s'établit à 0.07/1.0 aujourd'hui, reflétant un niveau d'intérêt de recherche très faible et stable. L'historique des 30 derniers jours confirme cette stabilité absolue, avec aucune variation enregistrée entre le 14 et le 15 mai 2026. Le Canada dans son ensemble affiche le score le plus élevé à 0.09, tandis que toutes les provinces individuelles (Ontario, Québec, Colombie-Britannique, Alberta) restent au plancher à 0.05. Cette uniformité régionale suggère une préoccupation généralisée mais très modérée pour la thématique du vol automobile.",
-    "analyse_en": "The national auto theft score stands at 0.07/1.0 today, reflecting a very low and stable level of search interest. The 30-day historical data confirms absolute stability, with no variation recorded between May 14 and May 15, 2026. Canada overall shows the highest score at 0.09, while all individual provinces remain at the floor level of 0.05. This regional uniformity suggests a widespread but very moderate concern around auto theft.",
-    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le score de vol auto canadien devrait connaître une légère hausse saisonnière, les mois d'été étant historiquement associés à une recrudescence des incidents et des recherches connexes. On peut anticiper un score autour de 0.13, particulièrement si des incidents médiatisés surviennent dans les grands centres urbains canadiens.",
-    "prediction_en": "Over the next 4 to 8 weeks, the Canadian auto theft score is expected to experience a slight seasonal uptick, as summer months are historically associated with an increase in incidents and related searches. A score around 0.13 can be anticipated, particularly if high-profile incidents occur in major Canadian urban centres.",
-    "region_risque": "Canada national",
-    "signal_dominant": "Stabilité basse saisonnière",
+    "analyse_fr": "Le baromètre national de stress lié au vol d'auto affiche un score de 0.07/1.0 aujourd'hui, ce qui représente un niveau très bas d'intérêt de recherche. L'historique des 30 derniers jours montre une stabilité absolue, avec un score identique de 0.07 sans aucune tendance à la hausse ou à la baisse. Les données régionales sont insuffisantes pour isoler une province en particulier, seule la moyenne canadienne globale étant disponible à 0.10. La catégorie 'vol_auto' domine légèrement à 0.09, suggérant que l'anxiété directe liée au vol prime sur les préoccupations d'assurance ou de sécurité préventive.",
+    "analyse_en": "The national stress barometer for auto theft shows a score of 0.07/1.0 today, reflecting a very low level of search interest across Canada. The 30-day historical data reveals absolute stability, with an identical score of 0.07 and zero directional trend throughout the period. Regional data is largely unavailable, with only the national Canada-wide average of 0.10 on record. The 'auto theft' subcategory leads slightly at 0.09, indicating that direct theft anxiety outweighs concerns around insurance or preventive security measures.",
+    "prediction_fr": "Avec une stabilité prolongée et aucun signal régional émergent, le score devrait demeurer dans la fourchette basse de 0.07 à 0.12 au cours des 4 à 8 prochaines semaines. L'approche de l'été pourrait générer une légère hausse saisonnière, historiquement associée à une augmentation des vols de véhicules au Canada.",
+    "prediction_en": "Given the extended stability and absence of any emerging regional signal, the score is expected to remain in the low range of 0.07 to 0.12 over the next 4 to 8 weeks. The onset of summer may trigger a modest seasonal uptick, historically associated with increased vehicle theft activity across Canada.",
+    "region_risque": "Canada général",
+    "signal_dominant": "Stabilité basse prolongée",
     "niveau_alerte": "NORMAL",
-    "score_predit_4_semaines": 0.13
+    "score_predit_4_semaines": 0.1
   },
   "trend": 0.0
 }

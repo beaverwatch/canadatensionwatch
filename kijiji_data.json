@@ -1,14 +1,14 @@
 {
-  "updated": "2026-05-15 17:11",
+  "updated": "2026-05-16 14:42",
   "version": "3.1",
   "pay_period": {
     "period": "apres-paye",
     "period_en": "after-payday",
     "label_fr": "Apres la Paye",
     "label_en": "After Payday",
-    "day_of_month": 15,
+    "day_of_month": 16,
     "days_until_payday": null,
-    "days_since_payday": 0,
+    "days_since_payday": 1,
     "emoji": "📈"
   },
   "payday_alert": {
@@ -27,9 +27,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 601,
+          "count": 607,
           "baseline": 2840,
-          "change_pct": -78.8,
+          "change_pct": -78.6,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -43,10 +43,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 563,
+          "count": 575,
           "baseline": 576,
-          "change_pct": -2.3,
-          "score": 0.14,
+          "change_pct": -0.2,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -59,9 +59,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 42,
+          "count": 41,
           "baseline": 380,
-          "change_pct": -88.9,
+          "change_pct": -89.2,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -75,10 +75,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 508,
+          "count": 499,
           "baseline": 502,
-          "change_pct": 1.2,
-          "score": 0.2,
+          "change_pct": -0.6,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -88,7 +88,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.1,
+      "composite_score": 0.09,
       "composite_status": {
         "label_fr": "Normal",
         "label_en": "Normal",
@@ -104,9 +104,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 12485,
+          "count": 12512,
           "baseline": 4200,
-          "change_pct": 197.3,
+          "change_pct": 197.9,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -120,10 +120,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 6287,
+          "count": 6259,
           "baseline": 6267,
-          "change_pct": 0.3,
-          "score": 0.16,
+          "change_pct": -0.1,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -136,9 +136,9 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 138,
+          "count": 134,
           "baseline": 610,
-          "change_pct": -77.4,
+          "change_pct": -78.0,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -152,10 +152,10 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 0,
+          "count": 4376,
           "baseline": 4402,
-          "change_pct": -100.0,
-          "score": 0.05,
+          "change_pct": -0.6,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -165,7 +165,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.41,
+      "composite_score": 0.42,
       "composite_status": {
         "label_fr": "Tension",
         "label_en": "Tension",
@@ -181,9 +181,9 @@
           "label_fr": "Outils & Équipement",
           "label_en": "Tools & Equipment",
           "emoji": "🔧",
-          "count": 471,
+          "count": 476,
           "baseline": 2100,
-          "change_pct": -77.6,
+          "change_pct": -77.3,
           "score": 0.05,
           "status": {
             "label_fr": "Normal",
@@ -197,10 +197,10 @@
           "label_fr": "Consoles & Électronique",
           "label_en": "Electronics & Gaming",
           "emoji": "🎮",
-          "count": 471,
+          "count": 476,
           "baseline": 477,
-          "change_pct": -1.3,
-          "score": 0.14,
+          "change_pct": -0.2,
+          "score": 0.15,
           "status": {
             "label_fr": "Normal",
             "label_en": "Normal",
@@ -213,10 +213,10 @@
           "label_fr": "Transfert de Bail",
           "label_en": "Lease Transfers",
           "emoji": "🏠",
-          "count": 471,
+          "count": 476,
           "baseline": 290,
-          "change_pct": 62.4,
-          "score": 0.96,
+          "change_pct": 64.1,
+          "score": 0.97,
           "status": {
             "label_fr": "CRISE",
             "label_en": "CRISIS",
@@ -229,9 +229,9 @@
           "label_fr": "Bijoux & Montres",
           "label_en": "Jewelry & Watches",
           "emoji": "💍",
-          "count": 471,
+          "count": 476,
           "baseline": 81,
-          "change_pct": 481.5,
+          "change_pct": 487.7,
           "score": 1.0,
           "status": {
             "label_fr": "CRISE",
@@ -242,7 +242,7 @@
           "weight": 0.15
         }
       },
-      "composite_score": 0.44,
+      "composite_score": 0.45,
       "composite_status": {
         "label_fr": "Tension",
         "label_en": "Tension",
@@ -259,13 +259,13 @@
     "emoji": "🟢"
   },
   "claude_analysis": {
-    "analyse_fr": "Le score national de stress économique se maintient à 0.32 sur deux jours consécutifs, signalant une stabilité relative malgré la transition avant/après-paye. Les disparités régionales sont marquées : Montréal affiche un score bas (0.10) avec des chutes importantes en transferts de bail (-88.9%) et en outils (-78.8%), suggérant un marché secondaire atone. Toronto (0.41) et Vancouver (0.44) tirent le score national vers le haut, notamment avec une explosion des annonces de bijoux à Vancouver (+481.5%) et d'outils à Toronto (+197.3%), signaux classiques de liquidation d'actifs sous pression financière.",
-    "analyse_en": "The national economic stress score holds steady at 0.32 over two consecutive days, indicating relative stability across the before/after-payday transition. Regional disparities are notable: Montreal shows a low score (0.10) with sharp drops in lease transfers (-88.9%) and tools (-78.8%), suggesting a sluggish secondary market. Toronto (0.41) and Vancouver (0.44) are pulling the national score upward, particularly with a surge in jewelry listings in Vancouver (+481.5%) and tools in Toronto (+197.3%), classic signals of asset liquidation under financial pressure.",
-    "prediction_fr": "Si la tendance de liquidation d'actifs à Vancouver et Toronto se confirme dans les 4 à 8 prochaines semaines, le score national devrait grimper vers 0.40–0.45, notamment avec les pressions saisonnières de fin de mois de juin. Montréal pourrait toutefois compenser partiellement grâce à sa relative stabilité actuelle.",
-    "prediction_en": "If the asset liquidation trend in Vancouver and Toronto continues over the next 4 to 8 weeks, the national score is likely to climb toward 0.40–0.45, particularly given seasonal end-of-June financial pressures. Montreal may partially offset this increase given its current relative stability.",
-    "signal_dominant": "Liquidation bijoux Vancouver",
+    "analyse_fr": "Le score national de stress économique se maintient à 0.32 depuis trois jours consécutifs, signalant une stabilité relative mais avec des disparités marquées entre les villes. Vancouver se démarque fortement avec un score de 0.45, porté par une explosion des annonces de bijoux (+487.7%) et une hausse des transferts de bail (+64.1%), deux indicateurs classiques de liquidation d'actifs sous pression financière. Toronto affiche également un score élevé (0.42) avec une flambée des outils (+197.9%), suggérant des ménages qui monétisent leurs biens durables. Montréal reste étonnamment calme (0.09) avec des baisses généralisées, ce qui peut refléter un marché saturé ou une période de latence post-paie.",
+    "analyse_en": "The national economic stress score holds steady at 0.32 for three consecutive days, suggesting relative stability at the aggregate level but with striking divergences across cities. Vancouver stands out with a score of 0.45, driven by a surge in jewelry listings (+487.7%) and rising lease transfers (+64.1%), both classic signals of asset liquidation under financial pressure. Toronto also shows elevated stress (0.42) with a sharp spike in tools listings (+197.9%), indicating households monetizing durable goods. Montreal remains surprisingly calm (0.09) with broad declines, possibly reflecting a saturated market or a post-payday lull.",
+    "prediction_fr": "Dans les 4 à 8 prochaines semaines, le stress devrait s'accentuer légèrement à Vancouver et Toronto si la tendance aux liquidations d'actifs se poursuit, poussant le score national vers 0.38 à 0.42 à l'approche de la fin de mois de juin. Montréal pourrait rebondir modérément une fois l'effet post-paie dissipé.",
+    "prediction_en": "Over the next 4 to 8 weeks, stress is likely to increase moderately in Vancouver and Toronto if asset liquidation trends continue, pushing the national score toward 0.38–0.42 heading into late June. Montreal may see a modest rebound once the post-payday suppression effect fades.",
+    "signal_dominant": "Liquidation actifs Vancouver-Toronto",
     "niveau_alerte": "TENSION",
-    "score_predit_4_semaines": 0.41
+    "score_predit_4_semaines": 0.39
   },
-  "prochaine_verification": "2026-06-12"
+  "prochaine_verification": "2026-06-13"
 }
