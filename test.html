@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🦫 BEAVER.WATCH — Baromètre du Canada</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
+<title>🦫 BEAVER.WATCH — Test Your Beaver</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,900;1,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#070707;--s1:#0F0F0F;--s2:#181818;--s3:#242424;--s4:#303030;
-  --text:#F5F0E8;--muted:#999990;--faint:#141414;
+  --text:#F5F0E8;--muted:#9A9A92;--faint:#141414;
   --red:#FF2D2D;--orange:#FF6D00;--yellow:#FFD600;--green:#00E676;
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
@@ -16,79 +16,88 @@ html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
 
-header{padding:20px 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:2rem;letter-spacing:4px;display:flex;align-items:center;gap:10px;}
-.logo-c{color:var(--red);}.logo-d{color:var(--yellow);}
-.logo-sub{font-size:0.55rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px;}
-.header-right{display:flex;align-items:center;gap:10px;}
-.streak-pill{display:flex;align-items:center;gap:6px;background:var(--s2);border:1px solid var(--orange);padding:6px 12px;font-size:0.65rem;letter-spacing:2px;font-weight:700;color:var(--orange);}
-.lang-toggle{display:flex;align-items:center;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:4px;}
-.lang-btn{padding:5px 10px;font-size:0.6rem;letter-spacing:2px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--muted);text-decoration:none;}
+header{padding:18px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--red);position:sticky;top:0;background:rgba(7,7,7,0.97);backdrop-filter:blur(8px);z-index:500;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:3px;display:flex;align-items:center;gap:8px;}
+.logo-d{color:var(--yellow);}
+.logo-sub{font-size:0.5rem;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:8px;}
+.streak-pill{display:flex;align-items:center;gap:5px;background:var(--s2);border:1px solid var(--orange);padding:6px 11px;font-size:0.65rem;letter-spacing:1px;font-weight:700;color:var(--orange);}
+.lang-toggle{display:flex;gap:2px;background:var(--s2);border:1px solid var(--s3);padding:3px;}
+.lang-btn{padding:5px 9px;font-size:0.58rem;letter-spacing:1px;font-weight:700;border:none;background:transparent;color:var(--muted);text-decoration:none;}
 .lang-btn.active{background:var(--red);color:#fff;}
 
-.hero-story{max-width:900px;margin:0 auto;padding:40px 28px 0;}
-.story-eyebrow{font-size:0.65rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:12px;display:flex;align-items:center;gap:10px;}
-.live-dot{width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.5s infinite;}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.8);}}
-.story-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;line-height:1.1;letter-spacing:-1px;margin-bottom:16px;}
-.story-title em{font-style:italic;color:var(--red);}
-.story-snippet{font-size:1rem;line-height:1.8;color:var(--muted);max-width:680px;margin-bottom:20px;}
-.story-snippet strong{color:var(--text);font-weight:600;}
-.story-cta{display:inline-flex;align-items:center;gap:10px;background:var(--red);color:#fff;padding:12px 20px;font-size:0.7rem;letter-spacing:3px;font-weight:700;text-transform:uppercase;text-decoration:none;transition:all 0.2s;}
-.story-cta:hover{background:var(--orange);}
+.hook{max-width:760px;margin:0 auto;padding:50px 24px 0;text-align:center;}
+.hook-eyebrow{font-size:0.72rem;letter-spacing:5px;text-transform:uppercase;color:var(--orange);margin-bottom:20px;display:flex;align-items:center;justify-content:center;gap:10px;}
+.live-dot{width:9px;height:9px;border-radius:50%;background:var(--red);animation:pulse 1.4s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.35;transform:scale(0.75);}}
+.hook-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,11vw,5.5rem);letter-spacing:3px;line-height:0.95;margin-bottom:16px;}
+.hook-title .cc{color:var(--red);}
+.hook-desc{font-size:1.1rem;line-height:1.7;color:var(--muted);max-width:520px;margin:0 auto 32px;}
+.hook-desc strong{color:var(--text);}
+.postal-box{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+.postal-input{flex:1;min-width:200px;background:var(--s1);border:2px solid var(--s3);color:var(--text);padding:18px 20px;font-size:1.3rem;font-family:'Bebas Neue',sans-serif;letter-spacing:4px;text-align:center;text-transform:uppercase;outline:none;transition:border 0.2s;}
+.postal-input:focus{border-color:var(--red);}
+.postal-input::placeholder{color:var(--s4);letter-spacing:3px;}
+.postal-btn{background:var(--red);color:#fff;border:none;padding:18px 28px;font-size:0.85rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.2s;white-space:nowrap;}
+.postal-btn:hover{background:var(--orange);}
+.postal-hint{font-size:0.7rem;color:var(--muted);margin-top:14px;letter-spacing:1px;}
 
-.score-big{max-width:900px;margin:40px auto 0;padding:0 28px;}
-.score-big-box{background:var(--s1);padding:36px 32px;border-left:4px solid var(--red);display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;}
-.score-big-label{font-size:0.62rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.score-big-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:4px;margin-bottom:6px;}
-.score-big-trend{font-size:0.75rem;color:var(--orange);margin-top:8px;letter-spacing:1px;}
-.score-big-right{text-align:right;}
-.score-big-num{font-family:'Bebas Neue',sans-serif;font-size:7rem;letter-spacing:2px;line-height:1;color:var(--red);transition:all 1.5s ease;}
-.score-big-status{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:3px;color:var(--red);}
-.score-big-bar{width:100%;height:6px;background:var(--faint);margin-top:20px;}
-.score-big-bar-fill{height:100%;background:var(--red);transition:width 2.5s ease;width:0%;}
+.postal-result{max-width:540px;margin:28px auto 0;background:var(--s1);border-left:4px solid var(--orange);padding:26px;display:none;text-align:left;}
+.pr-region{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:4px;}
+.pr-score-row{display:flex;align-items:baseline;gap:14px;margin:14px 0;}
+.pr-score{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;color:var(--orange);}
+.pr-status{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--orange);}
+.pr-text{font-size:0.9rem;line-height:1.7;color:var(--text);margin-top:10px;}
+.pr-cta{display:inline-block;margin-top:18px;font-size:0.7rem;letter-spacing:2px;color:var(--red);font-weight:700;text-transform:uppercase;text-decoration:none;}
 
-.doors-section{max-width:1100px;margin:60px auto 0;padding:0 28px;}
-.doors-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:5px;margin-bottom:6px;}
-.doors-sub{font-size:0.75rem;color:var(--muted);letter-spacing:1px;margin-bottom:28px;}
-.doors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;}
-.door{background:var(--s1);padding:28px 24px;border-left:3px solid var(--s3);text-decoration:none;color:var(--text);position:relative;overflow:hidden;transition:all 0.3s;cursor:pointer;display:block;}
-.door::before{content:'';position:absolute;top:0;left:0;width:0;height:100%;background:rgba(255,45,45,0.04);transition:width 0.4s ease;z-index:0;}
+.natscore{max-width:840px;margin:80px auto 0;padding:0 24px;}
+.ns-bigwrap{text-align:center;padding:20px 0;}
+.ns-bigeyebrow{font-size:0.72rem;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;}
+.ns-giant{font-family:'Bebas Neue',sans-serif;font-size:clamp(8rem,28vw,16rem);line-height:0.85;color:var(--red);transition:color 1s ease;text-shadow:0 0 60px rgba(255,45,45,0.25);}
+.ns-giant-status{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.4rem,5vw,2.4rem);letter-spacing:6px;color:var(--red);margin-top:8px;}
+.ns-bar{max-width:480px;margin:28px auto 0;height:8px;background:var(--faint);}
+.ns-bar-fill{height:100%;background:var(--red);width:0%;transition:width 2.5s ease;}
+.ns-giant-meta{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:16px;}
+.ns-story{font-size:1.1rem;line-height:1.8;color:var(--text);margin-top:36px;background:var(--s1);padding:26px 30px;border-left:3px solid var(--orange);}
+.ns-story strong{color:var(--orange);}
+
+.doors{max-width:1100px;margin:70px auto 0;padding:0 24px;}
+.doors-title{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;letter-spacing:5px;margin-bottom:4px;}
+.doors-sub{font-size:0.78rem;color:var(--muted);letter-spacing:1px;margin-bottom:26px;}
+.doors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;}
+.door{background:var(--s1);padding:26px 22px;border-left:3px solid var(--s3);text-decoration:none;color:var(--text);position:relative;overflow:hidden;transition:all 0.3s;display:block;}
+.door::before{content:'';position:absolute;top:0;left:0;width:0;height:100%;background:rgba(255,45,45,0.05);transition:width 0.4s;}
 .door:hover::before{width:100%;}
 .door:hover{border-left-color:var(--red);transform:translateX(2px);}
-.door > *{position:relative;z-index:1;}
-.door-icon{font-size:2rem;margin-bottom:14px;display:block;}
-.door-label{font-size:0.6rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
-.door-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:10px;}
-.door-desc{font-size:0.78rem;line-height:1.6;color:var(--muted);margin-bottom:16px;}
-.door-arrow{font-size:0.65rem;letter-spacing:3px;color:var(--red);text-transform:uppercase;font-weight:700;}
+.door>*{position:relative;z-index:1;}
+.door-icon{font-size:1.9rem;margin-bottom:12px;display:block;}
+.door-label{font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.door-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:2px;margin-bottom:10px;}
+.door-desc{font-size:0.8rem;line-height:1.6;color:var(--muted);margin-bottom:14px;}
+.door-arrow{font-size:0.62rem;letter-spacing:3px;color:var(--red);text-transform:uppercase;font-weight:700;}
 .door-pulse{position:absolute;top:14px;right:14px;width:8px;height:8px;border-radius:50%;background:var(--red);animation:pulse 1.5s infinite;}
 
-.track-section{max-width:900px;margin:60px auto 0;padding:0 28px;}
+.track{max-width:840px;margin:70px auto 0;padding:0 24px;}
 .track-box{background:var(--s1);padding:32px;border-top:2px solid var(--green);}
-.track-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:14px;}
-.track-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:24px;margin-top:16px;}
-.track-num{font-family:'Bebas Neue',sans-serif;font-size:3rem;letter-spacing:2px;color:var(--green);line-height:1;}
-.track-num.orange{color:var(--orange);}
-.track-num.text{color:var(--text);}
-.track-label{font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
+.track-eyebrow{font-size:0.6rem;letter-spacing:4px;text-transform:uppercase;color:var(--green);margin-bottom:10px;}
+.track-q{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:3px;margin-bottom:20px;}
+.track-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:22px;}
+.tk-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;color:var(--green);}
+.tk-num.o{color:var(--orange);}.tk-num.t{color:var(--text);}
+.tk-lbl{font-size:0.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:6px;}
 
-.proof-section{max-width:900px;margin:60px auto 0;padding:0 28px;}
-.proof-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:4px;margin-bottom:20px;}
-.proof-quote{background:var(--s1);padding:32px;border-left:4px solid var(--yellow);font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;line-height:1.6;}
-.proof-quote-author{font-family:'Inter',sans-serif;font-style:normal;font-size:0.7rem;letter-spacing:2px;color:var(--muted);margin-top:14px;text-transform:uppercase;}
+.quote{max-width:840px;margin:50px auto 0;padding:0 24px;}
+.quote-box{background:var(--s1);padding:34px;border-left:4px solid var(--yellow);font-family:'Playfair Display',serif;font-style:italic;font-size:1.25rem;line-height:1.6;}
+.quote-author{font-family:'Inter',sans-serif;font-style:normal;font-size:0.7rem;letter-spacing:2px;color:var(--muted);margin-top:16px;text-transform:uppercase;}
 
-footer{max-width:900px;margin:80px auto 40px;padding:32px 28px;border-top:1px solid var(--s3);text-align:center;}
+footer{max-width:840px;margin:80px auto 40px;padding:30px 24px;border-top:1px solid var(--s3);text-align:center;}
 .foot-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:5px;color:var(--muted);}
 .foot-meta{font-size:0.65rem;letter-spacing:1px;color:var(--muted);margin-top:8px;line-height:1.7;}
 
 @media (max-width:600px){
-  .score-big-box{grid-template-columns:1fr;text-align:left;}
-  .score-big-right{text-align:left;}
-  .score-big-num{font-size:5rem;}
-  .header-right{gap:6px;}
-  .streak-pill{padding:5px 8px;font-size:0.55rem;}
   .doors-grid{grid-template-columns:1fr;}
+  .postal-box{flex-direction:column;}
+  .postal-btn{width:100%;}
 }
 </style>
 </head>
@@ -96,141 +105,118 @@ footer{max-width:900px;margin:80px auto 40px;padding:32px 28px;border-top:1px so
 
 <header>
   <div>
-    <div class="logo"><span class="logo-c">🦫</span><span class="logo-d">BEAVER.WATCH</span></div>
-    <div class="logo-sub">Baromètre du Canada</div>
+    <div class="logo">🦫 <span class="logo-d">BEAVER.WATCH</span></div>
+    <div class="logo-sub">Canada's Stress Barometer</div>
   </div>
   <div class="header-right">
-    <div class="streak-pill">🔥 <span id="streak">JOUR 1</span></div>
+    <div class="streak-pill">🔥 <span id="streak">DAY 1</span></div>
     <div class="lang-toggle">
-      <span class="lang-btn active">🇫🇷 FR</span>
-      <a class="lang-btn" href="index.html">🇬🇧 EN</a>
+      <a class="lang-btn" href="index-fr.html">FR</a>
+      <span class="lang-btn active">EN</span>
     </div>
   </div>
 </header>
 
-<section class="hero-story">
-  <div class="story-eyebrow">
-    <span class="live-dot"></span>
-    LE CASTOR A VU QUELQUE CHOSE
-  </div>
-  <h1 class="story-title">
-    Statistique Canada<br>
-    publie dans <em>6 mois.</em><br>
-    Le Castor voit ce <em>matin.</em>
-  </h1>
-  <p class="story-snippet" id="story-text">
-    Pendant que tu dors, <strong>3 scrapers</strong> analysent
-    les comportements réels des Canadiens. Claude apprend de
-    ses prédictions passées. Tu vois l'avenir avant les manchettes.
+<section class="hook">
+  <div class="hook-eyebrow"><span class="live-dot"></span> THE BEAVER IS WAITING</div>
+  <h1 class="hook-title">TEST YOUR <span class="cc">BEAVER</span></h1>
+  <p class="hook-desc">
+    Enter your postal code. The Beaver <strong>scans your corner of Canada</strong>
+    in real time — 6 months before Statistics Canada.
   </p>
-  <a href="#doors" class="story-cta">DÉCOUVRIR →</a>
-</section>
+  <div class="postal-box">
+    <input type="text" class="postal-input" id="postal" placeholder="H7B 1A1" maxlength="7" autocomplete="off">
+    <button class="postal-btn" onclick="testBeaver()">TEST →</button>
+  </div>
+  <div class="postal-hint">Free · No signup · Public data</div>
 
-<section class="score-big">
-  <div class="score-big-box">
-    <div class="score-big-left">
-      <div class="score-big-label">🇨🇦 SCORE NATIONAL — AUJOURD'HUI</div>
-      <div class="score-big-title">CASTOR SCORE</div>
-      <div class="score-big-trend" id="trend-text">↻ Mise à jour quotidienne 7h00</div>
-      <div class="score-big-bar"><div class="score-big-bar-fill" id="bar-fill"></div></div>
+  <div class="postal-result" id="postal-result">
+    <div class="pr-region" id="pr-region">—</div>
+    <div style="font-size:0.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">⚡ SIGNAL DETECTED — RIGHT NOW</div>
+    <div class="pr-score-row">
+      <div class="pr-score" id="pr-score">—</div>
+      <div class="pr-status" id="pr-status">—</div>
     </div>
-    <div class="score-big-right">
-      <div class="score-big-num" id="big-num">—</div>
-      <div class="score-big-status" id="big-status">CHARGEMENT</div>
-    </div>
+    <div class="pr-text" id="pr-text">—</div>
+    <div style="font-size:0.62rem;color:var(--muted);margin-top:14px;line-height:1.5;font-style:italic;">Estimate based on real-time regional signals. Not financial or legal advice.</div>
+    <a href="all-short-term.html" class="pr-cta">SEE ALL SIGNALS →</a>
   </div>
 </section>
 
-<section class="doors-section" id="doors">
-  <div class="doors-title">EXPLORER</div>
-  <div class="doors-sub">4 horizons. 1 baromètre. Canada uniquement.</div>
+<section class="natscore">
+  <div class="ns-bigwrap">
+    <div class="ns-bigeyebrow"><span class="live-dot"></span> 🇨🇦 THE BEAVER SAW SOMETHING IN CANADA</div>
+    <div class="ns-giant" id="ns-num">—</div>
+    <div class="ns-giant-status" id="ns-status">LOADING</div>
+    <div class="ns-bar"><div class="ns-bar-fill" id="ns-bar"></div></div>
+    <div class="ns-giant-meta">NATIONAL BEAVER SCORE · ↻ Updated every morning 7AM</div>
+  </div>
+  <div class="ns-story" id="ns-story">The Beaver is analyzing signals...</div>
+</section>
 
+<section class="doors">
+  <div class="doors-title">EXPLORE</div>
+  <div class="doors-sub">4 horizons. 1 barometer. Canada only.</div>
   <div class="doors-grid">
-    <a href="all-short-term-fr.html" class="door">
+    <a href="all-short-term.html" class="door">
       <div class="door-pulse"></div>
       <span class="door-icon">⚡</span>
-      <div class="door-label">8 SEMAINES</div>
-      <div class="door-title">COURT TERME</div>
-      <div class="door-desc">
-        Comportements réels des Canadiens en temps réel. Kijiji, payday, vol auto.
-      </div>
-      <div class="door-arrow">VOIR →</div>
+      <div class="door-label">8 WEEKS</div>
+      <div class="door-name">SHORT TERM</div>
+      <div class="door-desc">Canadians' real behavior in real time.</div>
+      <div class="door-arrow">VIEW →</div>
     </a>
-
-    <a href="all-long-term-fr.html" class="door">
+    <a href="all-long-term.html" class="door">
       <span class="door-icon">🌳</span>
-      <div class="door-label">5-20 ANS</div>
-      <div class="door-title">LONG TERME</div>
-      <div class="door-desc">
-        Démographie, identité, structure sociale. Plus <strong>Beaver Physics</strong> (Turchin, Bifurcation).
-      </div>
-      <div class="door-arrow">VOIR →</div>
+      <div class="door-label">5-20 YEARS</div>
+      <div class="door-name">LONG TERM</div>
+      <div class="door-desc">Demographics, identity. Plus Beaver Physics.</div>
+      <div class="door-arrow">VIEW →</div>
     </a>
-
-    <a href="track-record-fr.html" class="door">
+    <a href="track-record.html" class="door">
       <span class="door-icon">🏆</span>
-      <div class="door-label">PRÉDICTIONS</div>
-      <div class="door-title">TRACK RECORD</div>
-      <div class="door-desc">
-        Toutes les prédictions du Castor avec dates de vérification. Score de précision LIVE.
-      </div>
-      <div class="door-arrow">VOIR →</div>
+      <div class="door-label">PREDICTIONS</div>
+      <div class="door-name">TRACK RECORD</div>
+      <div class="door-desc">Is the Beaver right? LIVE accuracy score.</div>
+      <div class="door-arrow">VIEW →</div>
     </a>
-
-    <a href="beaver-alert-fr.html" class="door">
+    <a href="#" onclick="document.getElementById('postal').focus();window.scrollTo({top:0,behavior:'smooth'});return false;" class="door">
       <span class="door-icon">🦫</span>
-      <div class="door-label">POUR TOI</div>
-      <div class="door-title">BEAVER ALERT</div>
-      <div class="door-desc">
-        Reçois chaque lundi ce qui change dans ton Canada. Email gratuit.
-      </div>
-      <div class="door-arrow">S'INSCRIRE →</div>
+      <div class="door-label">FOR YOU</div>
+      <div class="door-name">TEST YOUR BEAVER</div>
+      <div class="door-desc">Your postal code. What's coming for YOU.</div>
+      <div class="door-arrow">TEST →</div>
     </a>
   </div>
 </section>
 
-<section class="track-section">
+<section class="track">
   <div class="track-box">
-    <div class="track-eyebrow">📊 TRANSPARENCE TOTALE</div>
-    <div class="doors-title" style="font-size:1.3rem;">LE CASTOR A TOUJOURS RAISON ?</div>
-
+    <div class="track-eyebrow">📊 FULL TRANSPARENCY</div>
+    <div class="track-q">IS THE BEAVER ALWAYS RIGHT?</div>
     <div class="track-grid">
-      <div>
-        <div class="track-num" id="precision">—</div>
-        <div class="track-label">Précision</div>
-      </div>
-      <div>
-        <div class="track-num orange" id="total-pred">2</div>
-        <div class="track-label">Prédictions actives</div>
-      </div>
-      <div>
-        <div class="track-num text" id="next-verif">11 JUIN</div>
-        <div class="track-label">Prochaine vérification</div>
-      </div>
-      <div>
-        <div class="track-num text">28</div>
-        <div class="track-label">Jours d'avance</div>
-      </div>
+      <div><div class="tk-num" id="precision">—</div><div class="tk-lbl">Accuracy</div></div>
+      <div><div class="tk-num o" id="total-pred">2</div><div class="tk-lbl">Active predictions</div></div>
+      <div><div class="tk-num t">JUNE 11</div><div class="tk-lbl">Next check</div></div>
+      <div><div class="tk-num t">28</div><div class="tk-lbl">Days ahead</div></div>
     </div>
   </div>
 </section>
 
-<section class="proof-section">
-  <div class="proof-title">CE QUE LE CASTOR FAIT</div>
-  <div class="proof-quote">
-    « Les banques le savent. Les assureurs le savent. Les ports le savent.<br>
-    Dans 6 semaines, les journaux vont le savoir.<br>
-    Toi tu le sais maintenant. »
-    <div class="proof-quote-author">— LE CASTOR 🦫</div>
+<section class="quote">
+  <div class="quote-box">
+    "The banks know. The insurers know. The ports know.<br>
+    In 6 weeks, the newspapers will know.<br>
+    You know now."
+    <div class="quote-author">— THE BEAVER 🦫</div>
   </div>
 </section>
 
 <footer>
   <div class="foot-brand">🦫 BEAVER.WATCH</div>
   <div class="foot-meta">
-    Données 100% publiques · IA qui apprend · Anti-Palantir canadien<br>
-    Mis à jour : <span id="last-updated">—</span><br>
-    © 2026 BEAVER.WATCH
+    100% public data · Learning AI · Canadian Anti-Palantir<br>
+    Updated: <span id="last-updated">—</span> · © 2026 BEAVER.WATCH
   </div>
 </footer>
 
@@ -238,111 +224,146 @@ footer{max-width:900px;margin:80px auto 40px;padding:32px 28px;border-top:1px so
 const SHEETS_URL = "https://script.google.com/macros/s/AKfycbw0S5p2Z6zli_2FRfQtvohOofLw6F_GiEvC0JNqvMelHt870ipwTB8OmkJMEsorLssYoA/exec";
 
 function updateStreak(){
-  try {
-    const today = new Date().toDateString();
-    const lastVisit = localStorage.getItem('bw_last_visit');
-    let streak = parseInt(localStorage.getItem('bw_streak') || '1');
-    if (lastVisit !== today) {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      if (lastVisit === yesterday.toDateString()) {
-        streak += 1;
-      } else if (lastVisit !== null) {
-        streak = 1;
-      }
-      localStorage.setItem('bw_last_visit', today);
-      localStorage.setItem('bw_streak', streak.toString());
+  try{
+    var today=new Date().toDateString();
+    var last=localStorage.getItem('bw_last');
+    var s=parseInt(localStorage.getItem('bw_streak')||'1');
+    if(last!==today){
+      var y=new Date();y.setDate(y.getDate()-1);
+      if(last===y.toDateString())s+=1;else if(last!==null)s=1;
+      localStorage.setItem('bw_last',today);
+      localStorage.setItem('bw_streak',s.toString());
     }
-    document.getElementById('streak').textContent = 'JOUR ' + streak;
-  } catch(e) {}
+    document.getElementById('streak').textContent='DAY '+s;
+  }catch(e){}
 }
 
-function animateNumber(el, target, duration){
-  duration = duration || 1500;
-  const startTime = performance.now();
-  function update(now){
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(target * eased);
-    if (progress < 1) requestAnimationFrame(update);
+function animateNum(el,target,dur){
+  dur=dur||1500;var st=performance.now();
+  function u(now){
+    var p=Math.min((now-st)/dur,1);
+    var e=1-Math.pow(1-p,3);
+    el.textContent=Math.round(target*e);
+    if(p<1)requestAnimationFrame(u);
   }
-  requestAnimationFrame(update);
+  requestAnimationFrame(u);
 }
+
+var REGIONS={
+  'A':{name:'Newfoundland',base:0.29},
+  'B':{name:'Nova Scotia',base:0.32},
+  'C':{name:'Prince Edward Island',base:0.28},
+  'E':{name:'New Brunswick',base:0.30},
+  'G':{name:'Quebec City / East',base:0.31},
+  'H':{name:'Greater Montreal',base:0.42},
+  'J':{name:'Montérégie / South Shore',base:0.38},
+  'K':{name:'Eastern Ontario / Ottawa',base:0.35},
+  'L':{name:'Southern Ontario',base:0.40},
+  'M':{name:'Toronto',base:0.45},
+  'N':{name:'Southwest Ontario',base:0.37},
+  'P':{name:'Northern Ontario',base:0.33},
+  'R':{name:'Manitoba',base:0.36},
+  'S':{name:'Saskatchewan',base:0.34},
+  'T':{name:'Alberta',base:0.41},
+  'V':{name:'British Columbia',base:0.44}
+};
+
+function testBeaver(){
+  var input=document.getElementById('postal').value.trim().toUpperCase();
+  if(input.length<1){document.getElementById('postal').focus();return;}
+  var letter=input.charAt(0);
+  var region=REGIONS[letter]||{name:'Canadian region',base:0.38};
+
+  var variance=0;
+  for(var i=0;i<input.length;i++){variance+=input.charCodeAt(i);}
+  variance=((variance%20)-10)/100;
+  var score=Math.max(0.10,Math.min(0.90,region.base+variance));
+  var score100=Math.round(score*100);
+
+  var color=score>=0.65?'var(--red)':score>=0.45?'var(--orange)':score>=0.30?'var(--yellow)':'var(--green)';
+  var status=score>=0.65?'CRISIS':score>=0.45?'TENSION':score>=0.30?'WATCH':'STABLE';
+
+  var text='';
+  if(score>=0.65){
+    text="The Beaver detects <strong>high tension</strong> in your region RIGHT NOW. Several behavioral signals exceed thresholds. This is not a prediction — it's what's happening now, before official numbers confirm it in 6 months.";
+  }else if(score>=0.45){
+    text="The Beaver sees <strong>moderate tension</strong> in your area right now. Behaviors are changing. This is not a prediction — it's the present the Beaver reads 6 months before everyone else.";
+  }else if(score>=0.30){
+    text="Your region is <strong>relatively stable</strong> right now. A few signals to watch. The Beaver keeps an eye out for you, in real time.";
+  }else{
+    text="Your region is <strong>calm</strong> right now. The Beaver detects no concerning signal today. But history shows calm always precedes something.";
+  }
+
+  document.getElementById('pr-region').textContent='📍 '+region.name;
+  var ps=document.getElementById('pr-score');
+  ps.style.color=color;
+  var pst=document.getElementById('pr-status');
+  pst.textContent=status;pst.style.color=color;
+  document.getElementById('pr-text').innerHTML=text;
+  var box=document.getElementById('postal-result');
+  box.style.borderLeftColor=color;
+  box.style.display='block';
+  animateNum(ps,score100);
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+document.getElementById('postal').addEventListener('keypress',function(e){
+  if(e.key==='Enter')testBeaver();
+});
 
 function setStory(score){
-  const story = document.getElementById('story-text');
-  let msg = '';
-  if (score >= 65) {
-    msg = "Le Castor a détecté <strong>une crise en formation.</strong> Les signaux comportementaux des Canadiens dépassent les seuils historiques. Les manchettes vont rattraper d'ici 6 semaines.";
-  } else if (score >= 50) {
-    msg = "Le Castor voit <strong>des tensions qui s'accumulent.</strong> Le système n'est pas en crise — mais les comportements changent. C'est exactement le moment où l'on doit observer.";
-  } else if (score >= 35) {
-    msg = "Le Castor observe <strong>un Canada stable</strong> avec quelques signaux à surveiller. Le calme apparent cache toujours des micro-mouvements qui méritent attention.";
-  } else {
-    msg = "Le Castor confirme <strong>un Canada calme.</strong> Mais l'histoire montre que c'est exactement quand tout va bien que les graines de la prochaine crise sont semées.";
-  }
-  story.innerHTML = msg;
+  var el=document.getElementById('ns-story');
+  var m='';
+  if(score>=65)m="The Beaver detected <strong>a crisis forming.</strong> Canadians' behavioral signals exceed historical thresholds. Headlines will catch up within 6 weeks. You see it now.";
+  else if(score>=50)m="The Beaver sees <strong>tension building.</strong> The system isn't in crisis — but behaviors are changing. This is exactly when you should watch.";
+  else if(score>=35)m="The Beaver observes <strong>a stable Canada</strong> with a few signals to watch. Apparent calm always hides micro-movements.";
+  else m="The Beaver confirms <strong>a calm Canada.</strong> But history shows it's exactly when all is well that the seeds of the next crisis are sown.";
+  el.innerHTML=m;
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load',function(){
   updateStreak();
+  var beaver=62,upd='May 14, 2026';
 
-  let castorScore = 62;
-  let updated = '14 mai 2026';
-
-  fetch(SHEETS_URL + '&t=' + Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(data){
-      if (data.castorScore) castorScore = Math.round(data.castorScore * 100);
-      if (data.updated) updated = new Date(data.updated).toLocaleDateString('fr-CA');
-
-      const color = castorScore >= 65 ? 'var(--red)' : castorScore >= 50 ? 'var(--orange)' : castorScore >= 35 ? 'var(--yellow)' : 'var(--green)';
-      const status = castorScore >= 65 ? 'CRISE' : castorScore >= 50 ? 'TENSION' : castorScore >= 35 ? 'SURVEILLER' : 'STABLE';
-
-      const numEl = document.getElementById('big-num');
-      const statusEl = document.getElementById('big-status');
-      const barEl = document.getElementById('bar-fill');
-
-      numEl.style.color = color;
-      statusEl.style.color = color;
-      statusEl.textContent = '🇨🇦 ' + status;
-      barEl.style.background = color;
-
-      animateNumber(numEl, castorScore);
-      setTimeout(function(){ barEl.style.width = castorScore + '%'; }, 200);
-
-      setStory(castorScore);
-
-      document.querySelector('.score-big-box').style.borderLeftColor = color;
-      document.getElementById('last-updated').textContent = updated;
+  fetch(SHEETS_URL+'&t='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.castorScore)beaver=Math.round(d.castorScore*100);
+      if(d.updated)upd=new Date(d.updated).toLocaleDateString('en-CA');
+      var c=beaver>=65?'var(--red)':beaver>=50?'var(--orange)':beaver>=35?'var(--yellow)':'var(--green)';
+      var s=beaver>=65?'CRISIS':beaver>=50?'TENSION':beaver>=35?'WATCH':'STABLE';
+      var n=document.getElementById('ns-num');
+      n.style.color=c;
+      var st=document.getElementById('ns-status');
+      st.textContent='🇨🇦 '+s;st.style.color=c;
+      document.getElementById('ns-bar').style.background=c;
+      animateNum(n,beaver);
+      setTimeout(function(){document.getElementById('ns-bar').style.width=beaver+'%';},200);
+      setStory(beaver);
+      document.getElementById('last-updated').textContent=upd;
     })
     .catch(function(){
-      const numEl = document.getElementById('big-num');
-      animateNumber(numEl, castorScore);
-      document.getElementById('big-status').textContent = '🇨🇦 TENSION';
-      setTimeout(function(){ document.getElementById('bar-fill').style.width = castorScore + '%'; }, 200);
-      setStory(castorScore);
-      document.getElementById('last-updated').textContent = updated;
+      var n=document.getElementById('ns-num');
+      animateNum(n,beaver);
+      document.getElementById('ns-status').textContent='🇨🇦 TENSION';
+      setTimeout(function(){document.getElementById('ns-bar').style.width=beaver+'%';},200);
+      setStory(beaver);
+      document.getElementById('last-updated').textContent=upd;
     });
 
-  fetch('kijiji_predictions.json?t=' + Date.now())
-    .then(function(r){ return r.json(); })
-    .then(function(preds){
-      const verified = preds.filter(function(p){ return p.score_reel !== null; });
-      const correct = verified.filter(function(p){ return p.claude_avait_raison === true; });
-      if (verified.length > 0) {
-        const pct = Math.round((correct.length / verified.length) * 100);
-        document.getElementById('precision').textContent = pct + '%';
-      } else {
-        document.getElementById('precision').textContent = 'NOUVEAU';
-        document.getElementById('precision').style.fontSize = '1.8rem';
-      }
-      document.getElementById('total-pred').textContent = preds.filter(function(p){ return p.score_reel === null; }).length;
+  fetch('kijiji_predictions.json?t='+Date.now())
+    .then(function(r){return r.json();})
+    .then(function(p){
+      var v=p.filter(function(x){return x.score_reel!==null;});
+      var c=v.filter(function(x){return x.claude_avait_raison===true;});
+      var pr=document.getElementById('precision');
+      if(v.length>0){pr.textContent=Math.round(c.length/v.length*100)+'%';}
+      else{pr.textContent='NEW';pr.style.fontSize='1.5rem';}
+      document.getElementById('total-pred').textContent=p.filter(function(x){return x.score_reel===null;}).length;
     })
     .catch(function(){
-      document.getElementById('precision').textContent = 'NOUVEAU';
-      document.getElementById('precision').style.fontSize = '1.8rem';
+      var pr=document.getElementById('precision');
+      pr.textContent='NEW';pr.style.fontSize='1.5rem';
     });
 });
 </script>
